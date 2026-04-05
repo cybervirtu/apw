@@ -28,8 +28,11 @@ Instead of polluting the root directory, feature documentation, API specs, and r
 
 ### The `.agent/` Folder
 This is reserved exclusively for the active AI context layer. Do not store application configuration (like Docker or ESLint) here.
+- `.agent/agents/`: Specialist agent definitions.
 - `.agent/rules/`: Machine readable prompts.
+- `.agent/scripts/`: Task-level automation helpers.
 - `.agent/workflows/`: Executable slash commands.
+- `.agent/skills/`: Curated reusable specialist capabilities.
 
 ## 3. Temporary and Scratch Files
 - Any temporary scripting, data dumping, or exploratory logging should be done in `/tmp/` or explicitly ignored directories to prevent polluting the version control or context window.

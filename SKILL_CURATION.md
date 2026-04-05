@@ -5,7 +5,8 @@
 
 ## 1. Curation Philosophy
 
-The APW standard uses a **minimal, high-leverage** curation strategy for the `.agent/` directories.
+The APW standard uses a **minimal, high-leverage** curation strategy for the unified `.agent/` namespace.
+- The active APW contract lives in `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/`.
 - We do not import everything from AGK.
 - We only import tools that are broadly useful or provide specific, complex domain expertise.
 - **Modularity**: We use a base "Core Set" for all projects, and "Add-on Sets" injected dynamically during project bootstrap based on the tech stack.

@@ -44,7 +44,7 @@ The following table defines the final approved command set for the APW standard.
 
 ## 3. Naming Policy
 
-When creating new workflows or skills for the `.agent/workflows/` directory:
+When creating new workflows or skills for the unified `.agent/` namespace, with commands defined in `.agent/workflows/`:
 
 1. **Verbs or Action-Nouns**: Commands must represent clear actions (e.g., `/deploy`, `/evaluate`, `/lint`).
 2. **Single Word Preferred**: Use concise names. Avoid `/create-component` if `/create` with a prompt suffices.

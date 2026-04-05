@@ -6,12 +6,11 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 ```text
 ./apw/
-├── .agent/              # Specialist Execution Layer (Project-Specific)
+├── .agent/              # Specialist execution + capability namespace
 │   ├── agents/          # Merged definitions (GSD.md, AGK.md)
 │   ├── rules/           # Machine-readable governing prompts
 │   ├── scripts/         # Task-level automation
-│   └── workflows/       # Execution flows (Slash commands)
-├── .agent/skills/       # Capability Library (Shared/Curated)
+│   ├── workflows/       # Execution flows (Slash commands)
 │   └── skills/          # Reusable high-fidelity skills
 ├── .gsd/                # Lifecycle Memory Layer (Documentation)
 │   ├── SPEC.md          # Requirements and goal definition
@@ -41,7 +40,10 @@ The following structure defines the master APW standard. It integrates the GSD l
 | **.gsd/SPEC.md** | Requirement source of truth | Before coding | **Mandatory** |
 | **.gsd/STATE.md**| Current project position | Continuously | **Mandatory** |
 | **.gsd/JOURNAL.md**| Audit trail of actions | Continuously | **Mandatory** |
+| **.agent/agents/** | Specialist agent definitions | Curated | **Mandatory** |
 | **.agent/rules/**| AI governing prompts | Static | **Mandatory** |
+| **.agent/scripts/** | Task automation helpers | Curated | **Optional** |
+| **.agent/workflows/** | Execution workflows / slash commands | Curated | **Mandatory** |
 | **.agent/skills/** | Specialist implementations | Syncable | **Optional** |
 | **PROJECT_RULES.md**| Core governance rules | Never | **Mandatory** |
 | **AGENT_SYSTEM.md** | Precedence rules | Never | **Mandatory** |
@@ -51,7 +53,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 ## 3. Distribution Rules (Copy vs Reference)
 
 - **Copy-Don't-Reference**: All root `.md` files and `.gsd/` templates are **copied** into new projects to ensure repository independence.
-- **Selective Sync**: `.agent/skills/` are **imported/synced** based on the chosen tech stack.
+- **Selective Sync**: `.agent/skills/` entries are **imported/synced** based on the chosen tech stack.
 - **Never Edit Casually**: `PROJECT_RULES.md`, `GSD-STYLE.md`, and `AGENT_SYSTEM.md` are the governing standard and should only be modified in `./apw` before rolling out updates.
 
 ---
@@ -77,7 +79,7 @@ Designed for simple scripts, research, or rapid prototyping workflows where deep
 
 ### **Base Profile (`templates/base`)**
 The standard, non-negotiable baseline for standard software engineering projects.
-- **Includes**: The full `.gsd/` memory stack (SPEC, ROADMAP, STATE, JOURNAL, ARCHITECTURE, STACK, DECISIONS, TODO) and standard core skills.
+- **Includes**: The full `.gsd/` memory stack (SPEC, ROADMAP, STATE, JOURNAL, ARCHITECTURE, STACK, DECISIONS, TODO) plus the standard `.agent/` scaffolding and core skills.
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.

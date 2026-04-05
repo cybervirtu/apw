@@ -6,12 +6,12 @@ The APW standard is maintained in a dedicated `./apw` directory within the maste
 
 ```text
 ./apw/
-├── .agent/              # Global agent context templates
+├── .agent/              # Global execution + capability namespace
 │   ├── agents/          # Core agent personalities (GSD, AGK)
 │   ├── rules/           # Global governing prompts (PROJECT.md)
-│   └── workflows/       # Shared slash command definitions
-├── .agent/skills/       # Curated common skill library
-│   └── skills/          # Domain-specific capabilities (Refactor, Debug)
+│   ├── scripts/         # Task-level automation
+│   ├── workflows/       # Shared slash command definitions
+│   └── skills/          # Curated common skill library
 ├── .gsd/                # Lifecycle document templates
 │   ├── SPEC.md          # Requirement definition template
 │   ├── ROADMAP.md       # Phase and milestone template
@@ -32,7 +32,11 @@ Projects bootstrapped from APW should follow this canonical layout:
 ```text
 [project-root]/
 ├── .agent/              # Project-specific AI context (Localized)
-├── .agent/skills/       # Project-specific or imported skills
+│   ├── agents/          # Specialist agent definitions
+│   ├── rules/           # Governing prompts
+│   ├── scripts/         # Task-level automation
+│   ├── workflows/       # Execution flows / slash commands
+│   └── skills/          # Project-specific or imported skills
 ├── .gsd/                # ACTIVE lifecycle documentation (Daily use)
 ├── docs/                # Project technical documentation
 ├── AGENT_SYSTEM.md      # (Symlinked or copied from APW)

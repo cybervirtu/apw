@@ -18,16 +18,20 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 
 ```text
 ./apw/
-├── .agent/              # Execution Context (Workflows, Tools, Agent Prompts)
-├── .agent/skills/       # Curated Specialists (React, Database, API Skills)
-├── .gsd/                # Lifecycle Memory (Spec, Roadmap, State, Journal)
-├── docs/                # APW Tooling, Policies, and Guides
-├── scripts/             # Automation (Bootstrap, Validate)
-├── templates/           # Origin templates for Bootstrapping downstreams
-├── AGENT_SYSTEM.md      # Dual-Engine Precedence map
+├── .agent/              # Execution + capability namespace
+│   ├── agents/          # Specialist agent definitions
+│   ├── rules/           # Governing prompts and routing rules
+│   ├── scripts/         # Task-level automation
+│   ├── workflows/       # Execution flows / slash commands
+│   └── skills/          # Curated reusable capability library
+├── .gsd/                # Lifecycle memory and documentation templates
+├── docs/                # APW tooling, policies, and guides
+├── scripts/             # Bootstrap and validation automation
+├── templates/           # Canonical downstream bootstrap source
+├── AGENT_SYSTEM.md      # Dual-engine precedence rules
 ├── GSD-STYLE.md         # AI communication style guide
-├── PROJECT_RULES.md     # Mandatory Execution protocols (Spec->Plan->Execute)
-└── FILE_CONVENTIONS.md  # Standard naming constraints
+├── PROJECT_RULES.md     # Mandatory execution protocols
+└── FILE_CONVENTIONS.md  # Naming and layout constraints
 ```
 
 ---
