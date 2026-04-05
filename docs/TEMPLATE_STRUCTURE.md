@@ -65,12 +65,21 @@ The following files must be updated continuously during each implementation sess
 
 ---
 
-## 5. Template Versions
+## 5. Template Versions & The Canonical Contract
 
-### **Minimal Version**
-Designed for simple scripts, research, or rapid prototyping.
-- Includes: Root governance files, `.gsd/SPEC.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and base `.agent/` workflows.
+**The Canonical Source**: The `./templates/` directory is the undisputed origin for all APW instantiations. The repo completely rejects the legacy concept of a root `.gsd/templates/` folder to prevent source-of-truth ambiguity. 
 
-### **Advanced Version**
-Designed for production-grade applications and monorepos.
-- Includes: Full `.gsd/` stack, curated `.agent/skills/` library, complex `.agent/` workflows, and multi-module documentation support.
+When invoking `bootstrap.sh`, developers must choose a profile. The profiles define what baseline memory and execution scaffolding is copied:
+
+### **Minimal Profile (`templates/minimal`)**
+Designed for simple scripts, research, or rapid prototyping workflows where deep validation is unnecessary overhead.
+- **Includes**: Root governance files, `.gsd/SPEC.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and base `.agent/` workflows. (Excludes heavy tracking like ROADMAP, JOURNAL, DECISIONS).
+
+### **Base Profile (`templates/base`)**
+The standard, non-negotiable baseline for standard software engineering projects.
+- **Includes**: The full `.gsd/` memory stack (SPEC, ROADMAP, STATE, JOURNAL, ARCHITECTURE, STACK, DECISIONS, TODO) and standard core skills.
+
+### **Advanced Profile (`templates/advanced`)**
+Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
+- **Includes**: Full `.gsd/` memory stack, curated `.agent/skills/` library, complex `.agent/` workflows, multi-module documentation support, and strict validation scripts.
+- **Overrides**: Contains a stricter `PROJECT_RULES.md` and `AGENT_SYSTEM.md` that enforce higher commit and architectural logging thresholds.
