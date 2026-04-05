@@ -3,7 +3,16 @@
 > **The definitive operational framework for AI-assisted software engineering.**
 > Merging the rigorous governance of the *Get-Shit-Done (GSD)* methodology with the advanced execution capabilities of the *Antigravity-Kit (AGK)*.
 
-## 🌟 Philosophy
+APW helps people and AI agents build software without losing track of project state, rules, or execution context.
+
+If you are new here:
+
+1. Read [Quick Start](docs/QUICK_START.md)
+2. Read [The APW Handbook](docs/APW_HANDBOOK.md)
+3. Use [Features and Modes](docs/FEATURES_AND_MODES.md) to choose the right way to adopt APW
+4. Use [Workflow Reference](docs/WORKFLOW_REFERENCE.md) and [Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md) when you start real project work
+
+## 🌟 Why APW Exists
 
 The APW Standard resolves the core tension in AI-assisted coding: **Context Drift vs. Execution Speed**. 
 By enforcing a strict separation of concerns, the APW ensures that AI agents always have a single source of truth for *what* is being built, while retaining specialized "muscle" for *how* it gets built.
@@ -40,6 +49,21 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 
 ## 🚀 Quick Start
 
+### Read This First
+
+- [APW Handbook](docs/APW_HANDBOOK.md): the full plain-English explanation of APW
+- [Quick Start](docs/QUICK_START.md): the fastest safe path to begin
+- [Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md): the mental model behind `.gsd`, `.agent`, and validation
+- [Operating Model](docs/OPERATING_MODEL.md): who does what and how canonical state stays controlled
+- [Glossary](docs/GLOSSARY.md): the key APW terms in simple language
+
+### Learn the Framework
+
+- [Features and Modes](docs/FEATURES_AND_MODES.md): what APW provides and how different usage modes work
+- [Workflow Reference](docs/WORKFLOW_REFERENCE.md): the standard execution and sync loops
+- [Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md): real-world APW scenarios from greenfield builds to monorepos
+- [FAQ](docs/FAQ.md): common questions from beginners and teams
+
 ### For Maintaining the APW Standard
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
@@ -73,9 +97,27 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 2. Use the [Pilot Adoption Plan](docs/PILOT_ADOPTION_PLAN.md) for phased rollout in an active team.
 3. Re-run the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) after the first APW-backed feature cycle.
 
+### For Teams
+1. Read the [Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md).
+2. Turn on [CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md) early.
+3. Use the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) as a repeatable operating checklist.
+
 ---
 
-## 📚 Policy Reference Index
+## 📚 Documentation Map
+
+- **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to start using APW.
+- **[APW Handbook](docs/APW_HANDBOOK.md)**: Full beginner-friendly explanation of what APW is and how it works.
+- **[Glossary](docs/GLOSSARY.md)**: Definitions of APW terms in plain language.
+- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: Plain-English architecture walkthrough.
+- **[Operating Model](docs/OPERATING_MODEL.md)**: Roles, responsibilities, and canonical state sync.
+- **[Features and Modes](docs/FEATURES_AND_MODES.md)**: What APW provides and how to apply it.
+- **[Workflow Reference](docs/WORKFLOW_REFERENCE.md)**: The standard APW working loops.
+- **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**: End-to-end scenarios and examples.
+- **[Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md)**: How teams should adopt and operate APW.
+- **[FAQ](docs/FAQ.md)**: Common beginner and team questions.
+
+## 📚 Policy and Contract Reference
 
 - **[Agent System & Precedence](AGENT_SYSTEM.md)**: How GSD and AGK interact.
 - **[Project Governance Rules](PROJECT_RULES.md)**: The strict rules of execution.
