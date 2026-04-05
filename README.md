@@ -19,7 +19,7 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 ```text
 ./apw/
 ├── .agent/              # Execution Context (Workflows, Tools, Agent Prompts)
-├── .agents/             # Curated Specialists (React, Database, API Skills)
+├── .agent/skills/       # Curated Specialists (React, Database, API Skills)
 ├── .gsd/                # Lifecycle Memory (Spec, Roadmap, State, Journal)
 ├── docs/                # APW Tooling, Policies, and Guides
 ├── scripts/             # Automation (Bootstrap, Validate)

@@ -38,7 +38,7 @@ mkdir -p "$TARGET_DIR/.gsd"
 mkdir -p "$TARGET_DIR/.agent/agents"
 mkdir -p "$TARGET_DIR/.agent/rules"
 mkdir -p "$TARGET_DIR/.agent/workflows"
-mkdir -p "$TARGET_DIR/.agents/skills"
+mkdir -p "$TARGET_DIR/.agent/skills"
 mkdir -p "$TARGET_DIR/docs"
 
 echo "✅ Created APW directory structure."
@@ -70,17 +70,28 @@ done
 cp -r "$APW_ROOT/.agent/workflows/"* "$TARGET_DIR/.agent/workflows/" 2>/dev/null || true
 cp -r "$APW_ROOT/.agent/rules/"* "$TARGET_DIR/.agent/rules/" 2>/dev/null || true
 cp -r "$APW_ROOT/.agent/agents/"* "$TARGET_DIR/.agent/agents/" 2>/dev/null || true
-cp -r "$APW_ROOT/.agents/skills/"* "$TARGET_DIR/.agents/skills/" 2>/dev/null || true
+cp -r "$APW_ROOT/.agent/skills/"* "$TARGET_DIR/.agent/skills/" 2>/dev/null || true
 
 echo "✅ Injected Core Intelligence Layer."
 
 # 5. Inject Stack-Specific Add-ons
 if [[ "$STACK" != "base" ]]; then
-    if [[ -d "$APW_ROOT/templates/stack/$STACK/.agents/skills" ]]; then
-        cp -r "$APW_ROOT/templates/stack/$STACK/.agents/skills/"* "$TARGET_DIR/.agents/skills/"
+    if [[ -d "$APW_ROOT/templates/stack/$STACK/.agent/skills" ]]; then
+        cp -r "$APW_ROOT/templates/stack/$STACK/.agent/skills/"* "$TARGET_DIR/.agent/skills/"
         echo "✅ Injected $STACK specialist skills."
     else
         echo "⚠️ Warning: Stack '$STACK' not found in templates."
+    fi
+fi
+
+# 6. Configure Git Commit Template
+if [[ -f "$APW_ROOT/.gitmessage" ]]; then
+    cp "$APW_ROOT/.gitmessage" "$TARGET_DIR/"
+    if [ -d "$TARGET_DIR/.git" ]; then
+        (cd "$TARGET_DIR" && git config commit.template .gitmessage)
+        echo "✅ Configured Git commit template."
+    else
+        echo "ℹ️  No .git directory found; skip git config (run manually later)."
     fi
 fi
 

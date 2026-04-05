@@ -8,7 +8,7 @@
 Because APW is a merged standard, we do not blindly pull upstream changes.
 
 - **GSD Updates**: Usually vendored verbatim. GSD is the canonical brain, and its conceptual updates (`PROJECT_RULES.md`, `.gsd/` structure) should be adopted as-is.
-- **AGK Updates**: Aggressively curated. New workflows or skills in AGK must pass the Namespace Conflict check (see `COMMAND_POLICY.md`) before being merged into `.agent/` or `.agents/skills/`.
+- **AGK Updates**: Aggressively curated. New workflows or skills in AGK must pass the Namespace Conflict check (see `COMMAND_POLICY.md`) before being merged into `.agent/` or `.agent/skills/`.
 
 ## 2. Synchronization Workflow
 

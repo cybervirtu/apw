@@ -73,4 +73,4 @@ Designed for simple scripts, research, or rapid prototyping.
 
 ### **Advanced Version**
 Designed for production-grade applications and monorepos.
-- Includes: Full `.gsd/` stack, curated `.agents/skills/` library, complex `.agent/` workflows, and multi-module documentation support.
+- Includes: Full `.gsd/` stack, curated `.agent/skills/` library, complex `.agent/` workflows, and multi-module documentation support.

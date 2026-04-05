@@ -1,0 +1,19 @@
+# type(scope): summary (50 chars or less)
+# 
+# Description of the change (detailed explanation of what and why).
+# 
+# --- Approved Types ---
+# feat:     New feature or standard update.
+# fix:      Bug fix or policy correction.
+# docs:     Documentation-only changes.
+# refactor: Code restructuring (no logic change).
+# chore:    Maintenance, dependencies, or boilerplate.
+# test:     Adding or updating tests.
+# perf:     Performance improvements.
+# 
+# --- Guidelines ---
+# 1. Use the imperative, present tense ("change", not "changed").
+# 2. Limit the subject line to 50 characters.
+# 3. Capitalize the subject line.
+# 4. Do not end the subject line with a period.
+# 5. Provide context for the "Why" in the body.

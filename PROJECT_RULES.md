@@ -10,7 +10,7 @@
 2. **PLAN**: Decompose the spec into phases in `.gsd/ROADMAP.md`.
 3. **EXECUTE**: Use AGK workflows and specialist skills for implementation.
 4. **VERIFY**: Prove completion with empirical evidence (captured output, screenshots).
-5. **COMMIT**: One task = one commit. Format: `type(scope): description`.
+5. **COMMIT**: One task = one commit. Format: `type(scope): description`. **Always utilize the provided `.gitmessage` template.**
 
 ## Rules of Engagement
 - **Phase Completion Rule**: You may not begin work on tasks in Phase N+1 until all tasks in Phase N are marked complete in `.gsd/STATE.md` and explicitly verified.

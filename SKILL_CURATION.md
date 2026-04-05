@@ -5,7 +5,7 @@
 
 ## 1. Curation Philosophy
 
-The APW standard uses a **minimal, high-leverage** curation strategy for the `.agent/` and `.agents/` directories.
+The APW standard uses a **minimal, high-leverage** curation strategy for the `.agent/` directories.
 - We do not import everything from AGK.
 - We only import tools that are broadly useful or provide specific, complex domain expertise.
 - **Modularity**: We use a base "Core Set" for all projects, and "Add-on Sets" injected dynamically during project bootstrap based on the tech stack.
@@ -32,7 +32,7 @@ These are baseline specialists and tools required for effective AI-assisted exec
 - `/debug.md` (Error investigation, log analysis)
 - `/status.md` (Current build/test execution status)
 
-### Skills (.agents/skills/)
+### Skills (.agent/skills/)
 - `clean-code`: Universal formatting and refactoring standards.
 - `git-expert`: Advanced version control operations.
 

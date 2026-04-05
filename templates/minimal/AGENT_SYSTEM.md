@@ -9,7 +9,7 @@ APW operates through three distinct layers:
 
 1. **The Memory Layer (GSD)**: Located in `.gsd/`. This is the canonical source of truth for project lifecycle, planning, state tracking, and verification. It persists across sessions and models.
 2. **The Context Layer (AGK)**: Located in `.agent/`. This is the active instruction set for AI execution. It contains project-specific rules, workflows, and agent definitions that interpret the Memory Layer.
-3. **The Capability Layer (Merged)**: Located in `.agents/skills/`. This is the shared library of curated, high-leverage specialist skills (e.g., refactoring, debugging, testing) imported from the AGK foundation.
+3. **The Capability Layer (Merged)**: Located in `.agent/skills/`. This is the shared library of curated, high-leverage specialist skills (e.g., refactoring, debugging, testing) imported from the AGK foundation.
 
 ---
 
@@ -34,7 +34,7 @@ If a conflict arises between execution logs (AGK) and state documentation (GSD),
 When an agent starts a task:
 1. **Initialize**: Check `.gsd/STATE.md` to confirm the current position.
 2. **Contextualize**: Load `.agent/rules/PROJECT.md` to understand local constraints.
-3. **Execute**: Utilize curated skills from `.agents/skills/`.
+3. **Execute**: Utilize curated skills from `.agent/skills/`.
 4. **Verify**: Test outputs against `.gsd/SPEC.md` requirements.
 5. **Finalize**: Update `.gsd/STATE.md` and commit with GSD-style atomicity.
 
