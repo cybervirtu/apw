@@ -47,7 +47,7 @@ Projects bootstrapped from APW should follow this canonical layout:
 
 ---
 
-## 3. Upgrade & Sync Strategy
+## 3. Upgrade Strategy
 
 To ensure projects remain aligned with the evolving APW standard while allowing for upstream changes:
 

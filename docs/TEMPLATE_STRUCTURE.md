@@ -81,6 +81,8 @@ The following files must be updated continuously during each implementation sess
 - `templates/`: **canonical downstream source**
 - `.gsd/templates/`: **currently absent**; if reintroduced without bootstrap changes, classify it as **internal authoring**, **transitional**, or **legacy support**, never as the canonical downstream source
 
+For a filesystem-level walkthrough of the profile tree itself, see [templates/README.md](../templates/README.md).
+
 When invoking `bootstrap.sh`, developers choose a profile with `--profile` and an optional stack add-on with `--stack`. Bootstrap always creates `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, `.agent/skills/`, `.gsd/`, and `docs/` in the target repo.
 
 ### **Minimal Profile (`templates/minimal`)**

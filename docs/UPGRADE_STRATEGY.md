@@ -16,7 +16,7 @@ When updating APW from the upstream private repositories, follow these steps:
 1. **Pull to Sandbox**: Pull GSD and AGK changes into the `./sources/` directory.
 2. **Review Diff**: Compare the upstream changes against the current `./apw/` master representation.
 3. **Merge**: Apply approved, curated changes to `./apw/`.
-4. **Validate**: Run `./scripts/validate.sh . --profile base --stack base` or the equivalent profile-aware command for the target being reviewed.
+4. **Validate**: Run `/path/to/apw/scripts/validate.sh [repo-root] --profile base --stack base` or the equivalent profile-aware command for the target being reviewed.
 5. **Release**: Commit to the APW `main` branch.
 
 ---

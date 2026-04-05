@@ -9,6 +9,7 @@
 - The script never creates or expects a top-level `.agents/` directory.
 - The active downstream execution namespace is always `.agent/`.
 - Repo-root governance files (`PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`) are copied directly from the APW repo root during bootstrap.
+- Profile-tree details are documented in `templates/README.md`.
 
 ## 2. Inputs
 

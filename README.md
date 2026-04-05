@@ -39,12 +39,13 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 ## 🚀 Quick Start
 
 ### For Maintaining the APW Standard
-If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
+If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
 ### Template Contract
 - `templates/` is the canonical downstream bootstrap source.
 - `.gsd/` is the active governance layer in a working repo, not the downstream template source.
 - `.gsd/templates/` is not present in the current APW implementation. If it is introduced later for internal authoring, transition support, or legacy compatibility, it must remain non-canonical unless `bootstrap.sh` is explicitly changed to use it.
+- Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
 
 ### For Developers Starting a New Project
 1. Run the bootstrap script in your new directory:
@@ -77,6 +78,7 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
 - **[Project Bootstrap](PROJECT_BOOTSTRAP.md)**: Exact bootstrap inputs, outputs, overwrite rules, and upgrade behavior.
 - **[Skill Curation](SKILL_CURATION.md)**: What makes an agent "Core" vs "Add-on".
 - **[Template Structure](docs/TEMPLATE_STRUCTURE.md)**: Details on the template contract.
+- **[Templates Directory Guide](templates/README.md)**: How `minimal`, `base`, and `advanced` differ at the filesystem level.
 - **[Tooling Guide](docs/TOOLING_GUIDE.md)**: Practical operating guidance for Antigravity, Cursor, and Codex.
 - **[Monorepo Adaptation](docs/MONOREPO_ADAPTATION.md)**: How to scale APW across packages.
 - **[CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md)**: Concrete downstream validation and pull-request enforcement patterns.
