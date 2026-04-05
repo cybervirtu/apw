@@ -67,5 +67,5 @@ These skills are stored in `./apw/templates/stack/` and are only injected when a
 
 ## 5. Maintenance Recommendation
 
-- **Audit**: Run `./scripts/validate.sh` periodically to ensure projects haven't imported massive, undocumented skills outside these curated sets.
+- **Audit**: Run `./scripts/validate.sh . --profile [profile] --stack [stack]` periodically to ensure projects haven't imported massive, undocumented skills outside these curated sets.
 - **Updates**: When dragging new skills from the upstream AGK repository, place them in `./apw/templates/` first for security and namespace review before adding them to a core or add-on set.

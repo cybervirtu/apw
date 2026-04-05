@@ -44,7 +44,7 @@ The fundamental shift in APW is moving from disparate documentation into a cohes
 
 ### Phase 4: Review
 After one complete feature cycle or sprint:
-1. Run `/path/to/apw/scripts/validate.sh .`.
+1. Run `/path/to/apw/scripts/validate.sh . --profile base --stack base`.
 2. Verify that no "shadow architecture" was created.
 3. If successful, safely delete the `legacy-ai/` folder.
 

@@ -16,7 +16,7 @@ When updating APW from the upstream private repositories, follow these steps:
 1. **Pull to Sandbox**: Pull GSD and AGK changes into the `./sources/` directory.
 2. **Review Diff**: Compare the upstream changes against the current `./apw/` master representation.
 3. **Merge**: Apply approved, curated changes to `./apw/`.
-4. **Validate**: Run `./scripts/validate.sh` to ensure compliance.
+4. **Validate**: Run `./scripts/validate.sh . --profile base --stack base` or the equivalent profile-aware command for the target being reviewed.
 5. **Release**: Commit to the APW `main` branch.
 
 ---
@@ -33,7 +33,7 @@ APW utilizes a "Tick-Tock" release rhythm to protect active projects from stabil
 ### 🟢 Routine Updates (Tock)
 - **Definition**: Non-destructive prompt tweaks, new skills, or bug fixes in workflows.
 - **Action**: Bumps a minor/patch version (e.g., `v2.1.0`).
-- **Rollout**: Can be blindly deployed to downstream repositories via `./scripts/bootstrap.sh --force`.
+- **Rollout**: Can usually be deployed to downstream repositories by re-running `./scripts/bootstrap.sh --target . --profile [profile] --stack [stack]`. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced.
 
 ---
 
