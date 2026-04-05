@@ -58,6 +58,7 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
 - **[Project Governance Rules](PROJECT_RULES.md)**: The strict rules of execution.
 - **[Command Policy](COMMAND_POLICY.md)**: Reserved slash commands and conflict resolution.
 - **[Skill Curation](SKILL_CURATION.md)**: What makes an agent "Core" vs "Add-on".
+- **[Template Structure](docs/TEMPLATE_STRUCTURE.md)**: Details on the template contract.
 - **[Tooling Guide](docs/TOOLING_GUIDE.md)**: IDE-specific do's and don'ts (Cursor vs. Antigravity).
 - **[Monorepo Adaptation](docs/MONOREPO_ADAPTATION.md)**: How to scale APW across packages.
 - **[CI/CD Enforcements](docs/CI_CD_MOCKUPS.md)**: Validating APW compliance on Pull Requests.
