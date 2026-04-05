@@ -11,7 +11,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 │   ├── rules/           # Machine-readable governing prompts
 │   ├── scripts/         # Task-level automation
 │   └── workflows/       # Execution flows (Slash commands)
-├── .agents/             # Capability Library (Shared/Curated)
+├── .agent/skills/       # Capability Library (Shared/Curated)
 │   └── skills/          # Reusable high-fidelity skills
 ├── .gsd/                # Lifecycle Memory Layer (Documentation)
 │   ├── SPEC.md          # Requirements and goal definition
@@ -42,7 +42,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 | **.gsd/STATE.md**| Current project position | Continuously | **Mandatory** |
 | **.gsd/JOURNAL.md**| Audit trail of actions | Continuously | **Mandatory** |
 | **.agent/rules/**| AI governing prompts | Static | **Mandatory** |
-| **.agents/skills/**| Specialist implementations | Syncable | **Optional** |
+| **.agent/skills/** | Specialist implementations | Syncable | **Optional** |
 | **PROJECT_RULES.md**| Core governance rules | Never | **Mandatory** |
 | **AGENT_SYSTEM.md** | Precedence rules | Never | **Mandatory** |
 
@@ -51,7 +51,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 ## 3. Distribution Rules (Copy vs Reference)
 
 - **Copy-Don't-Reference**: All root `.md` files and `.gsd/` templates are **copied** into new projects to ensure repository independence.
-- **Selective Sync**: `.agents/skills/` are **imported/synced** based on the chosen tech stack.
+- **Selective Sync**: `.agent/skills/` are **imported/synced** based on the chosen tech stack.
 - **Never Edit Casually**: `PROJECT_RULES.md`, `GSD-STYLE.md`, and `AGENT_SYSTEM.md` are the governing standard and should only be modified in `./apw` before rolling out updates.
 
 ---
