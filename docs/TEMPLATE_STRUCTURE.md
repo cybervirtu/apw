@@ -106,3 +106,10 @@ Designed for production-grade applications, strict CI/CD pipelines, and monorepo
 - Optional profile directories that do not exist are treated as empty and logged, not as bootstrap failures.
 
 For the operational contract and upgrade guidance, see [PROJECT_BOOTSTRAP.md](../PROJECT_BOOTSTRAP.md).
+
+## 7. Validation Rules
+
+- Run `./scripts/validate.sh [target] --profile <profile> --stack <stack>` using the same profile and stack choices used for bootstrap.
+- Validation enforces the required root governance files, profile-selected `.gsd` files, and the full `.agent/` namespace.
+- Validation warns on legacy drift such as `.agents/` or `.agents/skills/`.
+- `.agent/skills/` population is only enforced when the selected profile or stack pack vendors skill files.

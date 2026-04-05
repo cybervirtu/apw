@@ -57,6 +57,10 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
    - `advanced`: expanded lifecycle and specialist execution material
 3. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
 4. The AI will populate your `.gsd/` memory. You are now ready to code!
+5. Validate the repo against the same profile:
+   ```bash
+   /path/to/apw/scripts/validate.sh . --profile base --stack base
+   ```
 
 ### For Migrating an Existing Project
 1. Carefully review the [Pilot Adoption Plan](docs/PILOT_ADOPTION_PLAN.md).

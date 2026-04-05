@@ -104,3 +104,20 @@ Recommended upgrade examples:
 - `.agent/skills/` is the active skills path.
 - Stack-specific skills are only applied from `templates/stack/<name>/.agent/skills/` when that pack exists.
 - Missing optional `.agent` profile directories are treated as empty, not as errors.
+
+## 8. Validation Pairing
+
+After bootstrap, validate the target repo against the same bootstrap inputs:
+
+```bash
+./scripts/validate.sh . --profile base --stack base
+./scripts/validate.sh . --profile advanced --stack base
+```
+
+Validation enforces:
+
+- required root governance files
+- profile-selected `.gsd` lifecycle files
+- the full `.agent/` directory namespace
+- profile-backed execution files when the selected profile vendors them
+- warnings for legacy `.agents/` drift
