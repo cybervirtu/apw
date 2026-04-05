@@ -50,15 +50,15 @@ Instead, bootstrap the root for governance, and then bootstrap each app dynamica
 
 ```bash
 # 1. Initialize the global root
-./scripts/bootstrap.sh --target . --stack root-only
+./scripts/bootstrap.sh --target . --profile base --stack base
 
 # 2. Initialize the backend
-./scripts/bootstrap.sh --target ./apps/api --stack fastapi
+./scripts/bootstrap.sh --target ./apps/api --profile base --stack base
 
 # 3. Initialize the frontend
-./scripts/bootstrap.sh --target ./apps/web --stack react
+./scripts/bootstrap.sh --target ./apps/web --profile base --stack base
 ```
-*(Note: Ensure your `bootstrap.sh` script is capable of targeting subdirectories as designed).*
+*(If your APW repo later vendors stack packs under `templates/stack/<name>/`, replace `base` with the appropriate pack name.)*
 
 ## 4. Single Source of Truth
 Never duplicate specifications. If an API schema is defined in `apps/api/swagger.yaml`, the frontend `apps/web/.gsd/SPEC.md` must read: 

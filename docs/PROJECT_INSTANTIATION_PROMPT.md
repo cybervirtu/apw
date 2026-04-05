@@ -4,7 +4,7 @@
 > Use this prompt template to kick off a brand new APW project.
 > 
 > **How to use:**
-> 1. Run `./scripts/bootstrap.sh --target [your-new-project-dir] --stack [stack-name]`
+> 1. Run `./scripts/bootstrap.sh --target [your-new-project-dir] --profile base --stack base`
 > 2. Open your new project in your AI IDE (Antigravity, Cursor, etc.).
 > 3. Copy the text below, fill in the bracketed `[ ]` variables, and submit it to the AI agent to generate your initial documentation layer.
 > 4. Ensure you save the AI's output into the respective `.gsd/` files.

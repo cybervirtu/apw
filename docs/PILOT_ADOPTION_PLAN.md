@@ -31,7 +31,7 @@ The fundamental shift in APW is moving from disparate documentation into a cohes
 ## 3. Phased Rollout Sequence
 
 ### Phase 1: Installation & Archival
-1. Run `cd [project-root] && /path/to/apw/scripts/bootstrap.sh --target . --stack [your-stack] --force`.
+1. Run `cd [project-root] && /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base --force`.
 2. Move any legacy AI rules (e.g., `.cursorrules`) into a newly created `legacy-ai/` folder. Do not delete them yet.
 
 ### Phase 2: Translation

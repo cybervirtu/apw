@@ -39,7 +39,7 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 ## 🚀 Quick Start
 
 ### For Maintaining the APW Standard
-If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy](docs/UPGRADE_STRATEGY.md) and the [Command Policy](COMMAND_POLICY.md) to understand namespace rules.
+If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
 ### Template Contract
 - `templates/` is the canonical downstream bootstrap source.
@@ -52,9 +52,9 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
    /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
    ```
 2. Choose a profile intentionally:
-   - `minimal`: lightweight `.gsd` starter set for small or fast-moving projects
+   - `minimal`: lightweight lifecycle starter set plus any minimal profile `.agent` content
    - `base`: default downstream bootstrap profile with the standard lifecycle templates
-   - `advanced`: expanded `.gsd` and `.agent` material for heavier execution workflows
+   - `advanced`: expanded lifecycle and specialist execution material
 3. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
 4. The AI will populate your `.gsd/` memory. You are now ready to code!
 
@@ -70,6 +70,7 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
 - **[Agent System & Precedence](AGENT_SYSTEM.md)**: How GSD and AGK interact.
 - **[Project Governance Rules](PROJECT_RULES.md)**: The strict rules of execution.
 - **[Command Policy](COMMAND_POLICY.md)**: Reserved slash commands and conflict resolution.
+- **[Project Bootstrap](PROJECT_BOOTSTRAP.md)**: Exact bootstrap inputs, outputs, overwrite rules, and upgrade behavior.
 - **[Skill Curation](SKILL_CURATION.md)**: What makes an agent "Core" vs "Add-on".
 - **[Template Structure](docs/TEMPLATE_STRUCTURE.md)**: Details on the template contract.
 - **[Tooling Guide](docs/TOOLING_GUIDE.md)**: IDE-specific do's and don'ts (Cursor vs. Antigravity).

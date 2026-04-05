@@ -81,7 +81,7 @@ The following files must be updated continuously during each implementation sess
 - `templates/`: **canonical downstream source**
 - `.gsd/templates/`: **currently absent**; if reintroduced without bootstrap changes, classify it as **internal authoring**, **transitional**, or **legacy support**, never as the canonical downstream source
 
-When invoking `bootstrap.sh`, developers must choose a profile. The profiles define what baseline memory and execution scaffolding is copied:
+When invoking `bootstrap.sh`, developers choose a profile with `--profile` and an optional stack add-on with `--stack`. Bootstrap always creates `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, `.agent/skills/`, `.gsd/`, and `docs/` in the target repo.
 
 ### **Minimal Profile (`templates/minimal`)**
 Designed for simple scripts, research, or rapid prototyping workflows where deep validation is unnecessary overhead.
@@ -95,5 +95,14 @@ The standard, non-negotiable baseline for standard software engineering projects
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus profile-local `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and `.agent/skills/` content. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus profile-local `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/` content. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
 - **Use when**: You need the richest APW execution bundle and are prepared for a heavier documentation and workflow surface area.
+
+## 6. Bootstrap Overwrite Rules
+
+- Root governance files are always overwritten.
+- `.agent/` execution-layer content is always synced from the selected profile when source content exists.
+- `.gsd/` lifecycle files are preserved unless `--force` is supplied.
+- Optional profile directories that do not exist are treated as empty and logged, not as bootstrap failures.
+
+For the operational contract and upgrade guidance, see [PROJECT_BOOTSTRAP.md](../PROJECT_BOOTSTRAP.md).

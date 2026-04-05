@@ -55,13 +55,14 @@ To ensure projects remain aligned with the evolving APW standard while allowing 
 2. **Merge Point**: Curated changes are merged into `./apw/`.
 3. **Validation**: The standard is validated against the pilot project.
 4. **Standard Release**: Commit/Push to the APW `main` branch.
-5. **Project Sync**: Projects pull updates from APW using `./apw/scripts/bootstrap.sh --sync`.
+5. **Project Sync**: Projects re-run `./apw/scripts/bootstrap.sh --target . --profile [profile] --stack [stack]` and add `--force` only when they intentionally want to replace existing `.gsd` lifecycle files.
 
 ## 4. Template Ownership
 
 - `templates/` is the canonical downstream bootstrap source.
 - The repo-root `.gsd/` directory is the active governance layer for APW itself.
 - `.gsd/templates/` is not part of the current downstream bootstrap path. If such a directory is introduced later, it must be treated as internal or transitional unless bootstrap logic explicitly adopts it.
+- The operational bootstrap contract is documented in `PROJECT_BOOTSTRAP.md`.
 
 ---
 
