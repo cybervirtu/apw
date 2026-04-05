@@ -1,5 +1,33 @@
 # FEATURES_AND_MODES.md — Features and Modes
 
+> [!TIP]
+> Read this when you understand the basic APW idea and want to choose how to use it in the real world.
+
+## What this is
+
+This doc explains two things that often get mixed together:
+
+- what APW can do
+- the different ways you can apply it
+
+## Why it matters
+
+People often ask questions like:
+
+- “Should I use `base` or `advanced`?”
+- “Is migration a different APW system?”
+- “Does solo use work differently from team use?”
+
+This doc separates those ideas clearly.
+
+## When to use it
+
+Use this when:
+
+- you are choosing a profile
+- you want to understand the difference between profiles and usage modes
+- you are explaining APW to a teammate
+
 ## 1. Features vs Modes
 
 In APW:
@@ -8,6 +36,15 @@ In APW:
 - **modes** are the situations or operating contexts in which you use APW
 
 This distinction matters because APW does not change its core architecture every time you use it differently.
+
+## Example
+
+Example:
+
+Using `advanced` is a **profile choice**.
+Using APW in a monorepo is a **usage mode**.
+
+Those are different decisions.
 
 ## 2. Major APW Features
 
@@ -175,8 +212,8 @@ No.
 `base` is still the canonical APW baseline.
 It simply leaves more execution content to project-local setup or lighter usage.
 
-## 7. Where to Go Next
+## What to read next
 
-- For starting fast: [QUICK_START.md](./QUICK_START.md)
-- For end-to-end explanation: [APW_HANDBOOK.md](./APW_HANDBOOK.md)
-- For examples: [USE_CASES_AND_EXAMPLES.md](./USE_CASES_AND_EXAMPLES.md)
+1. [COMMON_WORKFLOWS.md](./COMMON_WORKFLOWS.md)
+2. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
+3. [TEAM_ADOPTION_GUIDE.md](./TEAM_ADOPTION_GUIDE.md)

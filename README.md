@@ -5,21 +5,50 @@
 
 APW helps people and AI agents build software without losing track of project state, rules, or execution context.
 
-If you are new here:
+If you are new to APW, you should not have to read half the repo before it makes sense.
 
-1. Read [Quick Start](docs/QUICK_START.md)
-2. Read [The APW Handbook](docs/APW_HANDBOOK.md)
-3. Use [Features and Modes](docs/FEATURES_AND_MODES.md) to choose the right way to adopt APW
-4. Use [Workflow Reference](docs/WORKFLOW_REFERENCE.md) and [Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md) when you start real project work
+This README is the front door.
+It gives you the short version, then sends you through the docs in a beginner-friendly order.
 
-## 🌟 Why APW Exists
+## What APW Is
 
-The APW Standard resolves the core tension in AI-assisted coding: **Context Drift vs. Execution Speed**. 
-By enforcing a strict separation of concerns, the APW ensures that AI agents always have a single source of truth for *what* is being built, while retaining specialized "muscle" for *how* it gets built.
+APW is a framework for running software projects with humans and AI agents in a way that stays organized over time.
 
-- **The Brain (GSD Layer)**: Memory, governance, project lifecycle, and verification.
-- **The Muscle (AGK Layer)**: Specialist execution, dynamic workflows, and tactical refactoring.
-- **The Rule**: In any conflict, GSD Documentation wins.
+It gives you:
+
+- a governed project memory layer in `.gsd/`
+- an execution layer in `.agent/`
+- bootstrap and validation scripts
+- rules for how execution work and canonical project state should interact
+- CI enforcement so the workspace does not slowly drift
+
+## Why APW Exists
+
+AI tools are fast, but they drift easily.
+
+Without a framework, projects often end up with:
+
+- unclear current state
+- conflicting AI notes
+- stale prompts
+- random structure drift
+- no reliable handoff between sessions or teammates
+
+APW solves that by separating:
+
+- **memory and governance**
+- **execution and specialist capability**
+- **automation and enforcement**
+
+The short version:
+
+- **GSD** is the brain
+- **AGK** is the muscle
+- **APW** integrates both into one workspace standard
+
+And when there is a conflict:
+
+**GSD documentation wins.**
 
 ---
 
@@ -49,20 +78,30 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 
 ## 🚀 Quick Start
 
-### Read This First
+### Start Here
 
-- [APW Handbook](docs/APW_HANDBOOK.md): the full plain-English explanation of APW
-- [Quick Start](docs/QUICK_START.md): the fastest safe path to begin
-- [Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md): the mental model behind `.gsd`, `.agent`, and validation
-- [Operating Model](docs/OPERATING_MODEL.md): who does what and how canonical state stays controlled
-- [Glossary](docs/GLOSSARY.md): the key APW terms in simple language
+Follow this order:
 
-### Learn the Framework
+1. [Start Here](docs/START_HERE.md)
+2. [Quick Start](docs/QUICK_START.md)
+3. [How APW Works](docs/HOW_APW_WORKS.md)
+4. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
+5. [Features and Modes](docs/FEATURES_AND_MODES.md)
+6. [Common Workflows](docs/COMMON_WORKFLOWS.md)
+7. Team / migration / CI docs as needed
+8. [FAQ](docs/FAQ.md)
 
-- [Features and Modes](docs/FEATURES_AND_MODES.md): what APW provides and how different usage modes work
-- [Workflow Reference](docs/WORKFLOW_REFERENCE.md): the standard execution and sync loops
-- [Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md): real-world APW scenarios from greenfield builds to monorepos
-- [FAQ](docs/FAQ.md): common questions from beginners and teams
+### Fastest Safe Path
+
+If you want the shortest path to using APW on a new project:
+
+1. Bootstrap with a profile, usually `base`
+2. Validate with the same profile and stack
+3. Initialize canonical `.gsd` with one orchestrator-style pass
+4. Start work from `STATE.md` and `TODO.md`
+5. Log bounded evidence in `JOURNAL.md`
+6. Sync canonical state deliberately
+7. Turn on CI early
 
 ### For Maintaining the APW Standard
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
@@ -106,16 +145,24 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 ## 📚 Documentation Map
 
-- **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to start using APW.
-- **[APW Handbook](docs/APW_HANDBOOK.md)**: Full beginner-friendly explanation of what APW is and how it works.
-- **[Glossary](docs/GLOSSARY.md)**: Definitions of APW terms in plain language.
-- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: Plain-English architecture walkthrough.
-- **[Operating Model](docs/OPERATING_MODEL.md)**: Roles, responsibilities, and canonical state sync.
-- **[Features and Modes](docs/FEATURES_AND_MODES.md)**: What APW provides and how to apply it.
-- **[Workflow Reference](docs/WORKFLOW_REFERENCE.md)**: The standard APW working loops.
-- **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**: End-to-end scenarios and examples.
+### Guided Learning Flow
+
+- **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
+- **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
+- **[How APW Works](docs/HOW_APW_WORKS.md)**: The core mental model in plain English.
+- **[First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)**: A guided example from bootstrap to first milestone.
+- **[Features and Modes](docs/FEATURES_AND_MODES.md)**: What APW provides and how to apply it in different situations.
+- **[Common Workflows](docs/COMMON_WORKFLOWS.md)**: Day-to-day usage patterns for real work.
+
+### Deeper Understanding
+
+- **[APW Handbook](docs/APW_HANDBOOK.md)**: Broader end-to-end explanation of APW.
+- **[Glossary](docs/GLOSSARY.md)**: Definitions of key APW terms.
+- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: The architecture in plain language.
+- **[Operating Model](docs/OPERATING_MODEL.md)**: Roles, responsibilities, and controlled canonical state sync.
+- **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**: Scenario-driven examples.
 - **[Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md)**: How teams should adopt and operate APW.
-- **[FAQ](docs/FAQ.md)**: Common beginner and team questions.
+- **[FAQ](docs/FAQ.md)**: Short answers to common questions.
 
 ## 📚 Policy and Contract Reference
 
