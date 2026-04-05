@@ -73,6 +73,7 @@ if [[ "$PROFILE" != "base" && "$PROFILE" != "minimal" && "$PROFILE" != "advanced
 fi
 
 APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
 PROFILE_ROOT="$APW_ROOT/templates/$PROFILE"
 PROFILE_GSD_DIR="$PROFILE_ROOT/.gsd"
 PROFILE_AGENT_DIR="$PROFILE_ROOT/.agent"
@@ -161,4 +162,4 @@ echo "   Target: $TARGET_DIR"
 echo "   Profile: $PROFILE"
 echo "   Stack: $STACK"
 echo "   Force lifecycle overwrite: $FORCE"
-echo "   Next: run ./scripts/validate.sh after Phase 1.4 validator hardening lands."
+echo "   Next: run $VALIDATE_SCRIPT \"$TARGET_DIR\" --profile $PROFILE --stack $STACK"

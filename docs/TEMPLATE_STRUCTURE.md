@@ -95,7 +95,7 @@ The standard, non-negotiable baseline for standard software engineering projects
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus profile-local `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/` content. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
 - **Use when**: You need the richest APW execution bundle and are prepared for a heavier documentation and workflow surface area.
 
 ## 6. Bootstrap Overwrite Rules
@@ -109,7 +109,8 @@ For the operational contract and upgrade guidance, see [PROJECT_BOOTSTRAP.md](..
 
 ## 7. Validation Rules
 
-- Run `./scripts/validate.sh [target] --profile <profile> --stack <stack>` using the same profile and stack choices used for bootstrap.
+- Run `/path/to/apw/scripts/validate.sh [target] --profile <profile> --stack <stack>` using the same profile and stack choices used for bootstrap.
 - Validation enforces the required root governance files, profile-selected `.gsd` files, and the full `.agent/` namespace.
 - Validation warns on legacy drift such as `.agents/` or `.agents/skills/`.
 - `.agent/skills/` population is only enforced when the selected profile or stack pack vendors skill files.
+- Downstream repos are validated by the APW checkout that owns the scripts and templates; bootstrap does not create a second local source of truth for those materials.

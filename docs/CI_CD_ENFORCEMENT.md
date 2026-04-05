@@ -13,10 +13,11 @@ Use APW enforcement in two layers:
 The authoritative enforcement command is:
 
 ```bash
-./scripts/validate.sh . --profile base --stack base
+/path/to/apw/scripts/validate.sh [repo-root] --profile base --stack base
 ```
 
 Always run validation with the same `--profile` and `--stack` values used during bootstrap.
+The validator runs from an APW checkout against a target repository path; bootstrapped downstream repos are not expected to carry their own second copy of the APW templates and validator.
 
 ## 2. What Validation Enforces
 
@@ -49,14 +50,17 @@ jobs:
       APW_PROFILE: base
       APW_STACK: base
     steps:
-      - name: Checkout code
+      - name: Checkout downstream repo
         uses: actions/checkout@v4
 
-      - name: Ensure validation script is executable
-        run: chmod +x ./scripts/validate.sh
+      - name: Checkout APW standard
+        uses: actions/checkout@v4
+        with:
+          repository: cybervirtu/apw
+          path: .apw-standard
 
       - name: Run APW validation
-        run: ./scripts/validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"
+        run: ./.apw-standard/scripts/validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"
 ```
 
 Use repository-level environment variables when different apps or repos need different APW profiles.
@@ -71,19 +75,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./scripts/validate.sh . --profile base --stack base
+      - uses: actions/checkout@v4
+        with:
+          repository: cybervirtu/apw
+          path: .apw-standard
+      - run: ./.apw-standard/scripts/validate.sh . --profile base --stack base
 
   validate-api:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./scripts/validate.sh ./apps/api --profile base --stack base
+      - uses: actions/checkout@v4
+        with:
+          repository: cybervirtu/apw
+          path: .apw-standard
+      - run: ./.apw-standard/scripts/validate.sh ./apps/api --profile base --stack base
 
   validate-web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./scripts/validate.sh ./apps/web --profile base --stack base
+      - uses: actions/checkout@v4
+        with:
+          repository: cybervirtu/apw
+          path: .apw-standard
+      - run: ./.apw-standard/scripts/validate.sh ./apps/web --profile base --stack base
 ```
 
 The important rule is simple: validate every location that was bootstrapped as an APW root.
@@ -99,9 +115,10 @@ echo "🔍 Running local APW compliance check..."
 
 PROFILE="${APW_PROFILE:-base}"
 STACK="${APW_STACK:-base}"
+APW_ROOT="${APW_ROOT:-../apw}"
 
-if [[ -f "./scripts/validate.sh" ]]; then
-  ./scripts/validate.sh . --profile "$PROFILE" --stack "$STACK"
+if [[ -x "$APW_ROOT/scripts/validate.sh" ]]; then
+  "$APW_ROOT/scripts/validate.sh" . --profile "$PROFILE" --stack "$STACK"
   RESULT=$?
 
   if [[ $RESULT -ne 0 ]]; then
@@ -110,7 +127,8 @@ if [[ -f "./scripts/validate.sh" ]]; then
     echo "⚠️  The commit is allowed locally, but CI should block the pull request."
   fi
 else
-  echo "⚠️  ./scripts/validate.sh not found. Bootstrap this repository before relying on APW enforcement."
+  echo "⚠️  APW validator not found at $APW_ROOT/scripts/validate.sh."
+  echo "⚠️  Set APW_ROOT or install a local checkout of the APW standard."
 fi
 
 exit 0
@@ -131,8 +149,8 @@ Common causes:
 Recommended recovery path:
 
 1. Confirm the intended bootstrap inputs for the repo.
-2. Re-run bootstrap with the matching profile and stack.
-3. Re-run validation with the same profile and stack.
+2. Re-run bootstrap from the APW checkout with the matching profile and stack.
+3. Re-run validation from the APW checkout with the same profile and stack.
 4. Only use `--force` if you intend to replace lifecycle templates in `.gsd/`.
 
 ### Warning-only result

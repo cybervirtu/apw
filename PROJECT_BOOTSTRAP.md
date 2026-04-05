@@ -61,7 +61,7 @@ Bootstrap also copies these root governance files into the target:
 ### `advanced`
 
 - Copies the expanded lifecycle set from `templates/advanced/.gsd/`.
-- Syncs profile-local `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/` content when present.
+- Syncs vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists.
 - Best for repos that need the richest specialist execution bundle.
 
 ## 5. Force and Overwrite Rules
@@ -110,8 +110,8 @@ Recommended upgrade examples:
 After bootstrap, validate the target repo against the same bootstrap inputs:
 
 ```bash
-./scripts/validate.sh . --profile base --stack base
-./scripts/validate.sh . --profile advanced --stack base
+/path/to/apw/scripts/validate.sh [repo-root] --profile base --stack base
+/path/to/apw/scripts/validate.sh [repo-root] --profile advanced --stack base
 ```
 
 Validation enforces:
@@ -121,3 +121,5 @@ Validation enforces:
 - the full `.agent/` directory namespace
 - profile-backed execution files when the selected profile vendors them
 - warnings for legacy `.agents/` drift
+
+Validation is executed from the APW repository against a target repo path. Bootstrapped downstream repos do not receive a second local copy of the APW templates, policies, or validator scripts.
