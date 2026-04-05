@@ -69,19 +69,31 @@ The following files must be updated continuously during each implementation sess
 
 ## 5. Template Versions & The Canonical Contract
 
-**The Canonical Source**: The `./templates/` directory is the undisputed origin for all APW instantiations. The repo completely rejects the legacy concept of a root `.gsd/templates/` folder to prevent source-of-truth ambiguity. 
+**The Canonical Source**: The `./templates/` directory is the canonical downstream bootstrap source used by `./scripts/bootstrap.sh`.
+
+**Current Ownership Rule**:
+- `templates/` is the only active downstream source for profile-selected `.gsd/` and `.agent/` scaffolding.
+- `.gsd/` in the repo root is the APW governance and documentation layer, not a downstream template source.
+- `.gsd/templates/` is not present in the current implementation. If it appears in a future phase, it must be treated as internal authoring, transitional, or legacy support material unless the bootstrap implementation is explicitly updated to make it canonical.
+- Root governance files (`PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
+
+**Ownership Classification**:
+- `templates/`: **canonical downstream source**
+- `.gsd/templates/`: **currently absent**; if reintroduced without bootstrap changes, classify it as **internal authoring**, **transitional**, or **legacy support**, never as the canonical downstream source
 
 When invoking `bootstrap.sh`, developers must choose a profile. The profiles define what baseline memory and execution scaffolding is copied:
 
 ### **Minimal Profile (`templates/minimal`)**
 Designed for simple scripts, research, or rapid prototyping workflows where deep validation is unnecessary overhead.
-- **Includes**: Root governance files, `.gsd/SPEC.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and base `.agent/` workflows. (Excludes heavy tracking like ROADMAP, JOURNAL, DECISIONS).
+- **Current downstream behavior**: `bootstrap.sh` always copies root governance files from the repo root, then this profile contributes a lightweight `.gsd/` starter set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`) plus any profile-local `.agent/` content that exists.
+- **Use when**: You want the smallest practical APW footprint and are comfortable with less lifecycle depth.
 
 ### **Base Profile (`templates/base`)**
 The standard, non-negotiable baseline for standard software engineering projects.
-- **Includes**: The full `.gsd/` memory stack (SPEC, ROADMAP, STATE, JOURNAL, ARCHITECTURE, STACK, DECISIONS, TODO) plus the standard `.agent/` scaffolding and core skills.
+- **Current downstream behavior**: This is the default profile. It contributes the standard `.gsd/` lifecycle set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `JOURNAL.md`, `ARCHITECTURE.md`, `STACK.md`, `DECISIONS.md`, `TODO.md`). The `.agent/` directories are still created by `bootstrap.sh`, but this profile does not currently add profile-specific `.agent/` files of its own.
+- **Use when**: You want the canonical APW bootstrap baseline for most product repositories.
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Includes**: Full `.gsd/` memory stack, curated `.agent/skills/` library, complex `.agent/` workflows, multi-module documentation support, and strict validation scripts.
-- **Overrides**: Contains a stricter `PROJECT_RULES.md` and `AGENT_SYSTEM.md` that enforce higher commit and architectural logging thresholds.
+- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus profile-local `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and `.agent/skills/` content. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Use when**: You need the richest APW execution bundle and are prepared for a heavier documentation and workflow surface area.

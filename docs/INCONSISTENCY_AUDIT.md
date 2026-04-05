@@ -3,7 +3,7 @@ An exhaustive audit of the APW workspace standard reveals significant, but easil
 
 ## Top Critical Inconsistencies
 1. **Historical Namespace Drift**: Older documentation mixed a unified `.agent/` layout with references to a separate legacy skills namespace. The active APW contract is `.agent/` only, with capabilities living in `.agent/skills/`.
-2. **Template Duplication**: `bootstrap.sh` canonically pulls from `templates/base/.gsd/`, but a dormant `.gsd/templates/` folder exists directly in the repo root, causing deep ambiguity.
+2. **Template Ownership Ambiguity**: `bootstrap.sh` uses `templates/` as the live downstream source, but older documentation overstates the status of `.gsd/templates/` instead of simply documenting it as absent and non-canonical in the current repo.
 3. **Naming Drift & Stray Docs**: Documentation is scattered between the repo root (`TOOLING_NOTES.md`, `PROJECT_BOOTSTRAP.md`, `TEMPLATE_STRUCTURE.md`) and the `docs/` folder (`TOOLING_GUIDE.md`, `PROJECT_INSTANTIATION_PROMPT.md`), with overlapping content.
 4. **Weak Validation**: `scripts/validate.sh` only checks for `.agent/workflows`, ignoring crucial execution layers (`rules`, `skills`, `agents`) and the new Git commit template.
 
@@ -19,7 +19,7 @@ An exhaustive audit of the APW workspace standard reveals significant, but easil
 | Problem Area | Inconsistency Class | Description | Proposed Fix | Priority |
 | :--- | :--- | :--- | :--- | :--- |
 | **Intelligence Folders** | Structure Mismatch | The repository contract is `.agent/` only, but older documentation still describes a split layout or renders `.agent/skills/` as if it were outside `.agent/`. | Standardize docs on `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/`. | Critical Now |
-| **Template Chaos** | Template Ambiguity | `templates/base/.gsd/` is used by bootstrap. Root `.gsd/templates/` is ignored but present. | Delete root `apw/.gsd/templates/`. Canonicalize `apw/templates/` as the only source. | Critical Now |
+| **Template Chaos** | Template Ambiguity | `templates/` is the live bootstrap source, but parts of the documentation still describe template ownership too absolutely or assume `.gsd/templates/` exists. | Document `templates/` as canonical downstream source and classify `.gsd/templates/` as non-canonical unless implementation changes. | Critical Now |
 | **Scattered Docs** | Naming Drift & Ownership | `TOOLING_NOTES.md`, `PROJECT_BOOTSTRAP.md`, `TEMPLATE_STRUCTURE.md` live at root. Overlap with `docs/*`. | Move root docs to `docs/`. Merge `TOOLING_NOTES.md` -> `docs/TOOLING_GUIDE.md` and delete. Update README links. | Critical Now |
 | **Weak Validation** | Validation Gap | `validate.sh` misses `.agent/rules`, `.agent/skills`, `.agent/agents`, `.gitmessage`. | Expand `validate.sh` to require the full `.agent/` scaffolding. | Important Next |
 

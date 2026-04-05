@@ -57,9 +57,15 @@ To ensure projects remain aligned with the evolving APW standard while allowing 
 4. **Standard Release**: Commit/Push to the APW `main` branch.
 5. **Project Sync**: Projects pull updates from APW using `./apw/scripts/bootstrap.sh --sync`.
 
+## 4. Template Ownership
+
+- `templates/` is the canonical downstream bootstrap source.
+- The repo-root `.gsd/` directory is the active governance layer for APW itself.
+- `.gsd/templates/` is not part of the current downstream bootstrap path. If such a directory is introduced later, it must be treated as internal or transitional unless bootstrap logic explicitly adopts it.
+
 ---
 
-## 4. Risks & Controls
+## 5. Risks & Controls
 
 | Risk | Impact | Control |
 | :--- | :--- | :--- |
@@ -70,7 +76,7 @@ To ensure projects remain aligned with the evolving APW standard while allowing 
 
 ---
 
-## 5. Decision Rules summary
+## 6. Decision Rules summary
 - **Documentation First**: No code changes allowed until SPEC Status is Finalized.
 - **Verification Mandatory**: Captured evidence is the only proof of completion.
 - **GSD Wins**: Documentation and lifecycle state are the ultimate authority.

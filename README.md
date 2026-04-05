@@ -41,13 +41,22 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 ### For Maintaining the APW Standard
 If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy](docs/UPGRADE_STRATEGY.md) and the [Command Policy](COMMAND_POLICY.md) to understand namespace rules.
 
+### Template Contract
+- `templates/` is the canonical downstream bootstrap source.
+- `.gsd/` is the active governance layer in a working repo, not the downstream template source.
+- `.gsd/templates/` is not present in the current APW implementation. If it is introduced later for internal authoring, transition support, or legacy compatibility, it must remain non-canonical unless `bootstrap.sh` is explicitly changed to use it.
+
 ### For Developers Starting a New Project
 1. Run the bootstrap script in your new directory:
    ```bash
    /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
    ```
-2. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
-3. The AI will populate your `.gsd/` memory. You are now ready to code!
+2. Choose a profile intentionally:
+   - `minimal`: lightweight `.gsd` starter set for small or fast-moving projects
+   - `base`: default downstream bootstrap profile with the standard lifecycle templates
+   - `advanced`: expanded `.gsd` and `.agent` material for heavier execution workflows
+3. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
+4. The AI will populate your `.gsd/` memory. You are now ready to code!
 
 ### For Migrating an Existing Project
 1. Carefully review the [Pilot Adoption Plan](docs/PILOT_ADOPTION_PLAN.md).
