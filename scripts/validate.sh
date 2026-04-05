@@ -29,12 +29,28 @@ check_file ".gsd/STATE.md"
 check_file ".gsd/TODO.md"
 
 echo "--- Intelligence Layer ---"
-if [[ -d "$TARGET_DIR/.agent/workflows" && "$(ls -A "$TARGET_DIR/.agent/workflows")" ]]; then
-    echo "✅ Found:   .agent/workflows populated"
-else
-    echo "❌ Missing: .agent/workflows is empty or does not exist"
+check_dir_populated() {
+    if [[ -d "$TARGET_DIR/$1" && "$(ls -A "$TARGET_DIR/$1")" ]]; then
+        echo "✅ Found:   $1 populated"
+    else
+        echo "❌ Missing: $1 is empty or does not exist"
+        FAILS=$((FAILS + 1))
+    fi
+}
+
+check_dir_populated ".agent/workflows"
+check_dir_populated ".agent/rules"
+check_dir_populated ".agent/agents"
+
+# Skills folder is optional until stacked, but base skills might exist.
+# We will just verify the .agent itself exists.
+if [[ ! -d "$TARGET_DIR/.agent" ]]; then
+    echo "❌ Missing: .agent directory"
     FAILS=$((FAILS + 1))
 fi
+
+echo "--- Automation & Config ---"
+check_file ".gitmessage"
 
 if [[ $FAILS -gt 0 ]]; then
     echo "⚠️ Validation Failed: $FAILS required items are missing."
