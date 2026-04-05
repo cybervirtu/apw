@@ -3,6 +3,8 @@
 > [!NOTE]
 > This guide outlines the safe, phased approach to onboarding an existing active product repository onto the APW standard without disrupting ongoing development.
 
+Use this guide together with [EXISTING_REPO_MIGRATION_GUIDE.md](./EXISTING_REPO_MIGRATION_GUIDE.md) for the exact migration sequence and [DOWNSTREAM_COMPLIANCE_CHECKLIST.md](./DOWNSTREAM_COMPLIANCE_CHECKLIST.md) for post-adoption anti-drift checks.
+
 ## 1. Pre-Flight Gap Analysis Checklist
 
 Before running any automation scripts, audit the target repository to understand the delta:
@@ -46,7 +48,8 @@ The fundamental shift in APW is moving from disparate documentation into a cohes
 After one complete feature cycle or sprint:
 1. Run `/path/to/apw/scripts/validate.sh . --profile base --stack base`.
 2. Verify that no "shadow architecture" was created.
-3. If successful, safely delete the `legacy-ai/` folder.
+3. Re-run the downstream compliance checklist to confirm the repo still matches the intended APW contract.
+4. If successful, safely delete the `legacy-ai/` folder.
 
 ---
 

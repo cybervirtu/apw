@@ -20,6 +20,7 @@
 - **Canonical State Ownership Rule**: `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` are controlled summary files. They are updated by the orchestrator or an explicitly acting GSD/governance pass, not by arbitrary execution agents during normal implementation.
 - **Execution Evidence Rule**: Execution agents may modify code, create implementation artifacts, and append bounded evidence to `.gsd/JOURNAL.md`. Bounded means factual, append-only, and scoped to the work just performed.
 - **Controlled Sync Rule**: Canonical state synchronization is a deliberate step after implementation, verification, or design change, not an incidental side effect of routine code edits.
+- **Contract Preservation Rule**: Downstream repos must retain `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`, the required profile-backed `.gsd/` files, and the `.agent/` namespace. Teams may extend project-local execution rules and `.gsd/` content, but they must not casually delete, rename, or fork APW contract files outside an intentional upgrade or migration step.
 - **No speculative coding**: Do not implement features not defined in the finalized SPEC.
 - **Evidence is mandatory**: No task is closed without captured proof of correctness.
 - **Search-First Discipline**: Always use `grep` or `ripgrep` before reading a file.

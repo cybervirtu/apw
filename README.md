@@ -59,17 +59,18 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
    - `minimal`: lightweight lifecycle starter set plus any minimal profile `.agent` content
    - `base`: default downstream bootstrap profile with the standard lifecycle templates
    - `advanced`: the same canonical eight-file `.gsd` contract as `base`, plus specialist execution material
-3. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
-4. The AI will populate your `.gsd/` memory. You are now ready to code!
-5. Validate the repo against the same profile:
+3. Validate the repo against the same profile:
    ```bash
    /path/to/apw/scripts/validate.sh . --profile base --stack base
    ```
+4. Review the [Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) before coding starts.
+5. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
+6. Use a single lead/orchestrator-style pass to populate the first canonical `.gsd/` state coherently, then begin implementation work.
 
 ### For Migrating an Existing Project
-1. Carefully review the [Pilot Adoption Plan](docs/PILOT_ADOPTION_PLAN.md).
-2. Archive legacy AI rules.
-3. Establish your baseline in `.gsd/STATE.md`.
+1. Start with the [Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md).
+2. Use the [Pilot Adoption Plan](docs/PILOT_ADOPTION_PLAN.md) for phased rollout in an active team.
+3. Re-run the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) after the first APW-backed feature cycle.
 
 ---
 
@@ -83,5 +84,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Template Structure](docs/TEMPLATE_STRUCTURE.md)**: Details on the template contract.
 - **[Templates Directory Guide](templates/README.md)**: How `minimal`, `base`, and `advanced` differ at the filesystem level.
 - **[Tooling Guide](docs/TOOLING_GUIDE.md)**: Practical operating guidance for Antigravity, Cursor, and Codex.
+- **[Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md)**: Day-1 requirements, controlled customization, and safe team usage.
+- **[Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md)**: The practical checklist for staying APW-compliant after bootstrap.
+- **[Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md)**: How to move an active repository into APW safely.
 - **[Monorepo Adaptation](docs/MONOREPO_ADAPTATION.md)**: How to scale APW across packages.
 - **[CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md)**: Concrete downstream validation and pull-request enforcement patterns.

@@ -18,6 +18,7 @@ The authoritative enforcement command is:
 
 Always run validation with the same `--profile` and `--stack` values used during bootstrap.
 The validator runs from an APW checkout against a target repository path; bootstrapped downstream repos are not expected to carry their own second copy of the APW templates and validator.
+Human operators should still use [DOWNSTREAM_COMPLIANCE_CHECKLIST.md](./DOWNSTREAM_COMPLIANCE_CHECKLIST.md); CI complements that checklist, but does not replace day-to-day APW hygiene.
 
 ## 2. What Validation Enforces
 
@@ -25,10 +26,12 @@ The current validator checks:
 
 - required root governance files
 - profile-selected `.gsd` lifecycle files
+- minimum content shape for key lifecycle and governance files
 - the full `.agent/` directory namespace
 - profile-vendored `.agent` files when the chosen profile includes them
 - stack-vendored skill files when the chosen stack pack exists
 - warnings for legacy drift such as `.agents/` and `.agents/skills/`
+- warnings for ownership drift that weakens the orchestrator-controlled state model
 
 This means CI should treat exit code `1` as a hard failure, while warnings can remain visible without blocking the build.
 

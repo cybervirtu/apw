@@ -128,3 +128,19 @@ Validation enforces:
 - warnings for ownership drift that contradict the orchestrator-controlled state model
 
 Validation is executed from the APW repository against a target repo path. Bootstrapped downstream repos do not receive a second local copy of the APW templates, policies, or validator scripts.
+
+## 9. Required Post-Bootstrap Steps
+
+Before a downstream team begins routine coding work:
+
+1. Run validation with the same `--profile` and `--stack` values used during bootstrap.
+2. Review [docs/DOWNSTREAM_ADOPTION_GUIDE.md](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete [docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md).
+3. Use a single orchestrator or explicit governance pass to populate the first canonical `.gsd/` state coherently.
+4. Confirm the mandatory contract files remain present:
+   - `PROJECT_RULES.md`
+   - `AGENT_SYSTEM.md`
+   - `GSD-STYLE.md`
+   - the selected profile's required `.gsd/` files
+   - `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, `.agent/skills/`
+5. Add project-specific implementation constraints in project-local materials such as `.agent/rules/PROJECT.md` or the `.gsd/` contents instead of forking the APW contract files casually.
+6. For existing repositories, pair bootstrap with [docs/EXISTING_REPO_MIGRATION_GUIDE.md](docs/EXISTING_REPO_MIGRATION_GUIDE.md) before the team resumes normal delivery.

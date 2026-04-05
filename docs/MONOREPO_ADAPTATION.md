@@ -60,6 +60,8 @@ Instead, bootstrap the root for governance, and then bootstrap each app dynamica
 ```
 *(If your APW repo later vendors stack packs under `templates/stack/<name>/`, replace `base` with the appropriate pack name.)*
 
+Treat each bootstrapped root as its own APW adoption unit: validate it independently, apply the downstream adoption checklist independently, and keep canonical state sync local to that root unless a true cross-package governance change is required.
+
 ## 4. Single Source of Truth
 Never duplicate specifications. If an API schema is defined in `apps/api/swagger.yaml`, the frontend `apps/web/.gsd/SPEC.md` must read: 
 > "Must conform to the endpoints defined in `../api/swagger.yaml`." 
