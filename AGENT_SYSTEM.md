@@ -43,3 +43,11 @@ When an agent starts a task:
 ## 4. Workflow Ownership
 - **GSD Commands**: `/gsd`, `/plan`, `/task`, `/validate`, `/audit`.
 - **AGK Commands**: `/agk`, `/create`, `/debug`, `/orchestrate`, `/skill`.
+
+---
+
+## 5. Scoping Boundaries
+To prevent endless execution loops and feature creep, the following boundaries apply:
+- **Scope Modification requires Governance**: Only GSD commands (e.g., `/plan`, `/gsd`) are permitted to alter the `ROADMAP.md` or `SPEC.md`. 
+- **Execution operates within Scope**: AGK workflows (e.g., `/create`, `/refactor`, `/design`) operate *strictly* within the confines of the current phase defined in `STATE.md`. They are NOT allowed to unilaterally expand the scope, add new features, or alter the milestones. If an implementation requires a scope change, AGK must halt and request a GSD `/plan` review.
+- **Micro-tasks vs Milestones**: AGK scripts may generate their own micro-tasks in `.gsd/TODO.md` as long as those tasks roll up into the currently active milestone.
