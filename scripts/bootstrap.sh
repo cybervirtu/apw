@@ -7,6 +7,7 @@ set -e
 
 # Default values
 TARGET_DIR="."
+PROFILE="base"
 STACK="base"
 FORCE=0
 
@@ -14,13 +15,15 @@ FORCE=0
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         --target) TARGET_DIR="$2"; shift ;;
+        --profile) PROFILE="$2"; shift ;;
         --stack) STACK="$2"; shift ;;
         --force) FORCE=1 ;;
         -h|--help)
-            echo "Usage: $0 [--target value] [--stack value] [--force]"
-            echo "  --target: Directory to initialize (default: current directory)"
-            echo "  --stack : Add-on stack to install (e.g., react, fastapi)"
-            echo "  --force : Overwrite existing GSD lifecycle files"
+            echo "Usage: $0 [--target value] [--profile base|minimal|advanced] [--stack value] [--force]"
+            echo "  --target : Directory to initialize (default: current directory)"
+            echo "  --profile: The scaffolding profile to apply (default: base)"
+            echo "  --stack  : Add-on stack to install (e.g., react, fastapi)"
+            echo "  --force  : Overwrite existing GSD lifecycle files in target"
             exit 0
             ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
@@ -28,7 +31,13 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-echo "🚀 Bootstrapping APW Standard into $TARGET_DIR..."
+# Validate profile
+if [[ "$PROFILE" != "base" && "$PROFILE" != "minimal" && "$PROFILE" != "advanced" ]]; then
+    echo "❌ Error: Invalid profile '$PROFILE'. Must be base, minimal, or advanced."
+    exit 1
+fi
+
+echo "🚀 Bootstrapping APW Standard ($PROFILE profile) into $TARGET_DIR..."
 
 # Source directory (assume script is run from apw root or adjust accordingly)
 APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -53,7 +62,10 @@ echo "✅ Applied Root Governance."
 
 # 3. Copy GSD Lifecycle Templates
 # Safer copy: don't overwrite user's actual STATE, ROADMAP unless forced.
-for file in "$APW_ROOT/templates/base/.gsd/"*; do
+for file in "$APW_ROOT/templates/$PROFILE/.gsd/"*; do
+    # Skip if file doesn't exist (e.g., empty directory)
+    [[ -f "$file" ]] || continue
+    
     basename=$(basename "$file")
     target_file="$TARGET_DIR/.gsd/$basename"
     
@@ -67,10 +79,12 @@ done
 
 # 4. Inject Intelligence Layer (Agents, Rules, Workflows, Core Skills)
 # We generally overwrite execution logic so the AI has the newest tools.
-cp -r "$APW_ROOT/.agent/workflows/"* "$TARGET_DIR/.agent/workflows/" 2>/dev/null || true
-cp -r "$APW_ROOT/.agent/rules/"* "$TARGET_DIR/.agent/rules/" 2>/dev/null || true
-cp -r "$APW_ROOT/.agent/agents/"* "$TARGET_DIR/.agent/agents/" 2>/dev/null || true
-cp -r "$APW_ROOT/.agent/skills/"* "$TARGET_DIR/.agent/skills/" 2>/dev/null || true
+# Content is sourced directly from the requested template profile.
+echo "🔄 Injecting intelligence layer from $PROFILE origins..."
+cp -r "$APW_ROOT/templates/$PROFILE/.agent/workflows/"* "$TARGET_DIR/.agent/workflows/" 2>/dev/null || true
+cp -r "$APW_ROOT/templates/$PROFILE/.agent/rules/"* "$TARGET_DIR/.agent/rules/" 2>/dev/null || true
+cp -r "$APW_ROOT/templates/$PROFILE/.agent/agents/"* "$TARGET_DIR/.agent/agents/" 2>/dev/null || true
+cp -r "$APW_ROOT/templates/$PROFILE/.agent/skills/"* "$TARGET_DIR/.agent/skills/" 2>/dev/null || true
 
 echo "✅ Injected Core Intelligence Layer."
 

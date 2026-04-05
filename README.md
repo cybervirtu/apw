@@ -40,7 +40,7 @@ If you are modifying the APW rules themselves, read the [Upgrade & Sync Strategy
 ### For Developers Starting a New Project
 1. Run the bootstrap script in your new directory:
    ```bash
-   /path/to/apw/scripts/bootstrap.sh --target . --stack base
+   /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
    ```
 2. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
 3. The AI will populate your `.gsd/` memory. You are now ready to code!
