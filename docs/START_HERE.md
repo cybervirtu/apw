@@ -74,6 +74,7 @@ If you only have 10 minutes:
 1. [QUICK_START.md](./QUICK_START.md)
 2. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
 3. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
+4. [DIAGRAMS.md](./DIAGRAMS.md)
 
 If you want the full framework explanation after that:
 

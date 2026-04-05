@@ -179,3 +179,5 @@ If you are still learning APW, continue in this order:
 2. [QUICK_START.md](./QUICK_START.md)
 3. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
 4. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
+5. [DIAGRAMS.md](./DIAGRAMS.md)
+6. [REAL_WORLD_SCENARIOS.md](./REAL_WORLD_SCENARIOS.md)

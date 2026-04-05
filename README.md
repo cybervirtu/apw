@@ -86,10 +86,12 @@ Follow this order:
 2. [Quick Start](docs/QUICK_START.md)
 3. [How APW Works](docs/HOW_APW_WORKS.md)
 4. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
-5. [Features and Modes](docs/FEATURES_AND_MODES.md)
-6. [Common Workflows](docs/COMMON_WORKFLOWS.md)
-7. Team / migration / CI docs as needed
-8. [FAQ](docs/FAQ.md)
+5. [Visual Diagrams](docs/DIAGRAMS.md)
+6. [Features and Modes](docs/FEATURES_AND_MODES.md)
+7. [Common Workflows](docs/COMMON_WORKFLOWS.md)
+8. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
+9. Team / migration / CI docs as needed
+10. [FAQ](docs/FAQ.md)
 
 ### Fastest Safe Path
 
@@ -151,8 +153,10 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[How APW Works](docs/HOW_APW_WORKS.md)**: The core mental model in plain English.
 - **[First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)**: A guided example from bootstrap to first milestone.
+- **[Visual Diagrams](docs/DIAGRAMS.md)**: Mermaid diagrams for the APW architecture, flow, and ownership model.
 - **[Features and Modes](docs/FEATURES_AND_MODES.md)**: What APW provides and how to apply it in different situations.
 - **[Common Workflows](docs/COMMON_WORKFLOWS.md)**: Day-to-day usage patterns for real work.
+- **[Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)**: Story-style examples of APW in solo, team, migration, advanced, and monorepo settings.
 
 ### Deeper Understanding
 
