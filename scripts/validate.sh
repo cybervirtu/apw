@@ -44,6 +44,11 @@ info() {
     echo "ℹ️  $message"
 }
 
+advice() {
+    local message="$1"
+    echo "➡️  $message"
+}
+
 check_source_file() {
     local path="$1"
     if [[ -f "$APW_ROOT/$path" ]]; then
@@ -68,6 +73,74 @@ check_target_dir() {
         pass "Required directory present: $path"
     else
         fail "Required directory missing: $path"
+    fi
+}
+
+check_existing_file_contains_regex() {
+    local path="$1"
+    local label="$2"
+    local regex="$3"
+    local requirement="$4"
+    local guidance="$5"
+
+    if [[ ! -f "$path" ]]; then
+        info "Skipping content check for missing file: $label"
+        return
+    fi
+
+    if grep -Eq "$regex" "$path"; then
+        pass "$label content check passed: $requirement"
+    else
+        fail "$label missing expected content: $requirement"
+        advice "$guidance"
+    fi
+}
+
+check_existing_file_not_regex() {
+    local path="$1"
+    local label="$2"
+    local regex="$3"
+    local problem="$4"
+    local guidance="$5"
+    local severity="${6:-warn}"
+    local match
+
+    if [[ ! -f "$path" ]]; then
+        info "Skipping drift scan for missing file: $label"
+        return
+    fi
+
+    match="$(grep -En "$regex" "$path" | head -n 1 || true)"
+    if [[ -n "$match" ]]; then
+        if [[ "$severity" == "fail" ]]; then
+            fail "$label contains ownership/content drift: $problem ($match)"
+        else
+            warn "$label contains ownership/content drift: $problem ($match)"
+        fi
+        advice "$guidance"
+    else
+        pass "$label drift check passed: $problem not detected"
+    fi
+}
+
+check_paths_not_regex() {
+    local label="$1"
+    local regex="$2"
+    local guidance="$3"
+    local severity="${4:-warn}"
+    shift 4
+    local match
+
+    match="$(rg -n -e "$regex" "$@" | head -n 1 || true)"
+    if [[ -n "$match" ]]; then
+        if [[ "$severity" == "fail" ]]; then
+            fail "$label detected: $match"
+        else
+            warn "$label detected: $match"
+        fi
+        advice "$guidance"
+    else
+        pass "$label not detected"
     fi
 }
 
@@ -130,6 +203,237 @@ warn_legacy_advanced_gsd_files() {
     if [[ $found_any -eq 0 ]]; then
         pass "No legacy advanced root .gsd fragmentation files detected"
     fi
+}
+
+check_target_content_shape() {
+    echo "--- Target Content Shape ---"
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/SPEC.md" \
+        ".gsd/SPEC.md" \
+        '(Objective|Vision|Goals|Scope|Core Requirements|Success Criteria|Acceptance Criteria)' \
+        "recognizable problem/scope structure" \
+        "Add or restore objective/scope/goal sections in .gsd/SPEC.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/SPEC.md" \
+        ".gsd/SPEC.md" \
+        '(Status|DRAFT|FINALIZED|Last Updated|updated:|status:)' \
+        "status or metadata markers" \
+        "Add a status or metadata marker so SPEC.md clearly communicates lifecycle state."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/ROADMAP.md" \
+        ".gsd/ROADMAP.md" \
+        '(Roadmap|ROADMAP|PROJECT ROADMAP)' \
+        "roadmap heading" \
+        "Add a clear roadmap heading to .gsd/ROADMAP.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/ROADMAP.md" \
+        ".gsd/ROADMAP.md" \
+        '(Phase|Milestone|Current Phase|Phases / Milestones|Current Execution Window)' \
+        "milestone or phase structure" \
+        "Add milestone, phase, or execution-window sections to .gsd/ROADMAP.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/STATE.md" \
+        ".gsd/STATE.md" \
+        '(State|CURRENT STATE|Project State)' \
+        "state heading" \
+        "Add a clear state heading to .gsd/STATE.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/STATE.md" \
+        ".gsd/STATE.md" \
+        '(Current Position|Where We Are|Immediate Focus|Next Steps|Blockers|Resume point)' \
+        "current-state section" \
+        "Add current position, blockers, or next-step sections to .gsd/STATE.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/.gsd/TODO.md" \
+        ".gsd/TODO.md" \
+        '^\s*[-*] \[[ x]\]' \
+        "at least one actionable checklist item" \
+        "Add at least one actionable checkbox item to .gsd/TODO.md so task tracking is usable."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/PROJECT_RULES.md" \
+        "PROJECT_RULES.md" \
+        '## The APW Protocol' \
+        "APW protocol heading" \
+        "Restore the APW protocol section in PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/PROJECT_RULES.md" \
+        "PROJECT_RULES.md" \
+        'Canonical State Ownership Rule' \
+        "canonical state ownership rule" \
+        "Restore the canonical state ownership rule in PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/PROJECT_RULES.md" \
+        "PROJECT_RULES.md" \
+        'Execution Evidence Rule' \
+        "execution evidence rule" \
+        "Restore the execution evidence rule in PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/PROJECT_RULES.md" \
+        "PROJECT_RULES.md" \
+        'Controlled Sync Rule' \
+        "controlled canonical sync rule" \
+        "Restore the controlled sync rule in PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENT_SYSTEM.md" \
+        "AGENT_SYSTEM.md" \
+        'Unified Workspace Architecture|Dual-Engine Model' \
+        "workspace architecture / dual-engine definition" \
+        "Restore the dual-engine model section in AGENT_SYSTEM.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENT_SYSTEM.md" \
+        "AGENT_SYSTEM.md" \
+        'GSD Documentation Wins' \
+        "precedence rule" \
+        "Restore the GSD precedence / conflict-resolution language in AGENT_SYSTEM.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENT_SYSTEM.md" \
+        "AGENT_SYSTEM.md" \
+        'Canonical State Synchronization' \
+        "orchestrator-controlled state sync rule" \
+        "Restore the canonical state synchronization language in AGENT_SYSTEM.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENT_SYSTEM.md" \
+        "AGENT_SYSTEM.md" \
+        '\.agent/skills/' \
+        "unified capability namespace reference" \
+        "Restore the .agent/skills/ namespace reference in AGENT_SYSTEM.md."
+}
+
+check_source_content_contract() {
+    echo "--- APW Source Content Contract ---"
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/PROJECT_RULES.md" \
+        "APW source PROJECT_RULES.md" \
+        'Canonical State Ownership Rule' \
+        "canonical state ownership rule" \
+        "Add the orchestrator-controlled ownership rule to APW source PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/PROJECT_RULES.md" \
+        "APW source PROJECT_RULES.md" \
+        'Execution Evidence Rule' \
+        "execution evidence rule" \
+        "Add execution-evidence guidance to APW source PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/PROJECT_RULES.md" \
+        "APW source PROJECT_RULES.md" \
+        'Controlled Sync Rule' \
+        "controlled sync rule" \
+        "Add controlled canonical sync guidance to APW source PROJECT_RULES.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/AGENT_SYSTEM.md" \
+        "APW source AGENT_SYSTEM.md" \
+        'Canonical State Synchronization' \
+        "canonical state synchronization rule" \
+        "Add canonical state synchronization ownership to AGENT_SYSTEM.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/AGENT_SYSTEM.md" \
+        "APW source AGENT_SYSTEM.md" \
+        'Evidence Logging' \
+        "bounded JOURNAL evidence rule" \
+        "Add execution evidence logging guidance to AGENT_SYSTEM.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/COMMAND_POLICY.md" \
+        "APW source COMMAND_POLICY.md" \
+        'canonical state sync|Canonical state synchronization' \
+        "command-level canonical state sync rule" \
+        "Add canonical state sync command ownership guidance to COMMAND_POLICY.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/COMMAND_POLICY.md" \
+        "APW source COMMAND_POLICY.md" \
+        'Execution commands may append bounded evidence to `?\.gsd/JOURNAL\.md`?' \
+        "execution evidence ownership note" \
+        "Add JOURNAL evidence ownership guidance to COMMAND_POLICY.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/docs/TEMPLATE_STRUCTURE.md" \
+        "APW source docs/TEMPLATE_STRUCTURE.md" \
+        'Orchestrator / governance sync' \
+        "orchestrator-governed lifecycle update rules" \
+        "Clarify controlled lifecycle file ownership in docs/TEMPLATE_STRUCTURE.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/docs/TEMPLATE_STRUCTURE.md" \
+        "APW source docs/TEMPLATE_STRUCTURE.md" \
+        'Execution agents may append bounded evidence' \
+        "bounded JOURNAL evidence guidance" \
+        "Clarify JOURNAL evidence ownership in docs/TEMPLATE_STRUCTURE.md."
+}
+
+check_source_ownership_drift() {
+    echo "--- APW Source Ownership Drift ---"
+
+    check_paths_not_regex \
+        "Direct execution-agent STATE.md finalize guidance" \
+        'Finalize: Update \.gsd/STATE\.md|update `?\.gsd/STATE\.md`? and commit' \
+        "Remove direct execution-agent STATE.md finalize language and route canonical sync through orchestrator/governance." \
+        fail \
+        "$APW_ROOT/PROJECT_RULES.md" \
+        "$APW_ROOT/AGENT_SYSTEM.md" \
+        "$APW_ROOT/COMMAND_POLICY.md" \
+        "$APW_ROOT/docs/TOOLING_GUIDE.md" \
+        "$APW_ROOT/docs/TEMPLATE_STRUCTURE.md" \
+        "$APW_ROOT/docs/PILOT_ADOPTION_PLAN.md" \
+        "$APW_ROOT/docs/MONOREPO_ADAPTATION.md"
+
+    check_paths_not_regex \
+        "Execution-agent TODO.md promotion guidance" \
+        'micro-tasks in \.gsd/TODO\.md|update \.gsd/TODO\.md as tasks are planned and completed' \
+        "Remove language that lets routine execution agents directly promote canonical TODO state." \
+        fail \
+        "$APW_ROOT/AGENT_SYSTEM.md" \
+        "$APW_ROOT/docs/TEMPLATE_STRUCTURE.md" \
+        "$APW_ROOT/docs/TOOLING_GUIDE.md"
+
+    check_paths_not_regex \
+        "Casual STATE.md dump guidance" \
+        'dump the final state to .*STATE\.md|STATE\.md at the end of the day' \
+        "Route session-end state writeback through JOURNAL evidence plus an orchestrator/governance sync." \
+        warn \
+        "$APW_ROOT/docs/TOOLING_GUIDE.md" \
+        "$APW_ROOT/docs/PILOT_ADOPTION_PLAN.md" \
+        "$APW_ROOT/docs/MONOREPO_ADAPTATION.md"
+}
+
+check_target_ownership_drift() {
+    echo "--- Target Ownership Drift ---"
+
+    check_existing_file_not_regex \
+        "$TARGET_DIR/PROJECT_RULES.md" \
+        "PROJECT_RULES.md" \
+        'update `?\.gsd/STATE\.md`? at the end of the day|dump the final state to .*STATE\.md|update \.gsd/STATE\.md and commit' \
+        "direct execution-agent STATE.md write guidance" \
+        "Remove direct STATE.md write instructions from target governance docs and rely on orchestrator/governance sync." \
+        warn
+
+    check_existing_file_not_regex \
+        "$TARGET_DIR/AGENT_SYSTEM.md" \
+        "AGENT_SYSTEM.md" \
+        'Update `?\.gsd/STATE\.md`?|micro-tasks in \.gsd/TODO\.md' \
+        "stale direct-write or TODO-promotion guidance" \
+        "Sync AGENT_SYSTEM.md from the current APW source so execution agents stop at JOURNAL evidence and orchestrator-controlled sync." \
+        warn
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -215,6 +519,8 @@ check_source_file "docs/MONOREPO_ADAPTATION.md"
 check_source_file "docs/UPGRADE_STRATEGY.md"
 check_source_file "scripts/bootstrap.sh"
 check_source_file "scripts/validate.sh"
+check_source_content_contract
+check_source_ownership_drift
 
 echo "--- Target Root Governance ---"
 check_target_file "PROJECT_RULES.md"
@@ -225,6 +531,7 @@ check_target_file ".gitmessage"
 echo "--- Target Lifecycle Memory ---"
 check_target_dir ".gsd"
 require_template_files "$PROFILE_GSD_DIR" ".gsd" ".gsd lifecycle"
+check_target_content_shape
 
 echo "--- Target Execution Namespace ---"
 check_target_dir ".agent"
@@ -264,6 +571,8 @@ fi
 if [[ "$PROFILE" == "advanced" ]]; then
     warn_legacy_advanced_gsd_files
 fi
+
+check_target_ownership_drift
 
 echo "--- Summary ---"
 echo "Checks run: $CHECKS"

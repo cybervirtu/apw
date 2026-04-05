@@ -121,8 +121,10 @@ Validation enforces:
 
 - required root governance files
 - profile-selected `.gsd` lifecycle files
+- minimum content shape for key lifecycle and governance files
 - the full `.agent/` directory namespace
 - profile-backed execution files when the selected profile vendors them
 - warnings for legacy `.agents/` drift
+- warnings for ownership drift that contradict the orchestrator-controlled state model
 
 Validation is executed from the APW repository against a target repo path. Bootstrapped downstream repos do not receive a second local copy of the APW templates, policies, or validator scripts.

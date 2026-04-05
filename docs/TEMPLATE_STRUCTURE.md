@@ -123,7 +123,8 @@ For the operational contract and upgrade guidance, see [PROJECT_BOOTSTRAP.md](..
 ## 7. Validation Rules
 
 - Run `/path/to/apw/scripts/validate.sh [target] --profile <profile> --stack <stack>` using the same profile and stack choices used for bootstrap.
-- Validation enforces the required root governance files, profile-selected `.gsd` files, and the full `.agent/` namespace.
+- Validation enforces the required root governance files, profile-selected `.gsd` files, minimum content shape for key lifecycle/governance files, and the full `.agent/` namespace.
 - Validation warns on legacy drift such as `.agents/` or `.agents/skills/`.
+- Validation also warns on ownership drift, such as legacy guidance that tells routine execution agents to rewrite canonical summary/state files directly.
 - `.agent/skills/` population is only enforced when the selected profile or stack pack vendors skill files.
 - Downstream repos are validated by the APW checkout that owns the scripts and templates; bootstrap does not create a second local source of truth for those materials.
