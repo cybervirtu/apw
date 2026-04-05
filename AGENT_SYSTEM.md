@@ -18,11 +18,13 @@ APW operates through three distinct layers:
 ### GSD Precedence (The "Brain")
 - **Lifecycle & Planning**: GSD owns all decisions regarding "What" is built and "When" it is complete.
 - **State Management**: `.gsd/STATE.md` is the final authority on implementation progress.
+- **Canonical State Synchronization**: GSD controls updates to `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` when summary state, plan state, or design rationale changes.
 - **Verification**: No task is closed without empirical proof as defined by GSD protocols.
 
 ### AGK Precedence (The "Muscle")
 - **Execution Logic**: AGK owns the "How" of implementation. Specialist agents and workflows determine the best technical path to achieve a GSD milestone.
 - **Skill Orchestration**: Reusable skills from AGK are the primary tools for complex coding, debugging, and deployment tasks.
+- **Evidence Logging**: AGK execution agents may append bounded evidence to `.gsd/JOURNAL.md`, but they do not freely rewrite canonical summary files during routine execution.
 
 ### Conflict Resolution: "GSD Documentation Wins"
 If a conflict arises between execution logs (AGK) and state documentation (GSD), the GSD documentation remains the canonical source. All AGK execution results must be rectified against the GSD state before the session is closed.
@@ -36,7 +38,9 @@ When an agent starts a task:
 2. **Contextualize**: Load `.agent/rules/PROJECT.md` to understand local constraints.
 3. **Execute**: Utilize curated skills from `.agent/skills/`.
 4. **Verify**: Test outputs against `.gsd/SPEC.md` requirements.
-5. **Finalize**: Update `.gsd/STATE.md` and commit with GSD-style atomicity.
+5. **Record Evidence**: Append bounded implementation evidence to `.gsd/JOURNAL.md` when useful.
+6. **Synchronize Canonical State**: Hand results to the orchestrator or explicit GSD/governance pass to update `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` safely.
+7. **Commit**: Commit with GSD-style atomicity after the relevant state sync has occurred.
 
 ---
 
@@ -50,4 +54,5 @@ When an agent starts a task:
 To prevent endless execution loops and feature creep, the following boundaries apply:
 - **Scope Modification requires Governance**: Only GSD commands (e.g., `/plan`, `/gsd`) are permitted to alter the `ROADMAP.md` or `SPEC.md`. 
 - **Execution operates within Scope**: AGK workflows (e.g., `/create`, `/refactor`, `/design`) operate *strictly* within the confines of the current phase defined in `STATE.md`. They are NOT allowed to unilaterally expand the scope, add new features, or alter the milestones. If an implementation requires a scope change, AGK must halt and request a GSD `/plan` review.
-- **Micro-tasks vs Milestones**: AGK scripts may generate their own micro-tasks in `.gsd/TODO.md` as long as those tasks roll up into the currently active milestone.
+- **Canonical State Write Boundary**: Execution agents may append bounded entries to `.gsd/JOURNAL.md`, but they must not freely rewrite `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, or `.gsd/DECISIONS.md` by default.
+- **Micro-tasks vs Milestones**: Execution agents may propose micro-tasks or follow-up items, but promotion of those items into canonical `.gsd/TODO.md` is part of the orchestrator-controlled sync step.

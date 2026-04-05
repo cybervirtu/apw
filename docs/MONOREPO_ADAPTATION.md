@@ -39,7 +39,7 @@ When a developer opens a monorepo, the AI can become easily confused if asked va
 > ✅ **Good Prompt**: "Read `apps/web/.gsd/STATE.md` and `apps/web/.gsd/TODO.md` to understand where we are. Then implement the next task."
 
 If you need a cross-cutting change (e.g., adding a field to the database in `apps/api` and surfacing it in `apps/web`), instruct the AI to execute it sequentially:
-> "First, read `apps/api/.gsd/STATE.md` and implement the Backend phase. Once verified, update the API STATE, then read `apps/web/.gsd/STATE.md` and begin the Frontend phase."
+> "First, read `apps/api/.gsd/STATE.md` and implement the Backend phase. Once verified, append evidence to `apps/api/.gsd/JOURNAL.md`, run a sync pass for the API state, then read `apps/web/.gsd/STATE.md` and begin the Frontend phase."
 
 ---
 

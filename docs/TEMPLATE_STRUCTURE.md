@@ -38,8 +38,10 @@ The following structure defines the master APW standard. It integrates the GSD l
 | Path | Purpose | Update Rule | Distribution |
 | :--- | :--- | :--- | :--- |
 | **.gsd/SPEC.md** | Requirement source of truth | Before coding | **Mandatory** |
-| **.gsd/STATE.md**| Current project position | Continuously | **Mandatory** |
-| **.gsd/JOURNAL.md**| Audit trail of actions | Continuously | **Mandatory** |
+| **.gsd/STATE.md**| Current canonical project position | Orchestrator / governance sync | **Mandatory** |
+| **.gsd/JOURNAL.md**| Audit trail of actions and evidence | Continuously | **Mandatory** |
+| **.gsd/TODO.md** | Canonical task backlog | Orchestrator / governance sync | **Mandatory** |
+| **.gsd/DECISIONS.md** | Canonical design rationale | Orchestrator / governance sync when rationale changes | **Mandatory** |
 | **.agent/agents/** | Specialist agent definitions | Curated | **Mandatory** |
 | **.agent/rules/**| AI governing prompts | Static | **Mandatory** |
 | **.agent/scripts/** | Task automation helpers | Curated | **Optional** |
@@ -60,10 +62,11 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 ## 4. Continuous Update Rules
 
-The following files must be updated continuously during each implementation session:
-1. **.gsd/STATE.md**: Update after every wave completion or session end.
-2. **.gsd/JOURNAL.md**: Record every significant action, decision, or failure.
-3. **.gsd/TODO.md**: Update as tasks are planned and completed.
+The following ownership pattern applies during implementation:
+1. **.gsd/JOURNAL.md**: Execution agents may append bounded evidence, decisions observed, and failure notes continuously.
+2. **.gsd/STATE.md**: Updated during a controlled orchestrator or governance sync when current status, blockers, or next steps materially change.
+3. **.gsd/TODO.md**: Updated during a controlled orchestrator or governance sync when follow-up tasks must become canonical.
+4. **.gsd/DECISIONS.md**: Updated during a controlled orchestrator or governance sync when architectural or design rationale changes.
 
 ---
 

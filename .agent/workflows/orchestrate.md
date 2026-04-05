@@ -181,6 +181,18 @@ python .agent/skills/lint-and-validate/scripts/lint_runner.py .
 ### Step 5: Synthesize Results
 Combine all agent outputs into unified report.
 
+### Step 6: Canonical State Sync
+
+Before declaring orchestration complete:
+
+- append bounded execution evidence to `.gsd/JOURNAL.md`
+- update `.gsd/STATE.md` if current status, blockers, or next steps changed
+- update `.gsd/TODO.md` if follow-up tasks must become canonical
+- update `.gsd/ROADMAP.md` only if milestone or phase state changed
+- update `.gsd/DECISIONS.md` only if architectural or design rationale changed
+
+Subagents may supply evidence and recommendations, but the orchestrator performs the canonical sync.
+
 ---
 
 ## Output Format
@@ -215,6 +227,7 @@ Combine all agent outputs into unified report.
 - [ ] Code implemented
 - [ ] Tests passing
 - [ ] Scripts verified
+- [ ] Canonical `.gsd` state synchronized by orchestrator
 
 ### Summary
 [One paragraph synthesis of all agent work]

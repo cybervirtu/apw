@@ -37,7 +37,7 @@ Whenever you open a new chat session in *any* tool, the very first step must be:
 
 ### Avoiding Context Drift
 1. **Search First**: Never read a 1,000-line file to find a single function. Use native IDE search or ask the agent to use `grep` before opening the file.
-2. **Fresh Contexts**: Do not keep a single chat thread alive for weeks. The APW standard relies on `.gsd/STATE.md` to hold memory locally. After a complex debugging session or a completed milestone, dump the final state to `STATE.md`, close the chat, and open a new one.
+2. **Fresh Contexts**: Do not keep a single chat thread alive for weeks. The APW standard relies on controlled `.gsd` synchronization. After a complex debugging session or a completed milestone, append evidence to `.gsd/JOURNAL.md`, run a short orchestrator or governance sync for canonical state, close the chat, and open a new one.
 
 ### Keeping Outputs Aligned
 - **Do not let the AI guess the architecture.** If it needs to build a new component, ensure it has read `ARCHITECTURE.md` and `STACK.md` first.
@@ -62,6 +62,7 @@ Recommended operating pattern:
 2. Point it at `.gsd/STATE.md`, `.gsd/TODO.md`, and any relevant rules.
 3. Keep the request phase-bounded.
 4. Require it to summarize what changed and what still needs verification.
+5. If it is acting as an execution agent, have it stop at evidence logging and hand canonical `.gsd` sync back to the orchestrator.
 
 Avoid:
 
@@ -85,6 +86,7 @@ Recommended operating pattern:
 2. Load only the local files needed for that task.
 3. Ask for one concrete change at a time.
 4. Re-ground on `.gsd/STATE.md` before switching to a different feature area.
+5. Keep Cursor focused on implementation and bounded `JOURNAL.md` evidence unless you are explicitly using it as the orchestrator for a sync pass.
 
 Avoid:
 
@@ -108,6 +110,7 @@ Recommended operating pattern:
 2. Prefer explicit commands and file targets.
 3. Use it for repeatable validation and standards enforcement.
 4. Keep the task grounded in the current APW contract rather than open-ended ideation.
+5. Use an explicit orchestrator-style pass when Codex needs to synchronize canonical `.gsd` files after execution work.
 
 Avoid:
 
@@ -124,16 +127,40 @@ Avoid:
 - **DO** force the AI to write tests *before* writing the implementation (TDD).
 - **DO** use Codex for bootstrap, validation, and CI-facing repository maintenance tasks.
 - **DO** restate the active profile and stack when discussing bootstrap or validation behavior.
+- **DO** treat `.gsd/JOURNAL.md` as the safe execution log and canonical `.gsd` summaries as orchestrator-controlled state.
 
 ### ❌ Don'ts
 - **DON'T** use `/plan` inside Cursor to generate code architecture. This conflicts with the GSD `/plan` (roadmap phases). Use `/design` instead.
 - **DON'T** let Antigravity run massive `git commit` commands without reviewing the `git status` first to ensure only the intended files are staged.
 - **DON'T** ask Cursor to "Fix all errors in the project." This will lead to unpredictable cascading changes. Use targeted `/debug` workflows instead.
 - **DON'T** run validation without the profile context if the repo was bootstrapped intentionally as `minimal` or `advanced`.
+- **DON'T** let routine execution agents freely rewrite `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, or `.gsd/DECISIONS.md`.
 
 ---
 
-## 6. Practical Prompting Patterns
+## 6. Canonical State Sync Rule
+
+Use this ownership split across Antigravity, Cursor, and Codex:
+
+- **Execution agents may**:
+  - modify code
+  - create implementation artifacts
+  - append bounded evidence to `.gsd/JOURNAL.md`
+- **Execution agents may not by default**:
+  - freely rewrite `.gsd/STATE.md`
+  - freely rewrite `.gsd/ROADMAP.md`
+  - freely rewrite `.gsd/TODO.md`
+  - freely rewrite `.gsd/DECISIONS.md`
+- **The orchestrator is responsible for**:
+  - reading execution results
+  - updating canonical state safely
+  - resolving cross-file consistency after task completion
+
+This is a controlled writeback step, not an extra approval ceremony. For simple work, the same human-operated assistant can switch into an orchestrator/governance pass at the end.
+
+---
+
+## 7. Practical Prompting Patterns
 
 ### Antigravity prompt shape
 
@@ -153,21 +180,28 @@ Use prompts like:
 
 > Validate this repo with `--profile base --stack base`, explain any hard failures or warnings, and patch only the files needed to restore compliance.
 
+### Orchestrator sync prompt shape
+
+Use prompts like:
+
+> Read the latest code changes and `.gsd/JOURNAL.md`, then synchronize `.gsd/STATE.md`, `.gsd/TODO.md`, and `.gsd/ROADMAP.md` only where the canonical project state actually changed.
+
 ---
 
-## 7. Common Failure Modes & Troubleshooting
+## 8. Common Failure Modes & Troubleshooting
 
 | Failure Mode | Cause | Resolution |
 | :--- | :--- | :--- |
-| **Endless Debug Loop** | The agent tries the same fix 3+ times without success. Context window is polluted. | **Stop.** Issue a "State Dump" to `.gsd/JOURNAL.md`. Start a new chat session, attach the journal entry, and approach the problem differently. |
+| **Endless Debug Loop** | The agent tries the same fix 3+ times without success. Context window is polluted. | **Stop.** Issue a state dump to `.gsd/JOURNAL.md`, then run a short orchestrator sync before starting a fresh chat. |
 | **Shadow Architecture**| The agent introduces a new library or pattern not in `STACK.md`. | Revert the code. Require the agent to propose the change via an ADR in `.gsd/DECISIONS.md`. |
 | **Ignored Instructions**| The prompt was too long, or the agent favors its pre-training over your local rules. | Break the task down. Point the agent specifically to `.agent/rules/PROJECT.md` to force alignment with local constraints. |
 | **Validation mismatch** | The repo was bootstrapped with one profile, but the validator was run with another. | Re-run `validate.sh` using the same `--profile` and `--stack` values used during bootstrap. |
 | **Tool-role confusion** | The team uses Cursor, Antigravity, and Codex interchangeably without task boundaries. | Re-assign by operating model: Cursor for scoped edits, Antigravity for orchestrated execution, Codex for terminal-first and CI-facing tasks. |
+| **Canonical state drift** | Multiple execution agents rewrite summary `.gsd` files independently. | Restrict execution agents to `JOURNAL.md` evidence, then run an orchestrator sync for `STATE.md`, `ROADMAP.md`, `TODO.md`, and `DECISIONS.md`. |
 
 ---
 
-## 8. Minimum Team Standard
+## 9. Minimum Team Standard
 
 If a team adopts APW but ignores the rest of this guide, keep these minimum habits:
 
@@ -175,4 +209,5 @@ If a team adopts APW but ignores the rest of this guide, keep these minimum habi
 2. Use `/design`, not `/plan`, for technical design work.
 3. Re-run `bootstrap.sh` and `validate.sh` with explicit `--profile` and `--stack` values.
 4. Record architecture changes in `.gsd/DECISIONS.md`.
-5. Reset the session instead of pushing through a polluted context window.
+5. Let execution agents write code and `JOURNAL.md` evidence, then run a controlled orchestrator sync for canonical `.gsd` files.
+6. Reset the session instead of pushing through a polluted context window.

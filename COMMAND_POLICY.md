@@ -15,6 +15,8 @@ In the APW standard, a command name cannot mean two different things. If a confl
 - In AGK, `/plan` might mean designing a database schema or writing code architecture.
 - **Resolution:** GSD keeps `/plan`. AGK renames its workflow to `/design` or `/arch`.
 
+Canonical state synchronization follows the same rule: if a command updates summary memory or lifecycle state, that operation belongs to GSD/orchestrator control, not routine AGK execution.
+
 ---
 
 ## 2. Command Ownership Matrix
@@ -24,10 +26,10 @@ The following table defines the final approved command set for the APW standard.
 ### 🧠 GSD (Governance & Lifecycle) Commands
 | Command | Purpose | Primary Target |
 | :--- | :--- | :--- |
-| `/gsd` | Main entry point for lifecycle management. | `STATE.md`, `JOURNAL.md` |
+| `/gsd` | Main entry point for lifecycle management and canonical state sync. | `STATE.md`, `ROADMAP.md`, `TODO.md`, `JOURNAL.md` |
 | `/plan` | Project decomposition, milestone setting. | `ROADMAP.md`, `TODO.md` |
-| `/task` | Status updates on current implementation phase. | `STATE.md`, `TODO.md` |
-| `/verify` | Validates completed work against requirements. | `SPEC.md`, `STATE.md` |
+| `/task` | Review current implementation progress and prepare safe state sync inputs. | `JOURNAL.md`, sync candidates for `STATE.md` / `TODO.md` |
+| `/verify` | Validates completed work against requirements. | `SPEC.md`, `JOURNAL.md`, sync candidates for `STATE.md` |
 | `/audit` | Inspects workspace for APW compliance. | All governance files |
 
 ### 🦾 AGK (Specialist Execution) Commands
@@ -39,6 +41,13 @@ The following table defines the final approved command set for the APW standard.
 | `/refactor`| Restructures code without changing behavior. | Source Code |
 | `/design` | Technical architecture for a specific feature. | Source Code, Technical Specs |
 | `/test` | Generates and runs unit/integration tests. | Tests |
+
+### Canonical State Ownership Note
+
+- Execution commands may write code and implementation artifacts.
+- Execution commands may append bounded evidence to `.gsd/JOURNAL.md`.
+- Free editing of `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is not part of routine AGK execution.
+- Safe synchronization of those canonical files belongs to the orchestrator or an explicit GSD/governance command.
 
 ---
 

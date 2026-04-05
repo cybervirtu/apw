@@ -47,6 +47,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - `templates/` is the only downstream bootstrap source in the active APW contract.
 - The canonical downstream `.gsd` contract for `base` and `advanced` is: `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`.
 - `advanced` is stronger through richer `.agent/` content, not through extra root `.gsd` state files.
+- Canonical state synchronization for `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is a controlled orchestrator/governance step, not a routine side effect of execution work.
 - Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
 
 ### For Developers Starting a New Project

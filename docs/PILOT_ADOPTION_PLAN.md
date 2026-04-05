@@ -40,7 +40,7 @@ The fundamental shift in APW is moving from disparate documentation into a cohes
 
 ### Phase 3: Execution
 1. The developer begins work using the newly injected APW workflows (e.g., Cursor Composer with `/design`).
-2. Adhere strictly to the APW rule: update `.gsd/JOURNAL.md` after a major debugging session, and `.gsd/STATE.md` at the end of the day.
+2. Adhere strictly to the APW rule: append evidence to `.gsd/JOURNAL.md` after a major debugging session, then run an orchestrator or governance sync to update canonical files such as `.gsd/STATE.md` and `.gsd/TODO.md`.
 
 ### Phase 4: Review
 After one complete feature cycle or sprint:
