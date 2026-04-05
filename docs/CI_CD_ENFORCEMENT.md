@@ -20,6 +20,19 @@ Always run validation with the same `--profile` and `--stack` values used during
 The validator runs from an APW checkout against a target repository path; bootstrapped downstream repos are not expected to carry their own second copy of the APW templates and validator.
 Human operators should still use [DOWNSTREAM_COMPLIANCE_CHECKLIST.md](./DOWNSTREAM_COMPLIANCE_CHECKLIST.md); CI complements that checklist, but does not replace day-to-day APW hygiene.
 
+For CI usage, prefer the thin wrapper:
+
+```bash
+/path/to/apw/scripts/ci-validate.sh [repo-root] --profile base --stack base
+```
+
+`ci-validate.sh` still delegates all compliance logic to `validate.sh`. Its job is only to:
+
+- preserve the validator as the single compliance engine
+- keep blocking versus warning behavior explicit in CI
+- emit a short CI-friendly summary
+- optionally treat warnings as blocking when a repo chooses stricter enforcement
+
 ## 2. What Validation Enforces
 
 The current validator checks:
@@ -35,25 +48,66 @@ The current validator checks:
 
 This means CI should treat exit code `1` as a hard failure, while warnings can remain visible without blocking the build.
 
-## 3. Recommended GitHub Actions Workflow
+## 3. Blocking vs Warning Policy
 
-Create `.github/workflows/apw-compliance.yml` in the downstream repository:
+Use the following enforcement model:
+
+### Blocking
+
+These should fail CI immediately:
+
+- missing required root governance files
+- missing required profile-backed `.gsd` files
+- missing required `.agent/` namespace paths
+- missing vendored advanced-profile execution files
+- broken content shape for key lifecycle/governance files
+- APW source-contract failures when maintaining the APW repo itself
+
+### Warning-only by default
+
+These should stay visible but non-blocking unless the repo opts into stricter enforcement:
+
+- legacy `.agents/` namespace drift
+- legacy `.agents/skills/` drift
+- legacy advanced root `.gsd` fragmentation files
+- ownership-drift guidance that weakens orchestrator-controlled canonical state
+- requested stack pack not currently vendored in APW
+
+### Advisory
+
+These are not enforced directly by CI, but should still be part of team operations:
+
+- completion of the downstream compliance checklist
+- use of a single orchestrator/governance pass for canonical state sync
+- profile selection discipline during migration or rollout
+
+Set `APW_FAIL_ON_WARNINGS=1` or pass `--fail-on-warnings` when a repo wants warning-level issues to block merges.
+
+## 4. Recommended GitHub Actions Workflow
+
+Copy [examples/github/apw-validate.yml](../examples/github/apw-validate.yml) into `.github/workflows/apw-compliance.yml` in the downstream repository:
 
 ```yaml
-name: APW Compliance Check
+name: APW Compliance
 
 on:
   pull_request:
-    branches: ["main", "develop"]
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
 
 jobs:
-  validate-workspace:
+  validate-apw:
     runs-on: ubuntu-latest
     env:
       APW_PROFILE: base
       APW_STACK: base
+      APW_FAIL_ON_WARNINGS: "0"
     steps:
-      - name: Checkout downstream repo
+      - name: Checkout downstream repository
         uses: actions/checkout@v4
 
       - name: Checkout APW standard
@@ -61,14 +115,16 @@ jobs:
         with:
           repository: cybervirtu/apw
           path: .apw-standard
+          ref: main
 
-      - name: Run APW validation
-        run: ./.apw-standard/scripts/validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"
+      - name: Run APW CI validation
+        run: ./.apw-standard/scripts/ci-validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"
 ```
 
 Use repository-level environment variables when different apps or repos need different APW profiles.
+Prefer pinning the APW checkout to a release tag or commit SHA once your rollout process is stable.
 
-## 4. Monorepo Validation Pattern
+## 5. Monorepo Validation Pattern
 
 If a monorepo bootstraps multiple package roots independently, validate each root explicitly instead of validating only the repository top-level:
 
@@ -76,38 +132,58 @@ If a monorepo bootstraps multiple package roots independently, validate each roo
 jobs:
   validate-root:
     runs-on: ubuntu-latest
+    env:
+      APW_PROFILE: base
+      APW_STACK: base
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: cybervirtu/apw
           path: .apw-standard
-      - run: ./.apw-standard/scripts/validate.sh . --profile base --stack base
+      - run: ./.apw-standard/scripts/ci-validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"
 
   validate-api:
     runs-on: ubuntu-latest
+    env:
+      APW_PROFILE: base
+      APW_STACK: base
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: cybervirtu/apw
           path: .apw-standard
-      - run: ./.apw-standard/scripts/validate.sh ./apps/api --profile base --stack base
+      - run: ./.apw-standard/scripts/ci-validate.sh ./apps/api --profile "$APW_PROFILE" --stack "$APW_STACK"
 
   validate-web:
     runs-on: ubuntu-latest
+    env:
+      APW_PROFILE: base
+      APW_STACK: base
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: cybervirtu/apw
           path: .apw-standard
-      - run: ./.apw-standard/scripts/validate.sh ./apps/web --profile base --stack base
+      - run: ./.apw-standard/scripts/ci-validate.sh ./apps/web --profile "$APW_PROFILE" --stack "$APW_STACK"
 ```
 
 The important rule is simple: validate every location that was bootstrapped as an APW root.
 
-## 5. Local Pre-Commit Hook
+## 6. Post-Bootstrap CI Enablement
+
+After a downstream repo passes its first manual validation:
+
+1. Copy the example workflow into `.github/workflows/apw-compliance.yml`.
+2. Set `APW_PROFILE` and `APW_STACK` to match the bootstrap inputs used by that repo.
+3. Decide whether warnings stay non-blocking or whether `APW_FAIL_ON_WARNINGS=1` is appropriate.
+4. Open a pull request and confirm the workflow passes before declaring the repo rollout-ready.
+
+For most repos, keep warnings non-blocking at first. For advanced-profile repos with stricter governance expectations, protected branches may choose to block on warnings once the workspace is already clean.
+
+## 7. Local Pre-Commit Hook
 
 Use a soft local hook so developers see drift early without blocking work-in-progress commits:
 
@@ -137,7 +213,7 @@ fi
 exit 0
 ```
 
-## 6. Failure Triage
+## 8. Failure Triage
 
 ### Hard failure
 
@@ -148,6 +224,7 @@ Common causes:
 - missing required `.gsd` files for the selected profile
 - missing `.agent/` namespace directories
 - missing vendored profile files in `advanced`
+- content-shape failures in `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `PROJECT_RULES.md`, or `AGENT_SYSTEM.md`
 
 Recommended recovery path:
 
@@ -162,26 +239,50 @@ Common causes:
 
 - legacy `.agents/` drift
 - legacy `.agents/skills/` drift
+- legacy advanced `.gsd` fragmentation
+- ownership-drift guidance in governance docs
 - requested stack pack not vendored in `templates/stack/`
 
 Warnings should be reviewed and cleaned up, but they do not currently block the repository.
 
-## 7. Recommended Downstream Defaults
+### Strict-warning mode
+
+If a repo has already cleaned up warning-level drift and wants a stricter gate:
+
+- set `APW_FAIL_ON_WARNINGS=1` in CI
+- or run `ci-validate.sh --fail-on-warnings`
+
+This is recommended only after the baseline workspace is already warning-free.
+
+## 9. Migration Guidance for Existing Repos
+
+When adding CI enforcement to an already-active repo:
+
+1. Migrate the repo into APW first.
+2. Run manual bootstrap and validation until the workspace is clean.
+3. Add the CI workflow in warning-tolerant mode first.
+4. Clean up any warning-level drift that appears.
+5. Only then consider switching protected branches to strict-warning mode.
+
+Pair this with [EXISTING_REPO_MIGRATION_GUIDE.md](./EXISTING_REPO_MIGRATION_GUIDE.md) and [PILOT_ADOPTION_PLAN.md](./PILOT_ADOPTION_PLAN.md).
+
+## 10. Recommended Downstream Defaults
 
 For most product repos:
 
 - bootstrap with `--profile base --stack base`
-- validate with `--profile base --stack base`
+- validate in CI with `ci-validate.sh --profile base --stack base`
 - treat PR validation as blocking
 - treat local hooks as warning-only
 
 For repos that intentionally use the advanced profile:
 
 - bootstrap with `--profile advanced --stack base`
-- validate with `--profile advanced --stack base`
+- validate in CI with `ci-validate.sh --profile advanced --stack base`
 - expect more `.agent` file-level enforcement, not a larger root `.gsd` state set
+- consider strict-warning mode only after the repo is clean and the team is ready for tighter enforcement
 
-## 8. Policy Connection
+## 11. Policy Connection
 
 This enforcement guide depends on:
 
@@ -189,3 +290,4 @@ This enforcement guide depends on:
 - [docs/TEMPLATE_STRUCTURE.md](./TEMPLATE_STRUCTURE.md)
 - [COMMAND_POLICY.md](../COMMAND_POLICY.md)
 - [PROJECT_RULES.md](../PROJECT_RULES.md)
+- [examples/github/apw-validate.yml](../examples/github/apw-validate.yml)

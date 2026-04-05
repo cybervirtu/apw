@@ -1,0 +1,32 @@
+name: APW Compliance
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-apw:
+    runs-on: ubuntu-latest
+    env:
+      APW_PROFILE: base
+      APW_STACK: base
+      APW_FAIL_ON_WARNINGS: "0"
+    steps:
+      - name: Checkout downstream repository
+        uses: actions/checkout@v4
+
+      - name: Checkout APW standard
+        uses: actions/checkout@v4
+        with:
+          repository: cybervirtu/apw
+          path: .apw-standard
+          # Prefer pinning this to a release tag or commit SHA in production.
+          ref: main
+
+      - name: Run APW CI validation
+        run: ./.apw-standard/scripts/ci-validate.sh . --profile "$APW_PROFILE" --stack "$APW_STACK"

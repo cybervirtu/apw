@@ -38,7 +38,8 @@
 
 - [ ] The team knows which profile the repo uses.
 - [ ] The team knows who performs orchestrator/governance sync when canonical state changes.
-- [ ] CI runs `validate.sh` with the correct profile and stack.
+- [ ] CI runs `ci-validate.sh` or `validate.sh` from an APW checkout with the correct profile and stack.
+- [ ] The team has explicitly chosen whether warnings are non-blocking or blocking in CI.
 - [ ] New contributors are pointed to [DOWNSTREAM_ADOPTION_GUIDE.md](./DOWNSTREAM_ADOPTION_GUIDE.md).
 
 If any item fails, pause feature work long enough to restore the APW contract and re-run validation.

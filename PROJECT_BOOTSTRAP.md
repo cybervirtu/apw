@@ -143,4 +143,5 @@ Before a downstream team begins routine coding work:
    - the selected profile's required `.gsd/` files
    - `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, `.agent/skills/`
 5. Add project-specific implementation constraints in project-local materials such as `.agent/rules/PROJECT.md` or the `.gsd/` contents instead of forking the APW contract files casually.
-6. For existing repositories, pair bootstrap with [docs/EXISTING_REPO_MIGRATION_GUIDE.md](docs/EXISTING_REPO_MIGRATION_GUIDE.md) before the team resumes normal delivery.
+6. Enable CI enforcement using [docs/CI_CD_ENFORCEMENT.md](docs/CI_CD_ENFORCEMENT.md) and [examples/github/apw-validate.yml](examples/github/apw-validate.yml) so merge-time drift detection is active early.
+7. For existing repositories, pair bootstrap with [docs/EXISTING_REPO_MIGRATION_GUIDE.md](docs/EXISTING_REPO_MIGRATION_GUIDE.md) before the team resumes normal delivery.

@@ -33,7 +33,7 @@ APW utilizes a "Tick-Tock" release rhythm to protect active projects from stabil
 ### 🟢 Routine Updates (Tock)
 - **Definition**: Non-destructive prompt tweaks, new skills, or bug fixes in workflows.
 - **Action**: Bumps a minor/patch version (e.g., `v2.1.0`).
-- **Rollout**: Can usually be deployed to downstream repositories by re-running `./scripts/bootstrap.sh --target . --profile [profile] --stack [stack]`. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced.
+- **Rollout**: Can usually be deployed to downstream repositories by re-running `./scripts/bootstrap.sh --target . --profile [profile] --stack [stack]`. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced. If downstream CI pins APW to a release tag or commit SHA, update that reference as part of the rollout.
 
 ---
 

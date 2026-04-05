@@ -521,7 +521,9 @@ check_source_file "docs/PILOT_ADOPTION_PLAN.md"
 check_source_file "docs/MONOREPO_ADAPTATION.md"
 check_source_file "docs/UPGRADE_STRATEGY.md"
 check_source_file "scripts/bootstrap.sh"
+check_source_file "scripts/ci-validate.sh"
 check_source_file "scripts/validate.sh"
+check_source_file "examples/github/apw-validate.yml"
 check_source_content_contract
 check_source_ownership_drift
 
