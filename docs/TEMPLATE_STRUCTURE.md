@@ -73,13 +73,12 @@ The following files must be updated continuously during each implementation sess
 
 **Current Ownership Rule**:
 - `templates/` is the only active downstream source for profile-selected `.gsd/` and `.agent/` scaffolding.
-- `.gsd/` in the repo root is the APW governance and documentation layer, not a downstream template source.
-- `.gsd/templates/` is not present in the current implementation. If it appears in a future phase, it must be treated as internal authoring, transitional, or legacy support material unless the bootstrap implementation is explicitly updated to make it canonical.
+- `.gsd/` in the repo root is reserved for APW governance use and is not a downstream profile source.
 - Root governance files (`PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
 
 **Ownership Classification**:
 - `templates/`: **canonical downstream source**
-- `.gsd/templates/`: **currently absent**; if reintroduced without bootstrap changes, classify it as **internal authoring**, **transitional**, or **legacy support**, never as the canonical downstream source
+- repo-root `.gsd/`: **governance workspace**, not a downstream profile source
 
 For a filesystem-level walkthrough of the profile tree itself, see [templates/README.md](../templates/README.md).
 

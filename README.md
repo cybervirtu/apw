@@ -24,10 +24,12 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 │   ├── scripts/         # Task-level automation
 │   ├── workflows/       # Execution flows / slash commands
 │   └── skills/          # Curated reusable capability library
-├── .gsd/                # Lifecycle memory and documentation templates
+├── .gsd/                # APW governance workspace (not a downstream template source)
 ├── docs/                # APW tooling, policies, and guides
 ├── scripts/             # Bootstrap and validation automation
 ├── templates/           # Canonical downstream bootstrap source
+│   ├── base/.gsd/       # Canonical eight-file lifecycle contract
+│   └── advanced/.gsd/   # Same canonical contract plus richer .agent content
 ├── AGENT_SYSTEM.md      # Dual-engine precedence rules
 ├── GSD-STYLE.md         # AI communication style guide
 ├── PROJECT_RULES.md     # Mandatory execution protocols
@@ -42,9 +44,9 @@ By enforcing a strict separation of concerns, the APW ensures that AI agents alw
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
 ### Template Contract
-- `templates/` is the canonical downstream bootstrap source.
-- `.gsd/` is the active governance layer in a working repo, not the downstream template source.
-- `.gsd/templates/` is not present in the current APW implementation. If it is introduced later for internal authoring, transition support, or legacy compatibility, it must remain non-canonical unless `bootstrap.sh` is explicitly changed to use it.
+- `templates/` is the only downstream bootstrap source in the active APW contract.
+- The canonical downstream `.gsd` contract for `base` and `advanced` is: `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`.
+- `advanced` is stronger through richer `.agent/` content, not through extra root `.gsd` state files.
 - Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
 
 ### For Developers Starting a New Project

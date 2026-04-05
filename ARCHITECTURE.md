@@ -12,12 +12,12 @@ The APW standard is maintained in a dedicated `./apw` directory within the maste
 │   ├── scripts/         # Task-level automation
 │   ├── workflows/       # Shared slash command definitions
 │   └── skills/          # Curated common skill library
-├── .gsd/                # Lifecycle document templates
-│   ├── SPEC.md          # Requirement definition template
-│   ├── ROADMAP.md       # Phase and milestone template
-│   └── STATE.md         # Narrative state tracking template
+├── .gsd/                # APW governance workspace (not a downstream template root)
 ├── docs/                # APW standards, guides, and runbooks
 ├── scripts/             # Bootstrap, validation, and sync automation
+├── templates/           # Canonical downstream bootstrap source
+│   ├── base/.gsd/       # Canonical eight-file lifecycle contract
+│   └── advanced/.gsd/   # Same canonical contract plus richer .agent content
 ├── AGENT_SYSTEM.md      # Operational model (GSD vs AGK)
 ├── GSD-STYLE.md         # Naming and formatting standards
 └── PROJECT_RULES.md     # Mandatory governance rules
@@ -60,8 +60,8 @@ To ensure projects remain aligned with the evolving APW standard while allowing 
 ## 4. Template Ownership
 
 - `templates/` is the canonical downstream bootstrap source.
-- The repo-root `.gsd/` directory is the active governance layer for APW itself.
-- `.gsd/templates/` is not part of the current downstream bootstrap path. If such a directory is introduced later, it must be treated as internal or transitional unless bootstrap logic explicitly adopts it.
+- The repo-root `.gsd/` directory is reserved for APW governance use and is not a profile-selection source.
+- The canonical downstream `.gsd` contract for both `base` and `advanced` is `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, and `STACK.md`.
 - The operational bootstrap contract is documented in `PROJECT_BOOTSTRAP.md`.
 
 ---
