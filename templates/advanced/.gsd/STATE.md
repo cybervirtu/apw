@@ -1,10 +1,10 @@
-# State Template
+# STATE.md — Canonical Current State
 
-Template for `.gsd/STATE.md` — project memory across sessions.
+> **Purpose**: Single current-state file for pause/resume context, recent snapshot notes, and optional token/context-budget notes.
+>
+> Use `STATE.md` instead of separate root files such as `STATE_SNAPSHOT.md` or `TOKEN_REPORT.md`.
 
----
-
-## File Template
+## Template
 
 ```markdown
 ---
@@ -30,63 +30,31 @@ updated: [ISO timestamp]
 2. {Following action}
 3. {Third action if known}
 
-## Active Decisions
-
-Decisions made that affect current work:
-
-| Decision | Choice | Made | Affects |
-|----------|--------|------|---------|
-| {what} | {choice} | {date} | {phases/plans} |
-
 ## Blockers
-
-{None if clear}
 
 - [ ] {Blocker 1}: {resolution approach}
 - [ ] {Blocker 2}: {resolution approach}
 
-## Concerns
+## Recent Verification
 
-Things to watch but not blocking:
+- **Check:** {what was verified}
+- **Result:** {pass | fail | partial}
+- **Evidence:** {command, screenshot path, or journal entry reference}
 
-- {Concern 1}
-- {Concern 2}
+## Current Snapshot
 
-## Session Context
+- **Files in flight:** {key files or areas}
+- **Risks / concerns:** {what to watch}
+- **Resume point:** {what the next agent should do first}
 
-{Any context the next session needs to know}
+## Context Budget Notes (Optional)
+
+- **Loaded hotspots:** {files or systems consuming most context}
+- **Compression / handoff note:** {what was summarized or intentionally omitted}
 ```
-
----
 
 ## Update Rules
 
-**Update STATE.md after:**
-- Every completed task
-- Every decision made
-- Any blocker identified
-- Session end/pause
-
-**What to update:**
-- `updated` timestamp
-- Current Position
-- Last Action
-- Next Steps
-
-**Keep it lean:**
-- STATE.md is read frequently
-- Only current context, not history
-- History goes in JOURNAL.md
-
----
-
-## Resume Protocol
-
-When starting a new session:
-
-1. Read STATE.md first
-2. Understand current position
-3. Check blockers/concerns
-4. Continue from Next Steps
-
-The STATE.md is the "save game" for the project.
+- Update after every meaningful task completion, blocker discovery, verification event, or session pause.
+- Keep this file lean and current; history belongs in `JOURNAL.md`.
+- If you need more detail, expand the relevant section here before creating a new root `.gsd` file.

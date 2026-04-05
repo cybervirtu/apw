@@ -1,8 +1,8 @@
-# TODO.md — Pending Items
+# TODO.md — Execution Backlog
 
-> Quick capture of ideas, tasks, and issues.
+> **Purpose**: Granular implementation checklist, sprint slice, and gap-tracking backlog.
 >
-> Use `/add-todo` to add items, `/check-todos` to view.
+> Use `TODO.md` for actionable items instead of splitting sprint scope or fix lists into separate root files.
 
 ## Format
 
@@ -19,13 +19,14 @@
 | `medium` 🟡 | Normal priority (default) |
 | `low` 🟢 | Nice-to-have, future ideas |
 
----
+## Active Execution Slice
 
-## Items
+- [ ] {Current sprint / wave item 1} `high` — YYYY-MM-DD
+- [ ] {Current sprint / wave item 2} `medium` — YYYY-MM-DD
 
-<!-- Active todos below -->
+## Deferred / Later
 
-- [ ] {Example todo item} `medium` — YYYY-MM-DD
+- [ ] {Deferred item} `low` — YYYY-MM-DD
 
 ---
 

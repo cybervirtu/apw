@@ -172,11 +172,11 @@ For most product repos:
 - treat PR validation as blocking
 - treat local hooks as warning-only
 
-For heavier repos that intentionally use the advanced profile:
+For repos that intentionally use the advanced profile:
 
 - bootstrap with `--profile advanced --stack base`
 - validate with `--profile advanced --stack base`
-- expect more `.agent` file-level enforcement
+- expect more `.agent` file-level enforcement, not a larger root `.gsd` state set
 
 ## 8. Policy Connection
 

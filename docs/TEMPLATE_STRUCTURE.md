@@ -97,8 +97,17 @@ The standard, non-negotiable baseline for standard software engineering projects
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes an expanded `.gsd/` set plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
-- **Use when**: You need the richest APW execution bundle and are prepared for a heavier documentation and workflow surface area.
+- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd/` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Use when**: You need the richest APW execution bundle while keeping project state in the same lean canonical `.gsd` contract as the base profile.
+
+### **Advanced State Consolidation Rule**
+
+- Use headings and sections inside the canonical `.gsd` files before creating additional root state files.
+- Keep milestone, sprint, and phase-close status in `ROADMAP.md`.
+- Keep current snapshot, pause/resume context, and token/context-budget notes in `STATE.md`.
+- Keep granular execution items and gap lists in `TODO.md`.
+- Keep session history, verification evidence, debug findings, and operator handoff notes in `JOURNAL.md`.
+- Legacy advanced root files such as `MILESTONE.md`, `SPRINT.md`, `PHASE-SUMMARY.md`, `STATE_SNAPSHOT.md`, and `TOKEN_REPORT.md` are not part of the active contract.
 
 ## 6. Bootstrap Overwrite Rules
 

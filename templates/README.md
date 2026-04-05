@@ -6,7 +6,7 @@
 
 - `minimal/`: smallest practical lifecycle starter plus any minimal profile `.agent` content
 - `base/`: default lifecycle baseline for most repos
-- `advanced/`: expanded lifecycle set plus vendored specialist execution content
+- `advanced/`: the same canonical eight-file `.gsd` baseline as `base`, plus vendored specialist execution content
 
 ## Common Rules
 
@@ -25,5 +25,6 @@
 ## Practical Interpretation
 
 - `minimal` and `base` are intentionally lighter than `advanced`.
-- `advanced` adds more vendored execution content, not a second governance source.
+- `advanced` adds more vendored execution content, not a second governance source or a second state model.
+- `advanced` should keep milestone, sprint, phase-close, and session snapshot details inside `ROADMAP.md`, `STATE.md`, `TODO.md`, and `JOURNAL.md` rather than splitting them into extra root `.gsd` files.
 - The repo root plus `templates/` together define the complete bootstrap contract, but `templates/` remains the only profile-selection source.

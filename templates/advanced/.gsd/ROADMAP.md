@@ -1,10 +1,10 @@
-# Roadmap Template
+# ROADMAP.md — Canonical Planning Source
 
-Template for `.gsd/ROADMAP.md` — phase structure and progress tracking.
+> **Purpose**: Single planning source of truth for milestones, phases, active sprint focus, and phase-close summaries.
+>
+> Use `ROADMAP.md` instead of separate root files such as `MILESTONE.md`, `SPRINT.md`, or `PHASE-SUMMARY.md`.
 
----
-
-## File Template
+## Template
 
 ```markdown
 ---
@@ -15,8 +15,19 @@ updated: [ISO timestamp]
 
 # Roadmap
 
-> **Current Phase:** {N} - {name}
-> **Status:** {planning | executing | verifying}
+## Milestone Direction
+
+**Milestone:** {name}
+**Outcome:** {what this milestone delivers}
+**Status:** {planning | executing | verifying | complete}
+**Target Window:** {optional date range or release target}
+
+## Current Execution Window
+
+**Active Phase:** {N} - {name}
+**Active Sprint / Focus Window:** {current slice of work}
+**Current Goal:** {what must move next}
+**Exit Criteria:** {what proves this slice is done}
 
 ## Must-Haves (from SPEC)
 
@@ -24,45 +35,25 @@ updated: [ISO timestamp]
 - [ ] {Must-have 2}
 - [ ] {Must-have 3}
 
----
-
 ## Phases
 
 ### Phase 1: {Foundation}
-**Status:** ⬜ Not Started | 🔄 In Progress | ✅ Complete
+**Status:** ⬜ Not Started | 🔄 In Progress | ✅ Complete | ❌ Blocked
 **Objective:** {What this phase delivers}
-**Requirements:** REQ-01, REQ-02
-
+**Depends on:** {None | prior phase}
 **Plans:**
 - [ ] Plan 1.1: {name}
 - [ ] Plan 1.2: {name}
-
----
+**Completion Notes:** {Short summary once complete}
 
 ### Phase 2: {Core Feature}
 **Status:** ⬜ Not Started
 **Objective:** {What this phase delivers}
 **Depends on:** Phase 1
-
 **Plans:**
 - [ ] Plan 2.1: {name}
 - [ ] Plan 2.2: {name}
-
----
-
-### Phase 3: {Integration}
-**Status:** ⬜ Not Started
-**Objective:** {What this phase delivers}
-**Depends on:** Phase 2
-
----
-
-### Phase 4: {Polish/Launch}
-**Status:** ⬜ Not Started
-**Objective:** {Final touches and deployment}
-**Depends on:** Phase 3
-
----
+**Completion Notes:** {Short summary once complete}
 
 ## Progress Summary
 
@@ -70,34 +61,19 @@ updated: [ISO timestamp]
 |-------|--------|-------|----------|
 | 1 | ⬜ | 0/2 | — |
 | 2 | ⬜ | 0/2 | — |
-| 3 | ⬜ | 0/1 | — |
-| 4 | ⬜ | 0/1 | — |
 
----
+## Risks / Sequencing Notes
 
-## Timeline
+- {Risk or dependency}
+- {Scope shift or milestone note}
 
-| Phase | Started | Completed | Duration |
-|-------|---------|-----------|----------|
-| 1 | — | — | — |
-| 2 | — | — | — |
-| 3 | — | — | — |
-| 4 | — | — | — |
+## Completed Phase Notes
+
+- Phase {N}: {What completed, what was verified, what it unlocked next}
 ```
-
----
-
-## Status Icons
-
-- ⬜ Not Started
-- 🔄 In Progress
-- ✅ Complete
-- ⏸️ Paused
-- ❌ Blocked
 
 ## Guidelines
 
-- 3-5 phases per milestone
-- Each phase has clear deliverable
-- Dependencies flow forward
-- Update status as work progresses
+- Keep milestone, sprint, and phase-close status here rather than creating separate root planning files.
+- Update when scope changes, a phase starts or ends, or the active focus window changes.
+- Put granular execution checklists in `TODO.md`, not here.

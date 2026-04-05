@@ -61,9 +61,9 @@ Bootstrap also copies these root governance files into the target:
 
 ### `advanced`
 
-- Copies the expanded lifecycle set from `templates/advanced/.gsd/`.
+- Copies the canonical eight-file lifecycle set from `templates/advanced/.gsd/`: `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, and `STACK.md`.
 - Syncs vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists.
-- Best for repos that need the richest specialist execution bundle.
+- Best for repos that need the richest specialist execution bundle without fragmenting state across extra root `.gsd` files.
 
 ## 5. Force and Overwrite Rules
 
@@ -89,6 +89,7 @@ Bootstrap is safe to run against an existing repository when used intentionally:
 3. Use `--force` only when you explicitly want to replace lifecycle templates in `.gsd/`.
 4. Review any refreshed `.agent/` content, because prompts and workflows are always updated from the selected profile.
 5. If a stack add-on is requested but no vendored skill pack exists under `templates/stack/<name>/`, bootstrap continues and logs a warning.
+6. If an older advanced repo still has legacy root `.gsd` files such as `MILESTONE.md`, `SPRINT.md`, `PHASE-SUMMARY.md`, `STATE_SNAPSHOT.md`, or `TOKEN_REPORT.md`, consolidate their live content into `ROADMAP.md`, `STATE.md`, `TODO.md`, or `JOURNAL.md` before deleting the redundant files.
 
 Recommended upgrade examples:
 
@@ -103,6 +104,7 @@ Recommended upgrade examples:
 - Downstream repos are bootstrapped under `.agent/`, never `.agents/`.
 - `templates/` is the only profile source used for lifecycle and execution-layer template content.
 - `.agent/skills/` is the active skills path.
+- The advanced profile uses the same canonical eight-file `.gsd` contract as the base profile; its additional depth comes from `.agent/` execution content, not extra root state files.
 - Stack-specific skills are only applied from `templates/stack/<name>/.agent/skills/` when that pack exists.
 - Missing optional `.agent` profile directories are treated as empty, not as errors.
 

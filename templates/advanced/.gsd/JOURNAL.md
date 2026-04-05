@@ -1,8 +1,8 @@
-# JOURNAL.md — Session Log
+# JOURNAL.md — Session and Evidence Log
 
-> **Purpose**: Chronicle of work sessions for context continuity.
-
----
+> **Purpose**: Chronicle of sessions, verification evidence, debugging notes, and operator handoff context.
+>
+> Use `JOURNAL.md` instead of separate root files such as `SUMMARY.md`, `VERIFICATION.md`, `DEBUG.md`, `UAT.md`, or `USER-SETUP.md`.
 
 ## Sessions
 
@@ -11,35 +11,28 @@
 ### Objective
 {What you set out to accomplish this session.}
 
-### Accomplished
+### Work Completed
 - ✅ {Task 1 completed}
 - ✅ {Task 2 completed}
-  - {Sub-detail if needed}
-- ✅ {Task 3 completed}
+- ⏸️ {Task paused or partially completed}
 
-### Verification
-- [x] {Verification check 1}
-- [x] {Verification check 2}
+### Verification Evidence
+- [x] {Verification check 1} — {evidence}
+- [x] {Verification check 2} — {evidence}
 - [ ] {Verification pending}
 
-### Blockers Encountered
-- {Blocker 1 and how it was resolved}
-- {Blocker 2 — still open}
+### Debug / Risk Notes
+- {Hypothesis tested, failure encountered, or risk discovered}
+- {Important dead end or follow-up concern}
 
-### Handoff Notes
+### User / Operator Notes
+- {Manual setup needed from user}
+- {UAT result or human verification note}
+
+### Handoff
 - {Important context for next session}
-- {Files that need attention}
-- {Decisions that need to be made}
-
----
-
-## Session: YYYY-MM-DD HH:MM
-
-### Objective
-{Previous session objective.}
-
-### Accomplished
-- ✅ {Completed items}
+- {Files that need attention next}
+- {Decision or blocker still open}
 
 ---
 

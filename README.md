@@ -55,7 +55,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 2. Choose a profile intentionally:
    - `minimal`: lightweight lifecycle starter set plus any minimal profile `.agent` content
    - `base`: default downstream bootstrap profile with the standard lifecycle templates
-   - `advanced`: expanded lifecycle and specialist execution material
+   - `advanced`: the same canonical eight-file `.gsd` contract as `base`, plus specialist execution material
 3. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md).
 4. The AI will populate your `.gsd/` memory. You are now ready to code!
 5. Validate the repo against the same profile:

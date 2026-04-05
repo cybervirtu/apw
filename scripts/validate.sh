@@ -99,6 +99,39 @@ require_template_files() {
     fi
 }
 
+warn_legacy_advanced_gsd_files() {
+    local found_any=0
+    local legacy_files=(
+        "CONTEXT.md"
+        "DEBUG.md"
+        "DISCOVERY.md"
+        "MILESTONE.md"
+        "PHASE-SUMMARY.md"
+        "PLAN.md"
+        "PROJECT.md"
+        "REQUIREMENTS.md"
+        "RESEARCH.md"
+        "SPRINT.md"
+        "STATE_SNAPSHOT.md"
+        "SUMMARY.md"
+        "TOKEN_REPORT.md"
+        "UAT.md"
+        "USER-SETUP.md"
+        "VERIFICATION.md"
+    )
+
+    for file in "${legacy_files[@]}"; do
+        if [[ -f "$TARGET_DIR/.gsd/$file" ]]; then
+            found_any=1
+            warn "Legacy advanced .gsd fragmentation file detected: .gsd/$file. Consolidate live content into ROADMAP.md, STATE.md, TODO.md, or JOURNAL.md."
+        fi
+    done
+
+    if [[ $found_any -eq 0 ]]; then
+        pass "No legacy advanced root .gsd fragmentation files detected"
+    fi
+}
+
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
         --profile)
@@ -226,6 +259,10 @@ if [[ -d "$TARGET_DIR/.agents/skills" ]]; then
     warn "Legacy capability path detected: .agents/skills/ exists. Use .agent/skills/ instead."
 else
     pass "No legacy .agents/skills/ directory detected"
+fi
+
+if [[ "$PROFILE" == "advanced" ]]; then
+    warn_legacy_advanced_gsd_files
 fi
 
 echo "--- Summary ---"
