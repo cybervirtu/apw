@@ -22,6 +22,8 @@ Practical rule:
 - then update the portal page if its beginner-facing summary, navigation, or framing also needs to change
 - do not land a portal-only governance change that conflicts with the canonical source docs
 
+For the fuller role model and editing rules, read `../docs/DOCS_SOURCE_OF_TRUTH.md`.
+
 ## How to run the portal locally
 
 From `website/`:
@@ -67,6 +69,7 @@ When adding a new page:
 3. Add or update the portal page in `website/pages/` only after the canonical wording is settled.
 4. Keep the portal page focused on navigation, explanation, summaries, and approachable structure.
 5. Link readers back to the relevant canonical docs when deeper accuracy or maintenance matters.
+6. Make the page role obvious when helpful: beginner guide, summary/wrapper, or reference router.
 
 ## How to update docs going forward
 
@@ -92,3 +95,5 @@ Portal content should not:
 - silently diverge from `docs/` or the repo-root operating files
 
 When in doubt, treat the portal as the user-facing layer and the root/docs material as the canonical contract.
+
+If you are unsure where something belongs, use `../docs/DOCS_SOURCE_OF_TRUTH.md` as the decision note.

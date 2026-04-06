@@ -13,6 +13,7 @@ Together, they give you the short version, then send you through the docs in a b
 
 If you want a visual docs experience, APW also includes an in-repo Nextra portal under [`website/`](website/README.md).
 The portal is the rendered docs experience, while the repo-root governance files and canonical docs under `docs/` remain the source of truth.
+For the explicit documentation model, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/DOCS_SOURCE_OF_TRUTH.md).
 
 ## New Here?
 
@@ -224,6 +225,8 @@ Portal boundaries:
 - `website/` is the presentation layer for the docs experience
 - repo-root governance files and `docs/` remain canonical
 - portal pages should summarize, route, and improve discoverability without becoming a second governance source
+
+For the practical editing model behind that split, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/DOCS_SOURCE_OF_TRUTH.md).
 
 ### Operator Guides
 
