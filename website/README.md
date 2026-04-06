@@ -10,9 +10,9 @@ This directory is a local docs app, not a separate repository and not a second A
 
 The source of truth remains inside this repository:
 
-- repo-root governance files such as `AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, and `PROJECT_BOOTSTRAP.md`
-- canonical Markdown guides under `docs/`
-- portal-facing MDX pages under `website/pages/`
+- repo-root governance files and canonical docs under `docs/` are the **canonical reference source of truth**
+- portal-facing MDX pages under `website/pages/` are the **guided narrative / presentation layer**
+- the portal summarizes, wraps, and routes with a "beginner-first" focus
 
 Nextra is the presentation layer. It is not a second governance system.
 
@@ -67,9 +67,10 @@ When adding a new page:
 1. Decide whether the content is a portal-facing entry page or a canonical APW source doc.
 2. If the change affects governance, compatibility, lifecycle, or validation rules, update the canonical root/docs source first.
 3. Add or update the portal page in `website/pages/` only after the canonical wording is settled.
-4. Keep the portal page focused on navigation, explanation, summaries, and approachable structure.
-5. Link readers back to the relevant canonical docs when deeper accuracy or maintenance matters.
-6. Make the page role obvious when helpful: beginner guide, summary/wrapper, or reference router.
+4. Keep the portal page focused on narrative, explanation, and approachable structure.
+5. In reference portal pages, use the **Canonical Reference** footer to link back to the repo source doc:
+   `> [!NOTE] Canonical Reference: [filename.md](file:///path/to/doc)`
+6. Avoid duplicating technical configuration logic or deep rule sets in the portal; keep those in the `docs/` source.
 
 ## How to update docs going forward
 

@@ -14,29 +14,20 @@ In plain English:
 - APW gives agents a place to work
 - APW gives the team a way to keep that work aligned over time
 
-## Why APW exists
+AI tools move fast, but they drift effortlessly. APW prevents this by separating **Memory** (what is true), **Execution** (how we work), and **Enforcement** (how we stay compliant).
 
-Without a shared structure, AI-assisted projects often drift into:
-
-- unclear current status
-- conflicting notes across sessions
-- random structure changes
-- code that is hard to explain later
-- no trusted place to see what is actually true
-
-APW exists to reduce that drift by separating:
-
-- governance and memory
-- execution and specialist support
-- automation and enforcement
+For a deeper dive into the "Why", see [APW for Beginners](file:///Users/My/Documents/Jewelminds/apw/docs/APW_FOR_BEGINNERS.md).
 
 ## The APW model
 
-| Part | Plain-English meaning |
-| --- | --- |
-| `.gsd` | trusted project memory such as `SPEC.md`, `ROADMAP.md`, `STATE.md`, and `TODO.md` |
-| `.agent` | the execution toolbox with agents, workflows, rules, scripts, and skills |
-| orchestrator | the coordinator that updates canonical state when the official summary needs to change |
+APW is built on a "Dual-Engine" model where **GSD** manages the brain (planning/state) and **AGK** provides the muscle (implementation/skills).
+
+| Part | Layer | Responsibility |
+| --- | --- | --- |
+| **GSD** | `.gsd/` | Project memory, SPEC, ROADMAP, STATE |
+| **AGK** | `.agent/` | Execution rules, workflows, specialists |
+
+For the full architectural breakdown, read [How APW Works](file:///Users/My/Documents/Jewelminds/apw/docs/HOW_APW_WORKS.md).
 
 ## The team model in plain language
 
@@ -79,10 +70,13 @@ The main source material behind this page lives in:
 
 - `docs/APW_FOR_BEGINNERS.md`
 - `docs/APW_HANDBOOK.md`
-- `docs/HOW_APW_WORKS.md`
-- `docs/DOCS_SOURCE_OF_TRUTH.md`
-
-## Read next
-
 - Go to [Idea To Project](/idea-to-project) to see how APW turns a rough idea into a structured project.
 - Go to [Profiles & Stack Selection](/profiles-and-stack-selection) if you already know the idea and need help choosing a direction.
+
+---
+
+> [!NOTE]
+> **Canonical References**:
+> - [APW_FOR_BEGINNERS.md](file:///Users/My/Documents/Jewelminds/apw/docs/APW_FOR_BEGINNERS.md)
+> - [HOW_APW_WORKS.md](file:///Users/My/Documents/Jewelminds/apw/docs/HOW_APW_WORKS.md)
+> - [APW_HANDBOOK.md](file:///Users/My/Documents/Jewelminds/apw/docs/APW_HANDBOOK.md)

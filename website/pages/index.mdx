@@ -6,9 +6,9 @@ APW helps humans and AI agents build software without losing track of project st
 
 This portal is the visual front door for the APW documentation. It lives inside the same repository as the framework, so the docs stay versioned, reviewable, and maintainable in Git.
 
-> Markdown and MDX in this repository remain the source of truth. This Nextra site is the presentation layer, not a second governance system.
+Nextra is the presentation layer. Markdown and MDX in this repository remain the source of truth.
 
-This homepage is a portal wrapper: it helps people enter APW quickly, then routes them into the right beginner guides or canonical reference material.
+This homepage is a **portal wrapper**: it helps readers enter APW quickly, then routes them into the guided narrative or the canonical reference source.
 
 ## Who APW is for
 
@@ -50,29 +50,16 @@ APW is useful for:
 | AGK executes | provides specialist agents, workflows, skills, and execution support in `.agent/` |
 | Orchestrator synchronizes | keeps official state changes controlled instead of letting execution notes become the project plan |
 
-## How APW usually works
+## How APW works (Summary)
 
-<Steps>
-### Start from the front door
+APW separates **Memory** (`.gsd/`) from **Execution** (`.agent/`).
 
-Open root `AGENTS.md`, then route into the core APW docs and the current `.gsd` state.
+1. **Bootstrap**: Create the workspace.
+2. **Execute**: Build, debug, and test your code.
+3. **Record**: Log evidence in `JOURNAL.md`.
+4. **Sync**: Update official project state deliberately.
 
-### Bootstrap and validate
-
-Create the workspace, validate it immediately, and initialize canonical project memory before routine coding starts.
-
-### Do scoped work
-
-Use specialist agents and workflows to build, debug, test, and improve the project.
-
-### Keep evidence bounded
-
-Execution agents may append bounded evidence to `JOURNAL.md`, but they should not casually rewrite canonical summary files.
-
-### Sync official state deliberately
-
-Use an orchestrator or governance pass when `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md` must change.
-</Steps>
+For the full journey, start with [What Is APW?](/what-is-apw) or [Start Here](/start-here).
 
 ## Highest-value docs first
 
@@ -90,3 +77,8 @@ Use an orchestrator or governance pass when `STATE.md`, `ROADMAP.md`, `TODO.md`,
     The practical operator layer for day-to-day APW usage.
   </Cards.Card>
 </Cards>
+
+---
+
+> [!NOTE]
+> **Canonical Reference**: [README.md](file:///Users/My/Documents/Jewelminds/apw/README.md)

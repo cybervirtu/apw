@@ -4,26 +4,30 @@ APW is not just a folder layout. It includes scripts and guidance that keep the 
 
 This page is a reference summary. The canonical enforcement behavior lives in the scripts and source docs it points to.
 
-## Core enforcement files
+## Core Automation & Enforcement
 
-| File | What it does |
-| --- | --- |
-| `scripts/bootstrap.sh` | creates the APW workspace in a target repo |
-| `scripts/validate.sh` | checks that a repo matches the expected APW contract |
-| `scripts/ci-validate.sh` | CI-oriented validation helper |
-| `examples/github/apw-validate.yml` | GitHub Actions example for running validation in CI |
+| Tool | Role | Canonical Reference |
+| --- | --- | --- |
+| `bootstrap.sh` | Workspace initialization | [View Source](file:///Users/My/Documents/Jewelminds/apw/scripts/bootstrap.sh) |
+| `validate.sh` | Standards compliance check | [View Source](file:///Users/My/Documents/Jewelminds/apw/scripts/validate.sh) |
+| `ci-validate.sh` | CI-optimized wrapper | [View Source](file:///Users/My/Documents/Jewelminds/apw/scripts/ci-validate.sh) |
+| `apw-validate.yml` | GitHub Actions workflow | [View Source](file:///Users/My/Documents/Jewelminds/apw/examples/github/apw-validate.yml) |
 
-## Supporting docs
+## Supporting Documentation
 
-| File | Why it matters |
-| --- | --- |
-| `docs/CI_CD_ENFORCEMENT.md` | the CI model |
-| `docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md` | downstream validation expectations |
-| `docs/TEMPLATE_STRUCTURE.md` | profile structure and lifecycle expectations |
-| `docs/TOOLING_GUIDE.md` | how tools should operate inside the APW contract |
+| Guide | Why it matters | Canonical Reference |
+| --- | --- | --- |
+| `CI_CD_ENFORCEMENT.md` | PR and merge-time enforcement | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/CI_CD_ENFORCEMENT.md) |
+| `DOWNSTREAM_COMPLIANCE_CHECKLIST.md`| Post-bootstrap verification | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) |
+| `TEMPLATE_STRUCTURE.md`| Profile and lifecycle contract | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/TEMPLATE_STRUCTURE.md) |
+| `TOOLING_GUIDE.md` | Agent behavior and sync rules | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/TOOLING_GUIDE.md) |
+
 
 ## Practical rule
 
-Bootstrap, validate, then begin work.
+Bootstrap, validate, then begin work. Re-run validation before major phase boundaries, releases, or rollouts to ensure the repository remains compliant with the APW standard.
 
-Re-run validation before merge, release, or rollout so the repo does not silently drift away from the APW standard.
+---
+
+> [!NOTE]
+> **Canonical Reference**: [CI_CD_ENFORCEMENT.md](file:///Users/My/Documents/Jewelminds/apw/docs/CI_CD_ENFORCEMENT.md)

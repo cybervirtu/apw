@@ -4,23 +4,29 @@ APW supports multiple tools through one framework, not through multiple branches
 
 This page is a reference summary. The canonical compatibility and migration rules live in the source docs it points to.
 
-## Core compatibility docs
+## Core Compatibility Documentation
 
-| File | What it covers |
-| --- | --- |
-| `docs/COMPATIBILITY_MODEL.md` | the shared compatibility hierarchy and future migration policy |
-| `docs/CODEX_COMPATIBILITY.md` | Codex-specific entry guidance inside the shared APW model |
-| `docs/ANTIGRAVITY_COMPATIBILITY.md` | Antigravity-specific entry guidance, including `GEMINI.md` compatibility awareness |
+| Guide | Scope | Canonical Reference |
+| --- | --- | --- |
+| `COMPATIBILITY_MODEL.md` | Shared hierarchy and transition policy | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/COMPATIBILITY_MODEL.md) |
+| `CODEX_COMPATIBILITY.md` | Codex-specific entry and usage | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/CODEX_COMPATIBILITY.md) |
+| `ANTIGRAVITY_COMPATIBILITY.md`| Antigravity and AGK integration | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/ANTIGRAVITY_COMPATIBILITY.md) |
 
-## The compatibility hierarchy
+## The Compatibility Hierarchy
 
-1. root `AGENTS.md` is the shared modern entrypoint
-2. core APW docs are the real governance source
-3. `GEMINI.md` is compatibility-only if present
-4. `.agents/...` is a future migration option only if APW adopts it explicitly
+APW uses a unified entrypoint model to ensure that multiple tools can share the same workspace without context drift.
 
-## Future migration rule
+1. **`AGENTS.md`**: The shared modern tool entrypoint.
+2. **Core APW Docs**: The authoritative governance source.
+3. **`GEMINI.md`**: Optional backward compatibility path.
+4. **`.agents/...`**: Future pipeline-style layout (explicit migration only).
 
-Structural changes must be explicit, versioned, and coordinated.
 
-That includes any future `.agents/...` migration, compatibility-file retirement, or support for additional tools.
+## Future Migration Rule
+
+Structural changes to the APW standard must be explicit, versioned, and coordinated. This prevents "silent drift" where tools adopt private namespaces or mismatched folder structures.
+
+---
+
+> [!NOTE]
+> **Canonical Reference**: [COMPATIBILITY_MODEL.md](file:///Users/My/Documents/Jewelminds/apw/docs/COMPATIBILITY_MODEL.md)

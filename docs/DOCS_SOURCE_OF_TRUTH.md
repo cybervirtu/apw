@@ -16,10 +16,11 @@ This note defines the practical model.
 
 ## The short version
 
-- repo-root governance files and canonical docs under `docs/` are the source of truth
-- `website/pages/` is the user-facing presentation and navigation layer
-- the portal may summarize, wrap, and route
-- the portal must not become a second governance system
+- repo-root governance files and canonical docs under `docs/` are the **canonical reference** source of truth
+- `website/pages/` is the **guided narrative** and navigation layer
+- the portal summarizes, wraps, and routes with a "beginner-first" focus
+- reference material in the portal should be thin "routers" that link back to the `docs/` source files
+- the portal must not independently redefine APW governance or architecture
 
 ## APW docs roles
 
@@ -91,26 +92,21 @@ They should not independently define APW governance.
 
 Use this rule of thumb:
 
-| If the change is about... | Edit here first |
-| --- | --- |
-| APW rules, governance, compatibility, validation, bootstrap, CI, or lifecycle | repo-root files or canonical `docs/` files |
-| beginner explanation, portal navigation, onboarding flow, or visual framing | `website/pages/` and related portal files |
-| beginner guide content that is already canonical in `docs/` | canonical `docs/` file first, then update the portal wrapper if needed |
+| If the change is about... | Primary Source | Secondary Layer |
+| --- | --- | --- |
+| APW rules, grammar, contracts, lifecycle docs, validation scripts, or CI logic | canonical `docs/*.md` or root `.md` files | website/pages/reference/ (router update) |
+| beginner-facing narrative, onboarding flow, visual framing, or storytelling | `website/pages/*.mdx` | docs/ (lite summary versions) |
+| new project idea examples, workflow selection guides, or technical "how-tos" | `website/pages/` | docs/ (lite reference versions) |
 
-## Portal content strategy
+## Portal content strategy: "Summarize & Route"
 
-Portal pages may do one or more of these:
+Portal pages should avoid duplicating long reference documents. Instead, use this strategy:
 
-- summarize
-- explain
-- wrap
-- route
-
-Portal pages should usually avoid:
-
-- copying long governance documents verbatim
-- becoming the only place where an APW rule is stated
-- drifting away from the canonical wording in root/docs files
+1. **Summarize**: Provide a 2-3 paragraph high-level overview of the topic.
+2. **Value Hook**: Explain *why* this rule or contract matters to a team or beginner.
+3. **Canonical Link**: Provide a clear link to the raw source file in the repository.
+   - Use the format: `> [!NOTE] Canonical Reference: [filename.md](file:///path/to/doc)`
+4. **Drift Avoidance**: Do not copy specific configuration snippets or deep technical constraints that are subject to frequent updates. Keep those in the `docs/` source.
 
 ## Practical editing workflow
 
