@@ -11,6 +11,17 @@ This README is the human-facing front door.
 Root [AGENTS.md](AGENTS.md) is the zero-touch tool-facing front door.
 Together, they give you the short version, then send you through the docs in a beginner-friendly order.
 
+## New Here?
+
+Start with one of these paths:
+
+- [APW for Beginners](docs/APW_FOR_BEGINNERS.md): the plain-English introduction for first-time readers.
+- [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md): diagrams that show how the system fits together.
+- [Quick Start](docs/QUICK_START.md): the fastest safe path if you want to try APW on a real repo.
+- [How APW Works](docs/HOW_APW_WORKS.md): the next layer once the basics click.
+
+If you are non-technical or just want the simple version first, read `APW for Beginners` before the deeper docs.
+
 ## What APW Is
 
 APW is a framework for running software projects with humans and AI agents in a way that stays organized over time.
@@ -141,16 +152,18 @@ And when there is a conflict:
 
 Follow this order:
 
-1. [Start Here](docs/START_HERE.md)
-2. [Quick Start](docs/QUICK_START.md)
-3. [How APW Works](docs/HOW_APW_WORKS.md)
-4. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
-5. [Visual Diagrams](docs/DIAGRAMS.md)
-6. [Features and Modes](docs/FEATURES_AND_MODES.md)
-7. [Common Workflows](docs/COMMON_WORKFLOWS.md)
-8. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
-9. Team / migration / CI docs as needed
-10. [FAQ](docs/FAQ.md)
+1. [APW for Beginners](docs/APW_FOR_BEGINNERS.md)
+2. [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)
+3. [Start Here](docs/START_HERE.md)
+4. [Quick Start](docs/QUICK_START.md)
+5. [How APW Works](docs/HOW_APW_WORKS.md)
+6. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
+7. [Visual Diagrams](docs/DIAGRAMS.md)
+8. [Features and Modes](docs/FEATURES_AND_MODES.md)
+9. [Common Workflows](docs/COMMON_WORKFLOWS.md)
+10. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
+11. Team / migration / CI docs as needed
+12. [FAQ](docs/FAQ.md)
 
 ### Fastest Safe Path
 
@@ -220,6 +233,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 ### Guided Learning Flow
 
+- **[APW for Beginners](docs/APW_FOR_BEGINNERS.md)**: The easiest first explanation for a new or non-technical reader.
+- **[APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)**: A diagram-first view of the APW system and workflow.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.
