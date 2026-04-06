@@ -73,7 +73,15 @@ It confirms:
 - the selected profile is being validated correctly
 - key lifecycle and governance files have usable content shape
 
-## 4. Initialize the Project Properly
+## 4. Start From `AGENTS.md`
+
+After bootstrap and validation, open root `AGENTS.md` in the target repo.
+
+That is the modern APW entrypoint for Antigravity-style tooling.
+
+From there, follow the linked APW governance and handbook docs instead of treating `AGENTS.md` as a complete replacement for the framework.
+
+## 5. Initialize the Project Properly
 
 Before coding starts, do two things:
 
@@ -96,7 +104,7 @@ For `base` and `advanced`, also keep:
 - `.gsd/JOURNAL.md`
 - `.gsd/DECISIONS.md`
 
-## 5. Begin Work Safely
+## 6. Begin Work Safely
 
 Once initialized:
 
@@ -106,7 +114,7 @@ Once initialized:
 4. Run an orchestrator or governance sync when `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md` must change.
 5. Re-run validation before merge or release.
 
-## 6. Turn On CI Early
+## 7. Turn On CI Early
 
 After the first clean validation:
 
@@ -114,7 +122,7 @@ After the first clean validation:
 2. Set the profile and stack in that workflow.
 3. Decide whether warnings are non-blocking or blocking in CI.
 
-## 7. For Existing Repos
+## 8. For Existing Repos
 
 If you are adopting APW in an existing repo, do not use this quick start alone.
 
@@ -123,7 +131,7 @@ Read these next:
 1. [EXISTING_REPO_MIGRATION_GUIDE.md](./EXISTING_REPO_MIGRATION_GUIDE.md)
 2. [PILOT_ADOPTION_PLAN.md](./PILOT_ADOPTION_PLAN.md)
 
-## 8. What to Read Next
+## 9. What to Read Next
 
 If APW makes sense so far, read:
 
@@ -133,10 +141,11 @@ If APW makes sense so far, read:
 
 If you want the deeper explanation, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
 
-## 9. If You Only Remember Five Things
+## 10. If You Only Remember Six Things
 
 1. Use `base` unless you have a reason not to.
 2. Bootstrap and validate with the same profile.
-3. Keep `.gsd` as the canonical memory layer.
-4. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
-5. Turn on CI before the repo starts drifting.
+3. Start tool sessions from root `AGENTS.md`.
+4. Keep `.gsd` as the canonical memory layer.
+5. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
+6. Turn on CI before the repo starts drifting.

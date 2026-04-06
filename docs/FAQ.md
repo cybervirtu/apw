@@ -62,12 +62,17 @@ Its extra depth comes from richer `.agent/` content.
 
 For most repos, the most important files are:
 
+- `AGENTS.md`
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
+- `COMMAND_POLICY.md`
 - `.gsd/STATE.md`
 - `.gsd/TODO.md`
 - `.gsd/SPEC.md`
 - `.gsd/JOURNAL.md`
+
+`AGENTS.md` is the short front door.
+The deeper contract still lives in the other files.
 
 ## Why does APW separate `JOURNAL.md` from `STATE.md`?
 
@@ -117,6 +122,7 @@ Hard failures include things like:
 - broken content shape in key lifecycle files
 
 Warnings usually mean softer drift, such as legacy namespace leftovers.
+In newer APW wording, this usually means unplanned alternate-layout drift like `.agents/` showing up beside the current `.agent/` contract.
 
 ## What is the difference between `validate.sh` and `ci-validate.sh`?
 

@@ -9,6 +9,9 @@ This page is the front door to APW.
 
 It explains, in plain language, what APW is, why people use it, and what to read next.
 
+If you arrived here from repo-root `AGENTS.md`, you are on the right path:
+`AGENTS.md` is the tool-facing entrypoint, and this page is the beginner-friendly human walkthrough.
+
 ## Why it matters
 
 APW has a real operating model behind it.
@@ -20,6 +23,7 @@ This page gives you the simple version first:
 - APW is a way to keep AI-assisted software projects organized
 - it separates project memory from project execution
 - it gives you bootstrap, validation, and CI so the structure does not decay
+- newer Antigravity-style sessions should start from root `AGENTS.md`, then follow the APW docs from here
 
 ## What APW is in one minute
 
@@ -71,10 +75,11 @@ That gives you:
 
 If you only have 10 minutes:
 
-1. [QUICK_START.md](./QUICK_START.md)
-2. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
-3. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
-4. [DIAGRAMS.md](./DIAGRAMS.md)
+1. Root `AGENTS.md`
+2. [QUICK_START.md](./QUICK_START.md)
+3. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
+4. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
+5. [DIAGRAMS.md](./DIAGRAMS.md)
 
 If you want the full framework explanation after that:
 

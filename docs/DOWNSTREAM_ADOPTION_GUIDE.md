@@ -21,7 +21,7 @@ Before routine coding starts in a newly bootstrapped repo:
 
 1. Bootstrap the repo with an explicit profile and stack.
 2. Validate the repo with the same `--profile` and `--stack` values.
-3. Review `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, and `GSD-STYLE.md`.
+3. Start from root `AGENTS.md`, then review `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and `GSD-STYLE.md`.
 4. Use a single orchestrator or explicit governance pass to populate the first canonical `.gsd/` state.
 5. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
 6. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
@@ -32,8 +32,11 @@ Do not begin normal implementation work until those steps are complete.
 
 These must remain present in every APW-compliant downstream repo:
 
+- `AGENTS.md`
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
+- `COMMAND_POLICY.md`
+- `PROJECT_BOOTSTRAP.md`
 - `GSD-STYLE.md`
 - `.gitmessage`
 - `.agent/agents/`
@@ -54,7 +57,7 @@ For `base` and `advanced`, the canonical `.gsd/` file set is:
 - `ARCHITECTURE.md`
 - `STACK.md`
 
-Do not rename these paths. Do not replace `.agent/` with `.agents/`.
+Do not rename these paths casually. Do not replace `.agent/` with `.agents/` unless APW has an explicit migration plan for that repo.
 
 ## 4. What Teams May Customize
 
@@ -67,8 +70,11 @@ Downstream teams may customize:
 
 Downstream teams should not casually customize:
 
+- `AGENTS.md` beyond keeping it as a front door into the APW contract
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
+- `COMMAND_POLICY.md`
+- `PROJECT_BOOTSTRAP.md`
 - `GSD-STYLE.md`
 - the canonical `.agent/` namespace
 - the canonical `.gsd` filenames required by the selected profile
@@ -100,7 +106,7 @@ Use a controlled sync step after meaningful implementation, verification, or des
 To reduce downstream drift:
 
 1. Re-run `validate.sh` with the same profile and stack used during bootstrap.
-2. Do not introduce `.agents/` or `.agents/skills/`.
+2. Do not introduce `.agents/` or `.agents/skills/` as an unplanned alternate layout alongside APW's current `.agent/` contract.
 3. Do not fragment advanced repos back into milestone, sprint, or snapshot root `.gsd` files.
 4. Keep execution evidence in `JOURNAL.md`, then run a controlled orchestrator sync for canonical state.
 5. Re-run `bootstrap.sh` intentionally when adopting APW updates. Use `--force` only when lifecycle templates in `.gsd/` should truly be replaced.
@@ -122,6 +128,6 @@ A downstream repo is APW-compliant when:
 - the required APW files and directories still exist
 - the repo validates successfully against its chosen profile and stack
 - canonical `.gsd` state is maintained through controlled sync, not casual multi-agent writeback
-- the repo has not drifted into legacy namespaces or fragmented advanced state files
+- the repo has not drifted into unplanned alternate namespaces or fragmented advanced state files
 
 Pair this guide with [DOWNSTREAM_COMPLIANCE_CHECKLIST.md](./DOWNSTREAM_COMPLIANCE_CHECKLIST.md) for the recurring checklist and [EXISTING_REPO_MIGRATION_GUIDE.md](./EXISTING_REPO_MIGRATION_GUIDE.md) when adopting APW in an active repository.

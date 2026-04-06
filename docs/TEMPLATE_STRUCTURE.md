@@ -6,6 +6,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 ```text
 ./apw/
+├── AGENTS.md            # Tool-facing entrypoint into the APW contract
 ├── .agent/              # Specialist execution + capability namespace
 │   ├── agents/          # Merged definitions (GSD.md, AGK.md)
 │   ├── rules/           # Machine-readable governing prompts
@@ -26,8 +27,10 @@ The following structure defines the master APW standard. It integrates the GSD l
 │   ├── bootstrap.sh     # Repository initialization
 │   └── validate.sh      # Standard compliance verification
 ├── AGENT_SYSTEM.md      # Dual-engine precedence rules
+├── COMMAND_POLICY.md    # Command ownership policy
 ├── ARCHITECTURE.md      # APW governance architecture
 ├── GSD-STYLE.md         # Communication standards
+├── PROJECT_BOOTSTRAP.md # Bootstrap contract
 └── PROJECT_RULES.md     # Mandatory governance rules
 ```
 
@@ -47,8 +50,11 @@ The following structure defines the master APW standard. It integrates the GSD l
 | **.agent/scripts/** | Task automation helpers | Curated | **Optional** |
 | **.agent/workflows/** | Execution workflows / slash commands | Curated | **Mandatory** |
 | **.agent/skills/** | Specialist implementations | Syncable | **Optional** |
+| **AGENTS.md** | Tool-facing front door into the APW contract | Keep concise, sync from APW | **Mandatory** |
 | **PROJECT_RULES.md**| Core governance rules | Never | **Mandatory** |
 | **AGENT_SYSTEM.md** | Precedence rules | Never | **Mandatory** |
+| **COMMAND_POLICY.md** | Command ownership rules | Never | **Mandatory** |
+| **PROJECT_BOOTSTRAP.md** | Bootstrap and upgrade contract | Never | **Mandatory** |
 
 ---
 
@@ -56,7 +62,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 - **Copy-Don't-Reference**: All root `.md` files and `.gsd/` templates are **copied** into new projects to ensure repository independence.
 - **Selective Sync**: `.agent/skills/` entries are **imported/synced** based on the chosen tech stack.
-- **Never Edit Casually**: `PROJECT_RULES.md`, `GSD-STYLE.md`, and `AGENT_SYSTEM.md` are the governing standard and should only be modified in `./apw` before rolling out updates.
+- **Never Edit Casually**: `AGENTS.md`, `PROJECT_RULES.md`, `GSD-STYLE.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, and `PROJECT_BOOTSTRAP.md` are part of the APW contract and should only be modified in `./apw` before rolling out updates.
 
 ---
 
@@ -77,7 +83,7 @@ The following ownership pattern applies during implementation:
 **Current Ownership Rule**:
 - `templates/` is the only active downstream source for profile-selected `.gsd/` and `.agent/` scaffolding.
 - `.gsd/` in the repo root is reserved for APW governance use and is not a downstream profile source.
-- Root governance files (`PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
+- Root APW entrypoint and operating files (`AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
 
 **Ownership Classification**:
 - `templates/`: **canonical downstream source**
@@ -89,7 +95,7 @@ When invoking `bootstrap.sh`, developers choose a profile with `--profile` and a
 
 ### **Minimal Profile (`templates/minimal`)**
 Designed for simple scripts, research, or rapid prototyping workflows where deep validation is unnecessary overhead.
-- **Current downstream behavior**: `bootstrap.sh` always copies root governance files from the repo root, then this profile contributes a lightweight `.gsd/` starter set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`) plus any profile-local `.agent/` content that exists.
+- **Current downstream behavior**: `bootstrap.sh` always copies root APW entrypoint and operating files from the repo root, then this profile contributes a lightweight `.gsd/` starter set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`) plus any profile-local `.agent/` content that exists.
 - **Use when**: You want the smallest practical APW footprint and are comfortable with less lifecycle depth.
 
 ### **Base Profile (`templates/base`)**
@@ -99,7 +105,7 @@ The standard, non-negotiable baseline for standard software engineering projects
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd/` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root governance files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root APW entrypoint and operating files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
 - **Use when**: You need the richest APW execution bundle while keeping project state in the same lean canonical `.gsd` contract as the base profile.
 
 ### **Advanced State Consolidation Rule**
@@ -113,7 +119,7 @@ Designed for production-grade applications, strict CI/CD pipelines, and monorepo
 
 ## 6. Bootstrap Overwrite Rules
 
-- Root governance files are always overwritten.
+- Root APW entrypoint and operating files are always overwritten.
 - `.agent/` execution-layer content is always synced from the selected profile when source content exists.
 - `.gsd/` lifecycle files are preserved unless `--force` is supplied.
 - Optional profile directories that do not exist are treated as empty and logged, not as bootstrap failures.
@@ -123,8 +129,8 @@ For the operational contract and upgrade guidance, see [PROJECT_BOOTSTRAP.md](..
 ## 7. Validation Rules
 
 - Run `/path/to/apw/scripts/validate.sh [target] --profile <profile> --stack <stack>` using the same profile and stack choices used for bootstrap.
-- Validation enforces the required root governance files, profile-selected `.gsd` files, minimum content shape for key lifecycle/governance files, and the full `.agent/` namespace.
-- Validation warns on legacy drift such as `.agents/` or `.agents/skills/`.
+- Validation enforces the required root APW entrypoint and operating files, profile-selected `.gsd` files, minimum content shape for key lifecycle/governance files, and the full `.agent/` namespace.
+- Validation warns on unplanned alternate-layout drift such as `.agents/` or `.agents/skills/` alongside the current APW contract.
 - Validation also warns on ownership drift, such as legacy guidance that tells routine execution agents to rewrite canonical summary/state files directly.
 - `.agent/skills/` population is only enforced when the selected profile or stack pack vendors skill files.
 - Downstream repos are validated by the APW checkout that owns the scripts and templates; bootstrap does not create a second local source of truth for those materials.

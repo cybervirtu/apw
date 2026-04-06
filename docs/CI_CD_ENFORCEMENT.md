@@ -8,7 +8,7 @@
 Use APW enforcement in two layers:
 
 - **Local warning layer**: catch drift before code leaves a developer machine.
-- **Remote blocking layer**: fail pull requests when required APW structure is missing or legacy drift has appeared.
+- **Remote blocking layer**: fail pull requests when required APW structure is missing or meaningful drift has appeared.
 
 The authoritative enforcement command is:
 
@@ -37,13 +37,13 @@ For CI usage, prefer the thin wrapper:
 
 The current validator checks:
 
-- required root governance files
+- required root APW entrypoint and operating files
 - profile-selected `.gsd` lifecycle files
 - minimum content shape for key lifecycle and governance files
 - the full `.agent/` directory namespace
 - profile-vendored `.agent` files when the chosen profile includes them
 - stack-vendored skill files when the chosen stack pack exists
-- warnings for legacy drift such as `.agents/` and `.agents/skills/`
+- warnings for unplanned alternate-layout drift such as `.agents/` and `.agents/skills/`
 - warnings for ownership drift that weakens the orchestrator-controlled state model
 
 This means CI should treat exit code `1` as a hard failure, while warnings can remain visible without blocking the build.
@@ -56,7 +56,7 @@ Use the following enforcement model:
 
 These should fail CI immediately:
 
-- missing required root governance files
+- missing required root APW entrypoint and operating files
 - missing required profile-backed `.gsd` files
 - missing required `.agent/` namespace paths
 - missing vendored advanced-profile execution files
@@ -67,8 +67,8 @@ These should fail CI immediately:
 
 These should stay visible but non-blocking unless the repo opts into stricter enforcement:
 
-- legacy `.agents/` namespace drift
-- legacy `.agents/skills/` drift
+- unplanned `.agents/` alternate-layout drift
+- unplanned `.agents/skills/` alternate-layout drift
 - legacy advanced root `.gsd` fragmentation files
 - ownership-drift guidance that weakens orchestrator-controlled canonical state
 - requested stack pack not currently vendored in APW
@@ -219,12 +219,12 @@ exit 0
 
 Common causes:
 
-- missing `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, or `GSD-STYLE.md`
+- missing `AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, or `GSD-STYLE.md`
 - missing `.gitmessage`
 - missing required `.gsd` files for the selected profile
 - missing `.agent/` namespace directories
 - missing vendored profile files in `advanced`
-- content-shape failures in `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `PROJECT_RULES.md`, or `AGENT_SYSTEM.md`
+- content-shape failures in `AGENTS.md`, `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `PROJECT_RULES.md`, or `AGENT_SYSTEM.md`
 
 Recommended recovery path:
 
@@ -237,8 +237,8 @@ Recommended recovery path:
 
 Common causes:
 
-- legacy `.agents/` drift
-- legacy `.agents/skills/` drift
+- unplanned `.agents/` alternate-layout drift
+- unplanned `.agents/skills/` alternate-layout drift
 - legacy advanced `.gsd` fragmentation
 - ownership-drift guidance in governance docs
 - requested stack pack not vendored in `templates/stack/`

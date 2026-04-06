@@ -209,6 +209,20 @@ check_target_content_shape() {
     echo "--- Target Content Shape ---"
 
     check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENTS.md" \
+        "AGENTS.md" \
+        'tool-facing front door|entrypoint' \
+        "entrypoint language" \
+        "Restore the APW entrypoint language in AGENTS.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/AGENTS.md" \
+        "AGENTS.md" \
+        'PROJECT_RULES\.md|AGENT_SYSTEM\.md|COMMAND_POLICY\.md|PROJECT_BOOTSTRAP\.md' \
+        "routing links into the core APW contract" \
+        "Restore routing from AGENTS.md into the core APW files."
+
+    check_existing_file_contains_regex \
         "$TARGET_DIR/.gsd/SPEC.md" \
         ".gsd/SPEC.md" \
         '(Objective|Vision|Goals|Scope|Core Requirements|Success Criteria|Acceptance Criteria)' \
@@ -316,6 +330,20 @@ check_target_content_shape() {
 
 check_source_content_contract() {
     echo "--- APW Source Content Contract ---"
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/AGENTS.md" \
+        "APW source AGENTS.md" \
+        'tool-facing front door|entrypoint' \
+        "entrypoint language" \
+        "Add front-door entrypoint language to AGENTS.md."
+
+    check_existing_file_contains_regex \
+        "$APW_ROOT/AGENTS.md" \
+        "APW source AGENTS.md" \
+        'PROJECT_RULES\.md|AGENT_SYSTEM\.md|COMMAND_POLICY\.md|PROJECT_BOOTSTRAP\.md' \
+        "routing into the APW contract" \
+        "Route AGENTS.md into PROJECT_RULES.md, AGENT_SYSTEM.md, COMMAND_POLICY.md, and PROJECT_BOOTSTRAP.md."
 
     check_existing_file_contains_regex \
         "$APW_ROOT/PROJECT_RULES.md" \
@@ -501,6 +529,7 @@ echo "   Stack: $STACK"
 
 echo "--- APW Source Contract ---"
 check_source_file "README.md"
+check_source_file "AGENTS.md"
 check_source_file "AGENT_SYSTEM.md"
 check_source_file "ARCHITECTURE.md"
 check_source_file "GSD-STYLE.md"
@@ -510,6 +539,7 @@ check_source_file "FILE_CONVENTIONS.md"
 check_source_file "PROJECT_BOOTSTRAP.md"
 check_source_file "SKILL_CURATION.md"
 check_source_file "templates/README.md"
+check_source_file "docs/ANTIGRAVITY_COMPATIBILITY.md"
 check_source_file "docs/START_HERE.md"
 check_source_file "docs/APW_HANDBOOK.md"
 check_source_file "docs/QUICK_START.md"
@@ -544,8 +574,11 @@ check_source_content_contract
 check_source_ownership_drift
 
 echo "--- Target Root Governance ---"
+check_target_file "AGENTS.md"
 check_target_file "PROJECT_RULES.md"
 check_target_file "AGENT_SYSTEM.md"
+check_target_file "COMMAND_POLICY.md"
+check_target_file "PROJECT_BOOTSTRAP.md"
 check_target_file "GSD-STYLE.md"
 check_target_file ".gitmessage"
 
@@ -578,15 +611,15 @@ fi
 
 echo "--- Drift Checks ---"
 if [[ -d "$TARGET_DIR/.agents" ]]; then
-    warn "Legacy namespace drift detected: .agents/ exists. APW contract uses only .agent/."
+    warn "Alternate Antigravity-style layout detected: .agents/ exists. APW's current contract still uses .agent/ unless an explicit migration plan says otherwise."
 else
-    pass "No legacy .agents/ directory detected"
+    pass "No unplanned .agents/ alternate layout detected"
 fi
 
 if [[ -d "$TARGET_DIR/.agents/skills" ]]; then
-    warn "Legacy capability path detected: .agents/skills/ exists. Use .agent/skills/ instead."
+    warn "Alternate Antigravity-style capability path detected: .agents/skills/ exists. APW's current contract still uses .agent/skills/ unless an explicit migration plan says otherwise."
 else
-    pass "No legacy .agents/skills/ directory detected"
+    pass "No unplanned .agents/skills/ alternate layout detected"
 fi
 
 if [[ "$PROFILE" == "advanced" ]]; then

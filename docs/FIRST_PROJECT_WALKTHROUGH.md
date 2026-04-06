@@ -53,7 +53,7 @@ This creates:
 
 - `.gsd/`
 - `.agent/`
-- root governance files
+- root APW entrypoint and operating files
 - the standard APW structure
 
 ## Step 3: validate right away

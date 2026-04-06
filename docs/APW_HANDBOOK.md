@@ -11,6 +11,7 @@ It is a framework for running software projects with AI assistants in a way that
 
 APW gives a project:
 
+- a modern repo-root `AGENTS.md` entrypoint for tool loading
 - a clear place for project memory and planning
 - a clear place for execution prompts, workflows, and skills
 - rules for how humans and AI agents should work together
@@ -43,6 +44,21 @@ It separates the project into:
 - **automation that checks the contract**
 
 That separation is the main reason APW stays usable over longer project lifetimes.
+
+## 2.1 `AGENTS.md` as the Front Door
+
+Newer Antigravity-native workflows often begin at repo-root `AGENTS.md`.
+
+APW supports that directly.
+
+In APW:
+
+- `AGENTS.md` is the modern entrypoint
+- the actual contract still lives in `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and the APW docs
+- `GEMINI.md` remains a compatibility concept, not an invalid file
+- a fuller `.agents/...` migration is a separate architectural choice, not a silent default
+
+That is why APW keeps `AGENTS.md` short and routes readers into the deeper documents instead of duplicating them.
 
 ## 3. GSD, AGK, and APW
 
@@ -164,6 +180,7 @@ At a high level, APW looks like this:
 
 ```text
 apw/
+├── AGENTS.md            # Tool-facing entrypoint
 ├── .agent/              # Execution namespace
 ├── .gsd/                # APW governance workspace
 ├── docs/                # Human-facing guides
@@ -171,6 +188,7 @@ apw/
 ├── templates/           # Canonical downstream bootstrap source
 ├── README.md            # Front door
 ├── AGENT_SYSTEM.md      # Precedence and operating model
+├── COMMAND_POLICY.md    # Command ownership rules
 ├── PROJECT_RULES.md     # Core governance rules
 └── PROJECT_BOOTSTRAP.md # Bootstrap contract
 ```
@@ -179,6 +197,7 @@ For downstream repos, the important structure is:
 
 ```text
 [target]/
+├── AGENTS.md
 ├── .agent/
 │   ├── agents/
 │   ├── rules/
@@ -233,6 +252,8 @@ Here is the practical path:
 ```
 
 ### Step 3: initialize canonical state
+
+Before you begin a real tool session, open root `AGENTS.md`, then follow the linked APW files and docs.
 
 Use one orchestrator-style pass to populate:
 

@@ -7,7 +7,7 @@
 
 - [ ] The repo was bootstrapped with an explicit `--profile` and `--stack`.
 - [ ] The same `--profile` and `--stack` values were used for validation.
-- [ ] `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `GSD-STYLE.md`, and `.gitmessage` exist at the repo root.
+- [ ] `AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`, and `.gitmessage` exist at the repo root.
 - [ ] The required `.gsd/` files for the selected profile exist.
 - [ ] `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/` exist.
 - [ ] A single orchestrator or governance pass populated the initial canonical `.gsd` state before coding started.
@@ -22,10 +22,10 @@
 
 ## 3. Anti-Drift Checklist
 
-- [ ] No `.agents/` directory exists.
-- [ ] No `.agents/skills/` path exists.
+- [ ] No unplanned `.agents/` directory exists alongside APW's current `.agent/` contract.
+- [ ] No unplanned `.agents/skills/` path exists alongside APW's current `.agent/skills/` contract.
 - [ ] `advanced` repos do not reintroduce legacy root files like `MILESTONE.md`, `SPRINT.md`, `PHASE-SUMMARY.md`, `STATE_SNAPSHOT.md`, or `TOKEN_REPORT.md`.
-- [ ] Root governance files were not casually renamed, deleted, or replaced with local variants.
+- [ ] Root APW entrypoint and operating files were not casually renamed, deleted, or replaced with local variants.
 - [ ] Profile-specific expectations still match the selected profile.
 
 ## 4. Customization Boundary Checklist

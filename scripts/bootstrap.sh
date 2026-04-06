@@ -102,13 +102,16 @@ mkdir -p "$TARGET_DIR/docs"
 
 echo "✅ Created APW directory structure."
 
-# 2. Copy Root Governance Files
-# These are always overwritten to keep governing rules current.
+# 2. Copy Root Entrypoint and Operating Files
+# These are always overwritten to keep the APW contract current.
+cp "$APW_ROOT/AGENTS.md" "$TARGET_DIR/"
 cp "$APW_ROOT/PROJECT_RULES.md" "$TARGET_DIR/"
 cp "$APW_ROOT/AGENT_SYSTEM.md" "$TARGET_DIR/"
+cp "$APW_ROOT/COMMAND_POLICY.md" "$TARGET_DIR/"
+cp "$APW_ROOT/PROJECT_BOOTSTRAP.md" "$TARGET_DIR/"
 cp "$APW_ROOT/GSD-STYLE.md" "$TARGET_DIR/"
 
-echo "✅ Applied root governance files."
+echo "✅ Applied root APW entrypoint and operating files."
 
 # 3. Copy GSD Lifecycle Templates
 # Existing lifecycle files are preserved unless --force is supplied.
@@ -164,5 +167,6 @@ echo "   Stack: $STACK"
 echo "   Force lifecycle overwrite: $FORCE"
 echo "   Next steps:"
 echo "   1. Validate: $VALIDATE_SCRIPT \"$TARGET_DIR\" --profile $PROFILE --stack $STACK"
-echo "   2. Review: $APW_ROOT/docs/DOWNSTREAM_ADOPTION_GUIDE.md"
-echo "   3. Initialize canonical .gsd state with a single orchestrator/governance pass before routine coding starts."
+echo "   2. Start from: $TARGET_DIR/AGENTS.md"
+echo "   3. Review: $APW_ROOT/docs/DOWNSTREAM_ADOPTION_GUIDE.md"
+echo "   4. Initialize canonical .gsd state with a single orchestrator/governance pass before routine coding starts."
