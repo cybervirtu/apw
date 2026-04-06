@@ -1,41 +1,67 @@
+import { Callout, Cards, Steps } from 'nextra/components'
+
 # Real-world Examples
 
 This page answers a simple question:
 
 "Can APW help with the kind of project I actually want to build?"
 
-The answer is usually yes, but the profile, stack direction, and first workflow steps will vary by project shape.
+<Callout type="info" emoji="🛠️">
+The answer is usually yes. What changes is the profile, stack direction, and the first safe workflow steps.
+</Callout>
 
 ## Example map
 
 | Project idea | Likely profile | Likely stack direction | Likely first move |
 | --- | --- | --- | --- |
-| Personal portfolio or landing page | `minimal` or `base` | static site or lightweight web frontend | bootstrap, validate, then `/design` or `/create` |
+| personal portfolio or landing page | `minimal` or `base` | static site or lightweight web frontend | bootstrap, validate, then `/design` or `/create` |
 | SaaS dashboard or admin tool | `base` | frontend + backend API + database | initialize `.gsd`, then `/status`, `/design`, or `/create` |
 | AI support chatbot | `base` or `advanced` | app/API layer plus focused AI feature layer | `/brainstorm`, then `/create` or `/orchestrate` |
-| Internal reporting tool | `base` | dashboard or internal web app + backend + database | `/create` around the first useful reporting slice |
-| Multi-service platform | `advanced` | monorepo or multi-service setup | `/orchestrate` early, then specialist execution |
+| internal reporting tool | `base` | dashboard or internal web app + backend + database | `/create` around the first useful reporting slice |
+| multi-service platform | `advanced` | monorepo or multi-service setup | `/orchestrate` early, then specialist execution |
 
 ## Sample project paths
 
-- **Personal portfolio:** choose `minimal` or `base`, bootstrap cleanly, and start with the first page or layout slice.
-- **SaaS dashboard:** choose `base`, define the first usable flow, initialize `.gsd`, and use `/design` or `/create` for the first milestone.
-- **AI support chatbot:** choose `base` or `advanced`, keep the first support scope narrow, and use orchestrator help early if the work cuts across several specialties.
-- **Internal operations tool:** choose `base`, define the first business problem to improve, and keep the first reporting or workflow slice intentionally small.
-- **Monorepo platform:** choose `advanced`, confirm the project really needs multiple services, and decompose the work before implementation starts.
-- **Backend service:** choose `base`, define the first endpoints or integrations, and keep the service narrative visible in `.gsd`.
+<Cards num={2}>
+  <Cards.Card href="/choose-your-project-type#landing-page-or-portfolio" title="Personal Portfolio">
+    Choose `minimal` or `base`, bootstrap cleanly, and start with the first page or layout slice.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type#web-app-or-saas-dashboard" title="SaaS Dashboard">
+    Choose `base`, define the first usable flow, initialize `.gsd`, and use `/design` or `/create` for the first milestone.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type#ai-assistant-or-ai-service" title="AI Support Chatbot">
+    Choose `base` or `advanced`, keep the first support scope narrow, and use orchestrator help early if the work cuts across several specialties.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type#internal-tool-or-automation-system" title="Internal Operations Tool">
+    Choose `base`, define the first business problem to improve, and keep the first reporting or workflow slice intentionally small.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type#backend-api-or-service" title="Backend Service">
+    Choose `base`, define the first endpoints or integrations, and keep the service narrative visible in `.gsd`.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type#monorepo-or-multi-service-platform" title="Monorepo Platform">
+    Choose `advanced`, confirm the project really needs multiple services, and decompose the work before implementation starts.
+  </Cards.Card>
+</Cards>
 
 ## The APW pattern across all examples
 
-No matter which project you choose, APW keeps the same broad flow:
+<Steps>
+### Clarify the idea
 
-1. clarify the idea
-2. choose the profile and likely stack direction
-3. bootstrap and validate
-4. initialize `.gsd`
-5. start scoped work
-6. log bounded evidence
-7. sync canonical state deliberately
+Make the first useful version small enough to reason about.
+
+### Choose the profile and likely stack direction
+
+Pick the smallest APW shape that still fits the project honestly.
+
+### Bootstrap and validate
+
+Create the workspace and confirm the repo matches the intended APW contract.
+
+### Start scoped work
+
+Use focused workflows, record bounded evidence, and let the orchestrator synchronize canonical state when needed.
+</Steps>
 
 ## Canonical source docs
 
@@ -45,7 +71,7 @@ This page wraps:
 - `docs/TECH_STACK_SELECTION_GUIDE.md`
 - `docs/IDEA_TO_PROJECT_GUIDE.md`
 
-## Read next
+## What to do next
 
 - Go to [Commands & Workflows](/commands-and-workflows) if one of these examples feels close enough that you are ready to operate APW.
 - Go to [Reference](/reference) if you need the deeper governance, compatibility, validation, or adoption material.

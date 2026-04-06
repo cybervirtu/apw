@@ -1,14 +1,14 @@
-import { Cards, Steps } from 'nextra/components'
+import { Callout, Cards, Steps } from 'nextra/components'
 
 # APW Docs Portal
 
+This portal is the visual front door for APW.
+
 APW helps humans and AI agents build software without losing track of project state, governance, or execution context.
 
-This portal is the visual front door for the APW documentation. It lives inside the same repository as the framework, so the docs stay versioned, reviewable, and maintainable in Git.
-
-Nextra is the presentation layer. Markdown and MDX in this repository remain the source of truth.
-
-This homepage is a **portal wrapper**: it helps readers enter APW quickly, then routes them into the guided narrative or the canonical reference source.
+<Callout type="info" emoji="🧭">
+This homepage is a guided entry page. The canonical APW rules still live in the repo-root governance files and the source docs under `docs/`.
+</Callout>
 
 ## Who APW is for
 
@@ -19,7 +19,7 @@ APW is useful for:
 - teams who need shared project memory instead of chat-by-chat drift
 - maintainers who want one framework that works with Codex, Antigravity, and related tooling
 
-## Start from the path that matches you
+## Choose your path
 
 <Cards num={2}>
   <Cards.Card href="/start-here" title="Start Here">
@@ -56,44 +56,63 @@ APW is useful for:
 | AGK executes | provides specialist agents, workflows, skills, and execution support in `.agent/` |
 | Orchestrator synchronizes | keeps official state changes controlled instead of letting execution notes become the project plan |
 
-## How APW works (Summary)
+## How APW works
 
-APW separates **Memory** (`.gsd/`) from **Execution** (`.agent/`).
+<Steps>
+### Bootstrap the workspace
 
-1. **Bootstrap**: Create the workspace.
-2. **Execute**: Build, debug, and test your code.
-3. **Record**: Log evidence in `JOURNAL.md`.
-4. **Sync**: Update official project state deliberately.
+Create the repo structure and choose the right APW profile for the project.
 
-For the full journey, start with [What Is APW?](/what-is-apw) or [Start Here](/start-here).
+### Execute scoped work
+
+Use the right agent and workflow instead of issuing vague prompts.
+
+### Record bounded evidence
+
+Execution work may add evidence to `.gsd/JOURNAL.md` without rewriting the whole project memory.
+
+### Synchronize official state
+
+Let the orchestrator update canonical state when `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md` need to change.
+
+### Validate and continue
+
+Use validation and CI to keep the repo aligned as work continues.
+</Steps>
 
 ## Highest-value docs first
 
 <Cards num={2}>
-  <Cards.Card href="/get-started-flow" title="What Should I Do First?">
-    Use the guided onboarding flow if you want a quick answer before reading more docs.
-  </Cards.Card>
-  <Cards.Card href="/choose-your-profile" title="Profile Chooser">
-    Make a confident `minimal` vs `base` vs `advanced` decision without overthinking it.
-  </Cards.Card>
-  <Cards.Card href="/choose-your-project-type" title="Project Type Chooser">
-    Map your idea to a likely project type, stack direction, and next reading step.
-  </Cards.Card>
   <Cards.Card href="/what-is-apw" title="What Is APW?">
-    The plain-English explanation of what APW is, why it exists, and who it helps.
-  </Cards.Card>
-  <Cards.Card href="/start-here" title="Beginner Reading Map">
-    The recommended order for first-time readers and non-technical users.
+    Read the plain-English explanation of what APW is and why it exists.
   </Cards.Card>
   <Cards.Card href="/idea-to-project" title="Idea To Project">
-    The guided journey from rough idea to structured repo and safe implementation.
+    Follow the practical journey from rough idea to structured repo and safe implementation.
+  </Cards.Card>
+  <Cards.Card href="/profiles-and-stack-selection" title="Profiles & Stack Selection">
+    Choose a practical APW profile and stack direction without overcomplicating it.
+  </Cards.Card>
+  <Cards.Card href="/real-world-examples" title="Real-world Examples">
+    See how APW fits real project ideas before you commit to a path.
   </Cards.Card>
   <Cards.Card href="/commands-and-workflows" title="Commands And Workflows">
-    The practical operator layer for day-to-day APW usage.
+    Learn the practical operator layer once the repo exists and work is ready to start.
+  </Cards.Card>
+  <Cards.Card href="/reference" title="Reference">
+    Reach the deeper contract, compatibility, validation, and CI material when you need the full source.
   </Cards.Card>
 </Cards>
 
----
+## What to do next
 
-> [!NOTE]
-> **Canonical Reference**: [README.md](file:///Users/My/Documents/Jewelminds/apw/README.md)
+- Go to [Start Here](/start-here) if you want the full beginner reading path.
+- Go to [Help Me Get Started](/get-started-flow) if you want APW to route you based on your current situation.
+- Go to [Reference](/reference) if you already know APW and need the deeper contract material.
+
+## Canonical source docs
+
+This page summarizes the front-door guidance from:
+
+- `README.md`
+- `docs/START_HERE.md`
+- `docs/DOCS_SOURCE_OF_TRUTH.md`

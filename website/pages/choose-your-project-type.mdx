@@ -1,4 +1,4 @@
-import { Cards } from 'nextra/components'
+import { Callout, Cards } from 'nextra/components'
 
 # Choose Your Project Type
 
@@ -12,6 +12,10 @@ This helper keeps the answer practical. It is here to help you map your idea to:
 - a likely APW profile
 - a likely stack direction
 - the best next page to read
+
+<Callout type="info" emoji="🧠">
+Project type comes before stack detail. If you can name the shape of the project clearly, the rest of the APW path gets much easier.
+</Callout>
 
 ## Quick chooser
 
@@ -28,25 +32,25 @@ This helper keeps the answer practical. It is here to help you map your idea to:
 ## Pick the option that feels closest
 
 <Cards num={2}>
-  <Cards.Card href="#small-site" title="Landing Page Or Portfolio">
+  <Cards.Card href="#landing-page-or-portfolio" title="Landing Page Or Portfolio">
     Mostly content, light interactivity, and little or no backend at the start.
   </Cards.Card>
-  <Cards.Card href="#web-app" title="Web App Or SaaS Dashboard">
+  <Cards.Card href="#web-app-or-saas-dashboard" title="Web App Or SaaS Dashboard">
     Screens, workflows, user state, and often a backend plus database.
   </Cards.Card>
-  <Cards.Card href="#backend-service" title="Backend API Or Service">
+  <Cards.Card href="#backend-api-or-service" title="Backend API Or Service">
     Logic, integrations, or data handling matter more than a rich UI.
   </Cards.Card>
-  <Cards.Card href="#ai-product" title="AI Assistant Or AI Service">
+  <Cards.Card href="#ai-assistant-or-ai-service" title="AI Assistant Or AI Service">
     AI matters, but the product still needs normal application structure around it.
   </Cards.Card>
-  <Cards.Card href="#internal-tool" title="Internal Tool Or Automation">
+  <Cards.Card href="#internal-tool-or-automation-system" title="Internal Tool Or Automation">
     Built to help a business or team work faster, with narrower user needs.
   </Cards.Card>
   <Cards.Card href="#mobile-app" title="Mobile App">
     Users mainly interact through a phone or tablet, often with backend support.
   </Cards.Card>
-  <Cards.Card href="#platform" title="Monorepo Or Multi-service Platform">
+  <Cards.Card href="#monorepo-or-multi-service-platform" title="Monorepo Or Multi-service Platform">
     Several services or apps need to evolve together and coordinate carefully.
   </Cards.Card>
 </Cards>
@@ -140,4 +144,3 @@ Read [Real-world Examples](/real-world-examples), then [Commands & Workflows](/c
 - Go to [Choose Your Profile](/choose-your-profile) if your next decision is `minimal` vs `base` vs `advanced`.
 - Go to [Help Me Get Started](/get-started-flow) if you want to know what to do first from your current situation.
 - Go to [Profiles & Stack Selection](/profiles-and-stack-selection) if you want the fuller comparison page.
-

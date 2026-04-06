@@ -1,4 +1,4 @@
-import { Steps } from 'nextra/components'
+import { Callout, Cards, Steps } from 'nextra/components'
 
 # Commands & Workflows
 
@@ -6,12 +6,9 @@ This is the operator layer for APW.
 
 This page is a portal summary for operators. The detailed workflow rules and command behavior remain canonical in the repo docs it wraps.
 
-Use it once the repo exists and you want the practical answer to:
-
-- which command should I use?
-- when should I use it?
-- which agent should I pair with it?
-- when do I hand work back to the orchestrator?
+<Callout type="warning" emoji="🎯">
+Use a specific workflow for a specific job. In APW, vague prompting is weaker than routing work through the right agent and workflow pair.
+</Callout>
 
 ## The practical invocation pattern
 
@@ -26,6 +23,29 @@ Examples:
 @backend-specialist /create implement password reset API from TODO.md
 @qa-automation-engineer /test verify checkout integration flow
 ```
+
+## Choose the workflow by intent
+
+<Cards num={2}>
+  <Cards.Card href="/get-started-flow" title="I Need To Re-orient">
+    Use `/status` if you are returning after time away or need a quick project briefing.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Shape An Idea">
+    Use `/brainstorm` before implementation when the idea still needs structure.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Build Something New">
+    Use `/create` for new feature or file work tied to requirements and TODOs.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Improve Existing Code">
+    Use `/enhance` when behavior should stay the same but the code needs cleanup or refinement.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows#quick-chooser" title="Something Is Broken">
+    Use `/debug` for diagnosis and safe bug fixing without unnecessary rewrites.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows#quick-chooser" title="The Task Is Too Large">
+    Use `/orchestrate` when work crosses modules, files, or specialties and needs decomposition first.
+  </Cards.Card>
+</Cards>
 
 ## Quick chooser
 
@@ -81,7 +101,7 @@ This page wraps:
 - `docs/TOOLING_GUIDE.md`
 - `docs/DOCS_SOURCE_OF_TRUTH.md`
 
-## Read next
+## What to do next
 
 - Go to [Reference](/reference) if you need the deeper governance, compatibility, validation, or CI documentation behind the workflow layer.
 - Go to [Team / Migration / Adoption](/team-migration-and-adoption) if you are introducing APW to a team or existing repo.

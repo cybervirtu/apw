@@ -23,6 +23,7 @@ Practical rule:
 - do not land a portal-only governance change that conflicts with the canonical source docs
 
 For the fuller role model and editing rules, read `../docs/DOCS_SOURCE_OF_TRUTH.md`.
+For the portal visual pattern system, read `../docs/DOCS_VISUAL_STYLE.md`.
 
 ## How to run the portal locally
 
@@ -68,9 +69,30 @@ When adding a new page:
 2. If the change affects governance, compatibility, lifecycle, or validation rules, update the canonical root/docs source first.
 3. Add or update the portal page in `website/pages/` only after the canonical wording is settled.
 4. Keep the portal page focused on narrative, explanation, and approachable structure.
-5. In reference portal pages, use the **Canonical Reference** footer to link back to the repo source doc:
-   `> [!NOTE] Canonical Reference: [filename.md](file:///path/to/doc)`
+5. Use code paths like `PROJECT_RULES.md` or `docs/COMMAND_INVOCATION_GUIDE.md` when you need to point readers to canonical source files.
 6. Avoid duplicating technical configuration logic or deep rule sets in the portal; keep those in the `docs/` source.
+
+## APW Nextra visual pattern system
+
+Use the portal components intentionally:
+
+- `Cards` for homepage routing, chooser sections, and beginner path selection
+- `Callout` for important rules, source-of-truth reminders, warnings, and beginner tips
+- `Steps` for onboarding flows, workflow sequences, and "what to do next" guidance
+- `Tabs` for compact comparisons such as profile choices or alternate paths
+- tables for profile, workflow, and example comparisons
+- Mermaid for architecture and process flows when a diagram is clearer than prose
+
+Preferred page shape for beginner-facing pages:
+
+1. What this page is
+2. Why it matters
+3. Main explanation
+4. Visual guidance
+5. Examples
+6. What to do next
+
+For the fuller visual guidance, read `../docs/DOCS_VISUAL_STYLE.md`.
 
 ## How to update docs going forward
 
@@ -98,3 +120,5 @@ Portal content should not:
 When in doubt, treat the portal as the user-facing layer and the root/docs material as the canonical contract.
 
 If you are unsure where something belongs, use `../docs/DOCS_SOURCE_OF_TRUTH.md` as the decision note.
+
+If you are unsure how the page should look, use `../docs/DOCS_VISUAL_STYLE.md` as the formatting note.

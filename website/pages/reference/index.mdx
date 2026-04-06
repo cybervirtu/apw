@@ -1,11 +1,14 @@
-import { Cards } from 'nextra/components'
+import { Callout, Cards } from 'nextra/components'
 
 # Reference
 
-This area is the **Technical Reference Hub**. It provides a structured entry point into the canonical APW governance, compatibility, and validation material.
+This area is the technical reference hub.
 
-> [!IMPORTANT]
-> The pages in this section are **routers**. They summarize the purpose of various APW components and link directly to the source of truth in the repository.
+It gives you a structured entry point into the canonical APW governance, compatibility, and validation material.
+
+<Callout type="warning" emoji="📚">
+The pages in this section are routers. They summarize the purpose of the APW source files, but they do not replace the canonical docs in the repo root and `docs/`.
+</Callout>
 
 ## Reference areas
 
@@ -23,9 +26,26 @@ This area is the **Technical Reference Hub**. It provides a structured entry poi
 
 ## Source of truth reminder
 
-The portal helps people navigate APW. The source of truth remains the repo root and `docs/` Markdown files. 
+The portal helps people navigate APW.
 
----
+The source of truth remains:
 
-> [!NOTE]
-> **Canonical Reference**: [DOCS_SOURCE_OF_TRUTH.md](file:///Users/My/Documents/Jewelminds/apw/docs/DOCS_SOURCE_OF_TRUTH.md)
+- repo-root APW governance files
+- canonical docs under `docs/`
+- scripts and workflow assets that define APW behavior
+
+## What to do next
+
+- Go to [Core Governance](/reference/core-governance) if you need the actual APW contract files.
+- Go to [Compatibility & Migration](/reference/compatibility-and-migration) if you need the multi-tool model and migration rules.
+- Go to [Validation & CI](/reference/validation-and-ci) if you need enforcement and automation details.
+
+## Canonical source docs
+
+This reference hub is backed by:
+
+- `docs/DOCS_SOURCE_OF_TRUTH.md`
+- `PROJECT_RULES.md`
+- `AGENT_SYSTEM.md`
+- `COMMAND_POLICY.md`
+- `PROJECT_BOOTSTRAP.md`

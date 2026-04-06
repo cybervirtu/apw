@@ -1,32 +1,48 @@
+import { Callout, Steps } from 'nextra/components'
+
 # Compatibility & Migration
 
 APW supports multiple tools through one framework, not through multiple branches.
 
+<Callout type="warning" emoji="🔀">
 This page is a reference summary. The canonical compatibility and migration rules live in the source docs it points to.
+</Callout>
 
-## Core Compatibility Documentation
+## Core compatibility documentation
 
-| Guide | Scope | Canonical Reference |
-| --- | --- | --- |
-| `COMPATIBILITY_MODEL.md` | Shared hierarchy and transition policy | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/COMPATIBILITY_MODEL.md) |
-| `CODEX_COMPATIBILITY.md` | Codex-specific entry and usage | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/CODEX_COMPATIBILITY.md) |
-| `ANTIGRAVITY_COMPATIBILITY.md`| Antigravity and AGK integration | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/ANTIGRAVITY_COMPATIBILITY.md) |
+| Guide | Scope |
+| --- | --- |
+| `docs/COMPATIBILITY_MODEL.md` | shared hierarchy and transition policy |
+| `docs/CODEX_COMPATIBILITY.md` | Codex-specific entry and usage |
+| `docs/ANTIGRAVITY_COMPATIBILITY.md` | Antigravity and AGK integration |
 
-## The Compatibility Hierarchy
+## The compatibility hierarchy
 
-APW uses a unified entrypoint model to ensure that multiple tools can share the same workspace without context drift.
+APW uses a unified entrypoint model so multiple tools can share the same workspace without context drift.
 
-1. **`AGENTS.md`**: The shared modern tool entrypoint.
-2. **Core APW Docs**: The authoritative governance source.
-3. **`GEMINI.md`**: Optional backward compatibility path.
-4. **`.agents/...`**: Future pipeline-style layout (explicit migration only).
+<Steps>
+### Start at `AGENTS.md`
 
+Use the shared modern tool entrypoint at the repo root.
 
-## Future Migration Rule
+### Follow the core APW docs
 
-Structural changes to the APW standard must be explicit, versioned, and coordinated. This prevents "silent drift" where tools adopt private namespaces or mismatched folder structures.
+Treat the root governance files and canonical docs as the real APW contract.
 
----
+### Keep compatibility files secondary
 
-> [!NOTE]
-> **Canonical Reference**: [COMPATIBILITY_MODEL.md](file:///Users/My/Documents/Jewelminds/apw/docs/COMPATIBILITY_MODEL.md)
+Treat `GEMINI.md` as compatibility-only if present, not as a second governance source.
+
+### Treat `.agents/...` as explicit migration only
+
+A fuller `.agents/...` layout would be a coordinated APW contract change, not a silent refactor.
+</Steps>
+
+## Future migration rule
+
+Structural changes to the APW standard must be explicit, versioned, and coordinated. This prevents silent drift where tools adopt private namespaces or mismatched folder structures.
+
+## What to do next
+
+- Go to [Core Governance](/reference/core-governance) if you need the actual contract files behind the compatibility model.
+- Go to [Team / Migration / Adoption](/team-migration-and-adoption) if you are planning rollout work instead of reading reference material.

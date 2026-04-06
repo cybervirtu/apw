@@ -227,6 +227,7 @@ Portal boundaries:
 - portal pages should summarize, route, and improve discoverability without becoming a second governance source
 
 For the practical editing model behind that split, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/DOCS_SOURCE_OF_TRUTH.md).
+For the portal presentation conventions, read [docs/DOCS_VISUAL_STYLE.md](docs/DOCS_VISUAL_STYLE.md).
 
 ### Operator Guides
 

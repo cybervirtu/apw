@@ -1,4 +1,4 @@
-import { Steps } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # What Is APW?
 
@@ -6,7 +6,11 @@ APW stands for **Agentic Project Workspace**.
 
 It is a framework for running software projects with humans and AI agents in a way that stays understandable over time.
 
-This page is a beginner-friendly explanation. The canonical APW contract still lives in the repo-root governance files and the deeper docs under `docs/`.
+<Callout type="info" emoji="📘">
+This page is a beginner-friendly explanation. The canonical APW contract still lives in the repo-root governance files and the deeper source docs under `docs/`.
+</Callout>
+
+## Why APW matters
 
 In plain English:
 
@@ -14,20 +18,17 @@ In plain English:
 - APW gives agents a place to work
 - APW gives the team a way to keep that work aligned over time
 
-AI tools move fast, but they drift effortlessly. APW prevents this by separating **Memory** (what is true), **Execution** (how we work), and **Enforcement** (how we stay compliant).
-
-For a deeper dive into the "Why", see [APW for Beginners](file:///Users/My/Documents/Jewelminds/apw/docs/APW_FOR_BEGINNERS.md).
+AI tools move fast, but they drift effortlessly. APW prevents that by separating **Memory** from **Execution** and by keeping official project state under deliberate control.
 
 ## The APW model
 
-APW is built on a "Dual-Engine" model where **GSD** manages the brain (planning/state) and **AGK** provides the muscle (implementation/skills).
+APW is built on a dual-engine model where **GSD** manages the brain of the project and **AGK** provides the execution muscle.
 
 | Part | Layer | Responsibility |
 | --- | --- | --- |
-| **GSD** | `.gsd/` | Project memory, SPEC, ROADMAP, STATE |
-| **AGK** | `.agent/` | Execution rules, workflows, specialists |
-
-For the full architectural breakdown, read [How APW Works](file:///Users/My/Documents/Jewelminds/apw/docs/HOW_APW_WORKS.md).
+| **GSD** | `.gsd/` | project memory, lifecycle, roadmap, and canonical state |
+| **AGK** | `.agent/` | execution rules, workflows, specialists, and skills |
+| **Orchestrator** | sync layer | updates official project summaries when the canonical state needs to change |
 
 ## The team model in plain language
 
@@ -69,14 +70,11 @@ APW is useful for:
 The main source material behind this page lives in:
 
 - `docs/APW_FOR_BEGINNERS.md`
+- `docs/HOW_APW_WORKS.md`
 - `docs/APW_HANDBOOK.md`
+
+## What to do next
+
 - Go to [Idea To Project](/idea-to-project) to see how APW turns a rough idea into a structured project.
 - Go to [Profiles & Stack Selection](/profiles-and-stack-selection) if you already know the idea and need help choosing a direction.
-
----
-
-> [!NOTE]
-> **Canonical References**:
-> - [APW_FOR_BEGINNERS.md](file:///Users/My/Documents/Jewelminds/apw/docs/APW_FOR_BEGINNERS.md)
-> - [HOW_APW_WORKS.md](file:///Users/My/Documents/Jewelminds/apw/docs/HOW_APW_WORKS.md)
-> - [APW_HANDBOOK.md](file:///Users/My/Documents/Jewelminds/apw/docs/APW_HANDBOOK.md)
+- Go to [Reference](/reference) if you need the deeper governance source directly.

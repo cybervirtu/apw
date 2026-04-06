@@ -1,33 +1,41 @@
+import { Callout } from 'nextra/components'
+
 # Core Governance
 
 These are the files that define the APW contract itself.
 
+<Callout type="warning" emoji="⚖️">
 This page routes you to the canonical governance sources. It does not replace them.
+</Callout>
 
-## APW Contract Files
+## APW contract files
 
-These files define the APW standard. They are **copied** into new projects to establish the governing baseline.
+These files define the APW standard. They are copied into new projects to establish the governing baseline.
 
-| File | Purpose | Canonical Reference |
-| --- | --- | --- |
-| `PROJECT_RULES.md` | Mandatory execution rules | [View Source](file:///Users/My/Documents/Jewelminds/apw/PROJECT_RULES.md) |
-| `AGENT_SYSTEM.md` | Dual-engine / Precedence model | [View Source](file:///Users/My/Documents/Jewelminds/apw/AGENT_SYSTEM.md) |
-| `COMMAND_POLICY.md` | Command ownership rules | [View Source](file:///Users/My/Documents/Jewelminds/apw/COMMAND_POLICY.md) |
-| `PROJECT_BOOTSTRAP.md` | Bootstrap and upgrade contract | [View Source](file:///Users/My/Documents/Jewelminds/apw/PROJECT_BOOTSTRAP.md) |
-| `AGENTS.md` | Tool-facing front door | [View Source](file:///Users/My/Documents/Jewelminds/apw/AGENTS.md) |
+| File | Purpose |
+| --- | --- |
+| `PROJECT_RULES.md` | mandatory execution rules |
+| `AGENT_SYSTEM.md` | dual-engine and precedence model |
+| `COMMAND_POLICY.md` | command ownership rules |
+| `PROJECT_BOOTSTRAP.md` | bootstrap and upgrade contract |
+| `AGENTS.md` | tool-facing front door |
 
-## Supporting Documentation
+## Supporting documentation
 
-| Guide | Why it matters | Canonical Reference |
-| --- | --- | --- |
-| `HOW_APW_WORKS.md` | Plain-English end-to-end model | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/HOW_APW_WORKS.md) |
-| `APW_HANDBOOK.md` | Full framework explanation | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/APW_HANDBOOK.md) |
-| `OPERATING_MODEL.md` | Practical behavior and sync rules | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/OPERATING_MODEL.md) |
-| `WORKFLOW_REFERENCE.md`| Complete workflow system view | [View Source](file:///Users/My/Documents/Jewelminds/apw/docs/WORKFLOW_REFERENCE.md) |
-
+| Guide | Why it matters |
+| --- | --- |
+| `docs/HOW_APW_WORKS.md` | plain-English end-to-end model |
+| `docs/APW_HANDBOOK.md` | full framework explanation |
+| `docs/OPERATING_MODEL.md` | practical behavior and sync rules |
+| `docs/WORKFLOW_REFERENCE.md` | complete workflow system view |
 
 ## Use this section when
 
 - you need the actual governance source
 - you are maintaining the APW standard
 - you need to confirm the current contract rather than the simplified portal summary
+
+## What to do next
+
+- Go to [Compatibility & Migration](/reference/compatibility-and-migration) if your next question is multi-tool support or future migration rules.
+- Go to [Validation & CI](/reference/validation-and-ci) if you need the enforcement side of the contract.

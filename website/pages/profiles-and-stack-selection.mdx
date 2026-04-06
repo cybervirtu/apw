@@ -1,3 +1,5 @@
+import { Callout, Tabs } from 'nextra/components'
+
 # Profiles & Stack Selection
 
 This page helps answer two beginner questions:
@@ -5,7 +7,9 @@ This page helps answer two beginner questions:
 - "Which APW profile should I choose?"
 - "What kind of stack direction fits the project I want to build?"
 
+<Callout type="info" emoji="🧩">
 The goal is not to force one exact stack. The goal is to help you choose a practical starting shape.
+</Callout>
 
 If you want a quicker answer before reading the full comparison, start with [Choose Your Profile](/choose-your-profile) or [Choose Your Project Type](/choose-your-project-type).
 
@@ -16,6 +20,20 @@ If you want a quicker answer before reading the full comparison, start with [Cho
 | `minimal` | tiny experiments, small sites, lightweight prototypes | the lightest APW setup |
 | `base` | most normal product repos and software projects | the safest default |
 | `advanced` | projects that already need richer specialist execution support | stronger execution help from day one |
+
+## Quick profile comparison
+
+<Tabs items={['Minimal', 'Base', 'Advanced']}>
+  <Tabs.Tab>
+    Choose `minimal` when the project is intentionally small and you want the lightest governance that still keeps the repo understandable.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    Choose `base` when you want the default APW shape for a real app, service, or product repo and you are not sure how much complexity will emerge yet.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    Choose `advanced` when the repo already needs more specialist execution support, broader coordination, or a stronger day-one operating layer.
+  </Tabs.Tab>
+</Tabs>
 
 ## The simplest rule of thumb
 
@@ -45,14 +63,6 @@ Before choosing a stack, ask:
 - am I working alone, or with a team?
 - am I building one app or many services?
 
-## Recommendation pattern
-
-If you are building something small, start simpler.
-
-If you already know the project will be broader, choose stronger structure early.
-
-That is usually safer than pretending every idea needs a full platform on day one.
-
 ## Canonical source docs
 
 This page wraps:
@@ -61,7 +71,7 @@ This page wraps:
 - `docs/IDEA_TO_PROJECT_GUIDE.md`
 - `docs/REAL_WORLD_EXAMPLES.md`
 
-## Read next
+## What to do next
 
 - Go to [Choose Your Profile](/choose-your-profile) if you want the lighter guided version of this decision.
 - Go to [Choose Your Project Type](/choose-your-project-type) if you want to map your project idea before locking a stack direction.

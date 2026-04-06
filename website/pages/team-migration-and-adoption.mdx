@@ -1,15 +1,29 @@
+import { Callout, Cards, Steps } from 'nextra/components'
+
 # Team / Migration / Adoption
 
 This section is for people who are moving beyond "what is APW?" and into "how do we adopt or extend it safely?"
 
+<Callout type="warning" emoji="🧱">
+APW stays strongest when teams adopt it explicitly. Do not treat migration, compatibility, or rollout work as silent internal refactors.
+</Callout>
+
 ## When this path matters
 
-Use this path when:
-
-- you want to adopt APW in an existing repo
-- you want to roll APW out to a team
-- you want to run a pilot before broader adoption
-- you need the compatibility and migration model
+<Cards num={2}>
+  <Cards.Card href="/team-migration-and-adoption#high-value-adoption-docs" title="Existing Repo Adoption">
+    Use this path when you want to bring APW into a repository that already has history and active work.
+  </Cards.Card>
+  <Cards.Card href="/team-migration-and-adoption#high-value-adoption-docs" title="Team Rollout">
+    Use this path when you want multiple people to follow one shared APW model consistently.
+  </Cards.Card>
+  <Cards.Card href="/team-migration-and-adoption#high-value-adoption-docs" title="Pilot Or Trial">
+    Use this path when you want to validate APW in a small controlled rollout before broader adoption.
+  </Cards.Card>
+  <Cards.Card href="/team-migration-and-adoption#high-value-adoption-docs" title="Compatibility Or Migration">
+    Use this path when you need the compatibility model, migration rules, or downstream adoption guidance.
+  </Cards.Card>
+</Cards>
 
 ## High-value adoption docs
 
@@ -22,6 +36,22 @@ Use this path when:
 | `docs/COMPATIBILITY_MODEL.md` | understanding the one-framework compatibility strategy |
 | `docs/UPGRADE_STRATEGY.md` | evolving APW without silent contract drift |
 
+## The safe adoption pattern
+
+<Steps>
+### Choose the rollout scope
+
+Decide whether you are adopting APW for one repo, one pilot, or a wider team effort.
+
+### Confirm the contract
+
+Read the migration, compatibility, and bootstrap material before changing working repos.
+
+### Roll out intentionally
+
+Use one canonical APW model instead of drifting into tool-specific or team-specific forks.
+</Steps>
+
 ## Core message
 
 APW stays strongest when adoption is explicit and coordinated:
@@ -32,7 +62,7 @@ APW stays strongest when adoption is explicit and coordinated:
 - thin compatibility layers
 - no silent migrations or tool-specific forks
 
-## Read next
+## What to do next
 
 - Go to [Reference](/reference) for the deeper governance, compatibility, and CI material.
 - Go back to [Commands & Workflows](/commands-and-workflows) if the repo already exists and your next need is practical operation.
