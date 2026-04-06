@@ -162,6 +162,16 @@ If you want the shortest path to using APW on a new project:
 7. Sync canonical state deliberately
 8. Turn on CI early
 
+### Operator Guides
+
+If you want the practical "how do I actually drive work?" layer, start here:
+
+- [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
+- [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
+- [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+
+These guides explain which command to use, when to use it, which agent to pair with it, what it should read first, and when orchestrator handoff is required.
+
 ### For Maintaining the APW Standard
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
@@ -209,6 +219,9 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
+- **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.
+- **[Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing the right workflow.
+- **[Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)**: Real invocation patterns using `@agent /workflow task`.
 - **[Compatibility Model](docs/COMPATIBILITY_MODEL.md)**: The single-framework compatibility model for Codex and Antigravity.
 - **[Codex Compatibility](docs/CODEX_COMPATIBILITY.md)**: How Codex should enter and follow APW.
 - **[Antigravity Compatibility](docs/ANTIGRAVITY_COMPATIBILITY.md)**: How `AGENTS.md`, `GEMINI.md`, `.agent/`, and `.agents/` relate in APW.

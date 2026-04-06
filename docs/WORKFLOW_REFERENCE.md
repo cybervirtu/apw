@@ -102,14 +102,21 @@ Governance-oriented commands include:
 - `/gsd`
 - `/plan`
 - `/task`
-- `/validate`
+- `/verify`
 - `/audit`
 
 Execution-oriented workflows commonly include:
 
+- `/status`
+- `/brainstorm`
 - `/create`
+- `/enhance`
 - `/debug`
 - `/design`
+- `/ui-ux-pro-max`
+- `/preview`
+- `/deploy`
+- `/test`
 - `/orchestrate`
 - `/skill`
 
@@ -119,6 +126,8 @@ What matters is the operating model:
 
 - governance controls lifecycle and canonical state
 - execution performs scoped implementation work
+
+For command-by-command operator guidance, see [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md), [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md), and [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md).
 
 ## 10. When to Pause and Re-Sync
 

@@ -49,8 +49,8 @@ When an agent starts a task:
 ---
 
 ## 4. Workflow Ownership
-- **GSD Commands**: `/gsd`, `/plan`, `/task`, `/validate`, `/audit`.
-- **AGK Commands**: `/agk`, `/create`, `/debug`, `/orchestrate`, `/skill`.
+- **GSD Commands**: `/gsd`, `/plan`, `/task`, `/verify`, `/audit`.
+- **AGK Commands**: `/status`, `/brainstorm`, `/agk`, `/create`, `/enhance`, `/debug`, `/design`, `/ui-ux-pro-max`, `/preview`, `/deploy`, `/test`, `/orchestrate`, `/skill`.
 
 ---
 

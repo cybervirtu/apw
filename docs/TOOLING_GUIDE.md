@@ -50,6 +50,24 @@ APW supports Codex and Antigravity through one shared model:
 
 Tool-specific differences are documented as adapters around that shared model.
 
+### Operator Docs
+
+For the practical invocation pattern, use these docs together:
+
+- [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+- [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+- [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+
+Those guides teach the everyday operator layer for Antigravity, Codex, and Cursor:
+
+- which workflow to choose
+- which agent to pair with it
+- what the workflow should read first
+- what it should produce
+- when orchestrator handoff is required
+
+Prefer intentional `@agent /workflow task` style invocation over vague instructions like "fix this whole area."
+
 ### Avoiding Context Drift
 1. **Search First**: Never read a 1,000-line file to find a single function. Use native IDE search or ask the agent to use `grep` before opening the file.
 2. **Fresh Contexts**: Do not keep a single chat thread alive for weeks. The APW standard relies on controlled `.gsd` synchronization. After a complex debugging session or a completed milestone, append evidence to `.gsd/JOURNAL.md`, run a short orchestrator or governance sync for canonical state, close the chat, and open a new one.

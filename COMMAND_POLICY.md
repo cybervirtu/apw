@@ -25,6 +25,8 @@ This command policy is shared across APW-compatible tools. APW does not maintain
 
 The following table defines the final approved command set for the APW standard.
 
+Not every downstream repo vendors every execution workflow file, but APW keeps one shared command vocabulary so operator guidance stays consistent across tools and profiles.
+
 ### 🧠 GSD (Governance & Lifecycle) Commands
 | Command | Purpose | Primary Target |
 | :--- | :--- | :--- |
@@ -37,12 +39,19 @@ The following table defines the final approved command set for the APW standard.
 ### 🦾 AGK (Specialist Execution) Commands
 | Command | Purpose | Primary Target |
 | :--- | :--- | :--- |
+| `/status` | Re-orients the operator on current execution state and likely next action. | `STATE.md`, `ROADMAP.md`, `TODO.md`, optional `JOURNAL.md` |
+| `/brainstorm` | Explores options before implementation. | Requirements, constraints, solution options |
 | `/agk` | Main entry point for invoking specialist skills. | Source Code |
 | `/create` | Generates boilerplates, features, or assets. | Source Code |
+| `/enhance` | Improves existing implementation without expanding scope by default. | Existing Source Code |
 | `/debug` | Investigates errors, analyzes logs, fixes bugs. | Source Code |
 | `/refactor`| Restructures code without changing behavior. | Source Code |
 | `/design` | Technical architecture for a specific feature. | Source Code, Technical Specs |
+| `/ui-ux-pro-max` | High-polish UI and interaction refinement. | UI code, design system inputs |
+| `/preview` | Starts or checks a review-ready local preview. | Local runtime, build preview |
+| `/deploy` | Runs release or deployment preparation workflows. | Deployment configuration, runtime |
 | `/test` | Generates and runs unit/integration tests. | Tests |
+| `/orchestrate` | Coordinates complex multi-agent execution and synthesis. | Cross-cutting implementation work |
 
 ### Canonical State Ownership Note
 
