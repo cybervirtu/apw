@@ -1,0 +1,28 @@
+# Validation & CI
+
+APW is not just a folder layout. It includes scripts and guidance that keep the repo aligned with the documented contract over time.
+
+## Core enforcement files
+
+| File | What it does |
+| --- | --- |
+| `scripts/bootstrap.sh` | creates the APW workspace in a target repo |
+| `scripts/validate.sh` | checks that a repo matches the expected APW contract |
+| `scripts/ci-validate.sh` | CI-oriented validation helper |
+| `examples/github/apw-validate.yml` | GitHub Actions example for running validation in CI |
+
+## Supporting docs
+
+| File | Why it matters |
+| --- | --- |
+| `docs/CI_CD_ENFORCEMENT.md` | the CI model |
+| `docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md` | downstream validation expectations |
+| `docs/TEMPLATE_STRUCTURE.md` | profile structure and lifecycle expectations |
+| `docs/TOOLING_GUIDE.md` | how tools should operate inside the APW contract |
+
+## Practical rule
+
+Bootstrap, validate, then begin work.
+
+Re-run validation before merge, release, or rollout so the repo does not silently drift away from the APW standard.
+

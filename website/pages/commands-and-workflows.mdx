@@ -1,0 +1,84 @@
+import { Steps } from 'nextra/components'
+
+# Commands & Workflows
+
+This is the operator layer for APW.
+
+Use it once the repo exists and you want the practical answer to:
+
+- which command should I use?
+- when should I use it?
+- which agent should I pair with it?
+- when do I hand work back to the orchestrator?
+
+## The practical invocation pattern
+
+```text
+@agent /workflow task description
+```
+
+Examples:
+
+```text
+@orchestrator /status summarize the current state and next best action
+@backend-specialist /create implement password reset API from TODO.md
+@qa-automation-engineer /test verify checkout integration flow
+```
+
+## Quick chooser
+
+| Situation | Workflow |
+| --- | --- |
+| returning after a break | `/status` |
+| shaping an idea before implementation | `/brainstorm` |
+| building something new | `/create` |
+| improving existing code | `/enhance` |
+| fixing a bug | `/debug` |
+| verifying quality or completion | `/test` |
+| planning frontend structure | `/design` |
+| polishing UI quality | `/ui-ux-pro-max` |
+| preparing local review | `/preview` |
+| preparing release or deployment | `/deploy` |
+| decomposing a large cross-cutting task | `/orchestrate` |
+
+## The APW execution rule
+
+<Steps>
+### Read context first
+
+Start from `AGENTS.md`, then read the minimum required `.gsd` context for the task.
+
+### Do scoped work
+
+Use the workflow that matches the job instead of issuing a vague prompt.
+
+### Keep evidence bounded
+
+Execution agents may append bounded evidence to `.gsd/JOURNAL.md`.
+
+### Let the orchestrator synchronize official state
+
+Execution agents should not freely rewrite `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md`.
+</Steps>
+
+## The three key operator docs
+
+| Source doc | What it is for |
+| --- | --- |
+| `docs/WORKFLOW_SELECTION_GUIDE.md` | choosing the right workflow for the current problem |
+| `docs/COMMAND_INVOCATION_GUIDE.md` | read-first context, expected outputs, and handoff rules |
+| `docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md` | real invocation patterns and good agent-workflow pairings |
+
+## Canonical source docs
+
+This page wraps:
+
+- `docs/WORKFLOW_SELECTION_GUIDE.md`
+- `docs/COMMAND_INVOCATION_GUIDE.md`
+- `docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md`
+- `docs/TOOLING_GUIDE.md`
+
+## Read next
+
+- Go to [Reference](/reference) if you need the deeper governance, compatibility, validation, or CI documentation behind the workflow layer.
+- Go to [Team / Migration / Adoption](/team-migration-and-adoption) if you are introducing APW to a team or existing repo.

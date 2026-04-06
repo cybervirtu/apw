@@ -1,0 +1,25 @@
+# Compatibility & Migration
+
+APW supports multiple tools through one framework, not through multiple branches.
+
+## Core compatibility docs
+
+| File | What it covers |
+| --- | --- |
+| `docs/COMPATIBILITY_MODEL.md` | the shared compatibility hierarchy and future migration policy |
+| `docs/CODEX_COMPATIBILITY.md` | Codex-specific entry guidance inside the shared APW model |
+| `docs/ANTIGRAVITY_COMPATIBILITY.md` | Antigravity-specific entry guidance, including `GEMINI.md` compatibility awareness |
+
+## The compatibility hierarchy
+
+1. root `AGENTS.md` is the shared modern entrypoint
+2. core APW docs are the real governance source
+3. `GEMINI.md` is compatibility-only if present
+4. `.agents/...` is a future migration option only if APW adopts it explicitly
+
+## Future migration rule
+
+Structural changes must be explicit, versioned, and coordinated.
+
+That includes any future `.agents/...` migration, compatibility-file retirement, or support for additional tools.
+

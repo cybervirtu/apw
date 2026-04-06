@@ -1,0 +1,19 @@
+export default {
+  index: {
+    title: 'Home',
+    theme: {
+      layout: 'full',
+      sidebar: false,
+      toc: false,
+      pagination: false
+    }
+  },
+  'start-here': 'Start Here',
+  'what-is-apw': 'What Is APW?',
+  'idea-to-project': 'Idea to Project',
+  'profiles-and-stack-selection': 'Profiles & Stack Selection',
+  'real-world-examples': 'Real-world Examples',
+  'commands-and-workflows': 'Commands & Workflows',
+  'team-migration-and-adoption': 'Team / Migration / Adoption',
+  reference: 'Reference'
+}

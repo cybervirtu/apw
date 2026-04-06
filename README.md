@@ -11,10 +11,14 @@ This README is the human-facing front door.
 Root [AGENTS.md](AGENTS.md) is the zero-touch tool-facing front door.
 Together, they give you the short version, then send you through the docs in a beginner-friendly order.
 
+If you want a visual docs experience, APW now also includes an in-repo Nextra portal under [`website/`](website/README.md).
+
 ## New Here?
 
 Choose the path that matches what you need:
 
+- I want the visual docs portal:
+  [`website/`](website/README.md)
 - I am new and want the guided beginner path:
   [APW for Beginners](docs/APW_FOR_BEGINNERS.md) -> [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md) -> [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md) -> [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md) -> [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
 - I want one page that maps the beginner journey:
@@ -204,6 +208,15 @@ If you want the shortest path to using APW on a new project:
 6. Log bounded evidence in `JOURNAL.md`
 7. Sync canonical state deliberately
 8. Turn on CI early
+
+### Visual Docs Portal
+
+If you want the rendered docs portal instead of reading Markdown files directly:
+
+1. Go to [`website/`](website/README.md)
+2. Run `npm install`
+3. Run `npm run dev`
+4. Open the local Nextra site and follow the guided beginner path
 
 ### Operator Guides
 

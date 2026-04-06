@@ -1,0 +1,65 @@
+# Profiles & Stack Selection
+
+This page helps answer two beginner questions:
+
+- "Which APW profile should I choose?"
+- "What kind of stack direction fits the project I want to build?"
+
+The goal is not to force one exact stack. The goal is to help you choose a practical starting shape.
+
+## APW profiles in simple language
+
+| Profile | Best for | Practical feel |
+| --- | --- | --- |
+| `minimal` | tiny experiments, small sites, lightweight prototypes | the lightest APW setup |
+| `base` | most normal product repos and software projects | the safest default |
+| `advanced` | projects that already need richer specialist execution support | stronger execution help from day one |
+
+## The simplest rule of thumb
+
+- choose `minimal` if the project is intentionally tiny
+- choose `base` if you are not sure
+- choose `advanced` if you already expect more complexity, more specialties, or heavier coordination
+
+## Common project categories
+
+| Project type | Likely profile | Likely stack direction |
+| --- | --- | --- |
+| small website or landing page | `minimal` or `base` | static site or lightweight web frontend |
+| web app or dashboard | `base` | frontend plus backend API and database |
+| backend API or service | `base` | one backend service with a database or integrations |
+| AI-powered product | `base` or `advanced` | app or API layer plus a focused AI feature layer |
+| mobile app | `base` or `advanced` | mobile client with backend API where accounts or sync matter |
+| platform or monorepo | `advanced` | monorepo or multi-service setup |
+
+## Practical decision questions
+
+Before choosing a stack, ask:
+
+- do I only need a frontend, or do I need frontend plus backend?
+- do I need a database, or can the first version stay simpler?
+- is AI the whole product, or one feature in a normal product?
+- is this a lightweight prototype or a longer-lived system?
+- am I working alone, or with a team?
+- am I building one app or many services?
+
+## Recommendation pattern
+
+If you are building something small, start simpler.
+
+If you already know the project will be broader, choose stronger structure early.
+
+That is usually safer than pretending every idea needs a full platform on day one.
+
+## Canonical source docs
+
+This page wraps:
+
+- `docs/TECH_STACK_SELECTION_GUIDE.md`
+- `docs/IDEA_TO_PROJECT_GUIDE.md`
+- `docs/REAL_WORLD_EXAMPLES.md`
+
+## Read next
+
+- Go to [Real-world Examples](/real-world-examples) to see these profile and stack choices applied to real project ideas.
+- Go to [Commands & Workflows](/commands-and-workflows) if the repo already exists and you are ready to operate it.

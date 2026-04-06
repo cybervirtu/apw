@@ -1,0 +1,90 @@
+import { Cards, Steps } from 'nextra/components'
+
+# APW Docs Portal
+
+APW helps humans and AI agents build software without losing track of project state, governance, or execution context.
+
+This portal is the visual front door for the APW documentation. It lives inside the same repository as the framework, so the docs stay versioned, reviewable, and maintainable in Git.
+
+> Markdown and MDX in this repository remain the source of truth. This Nextra site is the presentation layer, not a second governance system.
+
+## Who APW is for
+
+APW is useful for:
+
+- beginners who want a safer way to start AI-assisted projects
+- builders who want repeatable bootstrap, validation, and CI guardrails
+- teams who need shared project memory instead of chat-by-chat drift
+- maintainers who want one framework that works with Codex, Antigravity, and related tooling
+
+## Start from the path that matches you
+
+<Cards num={2}>
+  <Cards.Card href="/start-here" title="Start Here">
+    Follow the guided beginner path without guessing what to read next.
+  </Cards.Card>
+  <Cards.Card href="/idea-to-project" title="I Have An Idea">
+    See how APW turns a rough idea into a structured project that is safe to build.
+  </Cards.Card>
+  <Cards.Card href="/profiles-and-stack-selection" title="Help Me Choose A Stack">
+    Pick a practical profile and stack direction without turning it into a framework war.
+  </Cards.Card>
+  <Cards.Card href="/real-world-examples" title="Show Me Examples">
+    See how APW fits real project ideas like dashboards, chatbots, and platforms.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows" title="Teach Me Commands And Workflows">
+    Learn the operator path for status, create, debug, test, and orchestrate work.
+  </Cards.Card>
+  <Cards.Card href="/reference" title="Technical Reference">
+    Reach the deeper governance, compatibility, validation, and adoption material.
+  </Cards.Card>
+</Cards>
+
+## The APW model in one view
+
+| Part | What it does |
+| --- | --- |
+| GSD governs | protects lifecycle, planning, verification, and canonical project memory in `.gsd/` |
+| AGK executes | provides specialist agents, workflows, skills, and execution support in `.agent/` |
+| Orchestrator synchronizes | keeps official state changes controlled instead of letting execution notes become the project plan |
+
+## How APW usually works
+
+<Steps>
+### Start from the front door
+
+Open root `AGENTS.md`, then route into the core APW docs and the current `.gsd` state.
+
+### Bootstrap and validate
+
+Create the workspace, validate it immediately, and initialize canonical project memory before routine coding starts.
+
+### Do scoped work
+
+Use specialist agents and workflows to build, debug, test, and improve the project.
+
+### Keep evidence bounded
+
+Execution agents may append bounded evidence to `JOURNAL.md`, but they should not casually rewrite canonical summary files.
+
+### Sync official state deliberately
+
+Use an orchestrator or governance pass when `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md` must change.
+</Steps>
+
+## Highest-value docs first
+
+<Cards num={2}>
+  <Cards.Card href="/what-is-apw" title="What Is APW?">
+    The plain-English explanation of what APW is, why it exists, and who it helps.
+  </Cards.Card>
+  <Cards.Card href="/start-here" title="Beginner Reading Map">
+    The recommended order for first-time readers and non-technical users.
+  </Cards.Card>
+  <Cards.Card href="/idea-to-project" title="Idea To Project">
+    The guided journey from rough idea to structured repo and safe implementation.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows" title="Commands And Workflows">
+    The practical operator layer for day-to-day APW usage.
+  </Cards.Card>
+</Cards>
