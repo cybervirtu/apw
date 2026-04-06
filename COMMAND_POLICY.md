@@ -17,6 +17,8 @@ In the APW standard, a command name cannot mean two different things. If a confl
 
 Canonical state synchronization follows the same rule: if a command updates summary memory or lifecycle state, that operation belongs to GSD/orchestrator control, not routine AGK execution.
 
+This command policy is shared across APW-compatible tools. APW does not maintain separate command ownership systems for Codex and Antigravity.
+
 ---
 
 ## 2. Command Ownership Matrix
@@ -75,5 +77,6 @@ The following commands are explicitly banned or deprecated in the APW standard t
 
 ## 5. IDE Tooling Notes (Cursor / Antigravity / Codex)
 
+- **One Framework Rule**: Codex, Antigravity, and other compatible tools follow the same APW command ownership model. Tool-specific docs may explain invocation differences, but they do not create separate command semantics.
 - **Slash Commands**: Not all IDEs surface `.agent/workflows` natively as slash commands. This document serves as the standard nomenclature regardless of the IDE's UI. 
 - If using an IDE without native workflow parsing, the user should type: "Use the `/debug` workflow" to invoke the AGK rule set.

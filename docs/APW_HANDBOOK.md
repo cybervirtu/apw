@@ -47,13 +47,14 @@ That separation is the main reason APW stays usable over longer project lifetime
 
 ## 2.1 `AGENTS.md` as the Front Door
 
-Newer Antigravity-native workflows often begin at repo-root `AGENTS.md`.
+Modern Codex and Antigravity-native workflows often begin at repo-root `AGENTS.md`.
 
 APW supports that directly.
 
 In APW:
 
 - `AGENTS.md` is the modern entrypoint
+- it is shared across Codex and Antigravity compatibility paths
 - the actual contract still lives in `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and the APW docs
 - `GEMINI.md` remains a compatibility concept, not an invalid file
 - a fuller `.agents/...` migration is a separate architectural choice, not a silent default

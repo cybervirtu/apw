@@ -3,6 +3,8 @@
 > [!TIP]
 > Read this if you want the practical answer to: "What do `AGENTS.md`, `GEMINI.md`, `.agent/`, and `.agents/` mean in APW?"
 
+This document describes Antigravity compatibility inside one shared APW framework. It is not a separate framework branch.
+
 ## 1. What Changed in Antigravity
 
 Newer Antigravity releases added support for reading rules from `AGENTS.md` in addition to `GEMINI.md`.
@@ -39,6 +41,8 @@ That means:
 - that file tells tools and people where APW's real rules live
 
 In APW, `AGENTS.md` is intentionally an entrypoint, not the full framework.
+
+APW uses the same front door for Codex too. Antigravity is a compatibility path inside the same framework, not a separate APW variant.
 
 ## 4. Why APW Treats `AGENTS.md` as a Front Door
 
@@ -135,3 +139,5 @@ If you are using APW today:
 2. Follow it into `PROJECT_RULES.md` and `AGENT_SYSTEM.md`.
 3. Treat `COMMAND_POLICY.md` and `PROJECT_BOOTSTRAP.md` as part of the real APW operating model.
 4. Keep using the current APW `.agent/` execution layout unless your team intentionally plans a migration.
+
+For the bigger picture, also read `docs/COMPATIBILITY_MODEL.md`.

@@ -17,18 +17,41 @@ APW is a framework for running software projects with humans and AI agents in a 
 
 It gives you:
 
-- a modern root `AGENTS.md` entrypoint for Antigravity-style tool loading
+- a modern root `AGENTS.md` entrypoint for shared Codex and Antigravity-style tool loading
 - a governed project memory layer in `.gsd/`
 - an execution layer in `.agent/`
 - bootstrap and validation scripts
 - rules for how execution work and canonical project state should interact
 - CI enforcement so the workspace does not slowly drift
 
-## `AGENTS.md` and Antigravity Compatibility
+## One Framework, Two Tool Paths
 
-APW now supports root `AGENTS.md` as the modern Antigravity-facing entrypoint.
+APW is one canonical framework.
 
-This aligns with Antigravity's official support for reading `AGENTS.md` in addition to `GEMINI.md`.
+It does **not** maintain separate `codex` and `antigravity` framework branches.
+
+Instead, APW uses:
+
+- one shared core contract
+- one bootstrap system
+- one validator
+- one documentation system
+- one template system
+- thin compatibility entrypoints and guidance for different tools
+
+The common model is:
+
+- root `AGENTS.md` is the shared modern front door
+- the real APW contract lives in `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and the APW docs/templates
+- Codex and Antigravity are supported through that same contract, not through framework forks
+
+For the explicit compatibility model, read [docs/COMPATIBILITY_MODEL.md](docs/COMPATIBILITY_MODEL.md).
+
+## `AGENTS.md`, Codex, and Antigravity Compatibility
+
+APW now supports root `AGENTS.md` as the shared modern entrypoint for both Codex and Antigravity.
+
+This aligns with APW's decision to keep one framework while still supporting tool-specific compatibility needs.
 
 In APW, `AGENTS.md` is a front door, not the entire system. The full governance and workflow model still lives in:
 
@@ -40,11 +63,17 @@ In APW, `AGENTS.md` is a front door, not the entire system. The full governance 
 
 Compatibility positioning:
 
-- `AGENTS.md`: modern front door for tools and people
+- `AGENTS.md`: modern shared front door for tools and people
+- `Codex`: follows APW through `AGENTS.md` plus the core APW contract
 - `GEMINI.md`: compatibility path if a repo still needs it
+- `Antigravity`: follows the same `AGENTS.md` front door, with `GEMINI.md` compatibility and possible future `.agents/...` migration handled explicitly
 - `.agents/...`: newer Antigravity-native pipeline style that APW may adopt later through an explicit migration, not through a silent contract change
 
-For the beginner-friendly explanation, read [docs/ANTIGRAVITY_COMPATIBILITY.md](docs/ANTIGRAVITY_COMPATIBILITY.md).
+For the tool-specific explanations, read:
+
+- [docs/CODEX_COMPATIBILITY.md](docs/CODEX_COMPATIBILITY.md)
+- [docs/ANTIGRAVITY_COMPATIBILITY.md](docs/ANTIGRAVITY_COMPATIBILITY.md)
+- [docs/COMPATIBILITY_MODEL.md](docs/COMPATIBILITY_MODEL.md)
 
 ## Why APW Exists
 
@@ -180,6 +209,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
+- **[Compatibility Model](docs/COMPATIBILITY_MODEL.md)**: The single-framework compatibility model for Codex and Antigravity.
+- **[Codex Compatibility](docs/CODEX_COMPATIBILITY.md)**: How Codex should enter and follow APW.
 - **[Antigravity Compatibility](docs/ANTIGRAVITY_COMPATIBILITY.md)**: How `AGENTS.md`, `GEMINI.md`, `.agent/`, and `.agents/` relate in APW.
 - **[How APW Works](docs/HOW_APW_WORKS.md)**: The core mental model in plain English.
 - **[First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)**: A guided example from bootstrap to first milestone.

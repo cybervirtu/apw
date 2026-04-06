@@ -23,7 +23,7 @@ This page gives you the simple version first:
 - APW is a way to keep AI-assisted software projects organized
 - it separates project memory from project execution
 - it gives you bootstrap, validation, and CI so the structure does not decay
-- newer Antigravity-style sessions should start from root `AGENTS.md`, then follow the APW docs from here
+- Codex and newer Antigravity-style sessions should start from root `AGENTS.md`, then follow the APW docs from here
 
 ## What APW is in one minute
 

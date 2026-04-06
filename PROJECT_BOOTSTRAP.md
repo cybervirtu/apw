@@ -6,11 +6,13 @@
 ## 1. Canonical Source
 
 - `templates/` is the canonical downstream bootstrap source for profile-selected `.gsd/` and `.agent/` content.
+- APW remains one canonical framework. Bootstrap does not create separate Codex and Antigravity variants of the standard.
 - Bootstrap generates a repo-root `AGENTS.md` as the default modern tool-facing entrypoint.
 - That root `AGENTS.md` routes readers into the deeper APW operating documents; it does not replace them.
 - The script never creates or expects a top-level `.agents/` directory.
 - The active downstream execution namespace is always `.agent/`.
 - Repo-root APW entrypoint and operating files (`AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`) are copied directly from the APW repo root during bootstrap.
+- Downstream repos do not need separate APW branches, templates, or validators for Codex versus Antigravity. Compatibility is handled through the shared entrypoint and documentation.
 - Bootstrap does not generate `GEMINI.md` by default. Teams may add or keep `GEMINI.md` deliberately when backward compatibility is needed.
 - Newer Antigravity-native `.agents/...` pipeline layouts are a separate architectural choice. Bootstrap does not silently migrate APW repos to that layout.
 - Profile-tree details are documented in `templates/README.md`.
@@ -111,6 +113,7 @@ Recommended upgrade examples:
 
 - Downstream repos are bootstrapped under `.agent/`, never `.agents/`.
 - Downstream repos receive a root `AGENTS.md` by default as the modern tool-facing front door.
+- Downstream repos do not receive separate Codex and Antigravity framework variants.
 - `templates/` is the only profile source used for lifecycle and execution-layer template content.
 - `.agent/skills/` is the active skills path.
 - `AGENTS.md` routes readers into the APW contract; it does not replace `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, or `PROJECT_BOOTSTRAP.md`.

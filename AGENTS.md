@@ -1,13 +1,15 @@
 # AGENTS.md
 
 > [!IMPORTANT]
-> This is APW's modern tool-facing front door. It is an entrypoint, not a second source of truth.
+> This is APW's modern tool-facing front door for Codex-, Antigravity-, and similarly compatible sessions. It is an entrypoint, not a second source of truth.
 
 ## What APW Is
 
 APW stands for **Agentic Project Workspace**.
 
 It is the governing standard for this repository and for repos bootstrapped from this standard.
+
+APW is one canonical framework. It does not maintain separate framework variants or branches for Codex and Antigravity.
 
 APW combines:
 
@@ -33,7 +35,9 @@ If this repo also includes APW handbook docs, continue with:
 
 5. `docs/START_HERE.md`
 6. `docs/APW_HANDBOOK.md`
-7. `docs/ANTIGRAVITY_COMPATIBILITY.md`
+7. `docs/COMPATIBILITY_MODEL.md`
+8. `docs/CODEX_COMPATIBILITY.md`
+9. `docs/ANTIGRAVITY_COMPATIBILITY.md`
 
 ## Do Not
 
@@ -43,7 +47,13 @@ If this repo also includes APW handbook docs, continue with:
 
 ## Compatibility Note
 
-Antigravity also supports `GEMINI.md`. APW adopts root `AGENTS.md` as the modern entrypoint and keeps fuller compatibility guidance in `docs/ANTIGRAVITY_COMPATIBILITY.md`.
+APW uses root `AGENTS.md` as the shared modern entrypoint for both Codex and Antigravity-style tool sessions.
+
+- Codex compatibility is routed through this file and the core APW contract.
+- Antigravity compatibility is also routed through this file, with `GEMINI.md` treated as compatibility support when needed.
+- A fuller `.agents/...` migration remains a separate architectural decision, not the default APW contract.
+
+See `docs/COMPATIBILITY_MODEL.md`, `docs/CODEX_COMPATIBILITY.md`, and `docs/ANTIGRAVITY_COMPATIBILITY.md` when those docs are present.
 
 ## Where To Start
 

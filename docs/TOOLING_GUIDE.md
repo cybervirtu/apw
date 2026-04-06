@@ -3,6 +3,8 @@
 > [!NOTE]
 > The APW standard is designed to be consumed by multiple AI coding assistants. This guide outlines how to use Antigravity, Cursor, and Codex in ways that reinforce APW instead of bypassing it.
 
+APW is one framework for all of those tools. This guide describes compatibility paths inside a shared contract, not separate framework variants.
+
 ---
 
 ## 1. Tool Specialties & Operating Models
@@ -19,11 +21,12 @@
 
 Every new session should begin with the same APW grounding sequence:
 
-1. Read `.gsd/STATE.md`.
-2. Read `.gsd/TODO.md`.
-3. Read `.gsd/SPEC.md` if the task changes behavior or scope.
-4. Read `.agent/rules/` material relevant to the repo.
-5. Confirm the active milestone before writing code.
+1. Start from root `AGENTS.md`.
+2. Read `.gsd/STATE.md`.
+3. Read `.gsd/TODO.md`.
+4. Read `.gsd/SPEC.md` if the task changes behavior or scope.
+5. Read `.agent/rules/` material relevant to the repo.
+6. Confirm the active milestone before writing code.
 
 If the task changes architecture, also read `.gsd/ARCHITECTURE.md`, `.gsd/STACK.md`, and `.gsd/DECISIONS.md`.
 
@@ -33,7 +36,19 @@ Context management is the most critical skill when using AI coding assistants. O
 
 ### The "Start Here" Rule
 Whenever you open a new chat session in *any* tool, the very first step must be:
-> "Read `.gsd/STATE.md` and `.gsd/TODO.md`."
+> "Read `AGENTS.md`, then `.gsd/STATE.md` and `.gsd/TODO.md`."
+
+### One Compatibility Model
+
+APW supports Codex and Antigravity through one shared model:
+
+- one framework
+- one core contract
+- one bootstrap flow
+- one validator
+- one documentation system
+
+Tool-specific differences are documented as adapters around that shared model.
 
 ### Avoiding Context Drift
 1. **Search First**: Never read a 1,000-line file to find a single function. Use native IDE search or ask the agent to use `grep` before opening the file.
@@ -59,7 +74,7 @@ Use Antigravity when the work benefits from sustained execution with fewer inter
 Recommended operating pattern:
 
 1. Give Antigravity the current phase and acceptance target.
-2. Point it at `.gsd/STATE.md`, `.gsd/TODO.md`, and any relevant rules.
+2. Point it at `AGENTS.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and any relevant rules.
 3. Keep the request phase-bounded.
 4. Require it to summarize what changed and what still needs verification.
 5. If it is acting as an execution agent, have it stop at evidence logging and hand canonical `.gsd` sync back to the orchestrator.
@@ -107,10 +122,11 @@ Use Codex when the task is terminal-first or repo-wide but still deterministic:
 Recommended operating pattern:
 
 1. Treat Codex as the automation-oriented operator.
-2. Prefer explicit commands and file targets.
-3. Use it for repeatable validation and standards enforcement.
-4. Keep the task grounded in the current APW contract rather than open-ended ideation.
-5. Use an explicit orchestrator-style pass when Codex needs to synchronize canonical `.gsd` files after execution work.
+2. Start it from root `AGENTS.md`, then route into the core APW files.
+3. Prefer explicit commands and file targets.
+4. Use it for repeatable validation and standards enforcement.
+5. Keep the task grounded in the current APW contract rather than open-ended ideation.
+6. Use an explicit orchestrator-style pass when Codex needs to synchronize canonical `.gsd` files after execution work.
 
 Avoid:
 
@@ -166,7 +182,7 @@ This is a controlled writeback step, not an extra approval ceremony. For simple 
 
 Use prompts like:
 
-> Read `.gsd/STATE.md`, `.gsd/TODO.md`, and `.agent/rules/PROJECT.md`. Execute only the current milestone task, verify the change, and summarize remaining blockers.
+> Read `AGENTS.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and `.agent/rules/PROJECT.md`. Execute only the current milestone task, verify the change, and summarize remaining blockers.
 
 ### Cursor prompt shape
 
@@ -178,7 +194,7 @@ Use prompts like:
 
 Use prompts like:
 
-> Validate this repo with `--profile base --stack base`, explain any hard failures or warnings, and patch only the files needed to restore compliance.
+> Read `AGENTS.md`, then validate this repo with `--profile base --stack base`, explain any hard failures or warnings, and patch only the files needed to restore compliance.
 
 ### Orchestrator sync prompt shape
 

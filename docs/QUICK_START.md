@@ -77,7 +77,7 @@ It confirms:
 
 After bootstrap and validation, open root `AGENTS.md` in the target repo.
 
-That is the modern APW entrypoint for Antigravity-style tooling.
+That is the modern APW entrypoint for Codex, Antigravity, and similarly compatible tooling.
 
 From there, follow the linked APW governance and handbook docs instead of treating `AGENTS.md` as a complete replacement for the framework.
 

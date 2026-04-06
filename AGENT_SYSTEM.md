@@ -3,6 +3,8 @@
 > [!NOTE]
 > This file defines the operational relationship between the **Get-Shit-Done (GSD)** governance layer and the **Antigravity-Kit (AGK)** execution layer.
 
+The operating model defined here is shared across APW-compatible tools such as Codex and Antigravity. Tool compatibility does not change the underlying APW precedence rules.
+
 ## 1. Unified Workspace Architecture: The Dual-Engine Model
 
 APW operates through three distinct layers:
@@ -10,6 +12,8 @@ APW operates through three distinct layers:
 1. **The Memory Layer (GSD)**: Located in `.gsd/`. This is the canonical source of truth for project lifecycle, planning, state tracking, and verification. It persists across sessions and models.
 2. **The Context Layer (AGK)**: Located in `.agent/`. This is the active instruction set for AI execution. It contains the unified execution namespace: `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/`.
 3. **The Capability Layer (Merged)**: Located in `.agent/skills/` within that unified `.agent/` namespace. This is the shared library of curated, high-leverage specialist skills (e.g., refactoring, debugging, testing) imported from the AGK foundation.
+
+APW does not fork this model by tool. Codex and Antigravity both route into the same workspace architecture.
 
 ---
 
