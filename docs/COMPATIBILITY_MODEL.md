@@ -85,7 +85,23 @@ Use this split:
 
 This keeps APW understandable while avoiding a second source of truth.
 
-## 7. Branch Strategy
+## 7. Compatibility Hierarchy
+
+When in doubt, use this hierarchy:
+
+1. **Root `AGENTS.md`**: the shared modern front door for compatible tools and human readers.
+2. **Core APW governance files**: the real operating contract.
+3. **Compatibility files such as `GEMINI.md`**: compatibility-only entrypoints when deliberately needed.
+4. **Alternative layouts such as `.agents/...`**: future migration options only if APW adopts them explicitly.
+
+This means:
+
+- `AGENTS.md` routes into APW, but does not replace APW
+- the core governance files remain authoritative
+- compatibility files may help tools enter APW, but must not redefine it
+- future layout changes must be treated as contract migrations, not convenience refactors
+
+## 8. Branch Strategy
 
 APW's branch strategy is simple:
 
@@ -94,7 +110,7 @@ APW's branch strategy is simple:
 - document tool differences explicitly
 - do not fork governance, bootstrap, validation, or templates by tool
 
-## 8. Future Migration Considerations
+## 9. Future Migration Considerations
 
 APW is designed to evolve without fragmenting into multiple competing framework variants.
 
@@ -143,7 +159,16 @@ APW must preserve a single source of truth for governance.
 
 Compatibility files may route into APW, but they must not redefine APW independently.
 
-## 9. Practical Summary
+### Compatibility file safeguards
+
+To keep the framework coherent over time:
+
+- compatibility files should stay short and routing-focused
+- compatibility files should point to the core APW contract instead of copying it
+- compatibility files must not introduce alternate governance semantics
+- retirement of a compatibility file must be explicit and documented, not implied by drift
+
+## 10. Practical Summary
 
 If you are using APW with either Codex or Antigravity:
 

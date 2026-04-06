@@ -114,6 +114,7 @@ Recommended upgrade examples:
 
 - Downstream repos are bootstrapped under `.agent/`, never `.agents/`.
 - Downstream repos receive a root `AGENTS.md` by default as the modern tool-facing front door.
+- The real governance source remains the core APW operating files copied at repo root, not compatibility entrypoints alone.
 - Downstream repos do not receive separate Codex and Antigravity framework variants.
 - `templates/` is the only profile source used for lifecycle and execution-layer template content.
 - `.agent/skills/` is the active skills path.

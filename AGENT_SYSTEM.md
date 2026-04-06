@@ -35,6 +35,8 @@ Any future structural change to that workspace architecture must be handled as a
 ### Conflict Resolution: "GSD Documentation Wins"
 If a conflict arises between execution logs (AGK) and state documentation (GSD), the GSD documentation remains the canonical source. All AGK execution results must be rectified against the GSD state before the session is closed.
 
+The same rule applies to compatibility materials: entrypoint or compatibility files may route into APW, but they must not compete with the core governance files as independent sources of authority.
+
 ---
 
 ## 3. Precedence Gate: Task Execution Flow

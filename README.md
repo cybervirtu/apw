@@ -66,6 +66,7 @@ In APW, `AGENTS.md` is a front door, not the entire system. The full governance 
 Compatibility positioning:
 
 - `AGENTS.md`: modern shared front door for tools and people
+- `core APW docs`: the real governance and workflow source
 - `Codex`: follows APW through `AGENTS.md` plus the core APW contract
 - `GEMINI.md`: compatibility path if a repo still needs it
 - `Antigravity`: follows the same `AGENTS.md` front door, with `GEMINI.md` compatibility and possible future `.agents/...` migration handled explicitly

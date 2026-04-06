@@ -127,6 +127,7 @@ So APW's current position is simple:
 | Item | What It Means In APW |
 | :--- | :--- |
 | `AGENTS.md` | Modern root entrypoint |
+| Core APW docs | Real governance and workflow source |
 | `GEMINI.md` | Compatibility entrypoint when needed |
 | `.agent/` | Current APW execution namespace |
 | `.agents/` | Possible future Antigravity-native migration path, not the current APW default |
