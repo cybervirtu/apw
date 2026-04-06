@@ -1,0 +1,123 @@
+import { Cards, Steps } from 'nextra/components'
+
+# Choose Your Profile
+
+Use this page when your main question is:
+
+"Should I use `minimal`, `base`, or `advanced`?"
+
+This is a lightweight chooser, not a hard rulebook. The goal is to help you make a confident practical choice and then move forward.
+
+## Fast answer
+
+| If your project feels like... | Likely profile | Why |
+| --- | --- | --- |
+| a tiny prototype, script, experiment, or very small site | `minimal` | you want the lightest APW structure that still keeps the repo organized |
+| a normal app, service, dashboard, or product repo | `base` | it is the safest default for most real projects |
+| a multi-module, team-heavy, or complexity-growing project | `advanced` | you want richer specialist execution support from the start |
+
+## Ask yourself these questions
+
+<Steps>
+### Will this stay intentionally small?
+
+If yes, `minimal` may be enough.
+
+### Is this a standard product or service?
+
+If yes, `base` is usually the right starting point.
+
+### Do you already expect more complexity?
+
+If yes, `advanced` is often the better fit because stronger execution support helps earlier.
+
+### Are you unsure?
+
+Choose `base`.
+</Steps>
+
+## Pick the path that sounds most like you
+
+<Cards num={3}>
+  <Cards.Card href="#minimal" title="Mostly Small And Lightweight">
+    Good for tiny prototypes, experiments, scripts, or simple sites that should stay intentionally small.
+  </Cards.Card>
+  <Cards.Card href="#base" title="Standard App Or Service">
+    Good for most normal projects where you want strong structure without overcomplicating the setup.
+  </Cards.Card>
+  <Cards.Card href="#advanced" title="Broader Or Growing Complexity">
+    Good for heavier execution needs, more specialties, or work that is likely to spread across more areas.
+  </Cards.Card>
+</Cards>
+
+## Minimal
+
+### Choose it when
+
+- the project is truly small
+- you want the lightest APW footprint
+- you do not need richer vendored specialist execution support yet
+
+### Good fit examples
+
+- personal portfolio
+- tiny prototype
+- lightweight experiment
+
+### What to do next
+
+- Read [Choose Your Project Type](/choose-your-project-type) if you still need stack direction help.
+- Then read [Help Me Get Started](/get-started-flow) to move into the next APW step.
+
+## Base
+
+### Choose it when
+
+- you are building a normal app, service, or product repo
+- you want the standard APW structure
+- you want the safest default without overthinking the choice
+
+### Good fit examples
+
+- dashboard or SaaS app
+- backend API
+- internal tool
+- booking app
+
+### What to do next
+
+- Read [Choose Your Project Type](/choose-your-project-type) to map the idea to a likely stack direction.
+- Then read [Help Me Get Started](/get-started-flow).
+
+## Advanced
+
+### Choose it when
+
+- you already expect broader complexity
+- you want richer specialist execution support in `.agent/`
+- the project is more likely to involve several specialties or workstreams
+
+### Good fit examples
+
+- AI-heavy product with multiple moving parts
+- multi-service platform
+- broader team project with several execution areas
+
+### What to do next
+
+- Read [Choose Your Project Type](/choose-your-project-type) to confirm the likely shape.
+- Then read [Real-world Examples](/real-world-examples) and [Help Me Get Started](/get-started-flow).
+
+## Common mistakes
+
+- choosing `advanced` too early for a project that is still tiny
+- choosing `minimal` for a repo that already has real product complexity
+- starting implementation before bootstrap and validation
+- forgetting that `.gsd` summary files still need orchestrator-controlled sync
+
+## Read next
+
+- Go to [Choose Your Project Type](/choose-your-project-type) if you know the profile question but still need stack direction help.
+- Go to [Help Me Get Started](/get-started-flow) if you want the next APW step based on where you are now.
+- Go to [Profiles & Stack Selection](/profiles-and-stack-selection) if you want the fuller comparison page behind this chooser.
+

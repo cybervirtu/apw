@@ -1,0 +1,77 @@
+import { Cards, Steps } from 'nextra/components'
+
+# Help Me Get Started
+
+Use this page when you want the shortest safe answer to:
+
+"What should I do first?"
+
+This is a guided flow for common starting points. Pick the card that sounds like you, then follow the recommended next step.
+
+## Choose your starting point
+
+<Cards num={2}>
+  <Cards.Card href="/idea-to-project" title="I Have An Idea, But Not A Plan">
+    Start with the idea-to-project journey, then choose your project type and profile.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-project-type" title="I Know My Project Type, But Not My Stack">
+    Use the project-type chooser first, then confirm the profile and next docs.
+  </Cards.Card>
+  <Cards.Card href="/choose-your-profile" title="I Mainly Need Help Choosing A Profile">
+    Use the profile chooser if `minimal` vs `base` vs `advanced` is your main blocker.
+  </Cards.Card>
+  <Cards.Card href="/commands-and-workflows" title="I Know My Stack, But Not How To Start With APW">
+    Move into the workflow and command layer after bootstrap and validation.
+  </Cards.Card>
+  <Cards.Card href="/team-migration-and-adoption" title="I Already Have A Repo And Want To Adopt APW">
+    Start from migration and adoption guidance instead of the brand-new project path.
+  </Cards.Card>
+  <Cards.Card href="/real-world-examples" title="I Want To See Examples First">
+    Use examples if you need to see APW applied to relatable projects before deciding anything else.
+  </Cards.Card>
+</Cards>
+
+## The safest beginner path
+
+<Steps>
+### Understand the project shape
+
+Start with [Choose Your Project Type](/choose-your-project-type) if the idea is still fuzzy.
+
+### Choose the APW profile
+
+Use [Choose Your Profile](/choose-your-profile) to decide how much APW structure you want up front.
+
+### Make the repo real
+
+Read the repo's `docs/QUICK_START.md`, then bootstrap and validate before routine coding starts.
+
+### Start work intentionally
+
+Use [Commands & Workflows](/commands-and-workflows) once the repo exists and `.gsd` has been initialized.
+</Steps>
+
+## What most new users should do next
+
+If you are still unsure, this is the safest order:
+
+1. [What Is APW?](/what-is-apw)
+2. [Choose Your Project Type](/choose-your-project-type)
+3. [Choose Your Profile](/choose-your-profile)
+4. `docs/QUICK_START.md` in the repo
+5. [Commands & Workflows](/commands-and-workflows)
+
+## Common mistakes
+
+- reading only workflow docs before deciding what the project is
+- overcomplicating a prototype too early
+- choosing `advanced` because it sounds safer when `base` is enough
+- starting implementation before bootstrap and validation
+- confusing `JOURNAL.md` evidence with canonical state updates
+
+## Read next
+
+- Go to [Choose Your Project Type](/choose-your-project-type) if you still need to identify the shape of the project.
+- Go to [Choose Your Profile](/choose-your-profile) if your main choice is about APW structure.
+- Go to [Real-world Examples](/real-world-examples) if you want relatable examples before deciding.
+

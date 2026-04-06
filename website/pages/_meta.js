@@ -9,6 +9,9 @@ export default {
     }
   },
   'start-here': 'Start Here',
+  'get-started-flow': 'Help Me Get Started',
+  'choose-your-profile': 'Choose Your Profile',
+  'choose-your-project-type': 'Choose Your Project Type',
   'what-is-apw': 'What Is APW?',
   'idea-to-project': 'Idea to Project',
   'profiles-and-stack-selection': 'Profiles & Stack Selection',
