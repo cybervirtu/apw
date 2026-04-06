@@ -208,7 +208,7 @@ Examples:
 - "This is likely a static site."
 - "This is likely a small API plus chatbot integration."
 
-If APW later adds a dedicated `TECH_STACK_SELECTION_GUIDE.md`, that will be the best stack-specific companion to this doc.
+For stack-specific help, use [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md) as the companion to this doc.
 
 ## 6. Bootstrap the repo
 
@@ -498,8 +498,8 @@ If you want the one-minute answer:
 
 - For the broader beginner introduction, read [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md).
 - For the visual explanation layer, read [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md).
+- For stack-direction and profile help, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
 - For the fastest hands-on path, read [QUICK_START.md](./QUICK_START.md).
 - For day-to-day execution, read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
 - For workflow choice help, read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
-- If APW later adds `TECH_STACK_SELECTION_GUIDE.md`, use it as the stack-specific companion to this journey.
 - If APW later adds `REAL_WORLD_EXAMPLES.md`, use that as the scenario library companion to this guide. For now, [REAL_WORLD_SCENARIOS.md](./REAL_WORLD_SCENARIOS.md) is the closest match.
