@@ -15,6 +15,8 @@ APW operates through three distinct layers:
 
 APW does not fork this model by tool. Codex and Antigravity both route into the same workspace architecture.
 
+Any future structural change to that workspace architecture must be handled as an explicit APW contract migration, not as silent compatibility drift.
+
 ---
 
 ## 2. Precedence and Decision Rules

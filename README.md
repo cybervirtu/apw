@@ -47,6 +47,8 @@ The common model is:
 
 For the explicit compatibility model, read [docs/COMPATIBILITY_MODEL.md](docs/COMPATIBILITY_MODEL.md).
 
+That compatibility model also defines the future-migration rule: APW changes structure only through explicit, versioned, coordinated migration, never through silent namespace drift.
+
 ## `AGENTS.md`, Codex, and Antigravity Compatibility
 
 APW now supports root `AGENTS.md` as the shared modern entrypoint for both Codex and Antigravity.

@@ -80,3 +80,5 @@ If you are using Codex with APW:
 2. Follow the APW routing into the core governance files.
 3. Work inside the current `.gsd/` and `.agent/` contract.
 4. Use orchestrator/governance sync when canonical state must change.
+
+For APW's migration policy, read `docs/COMPATIBILITY_MODEL.md`. Codex compatibility evolves through that shared contract, not through a Codex-only framework fork.

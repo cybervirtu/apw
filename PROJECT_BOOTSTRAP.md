@@ -15,6 +15,7 @@
 - Downstream repos do not need separate APW branches, templates, or validators for Codex versus Antigravity. Compatibility is handled through the shared entrypoint and documentation.
 - Bootstrap does not generate `GEMINI.md` by default. Teams may add or keep `GEMINI.md` deliberately when backward compatibility is needed.
 - Newer Antigravity-native `.agents/...` pipeline layouts are a separate architectural choice. Bootstrap does not silently migrate APW repos to that layout.
+- Any future structural migration must be explicit, versioned, and coordinated across bootstrap, validation, templates, docs, CI, and downstream migration guidance.
 - Profile-tree details are documented in `templates/README.md`.
 
 ## 2. Inputs

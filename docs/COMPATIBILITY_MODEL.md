@@ -94,7 +94,56 @@ APW's branch strategy is simple:
 - document tool differences explicitly
 - do not fork governance, bootstrap, validation, or templates by tool
 
-## 8. Practical Summary
+## 8. Future Migration Considerations
+
+APW is designed to evolve without fragmenting into multiple competing framework variants.
+
+### Current contract
+
+The active APW contract is the current documented structure, bootstrap behavior, validation model, and governance system.
+
+### Migration rule
+
+Any future structural migration must be explicit, versioned, and coordinated.
+
+No silent path or namespace change should be introduced into APW.
+
+### `.agents/...` migration rule
+
+A fuller `.agents/...` migration must be treated as an APW contract change, not a small internal refactor.
+
+If adopted, it must be coordinated across:
+
+- bootstrap
+- validation
+- documentation
+- CI enforcement
+- templates
+- downstream migration guidance
+- compatibility notes
+
+### `GEMINI.md` compatibility rule
+
+If `GEMINI.md` is still supported for compatibility, it must remain compatibility-only.
+
+It must not become a parallel governance source or compete with root `AGENTS.md` and the core APW governance documents.
+
+### Future tool support rule
+
+If APW adds support for additional tools in the future, those integrations must follow the same pattern:
+
+- one shared root `AGENTS.md` front door
+- one canonical APW framework
+- thin tool-specific compatibility documentation or adapters
+- no framework forks unless a true structural incompatibility is proven
+
+### Single source of truth rule
+
+APW must preserve a single source of truth for governance.
+
+Compatibility files may route into APW, but they must not redefine APW independently.
+
+## 9. Practical Summary
 
 If you are using APW with either Codex or Antigravity:
 

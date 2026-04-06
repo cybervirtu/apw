@@ -141,3 +141,5 @@ If you are using APW today:
 4. Keep using the current APW `.agent/` execution layout unless your team intentionally plans a migration.
 
 For the bigger picture, also read `docs/COMPATIBILITY_MODEL.md`.
+
+That document also defines the future-migration rule for APW: compatibility can grow, but structural contract changes must be explicit, versioned, and coordinated.
