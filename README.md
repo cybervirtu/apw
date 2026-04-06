@@ -17,6 +17,7 @@ Start with one of these paths:
 
 - [APW for Beginners](docs/APW_FOR_BEGINNERS.md): the plain-English introduction for first-time readers.
 - [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md): diagrams that show how the system fits together.
+- [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md): the beginner journey from rough idea to a structured APW project.
 - [Quick Start](docs/QUICK_START.md): the fastest safe path if you want to try APW on a real repo.
 - [How APW Works](docs/HOW_APW_WORKS.md): the next layer once the basics click.
 
@@ -154,16 +155,17 @@ Follow this order:
 
 1. [APW for Beginners](docs/APW_FOR_BEGINNERS.md)
 2. [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)
-3. [Start Here](docs/START_HERE.md)
-4. [Quick Start](docs/QUICK_START.md)
-5. [How APW Works](docs/HOW_APW_WORKS.md)
-6. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
-7. [Visual Diagrams](docs/DIAGRAMS.md)
-8. [Features and Modes](docs/FEATURES_AND_MODES.md)
-9. [Common Workflows](docs/COMMON_WORKFLOWS.md)
-10. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
-11. Team / migration / CI docs as needed
-12. [FAQ](docs/FAQ.md)
+3. [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
+4. [Start Here](docs/START_HERE.md)
+5. [Quick Start](docs/QUICK_START.md)
+6. [How APW Works](docs/HOW_APW_WORKS.md)
+7. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
+8. [Visual Diagrams](docs/DIAGRAMS.md)
+9. [Features and Modes](docs/FEATURES_AND_MODES.md)
+10. [Common Workflows](docs/COMMON_WORKFLOWS.md)
+11. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
+12. Team / migration / CI docs as needed
+13. [FAQ](docs/FAQ.md)
 
 ### Fastest Safe Path
 
@@ -235,6 +237,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 - **[APW for Beginners](docs/APW_FOR_BEGINNERS.md)**: The easiest first explanation for a new or non-technical reader.
 - **[APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)**: A diagram-first view of the APW system and workflow.
+- **[Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)**: A practical beginner journey from rough idea to structured project start.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.
