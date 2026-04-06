@@ -113,6 +113,25 @@ What this means:
 - AGK gives the project execution strength
 - the orchestrator connects those layers so the project does not split into raw implementation noise on one side and stale planning on the other
 
+## Diagram 5: Bootstrap to ongoing work
+
+```mermaid
+flowchart LR
+    A[Bootstrap] --> B[Validate]
+    B --> C[Read AGENTS.md and current state]
+    C --> D[Execute scoped work]
+    D --> E[Append bounded JOURNAL evidence]
+    E --> F[Orchestrator sync if needed]
+    F --> G[Validate and CI]
+    G --> H[Continue delivery]
+```
+
+What this means:
+
+- APW starts with a structured setup
+- work happens inside that structure
+- evidence and state sync keep the project coherent between delivery cycles
+
 ## Key takeaways
 
 If you only remember the diagrams loosely, remember this:

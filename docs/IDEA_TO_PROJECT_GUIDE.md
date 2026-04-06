@@ -40,6 +40,26 @@ Idea
 
 That may sound like a lot, but it becomes much easier when you see what each step is for.
 
+```mermaid
+flowchart LR
+    A[Idea] --> B[Clarify]
+    B --> C[Choose profile]
+    C --> D[Choose likely stack]
+    D --> E[Bootstrap]
+    E --> F[Validate]
+    F --> G[Initialize .gsd]
+    G --> H[Start work]
+    H --> I[JOURNAL evidence]
+    I --> J[Orchestrator sync]
+    J --> K[Continue with validation and CI]
+```
+
+What this means:
+
+- APW helps you move from rough idea to structured project in a repeatable order
+- implementation starts after the project memory exists
+- journal evidence and orchestrator sync keep progress understandable over time
+
 ## How APW turns ideas into projects
 
 ### 1. Start with the idea

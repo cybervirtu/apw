@@ -60,6 +60,25 @@ After execution:
 
 - use the orchestrator or an explicit governance pass when canonical state must change
 
+## Command Flow At A Glance
+
+```mermaid
+flowchart LR
+    A[Read AGENTS.md and .gsd context] --> B[Run the chosen workflow]
+    B --> C[Produce code, analysis, or verification]
+    C --> D[Append bounded evidence to JOURNAL if useful]
+    D --> E{Did canonical state change?}
+    E -->|No| F[Continue or finish]
+    E -->|Yes| G[Orchestrator or governance sync]
+    G --> H[Validate and CI as needed]
+```
+
+What this means:
+
+- APW workflows do not start from nowhere; they start from routed context
+- execution commands can produce work and bounded evidence
+- canonical project memory changes only go through orchestrator or governance control
+
 ## `/status`
 
 ### Command

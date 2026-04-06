@@ -36,17 +36,45 @@ If your project looks somewhat like an example here, that is usually enough to h
 
 ## Quick example map
 
-| If your project looks like this | Likely profile | Likely stack direction | Complexity feel |
-| :--- | :--- | :--- | :--- |
-| personal portfolio or landing page | `minimal` or `base` | static site or lightweight web frontend | low |
-| SaaS dashboard or admin tool | `base` | web frontend + backend API + database | medium |
-| appointment booking app | `base` | web app + backend API + database | medium |
-| AI support chatbot | `advanced` or `base` | app/API layer + AI feature layer + database | medium to high |
-| internal reporting tool | `base` | dashboard or internal web app + backend + database | medium |
-| e-commerce prototype | `base` | storefront + backend/API + database | medium |
-| backend API service | `base` | backend API + database or integrations | medium |
-| mobile product app | `base` or `advanced` | mobile app + backend API + database | medium to high |
-| multi-service platform or monorepo | `advanced` | monorepo or multi-service setup | high |
+| If your project looks like this | Likely profile | Likely stack direction | Likely first APW move | Complexity feel |
+| :--- | :--- | :--- | :--- | :--- |
+| personal portfolio or landing page | `minimal` or `base` | static site or lightweight web frontend | `/design` or `/create` after bootstrap | low |
+| SaaS dashboard or admin tool | `base` | web frontend + backend API + database | `/status` then `/design` or `/create` | medium |
+| appointment booking app | `base` | web app + backend API + database | `/create` around the first booking flow | medium |
+| AI support chatbot | `advanced` or `base` | app/API layer + AI feature layer + database | `/brainstorm` then `/create` or `/orchestrate` | medium to high |
+| internal reporting tool | `base` | dashboard or internal web app + backend + database | `/create` for the first reporting slice | medium |
+| e-commerce prototype | `base` | storefront + backend/API + database | `/design` then `/create` | medium |
+| backend API service | `base` | backend API + database or integrations | `/create` for the first endpoint set | medium |
+| mobile product app | `base` or `advanced` | mobile app + backend API + database | `/design` then `/create` | medium to high |
+| multi-service platform or monorepo | `advanced` | monorepo or multi-service setup | `/orchestrate` very early | high |
+
+```mermaid
+flowchart TD
+    A[Project idea] --> B{Closest example type}
+    B --> C[Small site]
+    B --> D[Standard app or tool]
+    B --> E[AI-assisted product]
+    B --> F[Platform or monorepo]
+
+    C --> C1[Likely minimal or base]
+    D --> D1[Likely base]
+    E --> E1[Likely base or advanced]
+    F --> F1[Likely advanced]
+
+    C1 --> G[Pick likely stack direction]
+    D1 --> G
+    E1 --> G
+    F1 --> G
+
+    G --> H[Bootstrap, validate, initialize .gsd]
+    H --> I[Start the first workflow]
+```
+
+What this means:
+
+- first find the example that feels closest to your project
+- use that to choose a likely profile and stack direction
+- then let APW turn that into a structured starting workflow
 
 ## Example: Personal portfolio or landing page
 

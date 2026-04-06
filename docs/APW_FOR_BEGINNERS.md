@@ -57,6 +57,21 @@ What it does very well is create a stable working environment where AI help stay
 
 APW is easiest to understand if you think of it as a small team with different jobs.
 
+```mermaid
+flowchart LR
+    G[GSD<br/>governs project memory] --> O[Orchestrator<br/>syncs official state]
+    A[AGK<br/>does specialist execution] --> O
+    O --> M[.gsd<br/>official project memory]
+    A --> T[.agent<br/>execution toolbox]
+```
+
+What this means:
+
+- GSD protects the project's official understanding
+- AGK gives the project practical execution power
+- the orchestrator keeps official state changes controlled
+- `.gsd/` stores trusted memory while `.agent/` stores execution support
+
 ### GSD
 
 **GSD** is the governance side.

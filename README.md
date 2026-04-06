@@ -25,6 +25,30 @@ Start with one of these paths:
 
 If you are non-technical or just want the simple version first, read `APW for Beginners` before the deeper docs.
 
+## APW In One Picture
+
+```mermaid
+flowchart LR
+    A[Human or compatible tool] --> B[Root AGENTS.md]
+    B --> C[Core APW docs]
+    C --> D[.gsd official memory]
+    C --> E[.agent execution toolbox]
+    E --> F[Scoped execution work]
+    F --> G[JOURNAL evidence]
+    G --> H[Orchestrator sync]
+    H --> D
+    D --> I[Validate and CI]
+```
+
+What this means:
+
+- start from `AGENTS.md`
+- route into the real APW contract
+- use `.agent/` to do the work
+- keep official state in `.gsd/`
+- record bounded evidence, then let the orchestrator sync canonical state
+- use validation and CI to keep the repo healthy
+
 ## What APW Is
 
 APW is a framework for running software projects with humans and AI agents in a way that stays organized over time.

@@ -34,6 +34,36 @@ If your downstream repo uses `base` or `minimal`, keep the same operator logic, 
 | "I am preparing a release." | `/deploy` | `@devops-engineer` | orchestrator sync |
 | "This task is too large or crosses multiple areas." | `/orchestrate` | `@orchestrator` | orchestrator-managed execution and sync |
 
+```mermaid
+flowchart TD
+    A[What do you need right now?] --> B{Returning after time away?}
+    B -->|Yes| S[/status/]
+    B -->|No| C{Still shaping the idea?}
+    C -->|Yes| BR[/brainstorm/]
+    C -->|No| D{Building something new?}
+    D -->|Yes| CR[/create/]
+    D -->|No| E{Improving existing work?}
+    E -->|Yes| EN[/enhance/]
+    E -->|No| F{Something broken?}
+    F -->|Yes| DE[/debug/]
+    F -->|No| G{Need proof or coverage?}
+    G -->|Yes| T[/test/]
+    G -->|No| H{Need frontend structure?}
+    H -->|Yes| DS[/design/]
+    H -->|No| I{Need UI polish?}
+    I -->|Yes| UI[/ui-ux-pro-max/]
+    I -->|No| J{Need review or release prep?}
+    J -->|Review| PR[/preview/]
+    J -->|Release| DP[/deploy/]
+    J -->|Big or cross-cutting| OR[/orchestrate/]
+```
+
+What this means:
+
+- start by naming the kind of problem you have
+- choose the workflow that matches that problem
+- escalate to `/orchestrate` when one clean direct workflow is no longer enough
+
 ## Beginner decision paths
 
 ### I am returning after time away
