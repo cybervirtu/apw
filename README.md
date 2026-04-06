@@ -13,17 +13,18 @@ Together, they give you the short version, then send you through the docs in a b
 
 ## New Here?
 
-Start with one of these paths:
+Choose the path that matches what you need:
 
-- [APW for Beginners](docs/APW_FOR_BEGINNERS.md): the plain-English introduction for first-time readers.
-- [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md): diagrams that show how the system fits together.
-- [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md): the beginner journey from rough idea to a structured APW project.
-- [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md): help choosing a likely stack direction and APW profile without overcomplicating it.
-- [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md): relatable project examples that show how APW would guide a real build.
-- [Quick Start](docs/QUICK_START.md): the fastest safe path if you want to try APW on a real repo.
-- [How APW Works](docs/HOW_APW_WORKS.md): the next layer once the basics click.
-
-If you are non-technical or just want the simple version first, read `APW for Beginners` before the deeper docs.
+- I am new and want the guided beginner path:
+  [APW for Beginners](docs/APW_FOR_BEGINNERS.md) -> [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md) -> [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md) -> [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md) -> [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
+- I want one page that maps the beginner journey:
+  [START_HERE.md](docs/START_HERE.md)
+- I want to start a real project now:
+  [Quick Start](docs/QUICK_START.md)
+- I want to learn how to operate APW workflows:
+  [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+- I want the deeper framework explanation:
+  [How APW Works](docs/HOW_APW_WORKS.md) -> [APW Handbook](docs/APW_HANDBOOK.md)
 
 ## APW In One Picture
 
@@ -175,25 +176,21 @@ And when there is a conflict:
 
 ## 🚀 Quick Start
 
-### Start Here
+### Recommended Reading Order
 
-Follow this order:
+If you want the smoothest beginner path, follow this order:
 
 1. [APW for Beginners](docs/APW_FOR_BEGINNERS.md)
 2. [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)
 3. [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
 4. [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
 5. [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
-6. [Start Here](docs/START_HERE.md)
-7. [Quick Start](docs/QUICK_START.md)
-8. [How APW Works](docs/HOW_APW_WORKS.md)
-9. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
-10. [Visual Diagrams](docs/DIAGRAMS.md)
-11. [Features and Modes](docs/FEATURES_AND_MODES.md)
-12. [Common Workflows](docs/COMMON_WORKFLOWS.md)
-13. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
-14. Team / migration / CI docs as needed
-15. [FAQ](docs/FAQ.md)
+6. [Quick Start](docs/QUICK_START.md)
+7. [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
+8. [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
+9. [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+
+If you want the map for that path in one place, read [START_HERE.md](docs/START_HERE.md).
 
 ### Fastest Safe Path
 
@@ -217,6 +214,16 @@ If you want the practical "how do I actually drive work?" layer, start here:
 - [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 
 These guides explain which command to use, when to use it, which agent to pair with it, what it should read first, and when orchestrator handoff is required.
+
+### Technical And Reference Docs
+
+If you already understand the beginner path and need the framework rules directly, start here:
+
+- [How APW Works](docs/HOW_APW_WORKS.md)
+- [APW Handbook](docs/APW_HANDBOOK.md)
+- [Compatibility Model](docs/COMPATIBILITY_MODEL.md)
+- [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
+- [Features and Modes](docs/FEATURES_AND_MODES.md)
 
 ### For Maintaining the APW Standard
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).

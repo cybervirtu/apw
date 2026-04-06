@@ -1,13 +1,13 @@
 # START_HERE.md — Start Here
 
 > [!IMPORTANT]
-> This is the first document a new APW user should read.
+> Use this as the guided map for the beginner APW docs after you open the README.
 
 ## What this is
 
-This page is the front door to APW.
+This page is the guided map for APW.
 
-It explains, in plain language, what APW is, why people use it, and what to read next.
+It explains what to read first, what to read next, and where to branch depending on what you want to do.
 
 If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 `AGENTS.md` is the tool-facing entrypoint, and this page is the beginner-friendly human walkthrough.
@@ -18,7 +18,7 @@ APW has a real operating model behind it.
 
 If you jump straight into policy files, it can feel heavier than it really is.
 
-This page gives you the simple version first:
+This page gives you the simple version of the navigation:
 
 - APW is a way to keep AI-assisted software projects organized
 - it separates project memory from project execution
@@ -71,16 +71,45 @@ That gives you:
 - a log of evidence
 - CI checks that stop the workspace from drifting
 
-## Read this next
+## Recommended beginner path
 
-If you only have 10 minutes:
+If you are new, read these in order:
 
-1. Root `AGENTS.md`
-2. [QUICK_START.md](./QUICK_START.md)
-3. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
+1. [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md)
+2. [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md)
+3. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md)
+4. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
+5. [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md)
+6. [QUICK_START.md](./QUICK_START.md)
+
+This path answers:
+
+- what APW is
+- how it works
+- how an idea becomes a project
+- how to choose a likely profile and stack direction
+- what APW looks like on real project ideas
+- how to start safely
+
+## If you want to build now
+
+Go here next:
+
+1. [QUICK_START.md](./QUICK_START.md)
+2. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+3. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+4. [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+
+## If you want the deeper framework layer
+
+Go here next:
+
+1. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
+2. [APW_HANDBOOK.md](./APW_HANDBOOK.md)
+3. [COMPATIBILITY_MODEL.md](./COMPATIBILITY_MODEL.md)
 4. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
-5. [DIAGRAMS.md](./DIAGRAMS.md)
 
-If you want the full framework explanation after that:
+## What to read next
 
-- [APW_HANDBOOK.md](./APW_HANDBOOK.md)
+If you have not read it yet, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) first.
+If you already understand the plain-English intro, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) next.

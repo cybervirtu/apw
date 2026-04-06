@@ -244,9 +244,6 @@ That is usually much safer than trying to predict the final architecture on day 
 
 ## What to do next
 
-- Read [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) for the broad plain-English intro.
-- Read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md) for the full journey from idea to structured project.
-- Read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md) for stack-direction and profile selection help.
-- Read [QUICK_START.md](./QUICK_START.md) when you are ready to bootstrap a repo.
-- Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) when you are ready to drive work inside the project.
-- If you want deeper scenario-style APW behavior, also read [REAL_WORLD_SCENARIOS.md](./REAL_WORLD_SCENARIOS.md).
+- Read [QUICK_START.md](./QUICK_START.md) next if one of these examples feels close enough that you want to start a repo.
+- Then read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) and [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to learn how to drive work inside that repo.
+- If you want the beginner map again, read [START_HERE.md](./START_HERE.md).

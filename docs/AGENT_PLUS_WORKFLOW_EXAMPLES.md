@@ -345,3 +345,9 @@ If you are unsure which agent/workflow pair to use:
 
 1. start with `@orchestrator /status ...`
 2. then choose the specialist and workflow based on the actual job
+
+## What to read next
+
+- If you want the command-level rules behind these examples, read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
+- If you want the faster chooser for "which workflow now?", read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
+- If you want the full beginner map again, read [START_HERE.md](./START_HERE.md).

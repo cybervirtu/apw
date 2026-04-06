@@ -143,16 +143,19 @@ Read these next:
 
 ## 10. What to Read Next
 
-If APW makes sense so far, read:
+If the repo is bootstrapped and you want to keep moving:
 
-1. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
-2. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md)
-3. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
-4. [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md)
-5. [FEATURES_AND_MODES.md](./FEATURES_AND_MODES.md)
-6. [COMMON_WORKFLOWS.md](./COMMON_WORKFLOWS.md)
+1. Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right command.
+2. Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to understand what that command should read and produce.
+3. Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) to see the real invocation pattern.
 
-If you want the deeper explanation, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
+If you want more beginner context before doing that, go back to:
+
+1. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md)
+2. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
+3. [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md)
+
+If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
 
 ## 11. If You Only Remember Seven Things
 

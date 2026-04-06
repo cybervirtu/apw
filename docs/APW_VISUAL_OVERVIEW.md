@@ -144,11 +144,6 @@ If you only remember the diagrams loosely, remember this:
 
 ## Read next
 
-- For the plain-English beginner explanation, read [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md).
-- For the journey from idea to structured project start, read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md).
-- For choosing a likely stack direction and profile, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
-- For relatable project-by-project examples, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).
-- For the fastest safe hands-on path, read [QUICK_START.md](./QUICK_START.md).
-- For the next practical explanation layer, read [HOW_APW_WORKS.md](./HOW_APW_WORKS.md).
-- For a realistic walkthrough, read [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md).
-- For day-to-day usage once you are oriented, read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
+- Read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md) next to see how the system turns a rough idea into a structured project.
+- Then read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md) to choose a likely profile and stack direction.
+- If you want a map of the whole beginner path, read [START_HERE.md](./START_HERE.md).

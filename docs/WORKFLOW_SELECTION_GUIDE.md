@@ -224,3 +224,9 @@ A workflow usually ends in one of four ways:
 That is normal in APW.
 
 The execution workflow does not need to do everything itself.
+
+## What to read next
+
+- Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) next to see what each workflow should read, produce, and hand off.
+- Then read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) to see the real `@agent /workflow task` pattern in practice.
+- If you need the faster beginner map again, read [START_HERE.md](./START_HERE.md).

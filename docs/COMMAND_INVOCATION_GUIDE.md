@@ -795,3 +795,9 @@ Yes.
 ```text
 @orchestrator /orchestrate split reporting module work from TODO.md into backend, frontend, and tests
 ```
+
+## What to read next
+
+- Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) next to see how these workflows pair with real specialist agents.
+- If you are still not sure which workflow to choose, go back to [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
+- If you want the faster repo-start path, read [QUICK_START.md](./QUICK_START.md).

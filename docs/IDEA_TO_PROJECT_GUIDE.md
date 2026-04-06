@@ -516,10 +516,6 @@ If you want the one-minute answer:
 
 ## What to read next
 
-- For the broader beginner introduction, read [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md).
-- For the visual explanation layer, read [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md).
-- For stack-direction and profile help, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
-- For project-by-project examples, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).
-- For the fastest hands-on path, read [QUICK_START.md](./QUICK_START.md).
-- For day-to-day execution, read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
-- For workflow choice help, read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
+- Read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md) next if you still need help choosing a profile or stack direction.
+- Then read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md) to see what that path looks like on real project ideas.
+- When you are ready to start a repo, read [QUICK_START.md](./QUICK_START.md).

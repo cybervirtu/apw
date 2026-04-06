@@ -568,9 +568,6 @@ If you are unsure:
 
 ## What to do next
 
-- Read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md) to place stack choice inside the full idea-to-project journey.
-- Read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md) to see how these choices look on real project ideas.
-- Read [QUICK_START.md](./QUICK_START.md) when you are ready to bootstrap a real repo.
-- Read [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) if you want the broader APW introduction first.
-- Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) once implementation begins.
-- If you want deeper scenario-style APW behavior after that, read [REAL_WORLD_SCENARIOS.md](./REAL_WORLD_SCENARIOS.md).
+- Read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md) next to see how these choices look on projects that feel more real.
+- Then read [QUICK_START.md](./QUICK_START.md) when you are ready to bootstrap a repo.
+- Once the repo exists, read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right first workflow.

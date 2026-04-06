@@ -285,15 +285,10 @@ If you only remember five things, remember these:
 
 ## What should I read next?
 
-Choose the next step that matches you:
+The smoothest next step is:
 
-- If you want the simplest visual explanation, read [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md).
-- If you want the step-by-step journey from idea to structured project, read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md).
-- If you want help choosing a likely stack direction and APW profile, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
-- If you want to see what APW looks like on real project ideas, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).
-- If you want the fastest safe hands-on path, read [QUICK_START.md](./QUICK_START.md).
-- If you want the plain-English system explanation, read [HOW_APW_WORKS.md](./HOW_APW_WORKS.md).
-- If you want to see a realistic first run, read [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md).
-- If you want the deeper full explanation, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
+1. [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) if you want the system in pictures
+2. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md) if you want the journey from idea to structured project
+3. [START_HERE.md](./START_HERE.md) if you want the full beginner reading map in one place
 
 If you are using a compatible tool directly, root `AGENTS.md` is still the operational front door.
