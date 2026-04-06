@@ -11,7 +11,8 @@ This README is the human-facing front door.
 Root [AGENTS.md](AGENTS.md) is the zero-touch tool-facing front door.
 Together, they give you the short version, then send you through the docs in a beginner-friendly order.
 
-If you want a visual docs experience, APW now also includes an in-repo Nextra portal under [`website/`](website/README.md).
+If you want a visual docs experience, APW also includes an in-repo Nextra portal under [`website/`](website/README.md).
+The portal is the rendered docs experience, while the repo-root governance files and canonical docs under `docs/` remain the source of truth.
 
 ## New Here?
 
@@ -214,9 +215,15 @@ If you want the shortest path to using APW on a new project:
 If you want the rendered docs portal instead of reading Markdown files directly:
 
 1. Go to [`website/`](website/README.md)
-2. Run `npm install`
-3. Run `npm run dev`
+2. Run `npm install` inside `website/`
+3. Run `npm run dev` inside `website/`
 4. Open the local Nextra site and follow the guided beginner path
+
+Portal boundaries:
+
+- `website/` is the presentation layer for the docs experience
+- repo-root governance files and `docs/` remain canonical
+- portal pages should summarize, route, and improve discoverability without becoming a second governance source
 
 ### Operator Guides
 
