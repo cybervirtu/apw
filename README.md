@@ -19,6 +19,7 @@ Start with one of these paths:
 - [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md): diagrams that show how the system fits together.
 - [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md): the beginner journey from rough idea to a structured APW project.
 - [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md): help choosing a likely stack direction and APW profile without overcomplicating it.
+- [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md): relatable project examples that show how APW would guide a real build.
 - [Quick Start](docs/QUICK_START.md): the fastest safe path if you want to try APW on a real repo.
 - [How APW Works](docs/HOW_APW_WORKS.md): the next layer once the basics click.
 
@@ -158,16 +159,17 @@ Follow this order:
 2. [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)
 3. [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
 4. [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
-5. [Start Here](docs/START_HERE.md)
-6. [Quick Start](docs/QUICK_START.md)
-7. [How APW Works](docs/HOW_APW_WORKS.md)
-8. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
-9. [Visual Diagrams](docs/DIAGRAMS.md)
-10. [Features and Modes](docs/FEATURES_AND_MODES.md)
-11. [Common Workflows](docs/COMMON_WORKFLOWS.md)
-12. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
-13. Team / migration / CI docs as needed
-14. [FAQ](docs/FAQ.md)
+5. [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
+6. [Start Here](docs/START_HERE.md)
+7. [Quick Start](docs/QUICK_START.md)
+8. [How APW Works](docs/HOW_APW_WORKS.md)
+9. [First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)
+10. [Visual Diagrams](docs/DIAGRAMS.md)
+11. [Features and Modes](docs/FEATURES_AND_MODES.md)
+12. [Common Workflows](docs/COMMON_WORKFLOWS.md)
+13. [Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)
+14. Team / migration / CI docs as needed
+15. [FAQ](docs/FAQ.md)
 
 ### Fastest Safe Path
 
@@ -241,6 +243,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)**: A diagram-first view of the APW system and workflow.
 - **[Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)**: A practical beginner journey from rough idea to structured project start.
 - **[Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing a likely stack direction and APW profile.
+- **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: Relatable project examples that show how APW would guide real builds.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.
