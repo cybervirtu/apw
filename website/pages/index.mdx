@@ -31,7 +31,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     </div>
     <div className="apw-trust-card">
       <h3>Project-centric day to day</h3>
-      <p>Create from APW, work in the downstream project root, and use explicit helpers when you need to switch context safely.</p>
+      <p>Create from APW into a sibling downstream repo by default, work in the downstream project root, and use explicit helpers when you need to switch context safely.</p>
     </div>
     <div className="apw-trust-card">
       <h3>Safe framework evolution</h3>
@@ -41,6 +41,10 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
 
   <Callout type="info" emoji="🧭">
     The portal is the polished presentation layer. The canonical APW rules still live in the repo-root governance files and the source docs under <code>docs/</code>.
+  </Callout>
+
+  <Callout type="info" emoji="📁">
+    Project creation is workspace-aware: from APW root, <code>apw new</code> creates the new repo beside <code>apw</code>, not inside it. Use <code>--target</code> only when you want a different parent location explicitly.
   </Callout>
 
   <section className="apw-section">

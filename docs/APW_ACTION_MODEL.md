@@ -137,6 +137,13 @@ Engine:
 /path/to/apw/apw new MyProject --profile base --stack base
 ```
 
+Default destination rule:
+
+- from APW root, APW creates the new repo in the parent workspace beside `apw`
+- from the workspace parent, APW creates the new repo in the current folder
+- from a downstream project, APW creates the new repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location explicitly
+
 ### 2. APW: First Run
 
 Use this when:

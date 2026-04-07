@@ -179,6 +179,13 @@ Use this when you want to:
 - decide which project to open next
 - create a new project from a clean launch point
 
+Default project-creation rule:
+
+- from APW root, `apw new` creates the new repo in the workspace parent beside `apw`
+- from the workspace parent, `apw new` creates the new repo in the current folder
+- from a downstream project, `apw new` creates the new repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location
+
 ## Upgrade an existing downstream project safely
 
 If APW itself has changed and you want one downstream repo to receive those APW-managed updates, you can launch the upgrade helper explicitly from APW root, the workspace parent, or another convenient location:
@@ -233,6 +240,8 @@ If you feel lost:
 ## The practical rule
 
 Create projects from APW.
+
+When you run `apw new` from APW root, the new downstream repo belongs beside `apw`, not inside it.
 
 Move between repos with explicit helpers.
 

@@ -134,6 +134,13 @@ These examples use the APW-root form.
 ./apw new MyProject --profile base --stack base
 ```
 
+Default destination policy:
+
+- from APW root, APW creates the repo in the parent workspace beside `apw`
+- from the workspace parent, APW creates the repo in the current folder
+- from a downstream project, APW creates the repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location
+
 ### Create a new project in a specific workspace and initialize state
 
 ```bash

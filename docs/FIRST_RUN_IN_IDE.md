@@ -96,6 +96,15 @@ If that shows you are in APW root or the workspace parent folder, recover with:
   /path/to/apw/apw switch project <name>
   ```
 
+If the project does not exist yet, create it with:
+
+```bash
+/path/to/apw/apw new MyProject --profile base --stack base
+```
+
+From APW root, that command creates `/path/to/workspace/MyProject` beside `apw` by default.
+Use `--target /path/to/parent` only when you want a different parent location explicitly.
+
 ### 2. Read `AGENTS.md`
 
 Read `AGENTS.md` first.

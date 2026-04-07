@@ -33,6 +33,13 @@ Terminal fallback from the APW root:
 ./apw new MyProject --profile base --stack base
 ```
 
+Default destination policy:
+
+- from APW root, APW creates the new repo in the parent workspace beside `apw`
+- from the workspace parent, APW creates the new repo in the current folder
+- from a downstream project, APW creates the new repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location
+
 If you want to choose the parent directory explicitly:
 
 ```bash
@@ -42,6 +49,7 @@ If you want to choose the parent directory explicitly:
 Done looks like:
 
 - APW creates the downstream repo
+- APW prints the resolved parent and final destination before bootstrap
 - validation runs
 - the new repo contains `AGENTS.md`, `.gsd/`, and `.agent/`
 

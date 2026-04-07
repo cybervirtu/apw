@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 BOOTSTRAP_SCRIPT="$APW_ROOT/scripts/bootstrap.sh"
 VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
 INIT_STATE_SCRIPT="$APW_ROOT/scripts/init-project-state.sh"
@@ -52,6 +52,11 @@ What it does:
 
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
+  - Default new-project destination is workspace-aware:
+    - from APW root, create the project in the parent workspace beside apw
+    - from the workspace parent, create the project in the current folder
+    - from a downstream project, create the project as a sibling in the same workspace parent
+    - use --target to override the parent location explicitly
   - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
   - upgrade-project protects project-owned .gsd memory and code by default.
   - Switch helpers are explicit and visible. They print where to go next; they do not silently mutate your shell context.
@@ -96,6 +101,10 @@ default_workspace_parent() {
     dirname "$APW_ROOT"
 }
 
+NEW_PROJECT_TARGET_PARENT=""
+NEW_PROJECT_TARGET_CONTEXT=""
+NEW_PROJECT_TARGET_REASON=""
+
 resolve_existing_path() {
     local input_path="${1:-.}"
 
@@ -127,6 +136,52 @@ resolve_workspace_parent() {
     fi
 
     printf '%s\n' "$resolved_path"
+}
+
+resolve_new_project_target_parent() {
+    local explicit_target="${1:-}"
+    local current_path="${2:-}"
+    local downstream_root=""
+
+    NEW_PROJECT_TARGET_PARENT=""
+    NEW_PROJECT_TARGET_CONTEXT=""
+    NEW_PROJECT_TARGET_REASON=""
+
+    if [[ -n "$explicit_target" ]]; then
+        NEW_PROJECT_TARGET_PARENT="$explicit_target"
+        NEW_PROJECT_TARGET_CONTEXT="explicit-target"
+        NEW_PROJECT_TARGET_REASON="Using the parent directory supplied with --target."
+        return 0
+    fi
+
+    if [[ -z "$current_path" ]]; then
+        current_path="$(pwd -P)"
+    fi
+
+    if [[ "$current_path" == "$APW_ROOT" || "$current_path" == "$APW_ROOT"/* ]]; then
+        NEW_PROJECT_TARGET_PARENT="$(default_workspace_parent)"
+        NEW_PROJECT_TARGET_CONTEXT="apw-root"
+        NEW_PROJECT_TARGET_REASON="Current context is APW root, so new downstream projects default to the parent workspace as siblings of apw."
+        return 0
+    fi
+
+    if downstream_root="$(find_downstream_root "$current_path" 2>/dev/null)"; then
+        NEW_PROJECT_TARGET_PARENT="$(dirname "$downstream_root")"
+        NEW_PROJECT_TARGET_CONTEXT="downstream-project"
+        NEW_PROJECT_TARGET_REASON="Current context is a downstream project, so new downstream projects default to the same workspace parent as sibling repos."
+        return 0
+    fi
+
+    if [[ "$current_path" == "$(default_workspace_parent)" ]]; then
+        NEW_PROJECT_TARGET_PARENT="$current_path"
+        NEW_PROJECT_TARGET_CONTEXT="workspace-parent"
+        NEW_PROJECT_TARGET_REASON="Current context is the workspace parent, so the new downstream project defaults to a child of the current folder."
+        return 0
+    fi
+
+    NEW_PROJECT_TARGET_PARENT="$current_path"
+    NEW_PROJECT_TARGET_CONTEXT="general-folder"
+    NEW_PROJECT_TARGET_REASON="Current context is outside the APW workspace model, so APW uses the current directory as the parent. Use --target to choose a different location explicitly."
 }
 
 is_downstream_project_root() {
@@ -709,11 +764,14 @@ run_new() {
     local project_name="${1:-}"
     local profile="base"
     local stack="base"
-    local target_parent="."
+    local target_parent=""
     local force=0
     local skip_validate=0
     local init_state=0
     local project_root=""
+    local creation_context=""
+    local creation_reason=""
+    local current_path=""
 
     ensure_safe_project_name "$project_name"
     shift || true
@@ -763,8 +821,14 @@ run_new() {
     require_script "$VALIDATE_SCRIPT"
     require_script "$INIT_STATE_SCRIPT"
 
+    current_path="$(pwd -P)"
+    resolve_new_project_target_parent "$target_parent" "$current_path"
+    target_parent="$NEW_PROJECT_TARGET_PARENT"
+    creation_context="$NEW_PROJECT_TARGET_CONTEXT"
+    creation_reason="$NEW_PROJECT_TARGET_REASON"
+
     mkdir -p "$target_parent"
-    target_parent="$(cd "$target_parent" && pwd)"
+    target_parent="$(cd "$target_parent" && pwd -P)"
     project_root="$target_parent/$project_name"
 
     if [[ -e "$project_root" && ! -d "$project_root" ]]; then
@@ -784,9 +848,14 @@ run_new() {
 
     echo "APW workspace-friendly project creation"
     echo "Project: $project_name"
-    echo "Location: $project_root"
+    echo "Current context: $current_path"
+    echo "Destination policy: $creation_context"
+    echo "Resolved parent: $target_parent"
+    echo "Resolved destination: $project_root"
+    echo "Reason: $creation_reason"
     echo "Profile: $profile"
     echo "Stack: $stack"
+    echo "Override: use --target /path/to/parent for a different location."
     echo
 
     if [[ $force -eq 1 ]]; then

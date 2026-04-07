@@ -132,6 +132,13 @@ What to do:
 /path/to/apw/apw new MyProject --profile base --stack base
 ```
 
+Default destination policy:
+
+- from APW root, APW creates the repo in the parent workspace beside `apw`
+- from the workspace parent, APW creates the repo in the current folder
+- from a downstream project, APW creates the repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location
+
 Why it matters:
 
 - This is the easiest way to create a new APW project without manually creating the directory, switching context, and wiring bootstrap and validation together yourself.
@@ -139,6 +146,7 @@ Why it matters:
 Done looks like:
 
 - The new project directory exists and already contains `AGENTS.md`, `.gsd/`, and `.agent/`.
+- APW prints the resolved parent and exact destination before creation.
 - The wrapper tells you exactly where the project was created.
 - You know that the new downstream project root is now the normal place to work.
 - You know you can recover later with `apw list-projects` and `apw switch project <name>` if you lose track of the right repo.

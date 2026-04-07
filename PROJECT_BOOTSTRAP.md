@@ -7,6 +7,9 @@
 > For brand-new project creation, APW also provides the workspace-friendly `apw new` wrapper at repo root. That wrapper calls `bootstrap.sh` underneath and does not replace this contract.
 
 > [!TIP]
+> `apw new` uses a workspace-aware default parent before calling `bootstrap.sh`: from APW root it creates the new repo in the parent workspace beside `apw`, from the workspace parent it creates in the current folder, and from a downstream project it creates a sibling repo in the same workspace parent. Use `--target` to override that parent location explicitly.
+
+> [!TIP]
 > For existing downstream repos, prefer `apw upgrade-project` first. It adds preview mode and a safer review boundary for APW-managed files while preserving this bootstrap contract underneath.
 
 ## 1. Canonical Source

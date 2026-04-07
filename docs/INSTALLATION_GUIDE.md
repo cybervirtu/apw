@@ -147,3 +147,6 @@ Terminal fallback:
 ```bash
 ./apw new MyProject --profile base --stack base
 ```
+
+From APW root, that command creates `/path/to/workspace/MyProject` beside `apw` by default.
+Use `--target /path/to/parent` only when you want a different parent location explicitly.

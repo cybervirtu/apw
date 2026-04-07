@@ -73,6 +73,9 @@ Example:
 
 You start a new product repo, create it with `apw new`, move into the downstream project root, initialize the canonical `.gsd` files once, then let execution agents implement scoped work while an orchestrator syncs the official state when needed.
 
+When you launch `apw new` from APW root, APW creates the downstream repo in the parent workspace beside `apw` by default.
+Use `--target /path/to/parent` only when you want a different parent location explicitly.
+
 That gives you:
 
 - a clear roadmap

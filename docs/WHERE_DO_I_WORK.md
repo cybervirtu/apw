@@ -158,6 +158,13 @@ You can launch that from:
 - the workspace parent folder
 - any other convenient location
 
+Default destination policy:
+
+- from APW root, APW creates the repo in the parent workspace beside `apw`
+- from the workspace parent folder, APW creates the repo in the current folder
+- from a downstream project, APW creates the repo as a sibling in the same workspace parent
+- use `--target /path/to/parent` when you want a different parent location
+
 If you want to choose the parent location explicitly:
 
 ```bash
@@ -167,6 +174,7 @@ If you want to choose the parent location explicitly:
 What this means:
 
 - the command can be launched from many places
+- APW prints the resolved parent and final destination before bootstrap begins
 - the resulting repo is still the downstream project root
 - once the repo exists, that downstream project root becomes the normal place to work
 
