@@ -19,6 +19,8 @@ This guide is intentionally short.
 It tells you what to do first, why it matters, what "done" looks like, and where to go only if you need more help.
 
 For the explicit APW reading levels, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
+If you still need local setup steps first, read [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
+If you want the short first-use path after setup, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 
 ## Where you should normally work
 

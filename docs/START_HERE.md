@@ -13,6 +13,8 @@ If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 `AGENTS.md` is the tool-facing entrypoint, and this page is the beginner-friendly human walkthrough.
 
 If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
+If you want the setup path first, read [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
+If you want the shortest "what do I do after install?" path, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 If you want the one-minute command reference, read [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md).
 If you want the preferred chat-first and IDE-friendly action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
@@ -85,10 +87,12 @@ That gives you:
 
 Read these now:
 
-1. [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
-2. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
-3. [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
-4. [QUICK_START.md](./QUICK_START.md)
+1. [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md)
+2. [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md)
+3. [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
+4. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
+5. [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
+6. [QUICK_START.md](./QUICK_START.md)
 
 This level answers:
 
@@ -134,6 +138,8 @@ Optional next:
 ## What to read next
 
 If you want the shortest safe onboarding path, go to [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
+If you want the setup steps first, go to [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
+If you want the short first-use path after setup, go to [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 If you want the workspace/project context model in one page, go to [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) next.
 If you want the in-editor first-run path, go to [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md) next.
 If you want the explicit level map, go to [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).

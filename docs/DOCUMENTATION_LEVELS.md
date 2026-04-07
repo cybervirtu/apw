@@ -33,6 +33,8 @@ Read these now:
 
 - `AGENTS.md`
 - `COMMAND_CHEATSHEET.md`
+- `docs/INSTALLATION_GUIDE.md`
+- `docs/BASIC_USAGE_GUIDE.md`
 - `docs/BASIC_ONBOARDING_PROCEDURE.md`
 - `docs/FIRST_RUN_IN_IDE.md`
 - `docs/START_HERE.md`
@@ -119,36 +121,38 @@ What this level should answer:
 
 If you are brand new, this is enough:
 
-1. `AGENTS.md`
-2. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-3. `COMMAND_CHEATSHEET.md`
-4. `docs/FIRST_RUN_IN_IDE.md`
+1. `docs/INSTALLATION_GUIDE.md`
+2. `docs/BASIC_USAGE_GUIDE.md`
+3. `AGENTS.md`
+4. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+5. `COMMAND_CHEATSHEET.md`
+6. `docs/FIRST_RUN_IN_IDE.md`
 
 Optional next:
 
-5. `docs/QUICK_START.md`
-6. `docs/WHERE_DO_I_WORK.md`
-7. `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md`
+7. `docs/QUICK_START.md`
+8. `docs/WHERE_DO_I_WORK.md`
+9. `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md`
 
 Only if needed:
 
-8. `docs/WORKFLOW_SELECTION_GUIDE.md`
-9. `docs/COMMAND_INVOCATION_GUIDE.md`
-10. `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
+10. `docs/WORKFLOW_SELECTION_GUIDE.md`
+11. `docs/COMMAND_INVOCATION_GUIDE.md`
+12. `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
 
 Ignore for now:
 
-11. `PROJECT_RULES.md`
-12. `AGENT_SYSTEM.md`
-13. `COMMAND_POLICY.md`
-14. `docs/COMPATIBILITY_MODEL.md`
-15. `docs/CI_CD_ENFORCEMENT.md`
+13. `PROJECT_RULES.md`
+14. `AGENT_SYSTEM.md`
+15. `COMMAND_POLICY.md`
+16. `docs/COMPATIBILITY_MODEL.md`
+17. `docs/CI_CD_ENFORCEMENT.md`
 
 ## Documentation levels table
 
 | Level | Who it is for | Read this when | Typical docs |
 | :--- | :--- | :--- | :--- |
-| `Level 1 — Start now` | first-time users and beginners | you need the minimum safe path | `AGENTS.md`, `COMMAND_CHEATSHEET.md`, `BASIC_ONBOARDING_PROCEDURE.md`, `FIRST_RUN_IN_IDE.md`, `START_HERE.md`, `QUICK_START.md` |
+| `Level 1 — Start now` | first-time users and beginners | you need the minimum safe path | `AGENTS.md`, `COMMAND_CHEATSHEET.md`, `INSTALLATION_GUIDE.md`, `BASIC_USAGE_GUIDE.md`, `BASIC_ONBOARDING_PROCEDURE.md`, `FIRST_RUN_IN_IDE.md`, `START_HERE.md`, `QUICK_START.md` |
 | `Level 2 — Use APW better` | users already working in APW | you need guidance, not just orientation | workflow selection, switching, guided initialization, upgrade, persistence, examples |
 | `Level 3 — Deep reference` | maintainers, advanced users, reviewers | you need the real framework contract or internals | governance, compatibility, CI, template, upgrade, and architecture docs |
 

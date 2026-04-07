@@ -8,6 +8,8 @@ export default {
       pagination: false
     }
   },
+  'installation-guide': 'Installation Guide',
+  'basic-usage-guide': 'Basic Usage Guide',
   'documentation-levels': 'Documentation Levels',
   'basic-onboarding': 'Basic Onboarding',
   'apw-action-model': 'APW Action Model',

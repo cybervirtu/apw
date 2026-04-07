@@ -25,6 +25,8 @@ Choose the documentation level that matches where you are:
 
 Read these now:
 
+- [Installation Guide](docs/INSTALLATION_GUIDE.md)
+- [Basic Usage Guide](docs/BASIC_USAGE_GUIDE.md)
 - [Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)
 - [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
 - [START_HERE.md](docs/START_HERE.md)
@@ -283,7 +285,7 @@ And when there is a conflict:
 Use the APW levels instead of trying to read everything in one pass:
 
 1. Level 1 now:
-   [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md) -> [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) -> [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md)
+   [INSTALLATION_GUIDE.md](docs/INSTALLATION_GUIDE.md) -> [BASIC_USAGE_GUIDE.md](docs/BASIC_USAGE_GUIDE.md) -> [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md) -> [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) -> [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md)
 2. Level 2 next, only when needed:
    [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md) -> [WORKFLOW_SELECTION_GUIDE.md](docs/WORKFLOW_SELECTION_GUIDE.md) -> [COMMAND_INVOCATION_GUIDE.md](docs/COMMAND_INVOCATION_GUIDE.md)
 3. Level 3 later:
@@ -296,18 +298,18 @@ If you want the map for the Level 1 path, read [START_HERE.md](docs/START_HERE.m
 
 If you want the shortest path to using APW on a new project:
 
-1. Use `APW: Create Project`
-2. Let it bootstrap and validate the new repo
-3. Move into the downstream project root
-4. Open root `AGENTS.md` in the target repo
-5. Read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md)
-6. Keep [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) nearby if you want the command names fast
-7. Use `APW: Initialize Project State`
-8. Start work from `STATE.md` and `TODO.md`
-9. Log bounded evidence in `JOURNAL.md`
-10. Sync canonical state deliberately
-11. Turn on CI early
-12. When APW itself evolves later, use `APW: Preview Upgrade` before upgrading the repo
+1. Read [INSTALLATION_GUIDE.md](docs/INSTALLATION_GUIDE.md)
+2. Read [BASIC_USAGE_GUIDE.md](docs/BASIC_USAGE_GUIDE.md)
+3. Use `APW: Create Project`
+4. Let it bootstrap and validate the new repo
+5. Move into the downstream project root
+6. Open root `AGENTS.md` in the target repo
+7. Read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md)
+8. Keep [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) nearby if you want the command names fast
+9. Use `APW: Initialize Project State`
+10. Start work from `STATE.md` and `TODO.md`
+11. Log bounded evidence in `JOURNAL.md`
+12. Sync canonical state deliberately
 
 ### Visual Docs Portal
 
@@ -411,6 +413,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 ### Level 1 — Start Now
 
+- **[Installation Guide](docs/INSTALLATION_GUIDE.md)**: what you need installed and how to verify APW works locally
+- **[Basic Usage Guide](docs/BASIC_USAGE_GUIDE.md)**: shortest safe first-use path after APW is installed
 - **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: shortest safe first-use path
 - **[First Run In IDE](docs/FIRST_RUN_IN_IDE.md)**: what to do after opening a downstream project
 - **[Start Here](docs/START_HERE.md)**: guided map for the beginner journey

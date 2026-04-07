@@ -61,6 +61,8 @@ It should not force you to read the whole handbook before you can move.
 
 If you want the command names fast without opening multiple docs, keep [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md) nearby.
 If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
+If you have not installed APW locally yet, read [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
+If you want the short first-use path before this in-IDE step, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 
 ## First-run checklist
 
