@@ -11,6 +11,16 @@ It exists for the moment right after bootstrap, when a new user usually knows th
 
 Instead of asking you to open `SPEC.md`, `STACK.md`, `TODO.md`, `STATE.md`, and `ROADMAP.md` one by one, APW asks a short set of practical questions and writes a coherent first draft for you.
 
+APW's preferred beginner mental model for this is:
+
+- `APW: Initialize Project State`
+
+Chat-first forms can sound as simple as:
+
+- "Initialize this project."
+- "Initialize project state for this repo."
+- "Turn this project idea into the first `.gsd` drafts."
+
 ## When to use it
 
 Use this after:
@@ -37,6 +47,7 @@ That means:
 
 If you want the broader location model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want the short in-IDE checklist after initialization, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+If you want the broader chat-first and IDE-friendly action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 
 From the APW checkout, point the script at the bootstrapped target repo:
 

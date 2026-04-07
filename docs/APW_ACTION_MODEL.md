@@ -17,6 +17,22 @@ The goal is simple:
 - power users and automation still keep the terminal path
 - both paths must map to the same APW engine underneath
 
+## The first APW action layer
+
+For beginners, three APW actions matter most first:
+
+1. `APW: Create Project`
+2. `APW: Initialize Project State`
+3. `APW: First Run`
+
+These are the first APW actions users should think about before they think about raw terminal commands.
+
+Why:
+
+- they remove the highest-friction beginner steps
+- they map cleanly to the existing APW engine
+- they make APW easier to understand in chat-first and IDE-friendly environments
+
 ## What this means in practice
 
 For common APW tasks, the easiest user-facing path should be:
@@ -63,6 +79,16 @@ Preferred path:
 - chat request or IDE action first
 - terminal fallback second
 
+Chat-first forms:
+
+- "Create a project."
+- "Create a new APW project called MyProject."
+- "Create a base APW project in this workspace."
+
+Preferred IDE label:
+
+- `APW: Create Project`
+
 Engine:
 
 ```bash
@@ -74,6 +100,16 @@ Engine:
 Use this when:
 
 - you opened a downstream project and want the short next-step checklist
+
+Chat-first forms:
+
+- "Show me first-run guidance."
+- "Run first-run for this project."
+- "What should I do first in this repo?"
+
+Preferred IDE label:
+
+- `APW: First Run`
 
 Engine:
 
@@ -147,6 +183,16 @@ Use this when:
 
 - bootstrap is done but the core `.gsd` state still needs real first drafts
 
+Chat-first forms:
+
+- "Initialize this project."
+- "Initialize project state for this repo."
+- "Turn this project idea into the first `.gsd` drafts."
+
+Preferred IDE label:
+
+- `APW: Initialize Project State`
+
 Engine:
 
 ```bash
@@ -174,6 +220,7 @@ Examples:
 - "Run APW: First Run for this project."
 - "Show APW context for this repo."
 - "Create a new APW project called MyProject."
+- "Initialize this project."
 - "Upgrade this project from the latest APW, but preview first."
 
 The user should not need to remember raw flags first if the tool can map the request safely.
@@ -216,6 +263,7 @@ If a task has an APW action name, prefer that mental model first.
 Think:
 
 - "APW: Create Project"
+- "APW: Initialize Project State"
 - "APW: First Run"
 - "APW: Show Context"
 

@@ -42,6 +42,12 @@ Use this rule:
 
 That keeps APW easier for beginners without removing the existing command layer.
 
+For the first beginner layer, think in these actions:
+
+- `APW: Create Project`
+- `APW: Initialize Project State`
+- `APW: First Run`
+
 ## Before you begin
 
 You only need to know a few APW ideas to start:
@@ -114,7 +120,9 @@ If you need more help:
 
 What to do:
 
-- Use the workspace-friendly APW wrapper from wherever you are in the workspace.
+- Prefer the beginner-friendly action:
+  - `APW: Create Project`
+- Use the workspace-friendly APW wrapper as the terminal fallback from wherever you are in the workspace.
 
 ```bash
 /path/to/apw/apw new MyProject --profile base --stack base
@@ -169,6 +177,8 @@ If you need more help:
 
 What to do:
 
+- Prefer the beginner-friendly action:
+  - `APW: Initialize Project State`
 - Move into the downstream project root if you are not already there.
 - Run the guided APW project-state initializer after bootstrap and validation.
 
@@ -201,6 +211,8 @@ If you need more help:
 
 What to do:
 
+- If you are unsure what to do first after opening the repo, think:
+  - `APW: First Run`
 - Learn which APW command or workflow fits your first task instead of starting with vague prompting.
 - Run those project workflows from the downstream project root, not from APW root or the workspace parent folder.
 

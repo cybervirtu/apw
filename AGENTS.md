@@ -55,6 +55,12 @@ Use this simple APW rule:
 
 The action names and command mapping live in `docs/APW_ACTION_MODEL.md`.
 
+For the first beginner layer, keep these three actions in mind:
+
+- `APW: Create Project`
+- `APW: Initialize Project State`
+- `APW: First Run`
+
 ## Read Next
 
 Read the minimum next files, not everything at once:

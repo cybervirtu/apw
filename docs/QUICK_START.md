@@ -54,6 +54,12 @@ Use this order when possible:
 
 The terminal path still matters, but it is no longer the only mental model.
 
+For the first beginner layer, use these action names:
+
+- `APW: Create Project`
+- `APW: Initialize Project State`
+- `APW: First Run`
+
 ## 1. Choose a Profile
 
 Use this table:
@@ -75,7 +81,11 @@ Choose `base`, not `minimal`, because you want the full canonical lifecycle set 
 
 ## 2. Create the Repo From Anywhere
 
-The easiest path is the workspace-friendly wrapper:
+The easiest beginner path is:
+
+- `APW: Create Project`
+
+Terminal fallback:
 
 ```bash
 /path/to/apw/apw new MyProject --profile base --stack base
@@ -126,6 +136,10 @@ That is the modern APW entrypoint for Codex, Antigravity, and similarly compatib
 
 From there, follow the linked APW governance and handbook docs instead of treating `AGENTS.md` as a complete replacement for the framework.
 
+If you want the shortest next-step action instead of remembering the command, think:
+
+- `APW: First Run`
+
 If you lose track of the right folder later, recover with:
 
 ```bash
@@ -158,7 +172,9 @@ Before coding starts, do two things:
 1. Read:
    - [START_HERE.md](./START_HERE.md)
    - [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
-2. From the downstream project root, run the guided initializer to generate the first core project-state drafts:
+2. Prefer the action:
+   - `APW: Initialize Project State`
+   Terminal fallback:
 
 ```bash
 /path/to/apw/scripts/init-project-state.sh --target .

@@ -40,6 +40,8 @@ Choose the path that matches what you need:
   [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
 - I want the preferred chat/IDE action model instead of only raw terminal commands:
   [APW Action Model](docs/APW_ACTION_MODEL.md)
+- I want the three beginner APW actions first:
+  Create Project -> Initialize Project State -> First Run
 - I want the one-minute command reference:
   [Command Cheatsheet](COMMAND_CHEATSHEET.md)
 - I want to know what happens to `/brainstorm` results after the chat:
@@ -105,6 +107,12 @@ This means:
 - both paths still map to the same APW engine underneath
 
 For the canonical action catalog, read [docs/APW_ACTION_MODEL.md](docs/APW_ACTION_MODEL.md).
+
+For the first beginner layer, start with these three actions:
+
+- `APW: Create Project`
+- `APW: Initialize Project State`
+- `APW: First Run`
 
 ## Workspace Context Model
 

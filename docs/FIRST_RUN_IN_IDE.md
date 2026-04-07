@@ -23,6 +23,16 @@ APW's preferred interaction rule is:
 
 For the canonical action catalog, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 
+For this specific moment, the beginner-friendly action name is:
+
+- `APW: First Run`
+
+Chat-first forms can be as simple as:
+
+- "Show me first-run guidance."
+- "Run first-run for this project."
+- "What should I do first in this repo?"
+
 ## What file should I open first?
 
 Open:

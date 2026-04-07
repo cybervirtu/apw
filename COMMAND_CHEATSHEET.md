@@ -6,6 +6,12 @@
 > [!NOTE]
 > The preferred APW path is chat-first or IDE action first, then terminal fallback. For that model, read `docs/APW_ACTION_MODEL.md`.
 
+For the first beginner layer, start with:
+
+- `APW: Create Project`
+- `APW: Initialize Project State`
+- `APW: First Run`
+
 ## Quick rule
 
 - create projects from APW
