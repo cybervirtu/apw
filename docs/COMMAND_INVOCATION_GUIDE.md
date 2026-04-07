@@ -14,6 +14,21 @@ It explains how to drive real work in tools such as Antigravity, Codex, and Curs
 - what it should produce
 - when it should stop and hand work to the orchestrator
 
+## Workspace context note
+
+Use the commands in this guide from the downstream project root.
+
+That is the location where:
+
+- the project's `AGENTS.md` exists
+- the project's `.gsd/` memory exists
+- the project's local `.agent/workflows/` pack exists
+
+Use APW root for framework maintenance and workspace-level helper commands.
+Use the workspace parent folder mainly as an organizer or launch point.
+
+If you want the short beginner version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 ## Important scope note
 
 These core workflows are vendored into downstream `base` and `advanced` repos under `.agent/workflows/`.

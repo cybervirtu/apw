@@ -18,6 +18,17 @@ This guide is intentionally short.
 
 It tells you what to do first, why it matters, what "done" looks like, and where to go only if you need more help.
 
+## Where you should normally work
+
+Use this quick rule:
+
+- create new projects from anywhere with `apw new`
+- do day-to-day project work inside the downstream project root
+- use APW root mainly when you are maintaining APW itself
+- treat the workspace parent folder as an organizer, not the normal place for project workflows
+
+If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 ## Before you begin
 
 You only need to know a few APW ideas to start:
@@ -104,6 +115,7 @@ Done looks like:
 
 - The new project directory exists and already contains `AGENTS.md`, `.gsd/`, and `.agent/`.
 - The wrapper tells you exactly where the project was created.
+- You know that the new downstream project root is now the normal place to work.
 
 If you need more help:
 
@@ -136,6 +148,7 @@ If you need more help:
 
 What to do:
 
+- Move into the downstream project root if you are not already there.
 - Run the guided APW project-state initializer after bootstrap and validation.
 
 ```bash
@@ -168,6 +181,7 @@ If you need more help:
 What to do:
 
 - Learn which APW command or workflow fits your first task instead of starting with vague prompting.
+- Run those project workflows from the downstream project root, not from APW root or the workspace parent folder.
 
 Why it matters:
 
@@ -257,6 +271,7 @@ You are in a good starting place if you can say:
 Use only the next doc you need:
 
 - If you want the workspace-friendly creation command details, read [QUICK_START.md](./QUICK_START.md).
+- If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 - If you need help choosing a project type, read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md).
 - If you need help choosing a stack or profile, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
 - If you want relatable examples, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).

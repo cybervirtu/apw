@@ -3,6 +3,16 @@
 > [!IMPORTANT]
 > This guide defines what a downstream repository must do on day 1 to adopt APW safely and use it without drifting away from the standard.
 
+## Workspace context in one view
+
+| Location | Role | Typical Actions | Avoid Doing Here |
+| :--- | :--- | :--- | :--- |
+| `APW root` | framework source and maintenance repo | maintain APW itself; run `apw new`; run bootstrap, validation, or guided initialization against target repos | normal downstream product implementation |
+| `downstream project root` | the real repo being built | open your IDE here; run project workflows here; maintain code and `.gsd` state here | treating it as the source of APW framework updates |
+| `workspace parent folder` | organizer for APW plus sibling projects | launch `apw new`; keep multiple repos side by side | normal project slash workflows |
+
+For the beginner version of this model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 ## 1. Choose the Right Profile
 
 Use the smallest profile that still matches the repo's operating needs:
@@ -46,6 +56,10 @@ For `base` and `advanced`, also confirm that the core downstream commands are pr
 - `/orchestrate`
 
 Do not begin normal implementation work until those steps are complete.
+
+The practical day-to-day rule is simple:
+
+- once the downstream repo exists, do normal project work there
 
 ## 3. Mandatory Files and Paths
 

@@ -12,6 +12,20 @@ If you are unsure, start with:
 
 That is the safest default.
 
+## Workspace context note
+
+These workflow choices are for normal project work inside a downstream project root.
+
+That means:
+
+- open the downstream project in your IDE
+- start from that repo's `AGENTS.md`
+- run project workflows there
+
+Do not treat APW root or the workspace parent folder as the normal home for these project workflows.
+
+If you want the location model in one page, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 ## Important scope note
 
 These are the standard APW execution workflows vendored into downstream `base` and `advanced` repos as the shared core command pack.

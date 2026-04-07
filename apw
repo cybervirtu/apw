@@ -11,6 +11,7 @@ usage() {
     cat <<EOF
 Usage:
   $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
+  $0 context [path]
   $0 help
 
 Examples:
@@ -18,12 +19,15 @@ Examples:
   $0 new ProjectB --profile advanced --stack base
   $0 new ProjectC --target /path/to/MyWork
   $0 new ProjectD --target /path/to/MyWork --init-state
+  $0 context
+  $0 context /path/to/MyWork/ProjectA
 
 What it does:
   - creates a new project directory under the chosen target location
   - runs the canonical bootstrap flow underneath
   - runs validation by default
   - can optionally launch guided project-state initialization
+  - explains whether a path is APW root, a downstream project root, or a workspace/general folder
 
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
@@ -63,6 +67,116 @@ directory_is_empty() {
     fi
 
     return 0
+}
+
+resolve_existing_path() {
+    local input_path="${1:-.}"
+
+    if [[ ! -e "$input_path" ]]; then
+        echo "Error: Path does not exist: $input_path"
+        exit 1
+    fi
+
+    if [[ -d "$input_path" ]]; then
+        (cd "$input_path" && pwd -P)
+    else
+        (cd "$(dirname "$input_path")" && printf '%s/%s\n' "$(pwd -P)" "$(basename "$input_path")")
+    fi
+}
+
+find_downstream_root() {
+    local start_path="$1"
+    local current="$start_path"
+
+    if [[ -f "$start_path" ]]; then
+        current="$(dirname "$start_path")"
+    fi
+
+    while [[ "$current" != "/" ]]; do
+        if [[ -f "$current/AGENTS.md" && -d "$current/.gsd" && -d "$current/.agent" && -f "$current/PROJECT_RULES.md" ]]; then
+            if [[ "$current" != "$APW_ROOT" ]]; then
+                printf '%s\n' "$current"
+                return 0
+            fi
+        fi
+
+        current="$(dirname "$current")"
+    done
+
+    return 1
+}
+
+run_context() {
+    local input_path="${1:-.}"
+    local resolved_path=""
+    local downstream_root=""
+
+    resolved_path="$(resolve_existing_path "$input_path")"
+
+    echo "APW context check"
+    echo "Path: $resolved_path"
+    echo
+
+    if [[ "$resolved_path" == "$APW_ROOT" ]]; then
+        echo "Context: APW root"
+        echo "Role: framework source, templates, bootstrap/validation engine, and APW maintenance"
+        echo "Typical actions:"
+        echo "- maintain APW docs, templates, scripts, and workflows"
+        echo "- run apw wrapper commands"
+        echo "- bootstrap, validate, or initialize downstream repos by target path"
+        echo "Avoid doing here:"
+        echo "- day-to-day product implementation for a downstream project"
+        echo "- treating the APW repo itself as the place where project slash workflows normally belong"
+        return 0
+    fi
+
+    if [[ "$resolved_path" == "$APW_ROOT"/* ]]; then
+        echo "Context: inside APW root"
+        echo "APW root: $APW_ROOT"
+        echo "Role: framework maintenance area"
+        echo "Typical actions:"
+        echo "- edit APW framework files"
+        echo "- maintain docs, templates, scripts, or compatibility material"
+        echo "Avoid doing here:"
+        echo "- normal downstream project implementation"
+        echo "- assuming this directory is a downstream project root just because it contains APW files"
+        return 0
+    fi
+
+    if downstream_root="$(find_downstream_root "$resolved_path")"; then
+        if [[ "$resolved_path" == "$downstream_root" ]]; then
+            echo "Context: downstream project root"
+            echo "Role: normal day-to-day project work happens here"
+            echo "Typical actions:"
+            echo "- open your IDE here"
+            echo "- start from AGENTS.md here"
+            echo "- run project slash workflows here"
+            echo "- edit code, tests, docs, and project-local .gsd/.agent materials here"
+            echo "Avoid doing here:"
+            echo "- editing the APW framework itself unless you intentionally mean to work on APW"
+            echo "- assuming this repo is the source of APW templates or validators"
+        else
+            echo "Context: inside a downstream project"
+            echo "Downstream project root: $downstream_root"
+            echo "Role: project subtree"
+            echo "Typical actions:"
+            echo "- work on files in this subtree"
+            echo "- move back to the project root when you need AGENTS.md, .gsd context, or workflow entry"
+            echo "Avoid doing here:"
+            echo "- forgetting that APW slash workflows and repo-wide context normally start from the downstream project root"
+        fi
+        return 0
+    fi
+
+    echo "Context: workspace parent or general folder"
+    echo "Role: organizer or launch point"
+    echo "Typical actions:"
+    echo "- create a new project with: $0 new MyProject --profile base --stack base"
+    echo "- keep APW and multiple downstream repos side by side"
+    echo "- navigate into a downstream project root before normal project work"
+    echo "Avoid doing here:"
+    echo "- running day-to-day project slash workflows here"
+    echo "- treating this folder as the canonical home of project state unless a specific tool explicitly supports it"
 }
 
 run_new() {
@@ -173,10 +287,10 @@ run_new() {
 
     if [[ $init_state -eq 0 ]]; then
         echo "3. Run: $INIT_STATE_SCRIPT --target \"$project_root\""
-        echo "4. Start work from .gsd/STATE.md and .gsd/TODO.md"
+        echo "4. Start day-to-day work from the downstream project root, especially .gsd/STATE.md and .gsd/TODO.md"
     else
         echo "3. Review the generated core .gsd drafts once"
-        echo "4. Start work from .gsd/STATE.md and .gsd/TODO.md"
+        echo "4. Start day-to-day work from the downstream project root, especially .gsd/STATE.md and .gsd/TODO.md"
     fi
 }
 
@@ -186,6 +300,10 @@ case "$command" in
     new)
         shift
         run_new "${1:-}" "${@:2}"
+        ;;
+    context)
+        shift
+        run_context "${1:-.}"
         ;;
     help|-h|--help)
         usage

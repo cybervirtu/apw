@@ -27,6 +27,16 @@ Use it before:
 
 ## How to run it
 
+This helper writes state for a downstream project.
+
+That means:
+
+- APW root supplies the script
+- the downstream project is the target
+- after generation, normal work continues in the downstream project root
+
+If you want the broader location model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 From the APW checkout, point the script at the bootstrapped target repo:
 
 ```bash

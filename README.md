@@ -31,6 +31,8 @@ Choose the path that matches what you need:
   [Quick Start](docs/QUICK_START.md)
 - I want the easiest way to create a new APW project from anywhere:
   run `/path/to/apw/apw new MyProject --profile base --stack base`
+- I want to understand where I should actually work:
+  [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:
@@ -72,6 +74,24 @@ It gives you:
 - bootstrap and validation scripts
 - rules for how execution work and canonical project state should interact
 - CI enforcement so the workspace does not slowly drift
+
+## Workspace Context Model
+
+APW uses one simple operating model across the workspace:
+
+| Location | Role | Typical Actions | Avoid Doing Here |
+| :--- | :--- | :--- | :--- |
+| `APW root` | framework source and maintenance repo | maintain APW docs, templates, scripts, workflows, and compatibility material; run `apw new`; run bootstrap, validation, or initialization against target repos | normal downstream project implementation |
+| `downstream project root` | the real project you are building | open your IDE here; start from `AGENTS.md`; run slash workflows here; edit code and `.gsd` state here | treating it as the source of APW framework templates or validators |
+| `workspace parent folder` | organizer for APW plus multiple projects | launch `apw new`; organize sibling repos; move into the project you actually want to work on | day-to-day project workflows unless a helper explicitly supports it |
+
+The practical rule is straightforward:
+
+- create projects from anywhere with `apw new`
+- do normal project work in the downstream project root
+- use APW root when you intentionally mean to maintain APW itself
+
+If you want the fuller beginner explanation, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
 
 ## One Framework, Two Tool Paths
 
@@ -203,6 +223,7 @@ If you want the smoothest beginner path, follow this order:
 If you want the map for that path in one place, read [START_HERE.md](docs/START_HERE.md).
 If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md).
 If you want APW to turn a plain-language brief into the first core `.gsd` drafts, read [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md).
+If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
 
 ### Fastest Safe Path
 
@@ -210,12 +231,13 @@ If you want the shortest path to using APW on a new project:
 
 1. Run `apw new` from anywhere in the workspace
 2. Let it bootstrap and validate the new repo
-3. Open root `AGENTS.md` in the target repo
-4. Run the guided project-state initializer
-5. Start work from `STATE.md` and `TODO.md`
-6. Log bounded evidence in `JOURNAL.md`
-7. Sync canonical state deliberately
-8. Turn on CI early
+3. Move into the downstream project root
+4. Open root `AGENTS.md` in the target repo
+5. Run the guided project-state initializer
+6. Start work from `STATE.md` and `TODO.md`
+7. Log bounded evidence in `JOURNAL.md`
+8. Sync canonical state deliberately
+9. Turn on CI early
 
 ### Visual Docs Portal
 
@@ -326,6 +348,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: Relatable project examples that show how APW would guide real builds.
 - **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: Shortest safe first-use path for a brand-new APW user.
 - **[Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)**: The plain-language helper that generates the first drafts of the core `.gsd` files.
+- **[Where Do I Work?](docs/WHERE_DO_I_WORK.md)**: The beginner-friendly workspace context model for APW root, downstream project root, and workspace parent folders.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.

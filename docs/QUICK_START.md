@@ -27,6 +27,18 @@ Use this for:
 
 If you are migrating an existing repo, use this together with the migration docs, not instead of them.
 
+## Workspace context first
+
+Before you do anything else, keep this model in mind:
+
+| Location | Use It For | Avoid |
+| :--- | :--- | :--- |
+| `APW root` | framework maintenance, templates, bootstrap/validation engine, `apw new` | day-to-day downstream project work |
+| `downstream project root` | normal project work, `AGENTS.md`, slash workflows, `.gsd` state, code changes | treating it as the source of APW framework updates |
+| `workspace parent folder` | organizing APW plus multiple projects, launching `apw new` | normal project workflows |
+
+If you want the fuller guide, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+
 ## 1. Choose a Profile
 
 Use this table:
@@ -93,7 +105,7 @@ It confirms:
 
 ## 4. Start From `AGENTS.md`
 
-After project creation and validation, open root `AGENTS.md` in the target repo.
+After project creation and validation, move into the downstream project root and open root `AGENTS.md` there.
 
 That is the modern APW entrypoint for Codex, Antigravity, and similarly compatible tooling.
 
@@ -116,7 +128,7 @@ Before coding starts, do two things:
 1. Read:
    - [START_HERE.md](./START_HERE.md)
    - [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
-2. Run the guided initializer to generate the first core project-state drafts:
+2. From the downstream project root, run the guided initializer to generate the first core project-state drafts:
 
 ```bash
 /path/to/apw/scripts/init-project-state.sh --target .
@@ -170,6 +182,7 @@ If the repo exists and you want to keep moving:
 1. Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right command.
 2. Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to understand what that command should read and produce.
 3. Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) to see the real invocation pattern.
+4. Read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) if you want the workspace/project context model in one place.
 
 If you want more beginner context before doing that, go back to:
 
@@ -179,7 +192,7 @@ If you want more beginner context before doing that, go back to:
 
 If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
 
-## 11. If You Only Remember Seven Things
+## 11. If You Only Remember Eight Things
 
 1. Use `base` unless you have a reason not to.
 2. Bootstrap and validate with the same profile.
@@ -188,3 +201,4 @@ If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md
 5. Keep `.gsd` as the canonical memory layer.
 6. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
 7. Turn on CI before the repo starts drifting.
+8. Normal project workflows belong in the downstream project root, not APW root.

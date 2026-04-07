@@ -13,6 +13,7 @@ If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 `AGENTS.md` is the tool-facing entrypoint, and this page is the beginner-friendly human walkthrough.
 
 If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
+If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 
 ## Why it matters
 
@@ -63,7 +64,7 @@ APW is especially helpful when the project will live longer than a single burst 
 
 Example:
 
-You start a new product repo, bootstrap APW with the `base` profile, validate it, initialize the canonical `.gsd` files once, then let execution agents implement scoped work while an orchestrator syncs the official state when needed.
+You start a new product repo, create it with `apw new`, move into the downstream project root, initialize the canonical `.gsd` files once, then let execution agents implement scoped work while an orchestrator syncs the official state when needed.
 
 That gives you:
 
@@ -92,6 +93,7 @@ This path answers:
 - how to choose a likely profile and stack direction
 - what APW looks like on real project ideas
 - how to start safely
+- where you should actually work day to day
 
 ## If you want to build now
 
@@ -114,5 +116,6 @@ Go here next:
 ## What to read next
 
 If you want the shortest safe onboarding path, go to [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
+If you want the workspace/project context model in one page, go to [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) next.
 If you have not read it yet, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) first.
 If you already understand the plain-English intro, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) next.
