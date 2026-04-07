@@ -9,6 +9,8 @@ This guide defines APW's persistence model for `/brainstorm`.
 
 It exists because a brainstorm session is useful, but chat by itself is not project memory.
 
+For the APW-wide intake model behind that rule, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+
 APW keeps that distinction clear:
 
 - exploration is useful
@@ -167,3 +169,5 @@ Possible result:
 `JOURNAL.md` safely preserves the useful outcome.
 
 Orchestrator promotes agreed changes into official project memory when they truly become canonical.
+
+For non-brainstorm requirement chat such as changes, clarifications, or direct instructions, use the same classify-then-persist rule from [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).

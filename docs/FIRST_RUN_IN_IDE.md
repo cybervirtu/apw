@@ -63,6 +63,7 @@ If you want the command names fast without opening multiple docs, keep [../COMMA
 If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 If you have not installed APW locally yet, read [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
 If you want the short first-use path before this in-IDE step, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
+If project details are arriving through chat, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
 
 ## First-run checklist
 
@@ -104,6 +105,8 @@ If the project does not exist yet, create it with:
 
 From APW root, that command creates `/path/to/workspace/MyProject` beside `apw` by default.
 Use `--target /path/to/parent` only when you want a different parent location explicitly.
+
+The chat-first `APW: Create Project` path follows the same rule and should show that destination before it creates the repo.
 
 ### 2. Read `AGENTS.md`
 
@@ -181,6 +184,12 @@ The same safe rule works for the other core workflows too:
 
 - useful workflow evidence usually goes to `.gsd/JOURNAL.md`
 - official project memory changes should be synchronized deliberately through orchestrator or governance
+
+The same rule applies when requirements, corrections, or directions arrive in normal chat:
+
+- classify them first
+- save them deliberately
+- use orchestrator when official project memory must change across files
 
 ## What should I read only if needed?
 

@@ -13,6 +13,12 @@ APW gives a project three simple working parts:
 - **AGK** for execution rules, workflows, agents, and skills in `.agent/`
 - an **orchestrator / governance pass** for controlled synchronization of canonical project state
 
+APW also uses one simple intake rule:
+
+- important project details often arrive through chat first
+- chat is the main intake layer for requirements, changes, clarifications, and directions
+- chat still becomes project memory only through deliberate classification and persistence
+
 ## Core Operating Rule
 
 - **GSD governs** what is being built, what state is official, and what counts as done.
@@ -65,6 +71,21 @@ For the first beginner layer, keep these three actions in mind:
 - `APW: Initialize Project State`
 - `APW: First Run`
 
+For requirement-bearing chat, use this APW rule:
+
+- classify the chat before persisting it
+- default to a bounded `JOURNAL.md` summary when the official destination is not settled yet
+- promote requirements into `SPEC.md`, tasks into `TODO.md`, milestone impact into `ROADMAP.md`, and chosen rationale into `DECISIONS.md`
+- use orchestrator or governance when the chat changes official project memory across files
+
+For `APW: Create Project`, keep this workspace rule in mind:
+
+- if the current context is APW root, create the new downstream repo in the parent workspace beside `apw`
+- if the current context is the workspace parent, create the new repo in the current folder
+- if the current context is a downstream project, create the new repo as a sibling in the same workspace parent
+- only create inside APW root when the operator explicitly provides that target
+- show the resolved destination before creation so the choice stays visible
+
 ## Read Next
 
 Read the minimum next files, not everything at once.
@@ -74,20 +95,21 @@ Read now:
 1. `COMMAND_CHEATSHEET.md`
 2. `docs/FIRST_RUN_IN_IDE.md` when present
 3. `docs/APW_ACTION_MODEL.md` when present
+4. `docs/CHAT_FIRST_REQUIREMENT_INGESTION.md` when requirements or changes are arriving through chat
 
 Only if needed:
 
-4. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
-5. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
-6. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
-7. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-8. `docs/WHERE_DO_I_WORK.md`
+5. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
+6. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+7. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+8. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+9. `docs/WHERE_DO_I_WORK.md`
 
 Advanced reference:
 
-9. `PROJECT_RULES.md`
-10. `AGENT_SYSTEM.md`
-11. `COMMAND_POLICY.md`
+10. `PROJECT_RULES.md`
+11. `AGENT_SYSTEM.md`
+12. `COMMAND_POLICY.md`
 
 For the fuller routing model, read `docs/DOCUMENTATION_LEVELS.md`.
 

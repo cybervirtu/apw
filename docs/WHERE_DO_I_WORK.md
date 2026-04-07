@@ -165,6 +165,12 @@ Default destination policy:
 - from a downstream project, APW creates the repo as a sibling in the same workspace parent
 - use `--target /path/to/parent` when you want a different parent location
 
+Chat-first rule:
+
+- `APW: Create Project` uses that same context-aware policy
+- it should show the resolved destination before creation
+- it should not silently create a repo inside APW root
+
 If you want to choose the parent location explicitly:
 
 ```bash

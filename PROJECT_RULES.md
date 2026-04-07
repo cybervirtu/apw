@@ -19,6 +19,9 @@
 - **Migration & Release Discipline**: Database schema updates and deployment configuration changes must be separated from feature commits. They must be explicitly documented in `.gsd/JOURNAL.md` as distinct rollout steps.
 - **Canonical State Ownership Rule**: `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` are controlled summary files. They are updated by the orchestrator or an explicitly acting GSD/governance pass, not by arbitrary execution agents during normal implementation.
 - **Execution Evidence Rule**: Execution agents may modify code, create implementation artifacts, and append bounded evidence to `.gsd/JOURNAL.md`. Bounded means factual, append-only, and scoped to the work just performed.
+- **Chat-First Requirement Intake Rule**: APW treats chat as the main input layer for requirements, changes, clarifications, decisions, and task directions. Chat is not canonical project memory by default. Requirement-bearing chat must be classified before persistence.
+- **Requirement Classification Rule**: Use this simple classification set for requirement-bearing chat: new requirement, modification/change request, clarification, decision, task request, exploration only, note/evidence only.
+- **Requirement Mapping Rule**: Requirement or scope material maps to `.gsd/SPEC.md`; next work items map to `.gsd/TODO.md`; milestone or phase impact maps to `.gsd/ROADMAP.md`; chosen rationale or tradeoffs map to `.gsd/DECISIONS.md`; exploratory or evidence-only material maps to `.gsd/JOURNAL.md`.
 - **Brainstorm Persistence Rule**: `/brainstorm` is exploration, not canonical state by default. Meaningful brainstorm outcomes should usually be captured as a bounded summary in `.gsd/JOURNAL.md`. Promotion into `SPEC.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md` requires a deliberate planning, orchestrator, or governance step.
 - **Workflow Persistence Rule**: Core workflow output is not canonical project state by default. The preferred APW save path for meaningful workflow evidence is `.gsd/JOURNAL.md`. Promotion into `STATE.md`, `ROADMAP.md`, `TODO.md`, `SPEC.md`, or `DECISIONS.md` is deliberate and remains under orchestrator or governance control.
 - **Controlled Sync Rule**: Canonical state synchronization is a deliberate step after implementation, verification, or design change, not an incidental side effect of routine code edits.
@@ -34,6 +37,7 @@ Run an orchestrator or explicit GSD synchronization pass when any of the followi
 
 - implementation work meaningfully changes current status or next steps
 - a phase boundary or verification status changes
+- requirement-bearing chat changes official scope, roadmap, backlog, or rationale
 - new granular tasks must be promoted into canonical `.gsd/TODO.md`
 - architectural or design rationale changes require `.gsd/DECISIONS.md`
 - a session is handing off to another agent or another day

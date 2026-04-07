@@ -1,0 +1,76 @@
+import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
+
+# Chat-First Requirement Ingestion
+
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Chat-First Model"
+    title="Treat chat as intake, not automatic canon."
+    lede="Most APW project details arrive through chat first. The safe model is simple: recognize requirement-bearing chat, classify it, save it deliberately, and let governance decide what becomes official project memory."
+    actions={[
+      { href: '/workflow-persistence-policy', label: 'Workflow Persistence' },
+      { href: '/brainstorm-persistence-and-promotion', label: 'Brainstorm Persistence', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'Input', label: 'Chat is the main requirement intake layer' },
+      { value: 'Default', label: 'JOURNAL.md is the safe buffer' },
+      { value: 'Sync', label: 'Orchestrator owns cross-file promotion' }
+    ]}
+  />
+
+  <Callout type="info" emoji="📝">
+    Canonical source doc: <code>docs/CHAT_FIRST_REQUIREMENT_INGESTION.md</code>
+  </Callout>
+
+  <PortalPillRow
+    items={[
+      'Requirement-bearing chat must be classified',
+      'Chat is not canonical by default',
+      'Map requirements, tasks, roadmap, and decisions deliberately',
+      'Use orchestrator when multiple files must stay aligned'
+    ]}
+  />
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The practical model"
+      title="Five moves keep chat useful without making it magical."
+      lede="APW treats chat seriously, but not recklessly. The same message can be valuable input without instantly becoming official state."
+    />
+    <Steps>
+    ### Recognize requirement-bearing chat
+
+    Notice when chat introduces a requirement, change, clarification, decision, task, or evidence worth keeping.
+
+    ### Classify it
+
+    Decide whether it is a new requirement, change request, clarification, decision, task request, exploration only, or note/evidence only.
+
+    ### Choose the likely destination
+
+    Map requirement material to `SPEC.md`, work items to `TODO.md`, milestone impact to `ROADMAP.md`, rationale to `DECISIONS.md`, and exploratory or evidence-only material to `JOURNAL.md`.
+
+    ### Save the safe summary first
+
+    When in doubt, save a bounded summary in `JOURNAL.md` so nothing important is lost.
+
+    ### Promote deliberately
+
+    Use orchestrator or governance when the official project story changes across files or memory types.
+    </Steps>
+  </section>
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Follow the source doc that matches the next question."
+      lede="Most people only need the ingestion model, the workflow persistence model, or the brainstorm promotion model."
+    />
+    <div className="apw-next-strip">
+      <a href="/workflow-persistence-policy">See the workflow persistence model</a>
+      <a href="/brainstorm-persistence-and-promotion">See brainstorm promotion</a>
+      <a href="/commands-and-workflows">See the operator layer</a>
+    </div>
+  </section>
+</div>

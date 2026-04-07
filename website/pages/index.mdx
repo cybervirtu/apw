@@ -30,6 +30,10 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
       <p>Installation, basic usage, first-run, and command guidance now form a lighter Level 1 path instead of a flat documentation dump.</p>
     </div>
     <div className="apw-trust-card">
+      <h3>Chat-first intake</h3>
+      <p>APW treats chat as the main requirement intake layer, then classifies and persists that input deliberately instead of pretending chat is canonical by default.</p>
+    </div>
+    <div className="apw-trust-card">
       <h3>Project-centric day to day</h3>
       <p>Create from APW into a sibling downstream repo by default, work in the downstream project root, and use explicit helpers when you need to switch context safely.</p>
     </div>
@@ -45,6 +49,10 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
 
   <Callout type="info" emoji="📁">
     Project creation is workspace-aware: from APW root, <code>apw new</code> creates the new repo beside <code>apw</code>, not inside it. Use <code>--target</code> only when you want a different parent location explicitly.
+  </Callout>
+
+  <Callout type="info" emoji="💬">
+    Chat-first Create Project uses the same resolver and should show the destination before creation instead of making a hidden assumption.
   </Callout>
 
   <section className="apw-section">
@@ -65,6 +73,9 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
       </Cards.Card>
       <Cards.Card href="/basic-onboarding" title="Basic Onboarding">
         Follow the shortest safe APW route if you want the broader beginner checklist around the same flow.
+      </Cards.Card>
+      <Cards.Card href="/chat-first-requirement-ingestion" title="Chat-First Requirement Ingestion">
+        Learn how APW turns requirement-bearing chat into durable project memory without skipping governance.
       </Cards.Card>
     </Cards>
   </section>

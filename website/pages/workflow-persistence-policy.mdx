@@ -10,6 +10,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     lede="APW keeps a consistent rule across the core workflows: execution output does not become canonical project memory automatically. Evidence is saved safely first, then promoted on purpose."
     actions={[
       { href: '/commands-and-workflows', label: 'Explore Workflows' },
+      { href: '/chat-first-requirement-ingestion', label: 'Requirement Ingestion', variant: 'secondary' },
       { href: '/brainstorm-persistence-and-promotion', label: 'Brainstorm Persistence', variant: 'secondary' }
     ]}
     stats={[
@@ -21,6 +22,10 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
 
   <Callout type="info" emoji="📝">
     Canonical source doc: <code>docs/WORKFLOW_PERSISTENCE_POLICY.md</code>
+  </Callout>
+
+  <Callout type="info" emoji="💬">
+    If the important project input arrived through plain chat before a workflow even ran, follow the chat-first ingestion model first.
   </Callout>
 
   <PortalPillRow
@@ -68,6 +73,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
       lede="Most users need one follow-up page: either the full workflow policy, command details, or examples."
     />
     <div className="apw-next-strip">
+      <a href="/chat-first-requirement-ingestion">Follow chat-first ingestion</a>
       <a href="/commands-and-workflows">See the operator layer</a>
       <a href="/brainstorm-persistence-and-promotion">Follow brainstorm persistence</a>
       <a href="/reference">Reach deeper reference</a>

@@ -144,6 +144,12 @@ Default destination rule:
 - from a downstream project, APW creates the new repo as a sibling in the same workspace parent
 - use `--target /path/to/parent` when you want a different parent location explicitly
 
+Chat-first behavior rule:
+
+- detect the current context first instead of assuming the current folder should become the parent
+- show the resolved parent and final destination before creation
+- do not create inside APW root unless the user explicitly asks for that target
+
 ### 2. APW: First Run
 
 Use this when:
@@ -380,6 +386,13 @@ Examples:
 - "Preview the APW upgrade for this project."
 - "Upgrade this project from the latest APW."
 - "Validate this project after the upgrade."
+
+For `APW: Create Project`, the visible behavior should be:
+
+- APW identifies whether the user is in APW root, the workspace parent, or a downstream project
+- APW resolves the destination using that workspace model
+- APW shows the destination before creation
+- APW only creates inside APW root when the user explicitly chooses that target
 
 The user should not need to remember raw flags first if the tool can map the request safely.
 

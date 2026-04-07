@@ -41,6 +41,7 @@ Natural chat-first phrasing can sound like:
 - "Switch to ProjectA."
 - "Switch to the APW framework."
 - "Go back to the workspace parent."
+- "Create a new APW project called MyProject."
 
 Then use the terminal form only when you need the explicit fallback or exact flags.
 
@@ -185,6 +186,12 @@ Default project-creation rule:
 - from the workspace parent, `apw new` creates the new repo in the current folder
 - from a downstream project, `apw new` creates the new repo as a sibling in the same workspace parent
 - use `--target /path/to/parent` when you want a different parent location
+
+For chat-first project creation, APW should:
+
+- classify the current context first
+- show the resolved destination before creating anything
+- avoid nesting the new repo inside APW root unless the user explicitly requests that target
 
 ## Upgrade an existing downstream project safely
 

@@ -30,6 +30,7 @@ Use this quick rule:
 - do day-to-day project work inside the downstream project root
 - use APW root mainly when you are maintaining APW itself
 - treat the workspace parent folder as an organizer, not the normal place for project workflows
+- when `APW: Create Project` starts from APW root, the new repo belongs in the parent workspace beside `apw`, not inside it
 
 If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want safe helpers for moving between those places, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
@@ -43,6 +44,12 @@ Use this rule:
 
 - easiest path = chat-first or IDE-friendly APW action
 - terminal commands = fallback, power-user, and automation path
+
+That same chat-first rule applies to requirements too:
+
+- important project details can arrive through normal chat
+- classify them before treating them as project memory
+- use `JOURNAL.md` as the safe save path when the official destination is not settled yet
 
 That keeps APW easier for beginners without removing the existing command layer.
 
@@ -61,6 +68,7 @@ You only need to know a few APW ideas to start:
 - `AGK` helps do the work through agents, workflows, and execution support in `.agent/`.
 - the orchestrator keeps official project state synchronized when the important summary files need to change.
 - `.gsd/JOURNAL.md` is for bounded evidence about what happened during work.
+- requirement-bearing chat is real project input, but it is not canonical by default.
 - canonical state files such as `STATE.md`, `ROADMAP.md`, `TODO.md`, and `DECISIONS.md` should stay controlled instead of being rewritten casually.
 
 If that already makes enough sense, keep going.
@@ -139,6 +147,12 @@ Default destination policy:
 - from a downstream project, APW creates the repo as a sibling in the same workspace parent
 - use `--target /path/to/parent` when you want a different parent location
 
+Chat-first safety rule:
+
+- APW first resolves whether you are in APW root, the workspace parent, or a downstream project
+- APW shows the destination before it creates anything
+- APW does not silently create inside APW root unless you explicitly ask for that target
+
 Why it matters:
 
 - This is the easiest way to create a new APW project without manually creating the directory, switching context, and wiring bootstrap and validation together yourself.
@@ -155,6 +169,7 @@ If you need more help:
 
 - Read [QUICK_START.md](./QUICK_START.md).
 - Read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
+- Read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
 
 Later, when APW itself is updated and you want this project to receive the newer APW-managed framework layer safely, use:
 

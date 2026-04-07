@@ -39,12 +39,15 @@ If you want to start a real project immediately:
   Terminal fallback: `/path/to/apw/apw new MyProject --profile base --stack base`
   Default destination:
   from APW root, APW creates `/path/to/workspace/MyProject` beside `apw`; use `--target` to override.
+  Chat-first rule:
+  APW resolves the current context first and shows the destination before creation instead of silently nesting the repo inside `apw`.
 
 Optional next:
 
 - [Quick Start](docs/QUICK_START.md)
 - [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
 - [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
+- [Chat-First Requirement Ingestion](docs/CHAT_FIRST_REQUIREMENT_INGESTION.md)
 
 ### Level 2 — Use APW Better
 
@@ -52,6 +55,7 @@ Read these when you want guided support after the repo exists:
 
 - [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
 - [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
+- [Chat-First Requirement Ingestion](docs/CHAT_FIRST_REQUIREMENT_INGESTION.md)
 - [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
 - [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
 - [Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)
@@ -130,6 +134,12 @@ For the first beginner layer, start with these three actions:
 - `APW: Initialize Project State`
 - `APW: First Run`
 
+For requirement-bearing chat after the repo exists, APW uses one simple rule:
+
+- classify the chat first
+- save a bounded summary to `JOURNAL.md` when needed
+- promote official changes deliberately into `SPEC.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md`
+
 ## Workspace Context Model
 
 APW uses one simple operating model across the workspace:
@@ -146,6 +156,7 @@ The practical rule is straightforward:
 - from APW root, `apw new` creates sibling downstream repos in the workspace parent by default
 - from the workspace parent, `apw new` creates the repo in the current folder by default
 - from a downstream project, `apw new` creates a sibling repo in the same workspace parent by default
+- chat-first `APW: Create Project` uses that same workspace-aware resolver and shows the chosen destination before creation
 - do normal project work in the downstream project root
 - use APW root when you intentionally mean to maintain APW itself
 

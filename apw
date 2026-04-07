@@ -52,6 +52,7 @@ What it does:
 
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
+  - APW: Create Project uses this same destination resolver.
   - Default new-project destination is workspace-aware:
     - from APW root, create the project in the parent workspace beside apw
     - from the workspace parent, create the project in the current folder
@@ -847,6 +848,7 @@ run_new() {
     fi
 
     echo "APW workspace-friendly project creation"
+    echo "Create Project action policy: this is the same destination resolver used by chat-first APW project creation."
     echo "Project: $project_name"
     echo "Current context: $current_path"
     echo "Destination policy: $creation_context"

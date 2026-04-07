@@ -17,6 +17,13 @@ In the APW standard, a command name cannot mean two different things. If a confl
 
 Canonical state synchronization follows the same rule: if a command updates summary memory or lifecycle state, that operation belongs to GSD/orchestrator control, not routine AGK execution.
 
+Chat-first requirement ingestion follows the same boundary:
+
+- chat may introduce requirements, changes, clarifications, tasks, or rationale
+- that chat must be classified before persistence
+- classification does not make the result canonical automatically
+- official promotion into `.gsd` summary files still belongs to GSD/orchestrator control
+
 This command policy is shared across APW-compatible tools. APW does not maintain separate command ownership systems for Codex and Antigravity.
 
 ---
@@ -55,12 +62,21 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 
 ### Canonical State Ownership Note
 
+- APW treats chat as the main requirement intake layer, not as automatic canon.
 - Execution commands may write code and implementation artifacts.
 - Execution commands may append bounded evidence to `.gsd/JOURNAL.md`.
 - Brainstorm outcomes are not canonical state automatically. Persist useful exploration deliberately, usually in `.gsd/JOURNAL.md` first.
 - Core workflow output across `/status`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` is also non-canonical by default unless it is deliberately promoted.
 - Free editing of `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is not part of routine AGK execution.
 - Safe synchronization of those canonical files belongs to the orchestrator or an explicit GSD/governance command.
+
+Use this chat-ingestion map:
+
+- requirement, scope, users, or problem framing -> `.gsd/SPEC.md`
+- next work items -> `.gsd/TODO.md`
+- milestone or phase impact -> `.gsd/ROADMAP.md`
+- decision or tradeoff -> `.gsd/DECISIONS.md`
+- exploration, notes, or evidence -> `.gsd/JOURNAL.md`
 
 ---
 

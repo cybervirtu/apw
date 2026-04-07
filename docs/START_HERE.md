@@ -17,6 +17,7 @@ If you want the setup path first, read [INSTALLATION_GUIDE.md](./INSTALLATION_GU
 If you want the shortest "what do I do after install?" path, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 If you want the one-minute command reference, read [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md).
 If you want the preferred chat-first and IDE-friendly action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+If you want the model for turning requirement-bearing chat into project memory safely, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
 If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want explicit helpers for moving between APW root, project roots, and the workspace parent, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
@@ -32,6 +33,7 @@ This page gives you the simple version of the navigation:
 
 - APW is a way to keep AI-assisted software projects organized
 - it separates project memory from project execution
+- it treats chat as the main intake layer for project details, then classifies and persists that input deliberately
 - it gives you bootstrap, validation, and CI so the structure does not decay
 - Codex and newer Antigravity-style sessions should start from root `AGENTS.md`, then follow the APW docs from here
 
@@ -96,6 +98,7 @@ Read these now:
 4. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
 5. [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
 6. [QUICK_START.md](./QUICK_START.md)
+7. [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md)
 
 This level answers:
 
@@ -103,6 +106,7 @@ This level answers:
 - how to create a project
 - what to do first in the IDE
 - what command or workflow to use first
+- how requirement-bearing chat should be classified and persisted
 
 ### Level 2 — Use APW better
 
@@ -113,8 +117,9 @@ Read these only when the next question appears:
 3. [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
 4. [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
 5. [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
-6. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
-7. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+6. [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md)
+7. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+8. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 
 ### Level 3 — Deep reference
 

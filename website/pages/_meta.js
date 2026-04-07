@@ -14,6 +14,7 @@ export default {
   'basic-onboarding': 'Basic Onboarding',
   'apw-action-model': 'APW Action Model',
   'first-run-in-ide': 'First Run In IDE',
+  'chat-first-requirement-ingestion': 'Chat-First Requirement Ingestion',
   'brainstorm-persistence-and-promotion': 'Brainstorm Persistence',
   'workflow-persistence-policy': 'Workflow Persistence',
   'downstream-project-upgrade': 'Project Upgrade',

@@ -17,6 +17,8 @@ This guide defines APW's persistence policy for the core workflows:
 
 It exists so users do not have to guess whether workflow output stayed only in chat, became evidence, or became canonical project state.
 
+For the intake model that applies before workflow persistence begins, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+
 ## The APW-wide model
 
 APW uses one simple persistence model across workflows:
@@ -25,6 +27,12 @@ APW uses one simple persistence model across workflows:
 2. the default safe save path is **bounded evidence in `.gsd/JOURNAL.md`**
 3. promotion into canonical `.gsd` files is **deliberate**
 4. orchestrator or governance owns **official cross-file synchronization**
+
+That same discipline applies to requirement-bearing chat before or around workflows:
+
+1. classify the chat input first
+2. use `JOURNAL.md` as the safe buffer when needed
+3. promote official requirement memory deliberately
 
 ## The practical default
 
@@ -90,3 +98,5 @@ If you are unsure what to do after a workflow finishes:
 - if official project understanding changed, hand off to orchestrator
 
 That is the safe APW default.
+
+If the meaningful input arrived through plain chat before the workflow even started, follow [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md) first.

@@ -67,8 +67,11 @@ echo
 
 assert_dir_exists "$WORKSPACE/RootSibling" "APW root should create a sibling project under the workspace parent"
 assert_dir_missing "$TEST_APW_ROOT/RootSibling" "APW root should not create a nested project inside the framework repo"
+assert_output_contains "$TEMP_ROOT/root.log" "Create Project action policy: this is the same destination resolver used by chat-first APW project creation." "APW root creation should state that chat-first project creation uses the same resolver"
 assert_output_contains "$TEMP_ROOT/root.log" "Destination policy: apw-root" "APW root creation should report the apw-root policy"
+assert_output_contains "$TEMP_ROOT/root.log" "Resolved parent: $WORKSPACE" "APW root creation should print the workspace parent clearly"
 assert_output_contains "$TEMP_ROOT/root.log" "Resolved destination: $WORKSPACE/RootSibling" "APW root creation should print the sibling destination"
+assert_output_contains "$TEMP_ROOT/root.log" "Reason: Current context is APW root, so new downstream projects default to the parent workspace as siblings of apw." "APW root creation should explain why the sibling destination was chosen"
 pass "APW root defaults to workspace-parent sibling creation"
 
 (
@@ -78,7 +81,9 @@ pass "APW root defaults to workspace-parent sibling creation"
 
 assert_dir_exists "$WORKSPACE/ParentSibling" "Workspace parent should create the project in the current folder"
 assert_output_contains "$TEMP_ROOT/parent.log" "Destination policy: workspace-parent" "Workspace parent creation should report the workspace-parent policy"
+assert_output_contains "$TEMP_ROOT/parent.log" "Resolved parent: $WORKSPACE" "Workspace parent creation should print the current folder as the parent"
 assert_output_contains "$TEMP_ROOT/parent.log" "Resolved destination: $WORKSPACE/ParentSibling" "Workspace parent creation should print the current-folder destination"
+assert_output_contains "$TEMP_ROOT/parent.log" "Reason: Current context is the workspace parent, so the new downstream project defaults to a child of the current folder." "Workspace parent creation should explain why the current folder was chosen"
 pass "Workspace parent defaults to current-folder project creation"
 
 mkdir -p "$WORKSPACE/custom-home"
@@ -89,7 +94,9 @@ mkdir -p "$WORKSPACE/custom-home"
 
 assert_dir_exists "$WORKSPACE/custom-home/ExplicitTarget" "Explicit --target should be honored"
 assert_output_contains "$TEMP_ROOT/target.log" "Destination policy: explicit-target" "Explicit target creation should report the explicit-target policy"
+assert_output_contains "$TEMP_ROOT/target.log" "Resolved parent: $WORKSPACE/custom-home" "Explicit target creation should print the requested parent"
 assert_output_contains "$TEMP_ROOT/target.log" "Resolved destination: $WORKSPACE/custom-home/ExplicitTarget" "Explicit target creation should print the chosen destination"
+assert_output_contains "$TEMP_ROOT/target.log" "Reason: Using the parent directory supplied with --target." "Explicit target creation should explain that the override was honored"
 pass "Explicit --target override still works"
 
 (
@@ -101,7 +108,9 @@ assert_dir_exists "$WORKSPACE/DownstreamSibling" "Downstream project creation sh
 assert_dir_missing "$WORKSPACE/RootSibling/DownstreamSibling" "Downstream project creation should not nest inside the current downstream repo"
 assert_dir_missing "$TEST_APW_ROOT/DownstreamSibling" "Downstream project creation should not spill into APW root by default"
 assert_output_contains "$TEMP_ROOT/downstream.log" "Destination policy: downstream-project" "Downstream project creation should report the downstream-project policy"
+assert_output_contains "$TEMP_ROOT/downstream.log" "Resolved parent: $WORKSPACE" "Downstream project creation should print the sibling workspace parent clearly"
 assert_output_contains "$TEMP_ROOT/downstream.log" "Resolved destination: $WORKSPACE/DownstreamSibling" "Downstream project creation should print the sibling destination"
+assert_output_contains "$TEMP_ROOT/downstream.log" "Reason: Current context is a downstream project, so new downstream projects default to the same workspace parent as sibling repos." "Downstream project creation should explain why the sibling destination was chosen"
 pass "Downstream project context defaults to sibling creation"
 
 echo
