@@ -9,6 +9,7 @@ export default {
     }
   },
   'basic-onboarding': 'Basic Onboarding',
+  'apw-action-model': 'APW Action Model',
   'first-run-in-ide': 'First Run In IDE',
   'brainstorm-persistence-and-promotion': 'Brainstorm Persistence',
   'workflow-persistence-policy': 'Workflow Persistence',

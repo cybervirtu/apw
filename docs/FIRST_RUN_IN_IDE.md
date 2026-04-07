@@ -15,6 +15,14 @@ When you open a downstream APW project for the first time:
 
 That is the beginner-safe path.
 
+APW's preferred interaction rule is:
+
+- chat-first request
+- IDE action if available
+- terminal fallback when needed
+
+For the canonical action catalog, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+
 ## What file should I open first?
 
 Open:
@@ -153,6 +161,7 @@ Use only the next doc you need:
 - Need command choice help: [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
 - Need command details and read-first context: [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 - Need the one-minute command list: [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
+- Need the preferred chat/IDE action model: [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md)
 - Need help initializing state: [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
 - Need broader beginner context: [START_HERE.md](./START_HERE.md)
 

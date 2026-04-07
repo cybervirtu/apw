@@ -1,0 +1,37 @@
+import { Callout } from 'nextra/components'
+
+# APW Action Model
+
+Use this page when you want the simple APW interaction rule beyond raw terminal commands.
+
+<Callout type="info" emoji="🪄">
+APW's preferred hierarchy is: chat-first request, then IDE action, then terminal fallback.
+</Callout>
+
+Canonical source doc: `docs/APW_ACTION_MODEL.md`
+
+## The short version
+
+APW uses one user-facing action catalog for common tasks such as:
+
+- Create Project
+- First Run
+- Show Context
+- List Projects
+- Switch To Project
+- Switch To Framework
+- Switch To Parent
+- Initialize Project State
+- Upgrade Project
+
+These action names are the preferred chat and future IDE labels.
+
+Underneath, they still map to the existing APW command layer.
+
+## Why this matters
+
+- beginners do not need to think in terminal flags first
+- IDE-native behavior can stay aligned with the current APW engine
+- terminal commands remain available for fallback, power users, and automation
+
+Read the repo's `docs/APW_ACTION_MODEL.md` for the canonical action catalog and command mapping.

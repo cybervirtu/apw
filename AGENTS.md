@@ -45,6 +45,16 @@ If this is your first time opening this downstream project in an IDE, do this:
    - use orchestrator or governance sync if the result should change official project files
 8. Keep `COMMAND_CHEATSHEET.md` nearby if you want the main slash commands and terminal commands in one page.
 
+## Preferred Interaction Path
+
+Use this simple APW rule:
+
+1. ask for the APW action in chat first
+2. use the matching IDE action when a tool provides one
+3. use the terminal command when you need the fallback or exact flags
+
+The action names and command mapping live in `docs/APW_ACTION_MODEL.md`.
+
 ## Read Next
 
 Read the minimum next files, not everything at once:
@@ -53,16 +63,17 @@ Read the minimum next files, not everything at once:
 2. `AGENT_SYSTEM.md`
 3. `COMMAND_POLICY.md`
 4. `COMMAND_CHEATSHEET.md`
-5. `docs/FIRST_RUN_IN_IDE.md` when present
-6. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
-7. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
-8. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+5. `docs/APW_ACTION_MODEL.md` when present
+6. `docs/FIRST_RUN_IN_IDE.md` when present
+7. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
+8. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+9. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
 
 Read these only if you need them:
 
-9. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-10. `docs/WHERE_DO_I_WORK.md`
-11. `docs/START_HERE.md`
+10. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+11. `docs/WHERE_DO_I_WORK.md`
+12. `docs/START_HERE.md`
 
 ## Do Not
 

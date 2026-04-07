@@ -40,6 +40,19 @@ Before you do anything else, keep this model in mind:
 If you want the fuller guide, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want safe switching helpers for those locations, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+If you want the preferred chat/IDE action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+
+## Preferred interaction path
+
+APW is not terminal-only.
+
+Use this order when possible:
+
+1. chat-first request
+2. IDE action or command-palette style action
+3. terminal command fallback
+
+The terminal path still matters, but it is no longer the only mental model.
 
 ## 1. Choose a Profile
 

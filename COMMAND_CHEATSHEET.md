@@ -3,6 +3,9 @@
 > [!TIP]
 > Use this as the one-minute command reference for day-to-day APW use.
 
+> [!NOTE]
+> The preferred APW path is chat-first or IDE action first, then terminal fallback. For that model, read `docs/APW_ACTION_MODEL.md`.
+
 ## Quick rule
 
 - create projects from APW

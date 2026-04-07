@@ -31,6 +31,16 @@ If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO
 If you want safe helpers for moving between those places, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 If you want the one-minute command reference, read [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md).
+If you want the preferred chat/IDE action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+
+## Preferred interaction path
+
+Use this rule:
+
+- easiest path = chat-first or IDE-friendly APW action
+- terminal commands = fallback, power-user, and automation path
+
+That keeps APW easier for beginners without removing the existing command layer.
 
 ## Before you begin
 

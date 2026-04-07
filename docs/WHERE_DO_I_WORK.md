@@ -18,6 +18,7 @@ If you only remember one rule, remember this:
 - normal project work happens in the downstream project root
 
 If you want explicit commands that help you move between these locations safely, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
+If you want the preferred chat/IDE action model for those same tasks, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 
 ## The three locations in plain English
 

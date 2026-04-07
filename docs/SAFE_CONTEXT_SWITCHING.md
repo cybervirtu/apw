@@ -16,6 +16,14 @@ The important rule is simple:
 - APW helps you switch explicitly
 - APW does not silently move you somewhere else
 
+APW's preferred interaction order is still:
+
+1. chat-first request
+2. IDE action if available
+3. terminal fallback
+
+For the full action catalog behind those paths, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+
 ## The three places in plain language
 
 | Location | Role | Typical Actions | Avoid Doing Here |

@@ -38,6 +38,8 @@ Choose the path that matches what you need:
   [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
 - I want to know what to do the first time I open a project in my IDE:
   [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
+- I want the preferred chat/IDE action model instead of only raw terminal commands:
+  [APW Action Model](docs/APW_ACTION_MODEL.md)
 - I want the one-minute command reference:
   [Command Cheatsheet](COMMAND_CHEATSHEET.md)
 - I want to know what happens to `/brainstorm` results after the chat:
@@ -87,6 +89,22 @@ It gives you:
 - bootstrap and validation scripts
 - rules for how execution work and canonical project state should interact
 - CI enforcement so the workspace does not slowly drift
+
+## Preferred Interaction Path
+
+APW uses one simple interaction hierarchy:
+
+1. chat-first request
+2. IDE action or command-palette style action
+3. terminal command fallback
+
+This means:
+
+- beginners should prefer the APW action model first
+- terminal commands remain available for power users, automation, and exact fallback
+- both paths still map to the same APW engine underneath
+
+For the canonical action catalog, read [docs/APW_ACTION_MODEL.md](docs/APW_ACTION_MODEL.md).
 
 ## Workspace Context Model
 
