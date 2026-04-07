@@ -33,6 +33,26 @@ Why:
 - they map cleanly to the existing APW engine
 - they make APW easier to understand in chat-first and IDE-friendly environments
 
+## The context and switching action layer
+
+Once the project exists, the next APW action layer is:
+
+1. `APW: Show Context`
+2. `APW: List Projects`
+3. `APW: Switch To Project`
+4. `APW: Switch To Framework`
+5. `APW: Switch To Parent`
+
+These actions help users recover orientation without hunting through folders manually.
+
+They must stay:
+
+- explicit
+- visible
+- non-magical
+
+They do not silently change shell or IDE context.
+
 ## What this means in practice
 
 For common APW tasks, the easiest user-facing path should be:
@@ -123,6 +143,16 @@ Use this when:
 
 - you are unsure whether you are in APW root, a downstream project, or the workspace parent
 
+Chat-first forms:
+
+- "Show APW context."
+- "Where am I working right now?"
+- "Show context for this repo."
+
+Preferred IDE label:
+
+- `APW: Show Context`
+
 Engine:
 
 ```bash
@@ -134,6 +164,16 @@ Engine:
 Use this when:
 
 - you want to discover known downstream projects in the workspace
+
+Chat-first forms:
+
+- "List APW projects."
+- "Show me the projects in this workspace."
+- "What downstream projects are here?"
+
+Preferred IDE label:
+
+- `APW: List Projects`
 
 Engine:
 
@@ -147,6 +187,16 @@ Use this when:
 
 - you want to get back to the right downstream repo
 
+Chat-first forms:
+
+- "Switch me to ProjectA."
+- "Take me to the right project."
+- "Switch to this project."
+
+Preferred IDE label:
+
+- `APW: Switch To Project`
+
 Engine:
 
 ```bash
@@ -159,6 +209,16 @@ Use this when:
 
 - you intentionally want the APW framework repo
 
+Chat-first forms:
+
+- "Switch me to APW."
+- "Take me to the framework repo."
+- "Switch to the APW framework."
+
+Preferred IDE label:
+
+- `APW: Switch To Framework`
+
 Engine:
 
 ```bash
@@ -170,6 +230,16 @@ Engine:
 Use this when:
 
 - you want the workspace overview or organizer folder
+
+Chat-first forms:
+
+- "Switch me to the workspace parent."
+- "Take me to the workspace overview."
+- "Go back to the parent folder."
+
+Preferred IDE label:
+
+- `APW: Switch To Parent`
 
 Engine:
 
@@ -219,6 +289,9 @@ Examples:
 
 - "Run APW: First Run for this project."
 - "Show APW context for this repo."
+- "List the APW projects in this workspace."
+- "Switch to ProjectA."
+- "Switch to the APW framework."
 - "Create a new APW project called MyProject."
 - "Initialize this project."
 - "Upgrade this project from the latest APW, but preview first."
@@ -266,6 +339,8 @@ Think:
 - "APW: Initialize Project State"
 - "APW: First Run"
 - "APW: Show Context"
+- "APW: List Projects"
+- "APW: Switch To Project"
 
 Then use the terminal form only when you need the lower-level path.
 

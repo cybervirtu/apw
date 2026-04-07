@@ -24,6 +24,26 @@ APW's preferred interaction order is still:
 
 For the full action catalog behind those paths, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 
+## The APW action names for switching
+
+If you want the simpler user-facing names, think in these actions first:
+
+- `APW: Show Context`
+- `APW: List Projects`
+- `APW: Switch To Project`
+- `APW: Switch To Framework`
+- `APW: Switch To Parent`
+
+Natural chat-first phrasing can sound like:
+
+- "Show APW context."
+- "List APW projects."
+- "Switch to ProjectA."
+- "Switch to the APW framework."
+- "Go back to the workspace parent."
+
+Then use the terminal form only when you need the explicit fallback.
+
 ## The three places in plain language
 
 | Location | Role | Typical Actions | Avoid Doing Here |
@@ -71,6 +91,10 @@ Use this when you are unsure whether you are in:
 - a downstream project root
 - the workspace parent folder
 
+Action name:
+
+- `APW: Show Context`
+
 ### List known downstream projects
 
 Use:
@@ -91,6 +115,10 @@ What it does:
 - lists APW downstream projects it can recognize
 - gives you enough information to choose the right project
 
+Action name:
+
+- `APW: List Projects`
+
 ### Switch to APW root
 
 Use:
@@ -104,6 +132,10 @@ Use this when you mean to:
 - maintain APW docs
 - change templates
 - update scripts or workflow definitions
+
+Action name:
+
+- `APW: Switch To Framework`
 
 ### Switch to a downstream project
 
@@ -132,6 +164,10 @@ Use this when you mean to:
 - read `AGENTS.md`
 - run project workflows such as `/status`, `/brainstorm`, `/create`, or `/orchestrate`
 
+Action name:
+
+- `APW: Switch To Project`
+
 ### Switch to the workspace parent folder
 
 Use:
@@ -151,6 +187,10 @@ Use this when you want to:
 - get back to the workspace overview
 - decide which project to open next
 - create a new project from a clean launch point
+
+Action name:
+
+- `APW: Switch To Parent`
 
 ## Upgrade an existing downstream project safely
 

@@ -20,6 +20,14 @@ If you only remember one rule, remember this:
 If you want explicit commands that help you move between these locations safely, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the preferred chat/IDE action model for those same tasks, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 
+If you want the simplest action names for orientation and switching, think:
+
+- `APW: Show Context`
+- `APW: List Projects`
+- `APW: Switch To Project`
+- `APW: Switch To Framework`
+- `APW: Switch To Parent`
+
 ## The three locations in plain English
 
 ### 1. APW root
@@ -200,6 +208,12 @@ If you are changing APW itself:
 If you are just creating a new repo or organizing several repos:
 
 - the workspace parent folder is fine
+
+If you are lost, use this action order:
+
+1. `APW: Show Context`
+2. `APW: List Projects`
+3. `APW: Switch To Project` or `APW: Switch To Framework`
 
 ## Quick examples
 

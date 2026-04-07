@@ -81,12 +81,21 @@ If you are unsure, use:
 /path/to/apw/apw context
 ```
 
+Or think in the action name:
+
+- `APW: Show Context`
+
 If that shows you are in APW root or the workspace parent folder, recover with:
 
 ```bash
 /path/to/apw/apw list-projects
 /path/to/apw/apw switch project <name>
 ```
+
+Action names:
+
+- `APW: List Projects`
+- `APW: Switch To Project`
 
 ### 2. Read `AGENTS.md`
 

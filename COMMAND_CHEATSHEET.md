@@ -12,6 +12,14 @@ For the first beginner layer, start with:
 - `APW: Initialize Project State`
 - `APW: First Run`
 
+For the context and switching layer, think in:
+
+- `APW: Show Context`
+- `APW: List Projects`
+- `APW: Switch To Project`
+- `APW: Switch To Framework`
+- `APW: Switch To Parent`
+
 ## Quick rule
 
 - create projects from APW
