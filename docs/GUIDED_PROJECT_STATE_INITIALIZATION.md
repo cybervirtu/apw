@@ -36,6 +36,7 @@ That means:
 - after generation, normal work continues in the downstream project root
 
 If you want the broader location model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the short in-IDE checklist after initialization, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 From the APW checkout, point the script at the bootstrapped target repo:
 

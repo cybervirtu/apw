@@ -33,6 +33,8 @@ Choose the path that matches what you need:
   run `/path/to/apw/apw new MyProject --profile base --stack base`
 - I want to understand where I should actually work:
   [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
+- I want to know what to do the first time I open a project in my IDE:
+  [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:
@@ -224,6 +226,7 @@ If you want the map for that path in one place, read [START_HERE.md](docs/START_
 If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md).
 If you want APW to turn a plain-language brief into the first core `.gsd` drafts, read [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md).
 If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
+If you want the in-IDE first-run path, read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md).
 
 ### Fastest Safe Path
 
@@ -233,11 +236,12 @@ If you want the shortest path to using APW on a new project:
 2. Let it bootstrap and validate the new repo
 3. Move into the downstream project root
 4. Open root `AGENTS.md` in the target repo
-5. Run the guided project-state initializer
-6. Start work from `STATE.md` and `TODO.md`
-7. Log bounded evidence in `JOURNAL.md`
-8. Sync canonical state deliberately
-9. Turn on CI early
+5. Use [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) if you want the short in-editor checklist
+6. Run the guided project-state initializer
+7. Start work from `STATE.md` and `TODO.md`
+8. Log bounded evidence in `JOURNAL.md`
+9. Sync canonical state deliberately
+10. Turn on CI early
 
 ### Visual Docs Portal
 
@@ -349,6 +353,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: Shortest safe first-use path for a brand-new APW user.
 - **[Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)**: The plain-language helper that generates the first drafts of the core `.gsd` files.
 - **[Where Do I Work?](docs/WHERE_DO_I_WORK.md)**: The beginner-friendly workspace context model for APW root, downstream project root, and workspace parent folders.
+- **[First Run In IDE](docs/FIRST_RUN_IN_IDE.md)**: The beginner-friendly checklist for what to do the first time you open a downstream APW project in your IDE.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.

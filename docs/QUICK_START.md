@@ -38,6 +38,7 @@ Before you do anything else, keep this model in mind:
 | `workspace parent folder` | organizing APW plus multiple projects, launching `apw new` | normal project workflows |
 
 If you want the fuller guide, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## 1. Choose a Profile
 
@@ -115,9 +116,10 @@ From there, follow the linked APW governance and handbook docs instead of treati
 
 Once you are oriented, use the operator docs instead of improvising:
 
-1. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
-2. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
-3. [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+1. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
+2. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+3. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+4. [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 
 These explain which command to use, which agent to pair with it, what context it should read first, and when orchestrator sync is required.
 
@@ -179,10 +181,11 @@ Read these next:
 
 If the repo exists and you want to keep moving:
 
-1. Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right command.
-2. Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to understand what that command should read and produce.
-3. Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) to see the real invocation pattern.
-4. Read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) if you want the workspace/project context model in one place.
+1. Read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md) to get the short in-editor checklist.
+2. Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right command.
+3. Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to understand what that command should read and produce.
+4. Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) to see the real invocation pattern.
+5. Read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) if you want the workspace/project context model in one place.
 
 If you want more beginner context before doing that, go back to:
 

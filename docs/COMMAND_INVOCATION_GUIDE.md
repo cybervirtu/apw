@@ -28,6 +28,7 @@ Use APW root for framework maintenance and workspace-level helper commands.
 Use the workspace parent folder mainly as an organizer or launch point.
 
 If you want the short beginner version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Important scope note
 
@@ -46,6 +47,13 @@ If the repo was just bootstrapped, run the guided initializer before relying on 
 ```
 
 That gives `/status`, `/brainstorm`, `/create`, `/debug`, `/test`, and `/orchestrate` real project memory to read instead of mostly empty starter templates.
+
+For the shortest first-run command chooser:
+
+- use `/brainstorm` if the idea is still unclear
+- use `/create` if the first feature is already clear
+- use `/orchestrate` if the work is large or cross-cutting
+- use `/status` if you need orientation before acting
 
 ## The shared invocation pattern
 

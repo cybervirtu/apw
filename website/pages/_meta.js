@@ -9,6 +9,7 @@ export default {
     }
   },
   'basic-onboarding': 'Basic Onboarding',
+  'first-run-in-ide': 'First Run In IDE',
   'start-here': 'Start Here',
   'get-started-flow': 'Help Me Get Started',
   'choose-your-profile': 'Choose Your Profile',

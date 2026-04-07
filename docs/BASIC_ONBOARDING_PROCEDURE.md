@@ -28,6 +28,7 @@ Use this quick rule:
 - treat the workspace parent folder as an organizer, not the normal place for project workflows
 
 If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Before you begin
 
@@ -183,6 +184,13 @@ What to do:
 - Learn which APW command or workflow fits your first task instead of starting with vague prompting.
 - Run those project workflows from the downstream project root, not from APW root or the workspace parent folder.
 
+Use this simple first-run rule:
+
+- use `/brainstorm` if the idea or first step is still unclear
+- use `/create` if the first feature is already clear
+- use `/orchestrate` if the project work is large or cross-cutting
+- use `/status` if you are returning later or need orientation first
+
 Why it matters:
 
 - APW is meant to be operated intentionally. A small amount of workflow guidance saves confusion later.
@@ -193,6 +201,7 @@ Done looks like:
 
 If you need more help:
 
+- Read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 - Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
 
@@ -272,6 +281,7 @@ Use only the next doc you need:
 
 - If you want the workspace-friendly creation command details, read [QUICK_START.md](./QUICK_START.md).
 - If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+- If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 - If you need help choosing a project type, read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md).
 - If you need help choosing a stack or profile, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
 - If you want relatable examples, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).

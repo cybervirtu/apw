@@ -12,6 +12,7 @@ usage() {
 Usage:
   $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
   $0 context [path]
+  $0 first-run [path]
   $0 help
 
 Examples:
@@ -21,6 +22,8 @@ Examples:
   $0 new ProjectD --target /path/to/MyWork --init-state
   $0 context
   $0 context /path/to/MyWork/ProjectA
+  $0 first-run
+  $0 first-run /path/to/MyWork/ProjectA
 
 What it does:
   - creates a new project directory under the chosen target location
@@ -28,6 +31,7 @@ What it does:
   - runs validation by default
   - can optionally launch guided project-state initialization
   - explains whether a path is APW root, a downstream project root, or a workspace/general folder
+  - prints the beginner-friendly first-run checklist for a downstream project
 
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
@@ -106,6 +110,41 @@ find_downstream_root() {
     return 1
 }
 
+file_matches_bootstrap_template() {
+    local target_file="$1"
+    local file_name="$2"
+    local candidate=""
+
+    for candidate in \
+        "$APW_ROOT/templates/base/.gsd/$file_name" \
+        "$APW_ROOT/templates/minimal/.gsd/$file_name" \
+        "$APW_ROOT/templates/advanced/.gsd/$file_name"
+    do
+        if [[ -f "$candidate" ]] && cmp -s "$target_file" "$candidate"; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+downstream_needs_guided_init() {
+    local project_root="$1"
+    local file_name=""
+
+    for file_name in SPEC.md STACK.md TODO.md STATE.md ROADMAP.md; do
+        if [[ ! -f "$project_root/.gsd/$file_name" ]]; then
+            return 0
+        fi
+
+        if file_matches_bootstrap_template "$project_root/.gsd/$file_name" "$file_name"; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
 run_context() {
     local input_path="${1:-.}"
     local resolved_path=""
@@ -177,6 +216,69 @@ run_context() {
     echo "Avoid doing here:"
     echo "- running day-to-day project slash workflows here"
     echo "- treating this folder as the canonical home of project state unless a specific tool explicitly supports it"
+}
+
+run_first_run() {
+    local input_path="${1:-.}"
+    local resolved_path=""
+    local downstream_root=""
+    local project_display=""
+
+    resolved_path="$(resolve_existing_path "$input_path")"
+
+    echo "APW first-run guide"
+    echo "Path: $resolved_path"
+    echo
+
+    if [[ "$resolved_path" == "$APW_ROOT" || "$resolved_path" == "$APW_ROOT"/* ]]; then
+        echo "You are in APW root, which is the framework repo."
+        echo
+        echo "For the first-run IDE experience of a real project:"
+        echo "1. Open the downstream project root, not APW root."
+        echo "2. If you do not have a project yet, create one with:"
+        echo "   $0 new MyProject --profile base --stack base"
+        echo "3. Then re-run:"
+        echo "   $0 first-run /path/to/MyProject"
+        return 0
+    fi
+
+    if ! downstream_root="$(find_downstream_root "$resolved_path")"; then
+        echo "This path is not inside a downstream APW project."
+        echo
+        echo "If you need a new project:"
+        echo "1. Run: $0 new MyProject --profile base --stack base"
+        echo "2. Open that downstream project in your IDE"
+        echo "3. Then run: $0 first-run /path/to/MyProject"
+        return 0
+    fi
+
+    project_display="$downstream_root"
+
+    echo "Downstream project root: $project_display"
+    echo
+    echo "First-run checklist:"
+    echo "1. Confirm you are working from the downstream project root."
+    echo "2. Open AGENTS.md first."
+
+    if downstream_needs_guided_init "$downstream_root"; then
+        echo "3. The core .gsd drafts still look uninitialized. Run:"
+        echo "   $INIT_STATE_SCRIPT --target \"$downstream_root\""
+    else
+        echo "3. The core .gsd drafts already exist. Review .gsd/STATE.md and .gsd/TODO.md first."
+    fi
+
+    echo "4. Choose the first workflow that matches your situation:"
+    echo "   - use /brainstorm if the idea or first step is still unclear"
+    echo "   - use /create if the first feature is already clear"
+    echo "   - use /orchestrate if the work is large or crosses multiple areas"
+    echo "   - use /status if you are returning later or feel unsure where to begin"
+    echo "5. Use the orchestrator when official summary files such as STATE.md, ROADMAP.md, TODO.md, or DECISIONS.md need synchronized updates."
+    echo
+    echo "Read only if needed:"
+    echo "- docs/FIRST_RUN_IN_IDE.md"
+    echo "- docs/WORKFLOW_SELECTION_GUIDE.md"
+    echo "- docs/COMMAND_INVOCATION_GUIDE.md"
+    echo "- docs/WHERE_DO_I_WORK.md"
 }
 
 run_new() {
@@ -304,6 +406,10 @@ case "$command" in
     context)
         shift
         run_context "${1:-.}"
+        ;;
+    first-run)
+        shift
+        run_first_run "${1:-.}"
         ;;
     help|-h|--help)
         usage

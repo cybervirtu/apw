@@ -14,6 +14,7 @@ If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 
 If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the short in-IDE checklist for a downstream project, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Why it matters
 
@@ -84,6 +85,7 @@ If you are new, read these in order:
 4. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
 5. [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md)
 6. [QUICK_START.md](./QUICK_START.md)
+7. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
 
 This path answers:
 
@@ -117,5 +119,6 @@ Go here next:
 
 If you want the shortest safe onboarding path, go to [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you want the workspace/project context model in one page, go to [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) next.
+If you want the in-editor first-run path, go to [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md) next.
 If you have not read it yet, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) first.
 If you already understand the plain-English intro, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) next.

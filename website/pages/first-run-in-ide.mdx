@@ -1,0 +1,53 @@
+import { Callout, Steps } from 'nextra/components'
+
+# First Run In IDE
+
+This page is the shortest portal summary for what to do when you open a downstream APW project in your IDE for the first time.
+
+<Callout type="info" emoji="✅">
+Canonical source doc: `docs/FIRST_RUN_IN_IDE.md`
+</Callout>
+
+<Callout type="info" emoji="📍">
+Open the downstream project root, not APW root. Then open `AGENTS.md` first.
+</Callout>
+
+## The short first-run path
+
+<Steps>
+### Confirm you are in the downstream project root
+
+This is the real project repo where normal work happens.
+
+### Read `AGENTS.md`
+
+Treat it as the in-IDE front door, not the whole handbook.
+
+### Make sure the core `.gsd` state is initialized
+
+If those files still look like starter templates, run the guided initialization flow.
+
+### Pick the first workflow that matches your situation
+
+Use `/brainstorm`, `/create`, `/orchestrate`, or `/status` based on what is actually true right now.
+
+### Use orchestrator when official summary state needs synchronized updates
+
+Execution can move quickly, but canonical state should stay deliberate.
+</Steps>
+
+## First command chooser
+
+| Situation | First workflow |
+| --- | --- |
+| the idea or first step is still unclear | `/brainstorm` |
+| the first feature is already clear | `/create` |
+| the work is large or cross-cutting | `/orchestrate` |
+| you need orientation or are returning later | `/status` |
+
+## Read next
+
+- Read the repo's `docs/FIRST_RUN_IN_IDE.md` for the full in-editor checklist.
+- Go to [Commands & Workflows](/commands-and-workflows) if you want the operator layer next.
+- Go to [Start Here](/start-here) if you want the broader beginner path.
+- Read the repo's `docs/WHERE_DO_I_WORK.md` if you need the workspace/project context model.
