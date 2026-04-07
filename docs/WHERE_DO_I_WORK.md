@@ -17,6 +17,8 @@ If you only remember one rule, remember this:
 
 - normal project work happens in the downstream project root
 
+If you want explicit commands that help you move between these locations safely, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
+
 ## The three locations in plain English
 
 ### 1. APW root
@@ -154,6 +156,15 @@ What this means:
 - the resulting repo is still the downstream project root
 - once the repo exists, that downstream project root becomes the normal place to work
 
+If you later need help moving back to the right place, use:
+
+```bash
+/path/to/apw/apw list-projects
+/path/to/apw/apw switch project <name>
+/path/to/apw/apw switch framework
+/path/to/apw/apw switch parent
+```
+
 ## Where you should work day to day
 
 For normal project implementation:
@@ -217,6 +228,12 @@ Use:
 ```
 
 Or point it at a specific path:
+
+```bash
+/path/to/apw/apw context /path/to/somewhere
+```
+
+If you want the dedicated switching guide, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 
 ```bash
 /path/to/apw/apw context /path/to/MyWork/ProjectA

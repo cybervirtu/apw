@@ -28,6 +28,7 @@ Use APW root for framework maintenance and workspace-level helper commands.
 Use the workspace parent folder mainly as an organizer or launch point.
 
 If you want the short beginner version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the explicit switch helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Important scope note

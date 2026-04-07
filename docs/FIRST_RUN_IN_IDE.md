@@ -61,6 +61,13 @@ If you are unsure, use:
 /path/to/apw/apw context
 ```
 
+If that shows you are in APW root or the workspace parent folder, recover with:
+
+```bash
+/path/to/apw/apw list-projects
+/path/to/apw/apw switch project <name>
+```
+
 ### 2. Read `AGENTS.md`
 
 Read `AGENTS.md` first.
@@ -123,6 +130,7 @@ Use only the next doc you need:
 
 - Need the shortest beginner path: [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
 - Need the workspace/project location model: [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
+- Need explicit switch helpers: [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
 - Need command choice help: [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
 - Need command details and read-first context: [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 - Need help initializing state: [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)

@@ -25,6 +25,7 @@ That means:
 Do not treat APW root or the workspace parent folder as the normal home for these project workflows.
 
 If you want the location model in one page, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want the explicit switch helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Important scope note

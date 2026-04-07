@@ -38,6 +38,7 @@ Before you do anything else, keep this model in mind:
 | `workspace parent folder` | organizing APW plus multiple projects, launching `apw new` | normal project workflows |
 
 If you want the fuller guide, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want safe switching helpers for those locations, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## 1. Choose a Profile
@@ -111,6 +112,14 @@ After project creation and validation, move into the downstream project root and
 That is the modern APW entrypoint for Codex, Antigravity, and similarly compatible tooling.
 
 From there, follow the linked APW governance and handbook docs instead of treating `AGENTS.md` as a complete replacement for the framework.
+
+If you lose track of the right folder later, recover with:
+
+```bash
+/path/to/apw/apw context
+/path/to/apw/apw list-projects
+/path/to/apw/apw switch project <name>
+```
 
 ## 5. How To Invoke Work
 

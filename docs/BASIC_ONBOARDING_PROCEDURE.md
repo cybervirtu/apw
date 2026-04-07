@@ -28,6 +28,7 @@ Use this quick rule:
 - treat the workspace parent folder as an organizer, not the normal place for project workflows
 
 If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want safe helpers for moving between those places, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Before you begin
@@ -117,10 +118,12 @@ Done looks like:
 - The new project directory exists and already contains `AGENTS.md`, `.gsd/`, and `.agent/`.
 - The wrapper tells you exactly where the project was created.
 - You know that the new downstream project root is now the normal place to work.
+- You know you can recover later with `apw list-projects` and `apw switch project <name>` if you lose track of the right repo.
 
 If you need more help:
 
 - Read [QUICK_START.md](./QUICK_START.md).
+- Read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 
 ## Step 5 — Validate the setup
 

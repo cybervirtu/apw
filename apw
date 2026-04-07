@@ -13,6 +13,10 @@ Usage:
   $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
   $0 context [path]
   $0 first-run [path]
+  $0 list-projects [--workspace dir]
+  $0 switch framework [--open]
+  $0 switch project <name-or-path> [--workspace dir] [--open]
+  $0 switch parent [--workspace dir] [--open]
   $0 help
 
 Examples:
@@ -24,6 +28,11 @@ Examples:
   $0 context /path/to/MyWork/ProjectA
   $0 first-run
   $0 first-run /path/to/MyWork/ProjectA
+  $0 list-projects
+  $0 switch framework
+  $0 switch project ProjectA
+  $0 switch project /path/to/MyWork/ProjectA
+  $0 switch parent
 
 What it does:
   - creates a new project directory under the chosen target location
@@ -32,10 +41,13 @@ What it does:
   - can optionally launch guided project-state initialization
   - explains whether a path is APW root, a downstream project root, or a workspace/general folder
   - prints the beginner-friendly first-run checklist for a downstream project
+  - lists known downstream projects in the workspace
+  - resolves a switch target clearly without silently changing your shell
 
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
   - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
+  - Switch helpers are explicit and visible. They print where to go next; they do not silently mutate your shell context.
 EOF
 }
 
@@ -73,6 +85,10 @@ directory_is_empty() {
     return 0
 }
 
+default_workspace_parent() {
+    dirname "$APW_ROOT"
+}
+
 resolve_existing_path() {
     local input_path="${1:-.}"
 
@@ -88,6 +104,37 @@ resolve_existing_path() {
     fi
 }
 
+resolve_workspace_parent() {
+    local input_path="${1:-}"
+    local resolved_path=""
+
+    if [[ -z "$input_path" ]]; then
+        resolved_path="$(default_workspace_parent)"
+    else
+        resolved_path="$(resolve_existing_path "$input_path")"
+    fi
+
+    if [[ ! -d "$resolved_path" ]]; then
+        echo "Error: Workspace parent must be a directory: $resolved_path"
+        exit 1
+    fi
+
+    printf '%s\n' "$resolved_path"
+}
+
+is_downstream_project_root() {
+    local candidate="$1"
+
+    [[ -d "$candidate" ]] || return 1
+
+    if [[ -f "$candidate/AGENTS.md" && -d "$candidate/.gsd" && -d "$candidate/.agent" && -f "$candidate/PROJECT_RULES.md" ]]; then
+        [[ "$candidate" != "$APW_ROOT" ]] || return 1
+        return 0
+    fi
+
+    return 1
+}
+
 find_downstream_root() {
     local start_path="$1"
     local current="$start_path"
@@ -97,17 +144,184 @@ find_downstream_root() {
     fi
 
     while [[ "$current" != "/" ]]; do
-        if [[ -f "$current/AGENTS.md" && -d "$current/.gsd" && -d "$current/.agent" && -f "$current/PROJECT_RULES.md" ]]; then
-            if [[ "$current" != "$APW_ROOT" ]]; then
-                printf '%s\n' "$current"
-                return 0
-            fi
+        if is_downstream_project_root "$current"; then
+            printf '%s\n' "$current"
+            return 0
         fi
 
         current="$(dirname "$current")"
     done
 
     return 1
+}
+
+list_workspace_projects() {
+    local workspace_parent="$1"
+    local child=""
+    local project_roots=()
+
+    for child in "$workspace_parent"/*; do
+        [[ -d "$child" ]] || continue
+
+        if is_downstream_project_root "$child"; then
+            project_roots+=("$child")
+        fi
+    done
+
+    if [[ "${#project_roots[@]}" -eq 0 ]]; then
+        return 0
+    fi
+
+    printf '%s\n' "${project_roots[@]}" | sort
+}
+
+format_cd_command() {
+    printf 'cd %q\n' "$1"
+}
+
+print_vscode_command() {
+    printf 'code %q\n' "$1"
+}
+
+print_switch_next_steps() {
+    local target_path="$1"
+    local target_kind="$2"
+
+    echo "Next:"
+    echo "- APW does not silently change your shell or IDE."
+    printf '%s\n' "- Run: $(format_cd_command "$target_path")"
+
+    case "$target_kind" in
+        framework)
+            echo "- Maintain APW docs, templates, scripts, and workflows there."
+            ;;
+        project)
+            echo "- Open AGENTS.md there and do normal project work from that repo root."
+            ;;
+        parent)
+            echo "- Use that folder to choose a project, launch helpers, or switch again into the repo you actually want."
+            ;;
+    esac
+}
+
+maybe_open_target() {
+    local target_path="$1"
+    local open_requested="$2"
+
+    if [[ "$open_requested" -eq 0 ]]; then
+        if command -v code >/dev/null 2>&1; then
+            printf '%s\n' "- Optional: run $(print_vscode_command "$target_path") to open it in VS Code."
+        fi
+        return 0
+    fi
+
+    echo
+
+    if command -v code >/dev/null 2>&1; then
+        echo "Optional open requested: launching VS Code for the selected folder."
+        if ! code "$target_path" >/dev/null 2>&1; then
+            echo "VS Code did not open cleanly."
+            printf '%s\n' "Run manually: $(print_vscode_command "$target_path")"
+            return 1
+        fi
+        echo "VS Code open request sent."
+    else
+        echo "Optional open requested, but no supported IDE launcher was detected."
+        echo "Open the folder manually in your IDE."
+    fi
+}
+
+print_switch_summary() {
+    local target_kind="$1"
+    local target_path="$2"
+
+    echo "APW switch helper"
+    echo "Resolved target: $target_path"
+    echo
+
+    case "$target_kind" in
+        framework)
+            echo "Switch target: APW framework root"
+            echo "Use this for:"
+            echo "- APW docs, templates, scripts, and workflow maintenance"
+            echo "- bootstrap, validation, and helper operations against target repos"
+            echo "Avoid doing here:"
+            echo "- normal downstream project implementation"
+            ;;
+        project)
+            echo "Switch target: downstream project root"
+            echo "Use this for:"
+            echo "- normal day-to-day project work"
+            echo "- AGENTS.md, slash workflows, code changes, and project-local .gsd state"
+            echo "Avoid doing here:"
+            echo "- editing APW framework source unless you intentionally mean to maintain APW"
+            ;;
+        parent)
+            echo "Switch target: workspace parent folder"
+            echo "Use this for:"
+            echo "- project discovery, launching helpers, and choosing where new repos should live"
+            echo "- moving between APW root and downstream projects"
+            echo "Avoid doing here:"
+            echo "- day-to-day project workflows"
+            ;;
+        *)
+            echo "Error: Unsupported switch target kind: $target_kind"
+            exit 1
+            ;;
+    esac
+
+    echo
+    print_switch_next_steps "$target_path" "$target_kind"
+}
+
+resolve_project_switch_target() {
+    local selector="$1"
+    local workspace_parent="$2"
+    local resolved_path=""
+    local downstream_root=""
+    local child=""
+    local project_roots=()
+    local matched_project=""
+
+    if [[ -e "$selector" ]]; then
+        resolved_path="$(resolve_existing_path "$selector")"
+
+        if downstream_root="$(find_downstream_root "$resolved_path")"; then
+            printf '%s\n' "$downstream_root"
+            return 0
+        fi
+
+        echo "Error: Path is not inside a downstream APW project: $resolved_path"
+        exit 1
+    fi
+
+    while IFS= read -r child; do
+        [[ -n "$child" ]] || continue
+        project_roots+=("$child")
+    done < <(list_workspace_projects "$workspace_parent")
+
+    for child in "${project_roots[@]}"; do
+        if [[ "$(basename "$child")" == "$selector" ]]; then
+            matched_project="$child"
+            break
+        fi
+    done
+
+    if [[ -n "$matched_project" ]]; then
+        printf '%s\n' "$matched_project"
+        return 0
+    fi
+
+    echo "Error: Could not find downstream project '$selector' under workspace parent: $workspace_parent"
+
+    if [[ "${#project_roots[@]}" -gt 0 ]]; then
+        echo "Known downstream projects:"
+        printf '%s\n' "${project_roots[@]}" | sed 's|.*/|- |'
+    else
+        echo "No downstream projects were detected under that workspace parent."
+    fi
+
+    exit 1
 }
 
 file_matches_bootstrap_template() {
@@ -149,8 +363,10 @@ run_context() {
     local input_path="${1:-.}"
     local resolved_path=""
     local downstream_root=""
+    local workspace_parent=""
 
     resolved_path="$(resolve_existing_path "$input_path")"
+    workspace_parent="$(default_workspace_parent)"
 
     echo "APW context check"
     echo "Path: $resolved_path"
@@ -166,6 +382,11 @@ run_context() {
         echo "Avoid doing here:"
         echo "- day-to-day product implementation for a downstream project"
         echo "- treating the APW repo itself as the place where project slash workflows normally belong"
+        echo
+        echo "Helpful next commands:"
+        echo "- $0 list-projects"
+        echo "- $0 switch project <name>"
+        echo "- $0 switch parent"
         return 0
     fi
 
@@ -179,6 +400,10 @@ run_context() {
         echo "Avoid doing here:"
         echo "- normal downstream project implementation"
         echo "- assuming this directory is a downstream project root just because it contains APW files"
+        echo
+        echo "Helpful next commands:"
+        echo "- $0 switch framework"
+        echo "- $0 list-projects"
         return 0
     fi
 
@@ -204,18 +429,42 @@ run_context() {
             echo "Avoid doing here:"
             echo "- forgetting that APW slash workflows and repo-wide context normally start from the downstream project root"
         fi
+
+        echo
+        echo "Helpful next commands:"
+        echo "- $0 first-run \"$downstream_root\""
+        echo "- $0 switch project \"$downstream_root\""
+        echo "- $0 switch framework"
         return 0
     fi
 
-    echo "Context: workspace parent or general folder"
-    echo "Role: organizer or launch point"
+    if [[ "$resolved_path" == "$workspace_parent" ]]; then
+        echo "Context: workspace parent folder"
+        echo "Role: organizer and launch point"
+        echo "Typical actions:"
+        echo "- create a new project with: $0 new MyProject --profile base --stack base"
+        echo "- list known downstream projects"
+        echo "- switch into APW root or a downstream project explicitly"
+        echo "Avoid doing here:"
+        echo "- running day-to-day project slash workflows here"
+        echo "- treating this folder as the canonical home of project state"
+        echo
+        echo "Helpful next commands:"
+        echo "- $0 list-projects"
+        echo "- $0 switch framework"
+        echo "- $0 switch project <name>"
+        return 0
+    fi
+
+    echo "Context: general folder"
+    echo "Role: not currently identified as APW root, a downstream APW project, or the default workspace parent"
     echo "Typical actions:"
     echo "- create a new project with: $0 new MyProject --profile base --stack base"
-    echo "- keep APW and multiple downstream repos side by side"
-    echo "- navigate into a downstream project root before normal project work"
+    echo "- point APW at a specific workspace with: $0 list-projects --workspace /path/to/MyWork"
+    echo "- switch explicitly once you know the destination"
     echo "Avoid doing here:"
-    echo "- running day-to-day project slash workflows here"
-    echo "- treating this folder as the canonical home of project state unless a specific tool explicitly supports it"
+    echo "- assuming project slash workflows belong here"
+    echo "- assuming this folder has APW state just because APW is installed somewhere else"
 }
 
 run_first_run() {
@@ -237,7 +486,9 @@ run_first_run() {
         echo "1. Open the downstream project root, not APW root."
         echo "2. If you do not have a project yet, create one with:"
         echo "   $0 new MyProject --profile base --stack base"
-        echo "3. Then re-run:"
+        echo "3. If you want help finding the right repo, run:"
+        echo "   $0 list-projects"
+        echo "4. Then re-run:"
         echo "   $0 first-run /path/to/MyProject"
         return 0
     fi
@@ -249,6 +500,10 @@ run_first_run() {
         echo "1. Run: $0 new MyProject --profile base --stack base"
         echo "2. Open that downstream project in your IDE"
         echo "3. Then run: $0 first-run /path/to/MyProject"
+        echo
+        echo "If the project already exists but you are in the wrong folder:"
+        echo "1. Run: $0 list-projects"
+        echo "2. Run: $0 switch project <name>"
         return 0
     fi
 
@@ -279,6 +534,168 @@ run_first_run() {
     echo "- docs/WORKFLOW_SELECTION_GUIDE.md"
     echo "- docs/COMMAND_INVOCATION_GUIDE.md"
     echo "- docs/WHERE_DO_I_WORK.md"
+}
+
+run_list_projects() {
+    local workspace_input=""
+    local workspace_parent=""
+    local current_path=""
+    local current_downstream_root=""
+    local project_roots=()
+    local project_root=""
+    local project_name=""
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --workspace)
+                [[ $# -ge 2 ]] || { echo "Error: --workspace requires a value."; exit 1; }
+                workspace_input="$2"
+                shift 2
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "Error: Unknown option '$1'."
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
+    current_path="$(pwd -P)"
+
+    echo "APW project discovery"
+    echo "Workspace parent: $workspace_parent"
+    echo "APW root: $APW_ROOT"
+    echo "Scan model: immediate child folders of the workspace parent"
+    echo
+
+    if current_downstream_root="$(find_downstream_root "$current_path" 2>/dev/null)"; then
+        echo "Current downstream project: $current_downstream_root"
+        echo
+    elif [[ "$current_path" == "$APW_ROOT" || "$current_path" == "$APW_ROOT"/* ]]; then
+        echo "Current context: APW framework"
+        echo
+    elif [[ "$current_path" == "$workspace_parent" ]]; then
+        echo "Current context: workspace parent folder"
+        echo
+    fi
+
+    while IFS= read -r project_root; do
+        [[ -n "$project_root" ]] || continue
+        project_roots+=("$project_root")
+    done < <(list_workspace_projects "$workspace_parent")
+
+    if [[ "${#project_roots[@]}" -eq 0 ]]; then
+        echo "No downstream APW projects were detected under this workspace parent."
+        echo
+        echo "Next steps:"
+        echo "- Create one with: $0 new MyProject --profile base --stack base --target \"$workspace_parent\""
+        return 0
+    fi
+
+    echo "Known downstream projects:"
+
+    for project_root in "${project_roots[@]}"; do
+        project_name="$(basename "$project_root")"
+
+        if [[ -n "$current_downstream_root" && "$project_root" == "$current_downstream_root" ]]; then
+            echo "- $project_name (current project)"
+        else
+            echo "- $project_name"
+        fi
+
+        echo "  Path: $project_root"
+        echo "  Use it for: day-to-day project work"
+    done
+
+    echo
+    echo "Switch explicitly with:"
+    echo "- $0 switch framework"
+    echo "- $0 switch project <name>"
+    echo "- $0 switch parent"
+}
+
+run_switch() {
+    local destination="${1:-}"
+    local selector=""
+    local workspace_input=""
+    local workspace_parent=""
+    local target_path=""
+    local target_kind=""
+    local open_requested=0
+
+    if [[ -z "$destination" ]]; then
+        echo "Error: switch requires a destination."
+        usage
+        exit 1
+    fi
+
+    shift || true
+
+    case "$destination" in
+        framework|parent)
+            ;;
+        project)
+            selector="${1:-}"
+            if [[ -z "$selector" ]]; then
+                echo "Error: switch project requires a project name or path."
+                exit 1
+            fi
+            shift || true
+            ;;
+        *)
+            echo "Error: Unknown switch destination '$destination'."
+            usage
+            exit 1
+            ;;
+    esac
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --workspace)
+                [[ $# -ge 2 ]] || { echo "Error: --workspace requires a value."; exit 1; }
+                workspace_input="$2"
+                shift 2
+                ;;
+            --open)
+                open_requested=1
+                shift
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "Error: Unknown option '$1'."
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
+
+    case "$destination" in
+        framework)
+            target_path="$APW_ROOT"
+            target_kind="framework"
+            ;;
+        project)
+            target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
+            target_kind="project"
+            ;;
+        parent)
+            target_path="$workspace_parent"
+            target_kind="parent"
+            ;;
+    esac
+
+    print_switch_summary "$target_kind" "$target_path"
+    maybe_open_target "$target_path" "$open_requested"
 }
 
 run_new() {
@@ -384,7 +801,7 @@ run_new() {
     echo
     echo "APW project ready at: $project_root"
     echo "Next steps:"
-    echo "1. cd \"$project_root\""
+    echo "1. $(format_cd_command "$project_root")"
     echo "2. Open AGENTS.md in the new repo"
 
     if [[ $init_state -eq 0 ]]; then
@@ -410,6 +827,14 @@ case "$command" in
     first-run)
         shift
         run_first_run "${1:-.}"
+        ;;
+    list-projects)
+        shift
+        run_list_projects "$@"
+        ;;
+    switch)
+        shift
+        run_switch "$@"
         ;;
     help|-h|--help)
         usage

@@ -12,6 +12,7 @@
 | `workspace parent folder` | organizer for APW plus sibling projects | launch `apw new`; keep multiple repos side by side | normal project slash workflows |
 
 For the beginner version of this model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+For the safe switching helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 
 ## 1. Choose the Right Profile
 

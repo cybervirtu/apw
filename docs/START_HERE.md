@@ -14,6 +14,7 @@ If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 
 If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
+If you want explicit helpers for moving between APW root, project roots, and the workspace parent, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the short in-IDE checklist for a downstream project, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 
 ## Why it matters

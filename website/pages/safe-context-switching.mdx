@@ -1,0 +1,48 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Safe Context Switching
+
+This page explains how APW helps you move between the framework repo, downstream projects, and the workspace parent folder without silent context changes.
+
+<Callout type="info" emoji="🔀">
+Canonical source doc: `docs/SAFE_CONTEXT_SWITCHING.md`
+</Callout>
+
+<Callout type="info" emoji="📍">
+The practical rule stays the same: create from APW, but do normal implementation work in the downstream project root.
+</Callout>
+
+## What the helpers are for
+
+Use the `apw` helpers when you want a visible answer to:
+
+- where am I right now?
+- what projects exist in this workspace?
+- how do I get back to APW root safely?
+- how do I get into the right downstream project without manual folder hunting?
+
+## The practical helper flow
+
+<Steps>
+### Check your current location
+
+Run `apw context`.
+
+### See the known projects
+
+Run `apw list-projects`.
+
+### Switch explicitly
+
+Run `apw switch framework`, `apw switch project <name>`, or `apw switch parent`.
+
+### Work in the right place
+
+Once you are in the downstream project root, open `AGENTS.md` and continue normal project work there.
+</Steps>
+
+## Read next
+
+- Read the repo's `docs/SAFE_CONTEXT_SWITCHING.md` for the full switching model.
+- Read the repo's `docs/WHERE_DO_I_WORK.md` if you want the broader location model.
+- Read the repo's `docs/FIRST_RUN_IN_IDE.md` if the downstream project is already open and you want the short first-run checklist.

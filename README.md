@@ -33,6 +33,8 @@ Choose the path that matches what you need:
   run `/path/to/apw/apw new MyProject --profile base --stack base`
 - I want to understand where I should actually work:
   [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
+- I want safe helpers for moving between APW root, project roots, and the workspace parent:
+  [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
 - I want to know what to do the first time I open a project in my IDE:
   [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
 - I want to learn how to operate APW workflows:
@@ -94,6 +96,16 @@ The practical rule is straightforward:
 - use APW root when you intentionally mean to maintain APW itself
 
 If you want the fuller beginner explanation, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
+
+If you want explicit helpers for detecting and switching between those locations, use:
+
+- `apw context`
+- `apw list-projects`
+- `apw switch framework`
+- `apw switch project <name>`
+- `apw switch parent`
+
+For the focused guide, read [SAFE_CONTEXT_SWITCHING.md](docs/SAFE_CONTEXT_SWITCHING.md).
 
 ## One Framework, Two Tool Paths
 
