@@ -124,6 +124,7 @@ The guided initializer is the first deliberate state-creation pass.
 After that:
 
 - use execution workflows for bounded implementation work
+- use `JOURNAL.md` to persist meaningful brainstorm summaries safely
 - use orchestrator when official project state needs synchronized updates
 
 ## Best next steps after initialization

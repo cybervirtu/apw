@@ -40,7 +40,7 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 | Command | Purpose | Primary Target |
 | :--- | :--- | :--- |
 | `/status` | Re-orients the operator on current execution state and likely next action. | `STATE.md`, `ROADMAP.md`, `TODO.md`, optional `JOURNAL.md` |
-| `/brainstorm` | Explores options before implementation. | Requirements, constraints, solution options |
+| `/brainstorm` | Explores options before implementation and proposes a persistence path. | Requirements, constraints, solution options, bounded `JOURNAL.md` summary by default |
 | `/agk` | Main entry point for invoking specialist skills. | Source Code |
 | `/create` | Generates boilerplates, features, or assets. | Source Code |
 | `/enhance` | Improves existing implementation without expanding scope by default. | Existing Source Code |
@@ -57,6 +57,7 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 
 - Execution commands may write code and implementation artifacts.
 - Execution commands may append bounded evidence to `.gsd/JOURNAL.md`.
+- Brainstorm outcomes are not canonical state automatically. Persist useful exploration deliberately, usually in `.gsd/JOURNAL.md` first.
 - Free editing of `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is not part of routine AGK execution.
 - Safe synchronization of those canonical files belongs to the orchestrator or an explicit GSD/governance command.
 

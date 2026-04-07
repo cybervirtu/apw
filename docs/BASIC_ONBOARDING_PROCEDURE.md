@@ -194,6 +194,12 @@ Use this simple first-run rule:
 - use `/orchestrate` if the project work is large or cross-cutting
 - use `/status` if you are returning later or need orientation first
 
+If you use `/brainstorm`, remember:
+
+- the session helps shape ideas
+- useful outcomes should usually be saved to `.gsd/JOURNAL.md`
+- official project changes should be synchronized deliberately, usually through orchestrator
+
 Why it matters:
 
 - APW is meant to be operated intentionally. A small amount of workflow guidance saves confusion later.
@@ -205,6 +211,7 @@ Done looks like:
 If you need more help:
 
 - Read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+- Read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md).
 - Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
 

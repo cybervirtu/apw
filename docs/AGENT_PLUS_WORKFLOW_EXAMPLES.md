@@ -71,10 +71,15 @@ The product manager is strong at tradeoffs and user value, and `/brainstorm` kee
 - multiple approaches
 - pros and cons
 - a recommendation
+- a clear persistence recommendation
 
 ### Orchestrator sync after
 
-Only if the chosen direction must become official project memory later.
+Not by default.
+
+The safe default is to capture a bounded summary in `.gsd/JOURNAL.md`.
+
+Use orchestrator when the chosen direction should become official project memory in `SPEC.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md`.
 
 ## Example 3: Build a new backend feature
 

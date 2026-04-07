@@ -31,6 +31,7 @@ Any future structural change to that workspace architecture must be handled as a
 - **Execution Logic**: AGK owns the "How" of implementation. Specialist agents and workflows determine the best technical path to achieve a GSD milestone.
 - **Skill Orchestration**: Reusable skills from AGK are the primary tools for complex coding, debugging, and deployment tasks.
 - **Evidence Logging**: AGK execution agents may append bounded evidence to `.gsd/JOURNAL.md`, but they do not freely rewrite canonical summary files during routine execution.
+- **Brainstorm Persistence**: `/brainstorm` may generate useful requirements, options, and follow-up ideas, but those outcomes only persist through deliberate capture. The safe default is a bounded `JOURNAL.md` summary. Promotion into canonical state belongs to orchestrator or explicit governance sync.
 
 ### Conflict Resolution: "GSD Documentation Wins"
 If a conflict arises between execution logs (AGK) and state documentation (GSD), the GSD documentation remains the canonical source. All AGK execution results must be rectified against the GSD state before the session is closed.
@@ -47,7 +48,7 @@ When an agent starts a task:
 3. **Execute**: Utilize curated skills from `.agent/skills/`.
 4. **Verify**: Test outputs against `.gsd/SPEC.md` requirements.
 5. **Record Evidence**: Append bounded implementation evidence to `.gsd/JOURNAL.md` when useful.
-6. **Synchronize Canonical State**: Hand results to the orchestrator or explicit GSD/governance pass to update `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` safely.
+6. **Synchronize Canonical State**: Hand results, including any brainstorm outcomes that should become official, to the orchestrator or explicit GSD/governance pass to update `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` safely.
 7. **Commit**: Commit with GSD-style atomicity after the relevant state sync has occurred.
 
 ---
@@ -63,4 +64,5 @@ To prevent endless execution loops and feature creep, the following boundaries a
 - **Scope Modification requires Governance**: Only GSD commands (e.g., `/plan`, `/gsd`) are permitted to alter the `ROADMAP.md` or `SPEC.md`. 
 - **Execution operates within Scope**: AGK workflows (e.g., `/create`, `/refactor`, `/design`) operate *strictly* within the confines of the current phase defined in `STATE.md`. They are NOT allowed to unilaterally expand the scope, add new features, or alter the milestones. If an implementation requires a scope change, AGK must halt and request a GSD `/plan` review.
 - **Canonical State Write Boundary**: Execution agents may append bounded entries to `.gsd/JOURNAL.md`, but they must not freely rewrite `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, or `.gsd/DECISIONS.md` by default.
+- **Brainstorm Promotion Boundary**: Exploration may produce candidate requirements, tasks, milestones, or rationale, but promotion of those outcomes into canonical `.gsd` files is deliberate and usually orchestrator-led.
 - **Micro-tasks vs Milestones**: Execution agents may propose micro-tasks or follow-up items, but promotion of those items into canonical `.gsd/TODO.md` is part of the orchestrator-controlled sync step.

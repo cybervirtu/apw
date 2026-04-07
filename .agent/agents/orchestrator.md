@@ -64,7 +64,14 @@ Use this sync step after:
 - a meaningful implementation wave completes
 - verification changes status or reveals new blockers
 - a design or architecture choice becomes authoritative
+- a brainstorm session produces agreed requirements, backlog changes, roadmap impact, or design rationale that should become official project memory
 - handoff to another agent or another session
+
+For brainstorm-heavy work:
+
+- do not treat chat exploration as canonical state by default
+- prefer capturing a bounded summary in `.gsd/JOURNAL.md` first
+- then synchronize `SPEC.md`, `TODO.md`, `ROADMAP.md`, and `DECISIONS.md` deliberately when the outcome is actually agreed
 
 ---
 

@@ -124,6 +124,12 @@ Execution work can move quickly.
 
 Canonical summary state should stay deliberate.
 
+If you start with `/brainstorm`, remember:
+
+- the brainstorm itself is not official project memory automatically
+- save meaningful outcomes to `.gsd/JOURNAL.md`
+- use orchestrator when the brainstorm should change `SPEC.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md`
+
 ## What should I read only if needed?
 
 Use only the next doc you need:
@@ -131,6 +137,7 @@ Use only the next doc you need:
 - Need the shortest beginner path: [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
 - Need the workspace/project location model: [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
 - Need explicit switch helpers: [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
+- Need the brainstorm persistence model: [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
 - Need command choice help: [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
 - Need command details and read-first context: [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 - Need help initializing state: [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)

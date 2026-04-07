@@ -52,6 +52,16 @@ Use this pattern for a bug fix:
 6. Sync canonical state if the bug changes blockers, next steps, or backlog.
 7. Validate before merge.
 
+## 4.5 Brainstorm Persistence Workflow
+
+Use this pattern when `/brainstorm` produced something useful:
+
+1. Explore options and tradeoffs.
+2. Decide what should be kept.
+3. Save a bounded summary to `JOURNAL.md` as the safe default.
+4. Promote agreed requirements, tasks, roadmap changes, or rationale deliberately.
+5. Run orchestrator sync if official project memory changed across canonical files.
+
 ## 5. Architecture Change Workflow
 
 When the change affects structure, dependencies, or design rationale:
@@ -157,5 +167,6 @@ Before you stop:
 
 1. Make sure implementation work is verified.
 2. Append bounded evidence to `JOURNAL.md`.
-3. Run orchestrator/governance sync if canonical state changed.
-4. Re-run validation if the work is heading to merge or release.
+3. If the session included a meaningful brainstorm, do not leave the useful outcome only in chat.
+4. Run orchestrator/governance sync if canonical state changed.
+5. Re-run validation if the work is heading to merge or release.

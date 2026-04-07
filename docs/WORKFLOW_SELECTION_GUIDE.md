@@ -114,7 +114,13 @@ Why:
 
 - it helps you compare options before implementation
 - it keeps you from coding the first idea that came to mind
-- it gives you a recommendation you can later turn into planning or execution
+- it gives you a recommendation you can later persist safely into `JOURNAL.md`, planning files, or orchestrator sync
+
+After a meaningful brainstorm:
+
+- save the useful summary to `.gsd/JOURNAL.md`
+- promote agreed requirements, tasks, roadmap changes, or decisions deliberately
+- use orchestrator if official project memory across multiple files should change
 
 ### I need to build something new
 

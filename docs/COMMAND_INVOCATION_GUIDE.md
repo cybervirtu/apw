@@ -194,6 +194,8 @@ Use orchestrator handoff only if the status pass reveals that canonical state it
 
 Explore options before implementation.
 
+In APW, `/brainstorm` is exploration first and persistence second.
+
 ### When to use
 
 - when you have an idea but not a clear solution yet
@@ -227,24 +229,52 @@ Explore options before implementation.
 - pros and cons for each
 - tradeoffs and effort levels
 - a recommendation and why it is recommended
+- an explicit persistence recommendation
+
+### Safe default persistence
+
+For a meaningful brainstorm session, the safe default is:
+
+- save a bounded structured summary to `.gsd/JOURNAL.md`
+
+That preserves the session without pretending the whole discussion became canonical project state.
+
+### Promotion map
+
+When brainstorm outcomes become concrete, promote them deliberately:
+
+- requirements, users, problem framing, scope -> `.gsd/SPEC.md`
+- next actions and backlog slices -> `.gsd/TODO.md`
+- milestone or phase implications -> `.gsd/ROADMAP.md`
+- chosen rationale and tradeoffs -> `.gsd/DECISIONS.md`
+- exploratory notes and option comparison -> `.gsd/JOURNAL.md`
 
 ### After it finishes
 
 Usually move to one of these:
 
+- save a bounded summary to `.gsd/JOURNAL.md`
 - GSD `/plan` if the idea changes official project direction
 - `/design` for technical structure
 - `/create` once a direction is chosen
+- `/orchestrate` when multiple canonical files should be synchronized deliberately
 
 ### Orchestrator handoff
 
-Only when the selected direction should become official project memory in `SPEC.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md`.
+Use orchestrator when the brainstorm result should become official project memory across one or more canonical files, especially `SPEC.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md`.
+
+The safest APW path is:
+
+1. save a bounded summary in `.gsd/JOURNAL.md`
+2. hand off for canonical synchronization if the official project understanding changed
 
 ### Example invocation
 
 ```text
 @product-manager /brainstorm compare three onboarding flows for first-time sellers
 ```
+
+For the full persistence model, read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md).
 
 ## `/create`
 

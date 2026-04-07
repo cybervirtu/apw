@@ -40,6 +40,9 @@ If this is your first time opening this downstream project in an IDE, do this:
    - `/create` if the first feature is already clear
    - `/orchestrate` if the work is large or cross-cutting
    - `/status` if you are returning later or need orientation first
+7. If you use `/brainstorm`, do not assume the chat became permanent project memory:
+   - save the useful result to `.gsd/JOURNAL.md`
+   - use orchestrator or governance sync if the result should change official project files
 
 ## Read Next
 
@@ -51,12 +54,13 @@ Read the minimum next files, not everything at once:
 4. `docs/FIRST_RUN_IN_IDE.md` when present
 5. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
 6. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+7. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
 
 Read these only if you need them:
 
-7. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-8. `docs/WHERE_DO_I_WORK.md`
-9. `docs/START_HERE.md`
+8. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+9. `docs/WHERE_DO_I_WORK.md`
+10. `docs/START_HERE.md`
 
 ## Do Not
 
