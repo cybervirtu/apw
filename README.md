@@ -19,6 +19,8 @@ For the explicit documentation model, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/D
 
 Choose the path that matches what you need:
 
+- I want the shortest safe first-use path:
+  [Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)
 - I want the visual docs portal:
   [`website/`](website/README.md)
 - I am new and want the guided beginner path:
@@ -197,6 +199,7 @@ If you want the smoothest beginner path, follow this order:
 9. [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 
 If you want the map for that path in one place, read [START_HERE.md](docs/START_HERE.md).
+If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md).
 
 ### Fastest Safe Path
 
@@ -300,6 +303,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)**: A practical beginner journey from rough idea to structured project start.
 - **[Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing a likely stack direction and APW profile.
 - **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: Relatable project examples that show how APW would guide real builds.
+- **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: Shortest safe first-use path for a brand-new APW user.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.

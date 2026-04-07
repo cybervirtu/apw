@@ -8,6 +8,7 @@ export default {
       pagination: false
     }
   },
+  'basic-onboarding': 'Basic Onboarding',
   'start-here': 'Start Here',
   'get-started-flow': 'Help Me Get Started',
   'choose-your-profile': 'Choose Your Profile',

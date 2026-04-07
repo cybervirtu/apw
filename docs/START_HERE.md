@@ -12,6 +12,8 @@ It explains what to read first, what to read next, and where to branch depending
 If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 `AGENTS.md` is the tool-facing entrypoint, and this page is the beginner-friendly human walkthrough.
 
+If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
+
 ## Why it matters
 
 APW has a real operating model behind it.
@@ -111,5 +113,6 @@ Go here next:
 
 ## What to read next
 
+If you want the shortest safe onboarding path, go to [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you have not read it yet, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) first.
 If you already understand the plain-English intro, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) next.
