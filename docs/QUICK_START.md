@@ -46,22 +46,40 @@ Example:
 You are starting a normal product repo for a web app.
 Choose `base`, not `minimal`, because you want the full canonical lifecycle set without needing the heavier execution bundle from `advanced`.
 
-## 2. Bootstrap the Repo
+## 2. Create the Repo From Anywhere
 
-From the APW checkout, run:
+The easiest path is the workspace-friendly wrapper:
+
+```bash
+/path/to/apw/apw new MyProject --profile base --stack base
+```
+
+If you want to choose the parent directory explicitly:
+
+```bash
+/path/to/apw/apw new MyProject --profile base --stack base --target /path/to/MyWork
+```
+
+If you want the wrapper to launch guided state initialization immediately after validation:
+
+```bash
+/path/to/apw/apw new MyProject --profile base --stack base --init-state
+```
+
+Use raw bootstrap directly only when you intentionally want the lower-level engine:
 
 ```bash
 /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
 ```
 
-Replace `base` with your chosen profile if needed.
-
 ## 3. Validate Immediately
 
-Run validation with the same profile and stack used during bootstrap:
+`apw new` runs validation for you by default.
+
+If you used raw bootstrap directly, or you want to re-check the repo later, run validation with the same profile and stack:
 
 ```bash
-/path/to/apw/scripts/validate.sh . --profile base --stack base
+/path/to/apw/scripts/validate.sh /path/to/MyProject --profile base --stack base
 ```
 
 Do not skip this step.
@@ -75,7 +93,7 @@ It confirms:
 
 ## 4. Start From `AGENTS.md`
 
-After bootstrap and validation, open root `AGENTS.md` in the target repo.
+After project creation and validation, open root `AGENTS.md` in the target repo.
 
 That is the modern APW entrypoint for Codex, Antigravity, and similarly compatible tooling.
 
@@ -147,7 +165,7 @@ Read these next:
 
 ## 10. What to Read Next
 
-If the repo is bootstrapped and you want to keep moving:
+If the repo exists and you want to keep moving:
 
 1. Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right command.
 2. Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md) to understand what that command should read and produce.

@@ -29,6 +29,8 @@ Choose the path that matches what you need:
   [START_HERE.md](docs/START_HERE.md)
 - I want to start a real project now:
   [Quick Start](docs/QUICK_START.md)
+- I want the easiest way to create a new APW project from anywhere:
+  run `/path/to/apw/apw new MyProject --profile base --stack base`
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:
@@ -206,8 +208,8 @@ If you want APW to turn a plain-language brief into the first core `.gsd` drafts
 
 If you want the shortest path to using APW on a new project:
 
-1. Bootstrap with a profile, usually `base`
-2. Validate with the same profile and stack
+1. Run `apw new` from anywhere in the workspace
+2. Let it bootstrap and validate the new repo
 3. Open root `AGENTS.md` in the target repo
 4. Run the guided project-state initializer
 5. Start work from `STATE.md` and `TODO.md`
@@ -265,28 +267,40 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
 
 ### For Developers Starting a New Project
-1. Run the bootstrap script in your new directory:
+1. Use the workspace-friendly wrapper from anywhere:
+   ```bash
+   /path/to/apw/apw new MyProject --profile base --stack base
+   ```
+2. If you want to choose the parent location explicitly:
+   ```bash
+   /path/to/apw/apw new MyProject --profile base --stack base --target /path/to/MyWork
+   ```
+3. If you want the one-command path into guided state setup:
+   ```bash
+   /path/to/apw/apw new MyProject --profile base --stack base --init-state
+   ```
+4. Use raw bootstrap directly only when you intentionally want the lower-level engine:
    ```bash
    /path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
    ```
-2. Choose a profile intentionally:
+5. Choose a profile intentionally:
    - `minimal`: lightweight lifecycle starter set plus any minimal profile `.agent` content
    - `base`: default downstream bootstrap profile with the standard lifecycle templates plus the shared downstream core workflow pack
    - `advanced`: the same canonical eight-file `.gsd` contract as `base`, plus the shared downstream core workflow pack and extra specialist execution material
-3. Validate the repo against the same profile:
+6. Validate the repo against the same profile when you use raw bootstrap directly:
    ```bash
    /path/to/apw/scripts/validate.sh . --profile base --stack base
    ```
-4. Review the [Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) before coding starts.
-5. Enable CI enforcement using [CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md) and [the example GitHub Actions workflow](examples/github/apw-validate.yml).
-6. Start new tool sessions from root `AGENTS.md`, then follow the linked APW files and docs.
-7. In `base` and `advanced` downstream repos, use the core APW commands directly from the local `.agent/workflows/` pack.
-8. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md) if needed.
-9. Generate the first core `.gsd` drafts from your project brief:
+7. Review the [Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) before coding starts.
+8. Enable CI enforcement using [CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md) and [the example GitHub Actions workflow](examples/github/apw-validate.yml).
+9. Start new tool sessions from root `AGENTS.md`, then follow the linked APW files and docs.
+10. In `base` and `advanced` downstream repos, use the core APW commands directly from the local `.agent/workflows/` pack.
+11. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md) if needed.
+12. Generate the first core `.gsd` drafts from your project brief:
    ```bash
    /path/to/apw/scripts/init-project-state.sh --target .
    ```
-10. Review the generated state once, then begin implementation work from `.gsd/STATE.md` and `.gsd/TODO.md`.
+13. Review the generated state once, then begin implementation work from `.gsd/STATE.md` and `.gsd/TODO.md`.
 
 ### For Migrating an Existing Project
 1. Start with the [Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md).

@@ -86,23 +86,24 @@ If you need more help:
 
 - Read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
 
-## Step 4 — Bootstrap the project
+## Step 4 — Create the project workspace
 
 What to do:
 
-- Run the APW bootstrap script in the target repo.
+- Use the workspace-friendly APW wrapper from wherever you are in the workspace.
 
 ```bash
-/path/to/apw/scripts/bootstrap.sh --target . --profile base --stack base
+/path/to/apw/apw new MyProject --profile base --stack base
 ```
 
 Why it matters:
 
-- Bootstrap creates the APW structure so you are working from a real framework setup instead of copying pieces by hand.
+- This is the easiest way to create a new APW project without manually creating the directory, switching context, and wiring bootstrap and validation together yourself.
 
 Done looks like:
 
-- The target repo now has the APW files and folders, including `AGENTS.md`, `.gsd/`, and `.agent/`.
+- The new project directory exists and already contains `AGENTS.md`, `.gsd/`, and `.agent/`.
+- The wrapper tells you exactly where the project was created.
 
 If you need more help:
 
@@ -112,10 +113,11 @@ If you need more help:
 
 What to do:
 
-- Run validation with the same profile and stack you used during bootstrap.
+- If you created the repo with `apw new`, validation already ran for you.
+- Re-run validation manually any time you want to confirm the repo still matches the contract.
 
 ```bash
-/path/to/apw/scripts/validate.sh . --profile base --stack base
+/path/to/apw/scripts/validate.sh /path/to/MyProject --profile base --stack base
 ```
 
 Why it matters:
@@ -254,6 +256,7 @@ You are in a good starting place if you can say:
 
 Use only the next doc you need:
 
+- If you want the workspace-friendly creation command details, read [QUICK_START.md](./QUICK_START.md).
 - If you need help choosing a project type, read [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md).
 - If you need help choosing a stack or profile, read [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md).
 - If you want relatable examples, read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md).

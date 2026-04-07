@@ -1,0 +1,198 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BOOTSTRAP_SCRIPT="$APW_ROOT/scripts/bootstrap.sh"
+VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
+INIT_STATE_SCRIPT="$APW_ROOT/scripts/init-project-state.sh"
+
+usage() {
+    cat <<EOF
+Usage:
+  $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
+  $0 help
+
+Examples:
+  $0 new ProjectA
+  $0 new ProjectB --profile advanced --stack base
+  $0 new ProjectC --target /path/to/MyWork
+  $0 new ProjectD --target /path/to/MyWork --init-state
+
+What it does:
+  - creates a new project directory under the chosen target location
+  - runs the canonical bootstrap flow underneath
+  - runs validation by default
+  - can optionally launch guided project-state initialization
+
+Notes:
+  - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
+  - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
+EOF
+}
+
+require_script() {
+    local script_path="$1"
+
+    if [[ ! -f "$script_path" ]]; then
+        echo "Error: Missing required APW script: $script_path"
+        exit 1
+    fi
+}
+
+ensure_safe_project_name() {
+    local project_name="$1"
+
+    if [[ -z "$project_name" ]]; then
+        echo "Error: Project name is required."
+        usage
+        exit 1
+    fi
+
+    if [[ "$project_name" == "." || "$project_name" == ".." || "$project_name" == */* ]]; then
+        echo "Error: Project name must be a simple directory name, not a path."
+        exit 1
+    fi
+}
+
+directory_is_empty() {
+    local dir_path="$1"
+
+    if find "$dir_path" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null | grep -q .; then
+        return 1
+    fi
+
+    return 0
+}
+
+run_new() {
+    local project_name="${1:-}"
+    local profile="base"
+    local stack="base"
+    local target_parent="."
+    local force=0
+    local skip_validate=0
+    local init_state=0
+    local project_root=""
+
+    ensure_safe_project_name "$project_name"
+    shift || true
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --profile)
+                [[ $# -ge 2 ]] || { echo "Error: --profile requires a value."; exit 1; }
+                profile="$2"
+                shift 2
+                ;;
+            --stack)
+                [[ $# -ge 2 ]] || { echo "Error: --stack requires a value."; exit 1; }
+                stack="$2"
+                shift 2
+                ;;
+            --target)
+                [[ $# -ge 2 ]] || { echo "Error: --target requires a value."; exit 1; }
+                target_parent="$2"
+                shift 2
+                ;;
+            --force)
+                force=1
+                shift
+                ;;
+            --skip-validate)
+                skip_validate=1
+                shift
+                ;;
+            --init-state)
+                init_state=1
+                shift
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "Error: Unknown option '$1'."
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    require_script "$BOOTSTRAP_SCRIPT"
+    require_script "$VALIDATE_SCRIPT"
+    require_script "$INIT_STATE_SCRIPT"
+
+    mkdir -p "$target_parent"
+    target_parent="$(cd "$target_parent" && pwd)"
+    project_root="$target_parent/$project_name"
+
+    if [[ -e "$project_root" && ! -d "$project_root" ]]; then
+        echo "Error: Target path exists and is not a directory: $project_root"
+        exit 1
+    fi
+
+    if [[ -d "$project_root" ]]; then
+        if ! directory_is_empty "$project_root"; then
+            echo "Error: Project directory already exists and is not empty: $project_root"
+            echo "Use a different name, choose a different --target, or use the raw bootstrap flow for an existing repo."
+            exit 1
+        fi
+    else
+        mkdir -p "$project_root"
+    fi
+
+    echo "APW workspace-friendly project creation"
+    echo "Project: $project_name"
+    echo "Location: $project_root"
+    echo "Profile: $profile"
+    echo "Stack: $stack"
+    echo
+
+    if [[ $force -eq 1 ]]; then
+        "$BOOTSTRAP_SCRIPT" --target "$project_root" --profile "$profile" --stack "$stack" --force
+    else
+        "$BOOTSTRAP_SCRIPT" --target "$project_root" --profile "$profile" --stack "$stack"
+    fi
+
+    if [[ $skip_validate -eq 0 ]]; then
+        "$VALIDATE_SCRIPT" "$project_root" --profile "$profile" --stack "$stack"
+    else
+        echo "Skipping validation because --skip-validate was requested."
+    fi
+
+    if [[ $init_state -eq 1 ]]; then
+        "$INIT_STATE_SCRIPT" --target "$project_root"
+    fi
+
+    echo
+    echo "APW project ready at: $project_root"
+    echo "Next steps:"
+    echo "1. cd \"$project_root\""
+    echo "2. Open AGENTS.md in the new repo"
+
+    if [[ $init_state -eq 0 ]]; then
+        echo "3. Run: $INIT_STATE_SCRIPT --target \"$project_root\""
+        echo "4. Start work from .gsd/STATE.md and .gsd/TODO.md"
+    else
+        echo "3. Review the generated core .gsd drafts once"
+        echo "4. Start work from .gsd/STATE.md and .gsd/TODO.md"
+    fi
+}
+
+command="${1:-help}"
+
+case "$command" in
+    new)
+        shift
+        run_new "${1:-}" "${@:2}"
+        ;;
+    help|-h|--help)
+        usage
+        ;;
+    *)
+        echo "Error: Unknown command '$command'."
+        usage
+        exit 1
+        ;;
+esac

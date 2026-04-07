@@ -24,12 +24,16 @@ For downstream command availability:
 
 Before routine coding starts in a newly bootstrapped repo:
 
-1. Bootstrap the repo with an explicit profile and stack.
-2. Validate the repo with the same `--profile` and `--stack` values.
-3. Start from root `AGENTS.md`, then review `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and `GSD-STYLE.md`.
-4. Use a single orchestrator or explicit governance pass to populate the first canonical `.gsd/` state.
-5. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
-6. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
+1. For a brand-new repo, use the workspace-friendly wrapper when possible:
+   ```bash
+   /path/to/apw/apw new MyProject --profile base --stack base --target /path/to/workspace
+   ```
+2. If you are not using the wrapper, bootstrap the repo with an explicit profile and stack.
+3. Validate the repo with the same `--profile` and `--stack` values if validation was not already run by the wrapper.
+4. Start from root `AGENTS.md`, then review `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and `GSD-STYLE.md`.
+5. Run guided project-state initialization to populate the first canonical `.gsd/` state.
+6. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
+7. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
 
 For `base` and `advanced`, also confirm that the core downstream commands are present locally:
 

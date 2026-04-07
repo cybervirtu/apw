@@ -3,6 +3,9 @@
 > [!NOTE]
 > This document defines the exact behavior of `./scripts/bootstrap.sh` for creating or upgrading downstream repositories with the APW standard.
 
+> [!TIP]
+> For brand-new project creation, APW also provides the workspace-friendly `apw new` wrapper at repo root. That wrapper calls `bootstrap.sh` underneath and does not replace this contract.
+
 ## 1. Canonical Source
 
 - `templates/` is the canonical downstream bootstrap source for profile-selected `.gsd/` and `.agent/` content.
