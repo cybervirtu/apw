@@ -41,6 +41,8 @@ Choose the path that matches what you need:
   [Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
 - I want one rule for what core workflow results save and where they go:
   [Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)
+- I want to safely update an existing APW project from the latest framework:
+  [Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:
@@ -108,6 +110,7 @@ If you want explicit helpers for detecting and switching between those locations
 - `apw switch framework`
 - `apw switch project <name>`
 - `apw switch parent`
+- `apw upgrade-project <name-or-path> --dry-run`
 
 For the focused guide, read [SAFE_CONTEXT_SWITCHING.md](docs/SAFE_CONTEXT_SWITCHING.md).
 
@@ -243,6 +246,7 @@ If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCE
 If you want APW to turn a plain-language brief into the first core `.gsd` drafts, read [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md).
 If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
 If you want the in-IDE first-run path, read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md).
+If you want the safe downstream upgrade path, read [DOWNSTREAM_PROJECT_UPGRADE.md](docs/DOWNSTREAM_PROJECT_UPGRADE.md).
 
 ### Fastest Safe Path
 
@@ -258,6 +262,7 @@ If you want the shortest path to using APW on a new project:
 8. Log bounded evidence in `JOURNAL.md`
 9. Sync canonical state deliberately
 10. Turn on CI early
+11. When APW itself evolves later, use `apw upgrade-project` instead of treating raw bootstrap as the only upgrade path
 
 ### Visual Docs Portal
 
@@ -414,6 +419,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Tooling Guide](docs/TOOLING_GUIDE.md)**: Practical operating guidance for Antigravity, Cursor, and Codex.
 - **[Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md)**: Day-1 requirements, controlled customization, and safe team usage.
 - **[Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md)**: The practical checklist for staying APW-compliant after bootstrap.
+- **[Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)**: The safe preview-first way to refresh APW-managed files in an existing downstream repo.
 - **[Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md)**: How to move an active repository into APW safely.
 - **[Monorepo Adaptation](docs/MONOREPO_ADAPTATION.md)**: How to scale APW across packages.
 - **[CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md)**: Concrete downstream validation and pull-request enforcement patterns.

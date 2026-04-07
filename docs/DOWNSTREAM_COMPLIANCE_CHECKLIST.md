@@ -27,6 +27,7 @@
 - [ ] `advanced` repos do not reintroduce legacy root files like `MILESTONE.md`, `SPRINT.md`, `PHASE-SUMMARY.md`, `STATE_SNAPSHOT.md`, or `TOKEN_REPORT.md`.
 - [ ] Root APW entrypoint and operating files were not casually renamed, deleted, or replaced with local variants.
 - [ ] Profile-specific expectations still match the selected profile.
+- [ ] APW-managed upgrades use `apw upgrade-project` or another intentional reviewed path instead of ad hoc file copying.
 
 ## 4. Customization Boundary Checklist
 
@@ -41,5 +42,14 @@
 - [ ] CI runs `ci-validate.sh` or `validate.sh` from an APW checkout with the correct profile and stack.
 - [ ] The team has explicitly chosen whether warnings are non-blocking or blocking in CI.
 - [ ] New contributors are pointed to [DOWNSTREAM_ADOPTION_GUIDE.md](./DOWNSTREAM_ADOPTION_GUIDE.md).
+
+## 6. Safe Upgrade Checklist
+
+- [ ] The downstream repo was committed or checkpointed before upgrade.
+- [ ] `apw upgrade-project <name-or-path> --dry-run` was reviewed first.
+- [ ] Project-owned `.gsd/*` files were kept protected.
+- [ ] Product code was not treated as APW-managed upgrade surface.
+- [ ] Any `--force-managed` use was deliberate and reviewed.
+- [ ] Validation was re-run after the upgrade.
 
 If any item fails, pause feature work long enough to restore the APW contract and re-run validation.

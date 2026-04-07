@@ -121,6 +121,12 @@ If you lose track of the right folder later, recover with:
 /path/to/apw/apw switch project <name>
 ```
 
+If APW itself evolves later and you want this downstream repo to receive the newer APW-managed files safely, use:
+
+```bash
+/path/to/apw/apw upgrade-project MyProject --dry-run
+```
+
 ## 5. How To Invoke Work
 
 Once you are oriented, use the operator docs instead of improvising:
@@ -204,7 +210,7 @@ If you want more beginner context before doing that, go back to:
 
 If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
 
-## 11. If You Only Remember Eight Things
+## 11. If You Only Remember Nine Things
 
 1. Use `base` unless you have a reason not to.
 2. Bootstrap and validate with the same profile.
@@ -214,3 +220,4 @@ If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md
 6. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
 7. Turn on CI before the repo starts drifting.
 8. Normal project workflows belong in the downstream project root, not APW root.
+9. When APW itself changes later, use `apw upgrade-project` before reaching for raw bootstrap on an existing repo.

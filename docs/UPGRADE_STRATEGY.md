@@ -33,7 +33,20 @@ APW utilizes a "Tick-Tock" release rhythm to protect active projects from stabil
 ### 🟢 Routine Updates (Tock)
 - **Definition**: Non-destructive prompt tweaks, new skills, or bug fixes in workflows.
 - **Action**: Bumps a minor/patch version (e.g., `v2.1.0`).
-- **Rollout**: Can usually be deployed to downstream repositories by re-running `./scripts/bootstrap.sh --target . --profile [profile] --stack [stack]`. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced. If downstream CI pins APW to a release tag or commit SHA, update that reference as part of the rollout.
+- **Rollout**: For existing downstream repos, prefer `apw upgrade-project <name-or-path> --dry-run` first. That wrapper previews what will refresh automatically, what will be skipped for review, and what remains protected. Use raw `bootstrap.sh` only when you intentionally want the lower-level contract behavior. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced. If downstream CI pins APW to a release tag or commit SHA, update that reference as part of the rollout.
+
+### Downstream upgrade boundary
+
+APW keeps one clear ownership split:
+
+- APW-managed files may be refreshed from the framework
+- project-owned `.gsd` memory and implementation files must not be blindly overwritten
+
+In practice:
+
+- safe auto-upgrade: vendored downstream `.agent` core pack
+- review-before-overwrite: APW-managed root contract files and profile/stack extras
+- never blindly overwrite: `.gsd/*`, project code, and repo-specific implementation files
 
 ---
 
@@ -58,5 +71,5 @@ If an APW command or template is rendered obsolete by an upstream change:
 ### Rollback Strategy
 If a synced update corrupts downstream product repos:
 1. Downgrade the active project utilizing standard `git checkout [stable-tag]`.
-2. Re-run `./scripts/bootstrap.sh` from the downgraded version.
+2. Re-run `apw upgrade-project <name-or-path>` from the downgraded version, or use raw `bootstrap.sh` if you intentionally need the lower-level contract behavior.
 3. If corruption hit `.gsd/STATE.md`, perform a "State Dump" utilizing the project's own `.gsd/JOURNAL.md` to rebuild context.

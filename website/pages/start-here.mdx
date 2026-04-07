@@ -34,6 +34,10 @@ If you use `/brainstorm`, do not assume chat became permanent project memory. Sa
 The same APW rule applies to the other core workflows too: keep evidence safely first, then synchronize official project memory deliberately.
 </Callout>
 
+<Callout type="info" emoji="🔄">
+If APW itself changes later, update an existing downstream repo with `apw upgrade-project <name-or-path> --dry-run` before reaching for raw bootstrap.
+</Callout>
+
 ## Recommended beginner path
 
 <Steps>
@@ -91,6 +95,9 @@ Read the repo's `docs/QUICK_START.md`, use `apw new` to create the repo cleanly,
   <Cards.Card href="/workflow-persistence-policy" title="I Want The Workflow Save Rules">
     Use the workflow persistence guide if your main question is what the core workflows save by default.
   </Cards.Card>
+  <Cards.Card href="/downstream-project-upgrade" title="I Want To Upgrade An Existing Project">
+    Use the safe downstream upgrade guide if APW itself has changed and you want an older repo to receive the latest APW-managed layer safely.
+  </Cards.Card>
 </Cards>
 
 ## Canonical source docs behind this path
@@ -104,6 +111,7 @@ This portal wraps the highest-value entry docs first. The canonical source mater
 - `docs/SAFE_CONTEXT_SWITCHING.md`
 - `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`
 - `docs/WORKFLOW_PERSISTENCE_POLICY.md`
+- `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
 - `docs/START_HERE.md`
 - `docs/APW_FOR_BEGINNERS.md`
 - `docs/APW_VISUAL_OVERVIEW.md`
@@ -120,3 +128,4 @@ This portal wraps the highest-value entry docs first. The canonical source mater
 - Go to [Choose Your Profile](/choose-your-profile) if your biggest question is `minimal` vs `base` vs `advanced`.
 - Go to [Choose Your Project Type](/choose-your-project-type) if you know the idea but not the right stack shape yet.
 - Go to [What Is APW?](/what-is-apw) if you want the beginner explanation first.
+- Go to [Downstream Project Upgrade](/downstream-project-upgrade) if APW itself has changed and you want to update an existing downstream repo safely.

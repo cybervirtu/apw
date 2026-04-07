@@ -125,6 +125,12 @@ If you need more help:
 - Read [QUICK_START.md](./QUICK_START.md).
 - Read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 
+Later, when APW itself is updated and you want this project to receive the newer APW-managed framework layer safely, use:
+
+```bash
+/path/to/apw/apw upgrade-project MyProject --dry-run
+```
+
 ## Step 5 — Validate the setup
 
 What to do:

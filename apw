@@ -6,11 +6,13 @@ APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BOOTSTRAP_SCRIPT="$APW_ROOT/scripts/bootstrap.sh"
 VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
 INIT_STATE_SCRIPT="$APW_ROOT/scripts/init-project-state.sh"
+UPGRADE_PROJECT_SCRIPT="$APW_ROOT/scripts/upgrade-project.sh"
 
 usage() {
     cat <<EOF
 Usage:
   $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
+  $0 upgrade-project <name-or-path> [--workspace dir] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
   $0 context [path]
   $0 first-run [path]
   $0 list-projects [--workspace dir]
@@ -24,6 +26,9 @@ Examples:
   $0 new ProjectB --profile advanced --stack base
   $0 new ProjectC --target /path/to/MyWork
   $0 new ProjectD --target /path/to/MyWork --init-state
+  $0 upgrade-project ProjectA --dry-run
+  $0 upgrade-project ProjectB --workspace /path/to/MyWork --force-managed --validate
+  $0 upgrade-project /path/to/MyWork/ProjectC
   $0 context
   $0 context /path/to/MyWork/ProjectA
   $0 first-run
@@ -39,6 +44,7 @@ What it does:
   - runs the canonical bootstrap flow underneath
   - runs validation by default
   - can optionally launch guided project-state initialization
+  - safely upgrades an existing downstream project with APW-managed improvements
   - explains whether a path is APW root, a downstream project root, or a workspace/general folder
   - prints the beginner-friendly first-run checklist for a downstream project
   - lists known downstream projects in the workspace
@@ -47,6 +53,7 @@ What it does:
 Notes:
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
   - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
+  - upgrade-project protects project-owned .gsd memory and code by default.
   - Switch helpers are explicit and visible. They print where to go next; they do not silently mutate your shell context.
 EOF
 }
@@ -813,12 +820,98 @@ run_new() {
     fi
 }
 
+run_upgrade_project() {
+    local selector="${1:-}"
+    local workspace_input=""
+    local workspace_parent=""
+    local profile="auto"
+    local stack="base"
+    local dry_run=0
+    local force_managed=0
+    local run_validate=0
+    local target_path=""
+    local upgrade_args=()
+
+    if [[ -z "$selector" ]]; then
+        echo "Error: upgrade-project requires a downstream project name or path."
+        usage
+        exit 1
+    fi
+
+    shift || true
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --workspace)
+                [[ $# -ge 2 ]] || { echo "Error: --workspace requires a value."; exit 1; }
+                workspace_input="$2"
+                shift 2
+                ;;
+            --profile)
+                [[ $# -ge 2 ]] || { echo "Error: --profile requires a value."; exit 1; }
+                profile="$2"
+                shift 2
+                ;;
+            --stack)
+                [[ $# -ge 2 ]] || { echo "Error: --stack requires a value."; exit 1; }
+                stack="$2"
+                shift 2
+                ;;
+            --dry-run|--plan)
+                dry_run=1
+                shift
+                ;;
+            --force-managed)
+                force_managed=1
+                shift
+                ;;
+            --validate)
+                run_validate=1
+                shift
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "Error: Unknown option '$1'."
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    require_script "$UPGRADE_PROJECT_SCRIPT"
+    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
+    target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
+
+    upgrade_args=(--target "$target_path" --profile "$profile" --stack "$stack")
+
+    if [[ $dry_run -eq 1 ]]; then
+        upgrade_args+=(--dry-run)
+    fi
+
+    if [[ $force_managed -eq 1 ]]; then
+        upgrade_args+=(--force-managed)
+    fi
+
+    if [[ $run_validate -eq 1 ]]; then
+        upgrade_args+=(--validate)
+    fi
+
+    bash "$UPGRADE_PROJECT_SCRIPT" "${upgrade_args[@]}"
+}
+
 command="${1:-help}"
 
 case "$command" in
     new)
         shift
         run_new "${1:-}" "${@:2}"
+        ;;
+    upgrade-project)
+        shift
+        run_upgrade_project "${1:-}" "${@:2}"
         ;;
     context)
         shift

@@ -36,6 +36,7 @@ Use APW root when you are:
 
 - changing APW docs or templates
 - maintaining `bootstrap.sh`, `validate.sh`, or the `apw` wrapper
+- launching `apw upgrade-project` for an existing downstream repo
 - updating workflows, agents, rules, or skills in the framework
 - creating or validating downstream projects by target path
 
@@ -87,6 +88,7 @@ Use it when you are:
 
 - deciding where projects should live
 - creating a new repo with `apw new`
+- launching `apw upgrade-project <name>` by workspace-aware project name
 - moving between APW root and different downstream projects
 
 It is not the normal place for day-to-day project workflows.
@@ -163,6 +165,7 @@ If you later need help moving back to the right place, use:
 /path/to/apw/apw switch project <name>
 /path/to/apw/apw switch framework
 /path/to/apw/apw switch parent
+/path/to/apw/apw upgrade-project <name> --dry-run
 ```
 
 ## Where you should work day to day

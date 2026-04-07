@@ -30,6 +30,10 @@ If you use `/brainstorm`, do not assume the chat became project memory automatic
 Across the core workflows, APW keeps the same persistence rule: bounded evidence first, deliberate canonical sync second.
 </Callout>
 
+<Callout type="info" emoji="🔄">
+If APW itself evolves later, use `apw upgrade-project <name-or-path> --dry-run` to refresh APW-managed files in an existing downstream repo safely.
+</Callout>
+
 ## Who APW is for
 
 APW is useful for:
@@ -77,6 +81,9 @@ APW is useful for:
   </Cards.Card>
   <Cards.Card href="/workflow-persistence-policy" title="Workflow Persistence">
     Learn the APW-wide rule for what `/status`, `/create`, `/debug`, `/test`, and `/orchestrate` save by default.
+  </Cards.Card>
+  <Cards.Card href="/downstream-project-upgrade" title="Project Upgrade">
+    Learn the safe preview-first way to refresh APW-managed files in an existing downstream project.
   </Cards.Card>
   <Cards.Card href="/reference" title="Technical Reference">
     Reach the deeper governance, compatibility, validation, and adoption material.
@@ -165,6 +172,7 @@ Use validation and CI to keep the repo aligned as work continues.
 - Read the repo's `docs/SAFE_CONTEXT_SWITCHING.md` if you want the explicit switching helper model in one page.
 - Read the repo's `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` if you want the safe brainstorm save/promote model in one page.
 - Read the repo's `docs/WORKFLOW_PERSISTENCE_POLICY.md` if you want the APW-wide workflow save/promote model in one page.
+- Read the repo's `docs/DOWNSTREAM_PROJECT_UPGRADE.md` if you want the safe downstream upgrade model in one page.
 
 ## Canonical source docs
 
@@ -178,5 +186,6 @@ This page summarizes the front-door guidance from:
 - `docs/SAFE_CONTEXT_SWITCHING.md`
 - `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`
 - `docs/WORKFLOW_PERSISTENCE_POLICY.md`
+- `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
 - `docs/START_HERE.md`
 - `docs/DOCS_SOURCE_OF_TRUTH.md`

@@ -6,6 +6,9 @@
 > [!TIP]
 > For brand-new project creation, APW also provides the workspace-friendly `apw new` wrapper at repo root. That wrapper calls `bootstrap.sh` underneath and does not replace this contract.
 
+> [!TIP]
+> For existing downstream repos, prefer `apw upgrade-project` first. It adds preview mode and a safer review boundary for APW-managed files while preserving this bootstrap contract underneath.
+
 ## 1. Canonical Source
 
 - `templates/` is the canonical downstream bootstrap source for profile-selected `.gsd/` and `.agent/` content.
@@ -102,7 +105,7 @@ This split is intentional:
 
 ## 6. Upgrade Behavior for Existing Repositories
 
-Bootstrap is safe to run against an existing repository when used intentionally:
+Bootstrap is safe to run against an existing repository when used intentionally, but it is the lower-level engine:
 
 1. Re-run bootstrap against the repo root with the desired profile.
 2. Omit `--force` to preserve existing `.gsd` lifecycle files.
@@ -111,9 +114,24 @@ Bootstrap is safe to run against an existing repository when used intentionally:
 5. If a stack add-on is requested but no vendored skill pack exists under `templates/stack/<name>/`, bootstrap continues and logs a warning.
 6. If an older advanced repo still has legacy root `.gsd` files such as `MILESTONE.md`, `SPRINT.md`, `PHASE-SUMMARY.md`, `STATE_SNAPSHOT.md`, or `TOKEN_REPORT.md`, consolidate their live content into `ROADMAP.md`, `STATE.md`, `TODO.md`, or `JOURNAL.md` before deleting the redundant files.
 
+For a safer existing-repo upgrade path, use:
+
+```bash
+/path/to/apw/apw upgrade-project [name-or-path] --dry-run
+```
+
+That wrapper keeps three categories visible:
+
+- safe auto-upgrade APW-managed files
+- review-before-overwrite APW-managed files
+- never-blindly-overwrite project-owned files such as `.gsd/*` and product code
+
 Recommended upgrade examples:
 
 ```bash
+/path/to/apw/apw upgrade-project . --dry-run
+/path/to/apw/apw upgrade-project . --validate
+/path/to/apw/apw upgrade-project . --force-managed --validate
 ./scripts/bootstrap.sh --target . --profile base --stack base
 ./scripts/bootstrap.sh --target . --profile advanced --stack base
 ./scripts/bootstrap.sh --target . --profile base --stack base --force
@@ -133,6 +151,7 @@ Recommended upgrade examples:
 - The advanced profile uses the same canonical eight-file `.gsd` contract as the base profile; its additional depth comes from `.agent/` execution content, not extra root state files.
 - Stack-specific skills are only applied from `templates/stack/<name>/.agent/skills/` when that pack exists.
 - Missing optional `.agent` profile directories are treated as empty, not as errors.
+- `apw upgrade-project` is the safer downstream upgrade wrapper; `bootstrap.sh` remains the lower-level engine and contract source.
 
 ## 8. Validation Pairing
 

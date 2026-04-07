@@ -144,6 +144,27 @@ Use this when you want to:
 - decide which project to open next
 - create a new project from a clean launch point
 
+## Upgrade an existing downstream project safely
+
+If APW itself has changed and you want one downstream repo to receive those APW-managed updates, you can launch the upgrade helper explicitly from APW root, the workspace parent, or another convenient location:
+
+```bash
+/path/to/apw/apw upgrade-project ProjectA --dry-run
+```
+
+Or use a direct path:
+
+```bash
+/path/to/apw/apw upgrade-project /path/to/MyWork/ProjectA --dry-run
+```
+
+What this means:
+
+- APW resolves the downstream project explicitly
+- APW prints what will be upgraded and what stays protected
+- APW does not silently switch your shell or IDE while doing it
+- day-to-day project work still belongs in the downstream project root after the upgrade
+
 ## Optional open behavior
 
 APW can also support:
@@ -169,6 +190,7 @@ If you feel lost:
 2. if needed, run `apw list-projects`
 3. run `apw switch project <name>` or `apw switch framework`
 4. once you reach the downstream project root, open `AGENTS.md`
+5. if the repo simply needs newer APW-managed files, run `apw upgrade-project <name> --dry-run`
 
 ## The practical rule
 

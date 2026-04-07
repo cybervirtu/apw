@@ -143,7 +143,8 @@ To reduce downstream drift:
 2. Do not introduce `.agents/` or `.agents/skills/` as an unplanned alternate layout alongside APW's current `.agent/` contract.
 3. Do not fragment advanced repos back into milestone, sprint, or snapshot root `.gsd` files.
 4. Keep execution evidence in `JOURNAL.md`, then run a controlled orchestrator sync for canonical state.
-5. Re-run `bootstrap.sh` intentionally when adopting APW updates. Use `--force` only when lifecycle templates in `.gsd/` should truly be replaced.
+5. Use `apw upgrade-project` as the default path when adopting newer APW updates in an existing downstream repo.
+6. Use raw `bootstrap.sh` only when you intentionally want the lower-level contract behavior.
 
 ## 7. Team Operating Guardrails
 
@@ -155,7 +156,23 @@ For team use:
 4. Validate before merge and after APW upgrades.
 5. Review warnings even when validation still exits successfully.
 
-## 8. What “APW Compliant” Means
+## 8. Safe downstream upgrade rule
+
+When APW itself evolves and you want an existing downstream repo to receive those improvements:
+
+1. Commit or checkpoint the downstream repo first.
+2. Run `apw upgrade-project <name-or-path> --dry-run`.
+3. Review what APW will refresh automatically and what it will skip for review.
+4. Run `apw upgrade-project <name-or-path>` for the safe default upgrade.
+5. Add `--force-managed` only if you intentionally want APW-managed review surfaces refreshed too.
+6. Re-run validation with the repo's chosen profile and stack.
+
+The key boundary is:
+
+- APW-managed workflow, agent, rule, and governance surfaces may be refreshed
+- project-owned `.gsd` memory and product code must stay protected
+
+## 9. What “APW Compliant” Means
 
 A downstream repo is APW-compliant when:
 
@@ -165,3 +182,4 @@ A downstream repo is APW-compliant when:
 - the repo has not drifted into unplanned alternate namespaces or fragmented advanced state files
 
 Pair this guide with [DOWNSTREAM_COMPLIANCE_CHECKLIST.md](./DOWNSTREAM_COMPLIANCE_CHECKLIST.md) for the recurring checklist and [EXISTING_REPO_MIGRATION_GUIDE.md](./EXISTING_REPO_MIGRATION_GUIDE.md) when adopting APW in an active repository.
+For the focused upgrade model, read [DOWNSTREAM_PROJECT_UPGRADE.md](./DOWNSTREAM_PROJECT_UPGRADE.md).

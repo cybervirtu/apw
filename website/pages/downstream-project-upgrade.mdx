@@ -1,0 +1,51 @@
+import { Callout } from 'nextra/components'
+
+# Downstream Project Upgrade
+
+Use this page when APW itself has been updated and you want an existing downstream APW project to receive the latest APW-managed improvements safely.
+
+<Callout type="info" emoji="🛡️">
+The key boundary is simple: APW-managed files may be refreshed, but project-owned `.gsd` memory and product code stay protected by default.
+</Callout>
+
+Canonical source doc: `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
+
+## The short version
+
+Use:
+
+```bash
+/path/to/apw/apw upgrade-project MyProject --dry-run
+```
+
+Then:
+
+- review what APW will refresh automatically
+- review what APW will skip by default
+- run the real upgrade only when the preview looks right
+
+## What gets refreshed safely
+
+- the shared downstream core workflow pack
+- the shared downstream core agents
+- the shared downstream core rules
+
+## What stays protected
+
+- `.gsd/SPEC.md`
+- `.gsd/TODO.md`
+- `.gsd/STATE.md`
+- `.gsd/ROADMAP.md`
+- `.gsd/DECISIONS.md`
+- `.gsd/JOURNAL.md`
+- `.gsd/ARCHITECTURE.md`
+- `.gsd/STACK.md`
+- project code and tests
+
+## When to read the full guide
+
+- when you want the exact safe auto-upgrade vs review-before-overwrite boundary
+- when you want to understand `--force-managed`
+- when you want the recommended preview -> apply -> validate flow
+
+Read the repo's `docs/DOWNSTREAM_PROJECT_UPGRADE.md` for the canonical guide.
