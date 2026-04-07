@@ -20,6 +20,18 @@ If your downstream repo uses `minimal`, keep the same operator logic, but confir
 
 `advanced` may also vendor additional workflows such as `/design`, `/preview`, `/deploy`, and `/ui-ux-pro-max`.
 
+## Fresh repo note
+
+If this is a brand-new repo, do not jump straight from bootstrap into command use while the core `.gsd` files are still template shells.
+
+Run:
+
+```bash
+/path/to/apw/scripts/init-project-state.sh --target .
+```
+
+Then choose the first workflow from the now-real project context.
+
 ## The fast chooser
 
 | If your situation sounds like this | Use | Good first agent | Usually next |

@@ -134,28 +134,32 @@ If you need more help:
 
 What to do:
 
-- Use one orchestrator-style pass to fill in the main `.gsd` files before routine coding begins.
+- Run the guided APW project-state initializer after bootstrap and validation.
 
-At minimum, initialize:
+```bash
+/path/to/apw/scripts/init-project-state.sh --target .
+```
+
+It generates first drafts for:
 
 - `SPEC.md`
 - `ROADMAP.md`
 - `STATE.md`
 - `TODO.md`
 - `STACK.md`
-- `ARCHITECTURE.md`
 
 Why it matters:
 
-- APW works best when the project has a clear official starting state before implementation work begins.
+- APW works best when the project has a clear official starting state before implementation work begins, but new users should not need to hunt through multiple files manually to get there.
 
 Done looks like:
 
 - Someone new to the repo could open `.gsd/STATE.md` and `.gsd/TODO.md` and understand what the project is doing now.
+- The five core files tell the same basic project story.
 
 If you need more help:
 
-- Read [HOW_APW_WORKS.md](./HOW_APW_WORKS.md).
+- Read [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md).
 
 ## Step 7 — Learn the first command or workflow to use
 

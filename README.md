@@ -200,6 +200,7 @@ If you want the smoothest beginner path, follow this order:
 
 If you want the map for that path in one place, read [START_HERE.md](docs/START_HERE.md).
 If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md).
+If you want APW to turn a plain-language brief into the first core `.gsd` drafts, read [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md).
 
 ### Fastest Safe Path
 
@@ -208,7 +209,7 @@ If you want the shortest path to using APW on a new project:
 1. Bootstrap with a profile, usually `base`
 2. Validate with the same profile and stack
 3. Open root `AGENTS.md` in the target repo
-4. Initialize canonical `.gsd` with one orchestrator-style pass
+4. Run the guided project-state initializer
 5. Start work from `STATE.md` and `TODO.md`
 6. Log bounded evidence in `JOURNAL.md`
 7. Sync canonical state deliberately
@@ -281,7 +282,11 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 6. Start new tool sessions from root `AGENTS.md`, then follow the linked APW files and docs.
 7. In `base` and `advanced` downstream repos, use the core APW commands directly from the local `.agent/workflows/` pack.
 8. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md) if needed.
-9. Use a single lead/orchestrator-style pass to populate the first canonical `.gsd/` state coherently, then begin implementation work.
+9. Generate the first core `.gsd` drafts from your project brief:
+   ```bash
+   /path/to/apw/scripts/init-project-state.sh --target .
+   ```
+10. Review the generated state once, then begin implementation work from `.gsd/STATE.md` and `.gsd/TODO.md`.
 
 ### For Migrating an Existing Project
 1. Start with the [Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md).
@@ -306,6 +311,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing a likely stack direction and APW profile.
 - **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: Relatable project examples that show how APW would guide real builds.
 - **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: Shortest safe first-use path for a brand-new APW user.
+- **[Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)**: The plain-language helper that generates the first drafts of the core `.gsd` files.
 - **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
 - **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
 - **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.

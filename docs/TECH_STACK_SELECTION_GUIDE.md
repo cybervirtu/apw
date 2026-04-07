@@ -570,4 +570,5 @@ If you are unsure:
 
 - Read [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md) next to see how these choices look on projects that feel more real.
 - Then read [QUICK_START.md](./QUICK_START.md) when you are ready to bootstrap a repo.
-- Once the repo exists, read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right first workflow.
+- After bootstrap and validation, run [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md) so the first core `.gsd` drafts exist before workflow-heavy execution starts.
+- Once the repo exists and the first state drafts are in place, read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md) to choose the right first workflow.

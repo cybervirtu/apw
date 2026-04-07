@@ -159,7 +159,10 @@ Before a downstream team begins routine coding work:
 
 1. Run validation with the same `--profile` and `--stack` values used during bootstrap.
 2. Review [docs/DOWNSTREAM_ADOPTION_GUIDE.md](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete [docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md).
-3. Use a single orchestrator or explicit governance pass to populate the first canonical `.gsd/` state coherently.
+3. Run the guided initializer from the APW checkout to generate the first drafts of the core project-state files:
+   ```bash
+   /path/to/apw/scripts/init-project-state.sh --target [repo-root]
+   ```
 4. Confirm the mandatory contract files remain present:
    - `AGENTS.md`
    - `PROJECT_RULES.md`
@@ -170,6 +173,7 @@ Before a downstream team begins routine coding work:
    - the selected profile's required `.gsd/` files
    - `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, `.agent/skills/`
    - for `base` and `advanced`, the shared downstream core workflows: `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, `/orchestrate`
-5. Add project-specific implementation constraints in project-local materials such as `.agent/rules/PROJECT.md` or the `.gsd/` contents instead of forking the APW contract files casually.
-6. Enable CI enforcement using [docs/CI_CD_ENFORCEMENT.md](docs/CI_CD_ENFORCEMENT.md) and [examples/github/apw-validate.yml](examples/github/apw-validate.yml) so merge-time drift detection is active early.
-7. For existing repositories, pair bootstrap with [docs/EXISTING_REPO_MIGRATION_GUIDE.md](docs/EXISTING_REPO_MIGRATION_GUIDE.md) before the team resumes normal delivery.
+5. Treat that guided initialization pass as the first deliberate state-creation step, then keep later canonical summary updates under orchestrator or governance control.
+6. Add project-specific implementation constraints in project-local materials such as `.agent/rules/PROJECT.md` or the `.gsd/` contents instead of forking the APW contract files casually.
+7. Enable CI enforcement using [docs/CI_CD_ENFORCEMENT.md](docs/CI_CD_ENFORCEMENT.md) and [examples/github/apw-validate.yml](examples/github/apw-validate.yml) so merge-time drift detection is active early.
+8. For existing repositories, pair bootstrap with [docs/EXISTING_REPO_MIGRATION_GUIDE.md](docs/EXISTING_REPO_MIGRATION_GUIDE.md) before the team resumes normal delivery.

@@ -22,6 +22,16 @@ If a downstream repo uses `minimal`, teams can still follow the same operator pa
 
 `advanced` may also include additional workflows beyond this core pack.
 
+## Fresh repo note
+
+If the repo was just bootstrapped, run the guided initializer before relying on the workflows below:
+
+```bash
+/path/to/apw/scripts/init-project-state.sh --target .
+```
+
+That gives `/status`, `/brainstorm`, `/create`, `/debug`, `/test`, and `/orchestrate` real project memory to read instead of mostly empty starter templates.
+
 ## The shared invocation pattern
 
 Use this mental model everywhere:

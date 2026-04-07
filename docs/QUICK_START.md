@@ -98,21 +98,25 @@ Before coding starts, do two things:
 1. Read:
    - [START_HERE.md](./START_HERE.md)
    - [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
-2. Use one orchestrator-style pass to populate the initial project memory coherently.
+2. Run the guided initializer to generate the first core project-state drafts:
 
-At minimum, initialize:
+```bash
+/path/to/apw/scripts/init-project-state.sh --target .
+```
+
+This writes:
 
 - `.gsd/SPEC.md`
 - `.gsd/ROADMAP.md`
 - `.gsd/STATE.md`
 - `.gsd/TODO.md`
 - `.gsd/STACK.md`
-- `.gsd/ARCHITECTURE.md`
 
-For `base` and `advanced`, also keep:
+Then keep:
 
-- `.gsd/JOURNAL.md`
-- `.gsd/DECISIONS.md`
+- `.gsd/JOURNAL.md` for bounded evidence during work
+- `.gsd/ARCHITECTURE.md` when the technical shape needs to be made explicit
+- `.gsd/DECISIONS.md` when rationale needs to become canonical
 
 ## 7. Begin Work Safely
 

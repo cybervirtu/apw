@@ -57,5 +57,5 @@ See `docs/COMPATIBILITY_MODEL.md`, `docs/CODEX_COMPATIBILITY.md`, and `docs/ANTI
 
 ## Where To Start
 
-- **Humans**: read `docs/BASIC_ONBOARDING_PROCEDURE.md` first when present if you want the shortest safe first-use path. Then continue with `docs/START_HERE.md` if you want the broader beginner path.
+- **Humans**: read `docs/BASIC_ONBOARDING_PROCEDURE.md` first when present if you want the shortest safe first-use path. After bootstrap and validation, use `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md` to create the first core `.gsd` drafts. Then continue with `docs/START_HERE.md` if you want the broader beginner path.
 - **Tools and agents**: read `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, and the repo's current `.gsd/STATE.md` and `.gsd/TODO.md` before acting.

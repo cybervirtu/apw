@@ -33,7 +33,7 @@ Idea
 → decide likely tech-stack direction  
 → bootstrap the repo  
 → validate the structure  
-→ initialize canonical `.gsd` state  
+→ run guided project-state initialization
 → start implementation safely  
 → keep progress synchronized through journal + orchestrator  
 → continue building with validation and CI
@@ -47,7 +47,7 @@ flowchart LR
     C --> D[Choose likely stack]
     D --> E[Bootstrap]
     E --> F[Validate]
-    F --> G[Initialize .gsd]
+    F --> G[Guided state init]
     G --> H[Start work]
     H --> I[JOURNAL evidence]
     I --> J[Orchestrator sync]
@@ -276,13 +276,13 @@ Validate immediately after bootstrap.
 
 This is one of the safest habits in APW.
 
-## 8. Initialize the canonical `.gsd` state
+## 8. Run guided project-state initialization
 
 #### What this step means
 
-Now you fill in the first real project memory.
+Now you turn the project brief into the first real project memory.
 
-That means creating the first useful version of:
+Instead of opening several files manually, APW asks a short set of plain-language questions and creates the first useful version of:
 
 - what the project is
 - what the roadmap looks like
@@ -301,10 +301,17 @@ APW gives you a home for:
 - direction in `ROADMAP.md`
 - current status in `STATE.md`
 - next work in `TODO.md`
+- stack direction in `STACK.md`
 
 #### What you should do next
 
-Use a lead/orchestrator-style pass to create the initial `.gsd` state coherently.
+Run:
+
+```bash
+/path/to/apw/scripts/init-project-state.sh --target .
+```
+
+Then read those drafts once and fix anything obviously wrong before routine implementation begins.
 
 ## 9. Start implementation safely
 
