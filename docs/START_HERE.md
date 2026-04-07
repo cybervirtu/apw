@@ -15,6 +15,7 @@ If you arrived here from repo-root `AGENTS.md`, you are on the right path:
 If you want the shortest safe first-use path instead of the fuller guided map, read [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you want the one-minute command reference, read [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md).
 If you want the preferred chat-first and IDE-friendly action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
+If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want explicit helpers for moving between APW root, project roots, and the workspace parent, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the short in-IDE checklist for a downstream project, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
@@ -78,50 +79,63 @@ That gives you:
 - a log of evidence
 - CI checks that stop the workspace from drifting
 
-## Recommended beginner path
+## The three APW documentation levels
 
-If you are new, read these in order:
+### Level 1 — Start now
 
-1. [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md)
-2. [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md)
-3. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md)
-4. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
-5. [REAL_WORLD_EXAMPLES.md](./REAL_WORLD_EXAMPLES.md)
-6. [QUICK_START.md](./QUICK_START.md)
-7. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
+Read these now:
 
-This path answers:
+1. [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
+2. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
+3. [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
+4. [QUICK_START.md](./QUICK_START.md)
 
-- what APW is
-- how it works
-- how an idea becomes a project
-- how to choose a likely profile and stack direction
-- what APW looks like on real project ideas
-- how to start safely
-- where you should actually work day to day
+This level answers:
 
-## If you want to build now
+- what to open first
+- how to create a project
+- what to do first in the IDE
+- what command or workflow to use first
 
-Go here next:
+### Level 2 — Use APW better
 
-1. [QUICK_START.md](./QUICK_START.md)
-2. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
-3. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
-4. [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+Read these only when the next question appears:
 
-## If you want the deeper framework layer
+1. [IDEA_TO_PROJECT_GUIDE.md](./IDEA_TO_PROJECT_GUIDE.md)
+2. [TECH_STACK_SELECTION_GUIDE.md](./TECH_STACK_SELECTION_GUIDE.md)
+3. [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
+4. [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
+5. [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
+6. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+7. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 
-Go here next:
+### Level 3 — Deep reference
+
+Read these later, or when you are doing framework work:
 
 1. [HOW_APW_WORKS.md](./HOW_APW_WORKS.md)
 2. [APW_HANDBOOK.md](./APW_HANDBOOK.md)
 3. [COMPATIBILITY_MODEL.md](./COMPATIBILITY_MODEL.md)
 4. [FIRST_PROJECT_WALKTHROUGH.md](./FIRST_PROJECT_WALKTHROUGH.md)
 
+## If you want to build now
+
+Read now:
+
+1. [QUICK_START.md](./QUICK_START.md)
+2. [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md)
+
+Optional next:
+
+3. [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+4. [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+5. [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+
 ## What to read next
 
 If you want the shortest safe onboarding path, go to [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md) first.
 If you want the workspace/project context model in one page, go to [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md) next.
 If you want the in-editor first-run path, go to [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md) next.
-If you have not read it yet, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md) first.
-If you already understand the plain-English intro, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md) next.
+If you want the explicit level map, go to [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
+If you want the broader plain-English intro, go to [APW_FOR_BEGINNERS.md](./APW_FOR_BEGINNERS.md).
+If you want the diagram-first version, go to [APW_VISUAL_OVERVIEW.md](./APW_VISUAL_OVERVIEW.md).

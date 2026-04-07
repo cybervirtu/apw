@@ -8,6 +8,7 @@ export default {
       pagination: false
     }
   },
+  'documentation-levels': 'Documentation Levels',
   'basic-onboarding': 'Basic Onboarding',
   'apw-action-model': 'APW Action Model',
   'first-run-in-ide': 'First Run In IDE',

@@ -10,6 +10,10 @@ If you are new, the goal is simple: help you understand what APW is, how it work
 This is a beginner-facing guide. The deeper governance and source-of-truth rules still live in the repo-root APW files and the canonical docs under `docs/`.
 </Callout>
 
+<Callout type="info" emoji="📚">
+APW now exposes docs in three layers: Start Now, Use APW Better, and Deep Reference.
+</Callout>
+
 <Callout type="info" emoji="✅">
 If you want the shortest safe first-use path, start with [Basic Onboarding](/basic-onboarding).
 </Callout>
@@ -60,39 +64,56 @@ For upgrade work, think in this order: Preview Upgrade, Upgrade Project, then Va
 
 ## Recommended beginner path
 
+### Level 1 — Start now
+
 <Steps>
-### Learn what APW is
-
-Read [What Is APW?](/what-is-apw) for the plain-English explanation.
-
-### See the journey
-
-Read [Idea To Project](/idea-to-project) to understand how APW turns a rough idea into a structured repo.
-
-### Choose the right shape
-
-Read [Profiles & Stack Selection](/profiles-and-stack-selection) to choose a likely APW profile and stack direction.
-
-### See relatable project examples
-
-Read [Real-world Examples](/real-world-examples) to map your project to a practical starting path.
-
 ### Start the repo safely
 
-Read the repo's `docs/QUICK_START.md`, use Create Project to create the repo cleanly, run Initialize Project State, and then move into [Commands & Workflows](/commands-and-workflows).
+Read [Basic Onboarding](/basic-onboarding), then use Create Project to create the repo cleanly.
 </Steps>
+
+<Steps>
+### Open the project the right way
+
+Use [First Run In IDE](/first-run-in-ide) once the downstream project is open.
+
+### Keep the fast reference nearby
+
+Use the repo's `COMMAND_CHEATSHEET.md` if you need the command names quickly.
+</Steps>
+
+### Level 2 — Use APW better
+
+<Steps>
+### Shape the project more clearly
+
+Read [Idea To Project](/idea-to-project), [Profiles & Stack Selection](/profiles-and-stack-selection), or [Real-world Examples](/real-world-examples) only when you need that help.
+
+### Start work more intentionally
+
+Run Initialize Project State, then move into [Commands & Workflows](/commands-and-workflows).
+</Steps>
+
+### Level 3 — Deep reference
+
+Use [Reference](/reference) when you need governance, compatibility, CI, validation, or maintainer-level material.
+
+If you want the full level map in one place, go to [Documentation Levels](/documentation-levels).
 
 ## Choose the path that matches you
 
 <Cards num={2}>
   <Cards.Card href="/get-started-flow" title="Help Me Get Started">
-    Start from where you are right now and let APW route you to the best next page.
+    Level 2: start from where you are right now and let APW route you to the best next page.
+  </Cards.Card>
+  <Cards.Card href="/documentation-levels" title="Show Me The Levels">
+    See the Start Now, Use APW Better, and Deep Reference model in one page.
   </Cards.Card>
   <Cards.Card href="/apw-action-model" title="Show Me The APW Actions">
-    Use the action model if your main question is how APW should feel outside raw terminal commands.
+    Level 1: use the action model if your main question is how APW should feel outside raw terminal commands.
   </Cards.Card>
   <Cards.Card href="/safe-context-switching" title="Help Me Switch Safely">
-    Use the switching guide if your main problem is moving between APW root, project roots, and the workspace parent.
+    Level 2: use the switching guide if your main problem is moving between APW root, project roots, and the workspace parent.
   </Cards.Card>
   <Cards.Card href="/choose-your-profile" title="Choose My Profile">
     Use the lightweight chooser if you mainly need `minimal`, `base`, or `advanced`.
@@ -129,6 +150,7 @@ This portal wraps the highest-value entry docs first. The canonical source mater
 
 - `docs/BASIC_ONBOARDING_PROCEDURE.md`
 - `docs/APW_ACTION_MODEL.md`
+- `docs/DOCUMENTATION_LEVELS.md`
 - `COMMAND_CHEATSHEET.md`
 - `docs/FIRST_RUN_IN_IDE.md`
 - `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md`
@@ -149,6 +171,7 @@ This portal wraps the highest-value entry docs first. The canonical source mater
 
 - Go to [Basic Onboarding](/basic-onboarding) if you want the shortest safe onboarding path.
 - Go to [First Run In IDE](/first-run-in-ide) if the project is already open and you want the shortest in-editor checklist.
+- Go to [Documentation Levels](/documentation-levels) if you want the layered reading model in one page.
 - Go to [Help Me Get Started](/get-started-flow) if you want the fastest guided onboarding path.
 - Go to [APW Action Model](/apw-action-model) if you want the preferred chat-first and IDE-friendly interaction path.
 - Open `COMMAND_CHEATSHEET.md` in the repo if you just want the important commands in one minute.

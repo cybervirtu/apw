@@ -11,6 +11,7 @@ This README is the human-facing front door.
 Root [AGENTS.md](AGENTS.md) is the zero-touch tool-facing front door.
 Root [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) is the fast command reference.
 Together, they give you the short version, then send you through the docs in a beginner-friendly order.
+For the explicit layered reading model, read [docs/DOCUMENTATION_LEVELS.md](docs/DOCUMENTATION_LEVELS.md).
 
 If you want a visual docs experience, APW also includes an in-repo Nextra portal under [`website/`](website/README.md).
 The portal is the rendered docs experience, while the repo-root governance files and canonical docs under `docs/` remain the source of truth.
@@ -18,45 +19,53 @@ For the explicit documentation model, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/D
 
 ## New Here?
 
-Choose the path that matches what you need:
+Choose the documentation level that matches where you are:
 
-- I want the shortest safe first-use path:
-  [Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)
-- I want the visual docs portal:
-  [`website/`](website/README.md)
-- I am new and want the guided beginner path:
-  [APW for Beginners](docs/APW_FOR_BEGINNERS.md) -> [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md) -> [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md) -> [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md) -> [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
-- I want one page that maps the beginner journey:
-  [START_HERE.md](docs/START_HERE.md)
-- I want to start a real project now:
-  [Quick Start](docs/QUICK_START.md)
-- I want the easiest way to create a new APW project from anywhere:
-  `APW: Create Project`
+### Level 1 — Start Now
+
+Read these now:
+
+- [Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)
+- [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
+- [START_HERE.md](docs/START_HERE.md)
+- [Command Cheatsheet](COMMAND_CHEATSHEET.md)
+- [APW Action Model](docs/APW_ACTION_MODEL.md)
+
+If you want to start a real project immediately:
+
+- `APW: Create Project`
   Terminal fallback: `/path/to/apw/apw new MyProject --profile base --stack base`
-- I want to understand where I should actually work:
-  [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
-- I want safe helpers for moving between APW root, project roots, and the workspace parent:
-  [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
-- I want to know what to do the first time I open a project in my IDE:
-  [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
-- I want the preferred chat/IDE action model instead of only raw terminal commands:
-  [APW Action Model](docs/APW_ACTION_MODEL.md)
-- I want the three beginner APW actions first:
-  Create Project -> Initialize Project State -> First Run
-- I want the one-minute command reference:
-  [Command Cheatsheet](COMMAND_CHEATSHEET.md)
-- I want to know what happens to `/brainstorm` results after the chat:
-  [Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
-- I want one rule for what core workflow results save and where they go:
-  [Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)
-- I want to safely update an existing APW project from the latest framework:
-  [Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)
-- I want the beginner-safe upgrade sequence:
-  Preview Upgrade -> Upgrade Project -> Validate After Upgrade
-- I want to learn how to operate APW workflows:
-  [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
-- I want the deeper framework explanation:
-  [How APW Works](docs/HOW_APW_WORKS.md) -> [APW Handbook](docs/APW_HANDBOOK.md)
+
+Optional next:
+
+- [Quick Start](docs/QUICK_START.md)
+- [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
+- [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
+
+### Level 2 — Use APW Better
+
+Read these when you want guided support after the repo exists:
+
+- [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
+- [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
+- [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
+- [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
+- [Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)
+- [Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
+- [Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)
+- [Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)
+
+### Level 3 — Deep Reference
+
+Read these when you need the framework rules or maintainer detail:
+
+- [How APW Works](docs/HOW_APW_WORKS.md)
+- [APW Handbook](docs/APW_HANDBOOK.md)
+- [Compatibility Model](docs/COMPATIBILITY_MODEL.md)
+- [DOCS_SOURCE_OF_TRUTH.md](docs/DOCS_SOURCE_OF_TRUTH.md)
+
+If you want the visual docs experience instead of raw Markdown, use [`website/`](website/README.md).
+If you want the full level map in one place, read [docs/DOCUMENTATION_LEVELS.md](docs/DOCUMENTATION_LEVELS.md).
 
 ## APW In One Picture
 
@@ -271,41 +280,34 @@ And when there is a conflict:
 
 ### Recommended Reading Order
 
-If you want the smoothest beginner path, follow this order:
+Use the APW levels instead of trying to read everything in one pass:
 
-1. [APW for Beginners](docs/APW_FOR_BEGINNERS.md)
-2. [APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)
-3. [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
-4. [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
-5. [Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)
-6. [Quick Start](docs/QUICK_START.md)
-7. [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
-8. [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
-9. [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
+1. Level 1 now:
+   [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md) -> [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) -> [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md)
+2. Level 2 next, only when needed:
+   [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md) -> [WORKFLOW_SELECTION_GUIDE.md](docs/WORKFLOW_SELECTION_GUIDE.md) -> [COMMAND_INVOCATION_GUIDE.md](docs/COMMAND_INVOCATION_GUIDE.md)
+3. Level 3 later:
+   [HOW_APW_WORKS.md](docs/HOW_APW_WORKS.md) -> [APW_HANDBOOK.md](docs/APW_HANDBOOK.md) -> [COMPATIBILITY_MODEL.md](docs/COMPATIBILITY_MODEL.md)
 
-If you want the map for that path in one place, read [START_HERE.md](docs/START_HERE.md).
-If you want the shortest safe version of that path, read [BASIC_ONBOARDING_PROCEDURE.md](docs/BASIC_ONBOARDING_PROCEDURE.md).
-If you want APW to turn a plain-language brief into the first core `.gsd` drafts, read [GUIDED_PROJECT_STATE_INITIALIZATION.md](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md).
-If you want the workspace/project context model, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
-If you want the in-IDE first-run path, read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md).
-If you want the safe downstream upgrade path, read [DOWNSTREAM_PROJECT_UPGRADE.md](docs/DOWNSTREAM_PROJECT_UPGRADE.md).
+If you want the level map in one place, read [DOCUMENTATION_LEVELS.md](docs/DOCUMENTATION_LEVELS.md).
+If you want the map for the Level 1 path, read [START_HERE.md](docs/START_HERE.md).
 
 ### Fastest Safe Path
 
 If you want the shortest path to using APW on a new project:
 
-1. Run `apw new` from anywhere in the workspace
+1. Use `APW: Create Project`
 2. Let it bootstrap and validate the new repo
 3. Move into the downstream project root
 4. Open root `AGENTS.md` in the target repo
-5. Keep [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) open if you want the command names fast
-6. Use [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) if you want the short in-editor checklist
-7. Run the guided project-state initializer
+5. Read [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md)
+6. Keep [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) nearby if you want the command names fast
+7. Use `APW: Initialize Project State`
 8. Start work from `STATE.md` and `TODO.md`
 9. Log bounded evidence in `JOURNAL.md`
 10. Sync canonical state deliberately
 11. Turn on CI early
-12. When APW itself evolves later, use `apw upgrade-project` instead of treating raw bootstrap as the only upgrade path
+12. When APW itself evolves later, use `APW: Preview Upgrade` before upgrading the repo
 
 ### Visual Docs Portal
 
@@ -407,48 +409,50 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 
 ## 📚 Documentation Map
 
-### Guided Learning Flow
+### Level 1 — Start Now
 
-- **[APW for Beginners](docs/APW_FOR_BEGINNERS.md)**: The easiest first explanation for a new or non-technical reader.
-- **[APW Visual Overview](docs/APW_VISUAL_OVERVIEW.md)**: A diagram-first view of the APW system and workflow.
-- **[Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)**: A practical beginner journey from rough idea to structured project start.
-- **[Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing a likely stack direction and APW profile.
-- **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: Relatable project examples that show how APW would guide real builds.
-- **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: Shortest safe first-use path for a brand-new APW user.
-- **[Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)**: The plain-language helper that generates the first drafts of the core `.gsd` files.
-- **[Where Do I Work?](docs/WHERE_DO_I_WORK.md)**: The beginner-friendly workspace context model for APW root, downstream project root, and workspace parent folders.
-- **[First Run In IDE](docs/FIRST_RUN_IN_IDE.md)**: The beginner-friendly checklist for what to do the first time you open a downstream APW project in your IDE.
-- **[Start Here](docs/START_HERE.md)**: First read for a brand-new APW user.
-- **[Quick Start](docs/QUICK_START.md)**: Fastest safe path to try APW on a real project.
-- **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: Command-by-command operator guidance with read-first files, outputs, and orchestrator handoff rules.
-- **[Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)**: Beginner-friendly help for choosing the right workflow.
-- **[Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)**: Real invocation patterns using `@agent /workflow task`.
-- **[Compatibility Model](docs/COMPATIBILITY_MODEL.md)**: The single-framework compatibility model for Codex and Antigravity.
-- **[Codex Compatibility](docs/CODEX_COMPATIBILITY.md)**: How Codex should enter and follow APW.
-- **[Antigravity Compatibility](docs/ANTIGRAVITY_COMPATIBILITY.md)**: How `AGENTS.md`, `GEMINI.md`, `.agent/`, and `.agents/` relate in APW.
-- **[How APW Works](docs/HOW_APW_WORKS.md)**: The core mental model in plain English.
-- **[First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)**: A guided example from bootstrap to first milestone.
-- **[Visual Diagrams](docs/DIAGRAMS.md)**: Mermaid diagrams for the APW architecture, flow, and ownership model.
-- **[Features and Modes](docs/FEATURES_AND_MODES.md)**: What APW provides and how to apply it in different situations.
-- **[Common Workflows](docs/COMMON_WORKFLOWS.md)**: Day-to-day usage patterns for real work.
-- **[Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)**: Story-style examples of APW in solo, team, migration, advanced, and monorepo settings.
+- **[Basic Onboarding Procedure](docs/BASIC_ONBOARDING_PROCEDURE.md)**: shortest safe first-use path
+- **[First Run In IDE](docs/FIRST_RUN_IN_IDE.md)**: what to do after opening a downstream project
+- **[Start Here](docs/START_HERE.md)**: guided map for the beginner journey
+- **[Quick Start](docs/QUICK_START.md)**: fastest safe path to try APW on a real project
+- **[Command Cheatsheet](COMMAND_CHEATSHEET.md)**: one-minute command reference
+- **[APW Action Model](docs/APW_ACTION_MODEL.md)**: the chat-first and IDE-friendly interaction model
 
-### Deeper Understanding
+### Level 2 — Use APW Better
 
-- **[APW Handbook](docs/APW_HANDBOOK.md)**: Broader end-to-end explanation of APW.
-- **[Glossary](docs/GLOSSARY.md)**: Definitions of key APW terms.
-- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: The architecture in plain language.
-- **[Operating Model](docs/OPERATING_MODEL.md)**: Roles, responsibilities, and controlled canonical state sync.
-- **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**: Scenario-driven examples.
-- **[Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md)**: How teams should adopt and operate APW.
-- **[FAQ](docs/FAQ.md)**: Short answers to common questions.
+- **[Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)**: turn a rough idea into a structured project path
+- **[Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)**: choose a likely stack direction and APW profile
+- **[Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)**: generate the first drafts of the core `.gsd` files
+- **[Where Do I Work?](docs/WHERE_DO_I_WORK.md)**: workspace context model for APW root, project roots, and workspace parent folders
+- **[Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)**: explicit helpers for moving between workspace contexts
+- **[Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)**: choose the right workflow
+- **[Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)**: read-first context, outputs, and orchestrator handoff
+- **[Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)**: real invocation patterns
+- **[Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)**: safe save/promote rules for brainstorm work
+- **[Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)**: APW-wide save/promote rules across core workflows
+- **[Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)**: safe preview-first downstream upgrade flow
+- **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: relatable project examples
 
-### Maintainer Validation
+### Level 3 — Deep Reference
 
-- **[Real User Onboarding Validation Plan](docs/USER_ONBOARDING_VALIDATION_PLAN.md)**: Practical guide for testing whether real users can onboard into APW successfully.
-- **[Onboarding Test Scenarios](docs/ONBOARDING_TEST_SCENARIOS.md)**: Realistic tasks maintainers can run across multiple user types.
-- **[User Feedback Template](docs/USER_FEEDBACK_TEMPLATE.md)**: Consistent capture format for confusion, blockers, and improvement ideas.
-- **[User Personas](docs/USER_PERSONAS.md)**: Lightweight persona set for choosing balanced onboarding participants.
+- **[How APW Works](docs/HOW_APW_WORKS.md)**: the deeper mental model
+- **[APW Handbook](docs/APW_HANDBOOK.md)**: broader end-to-end explanation
+- **[Compatibility Model](docs/COMPATIBILITY_MODEL.md)**: single-framework compatibility model
+- **[Codex Compatibility](docs/CODEX_COMPATIBILITY.md)**: Codex-specific entry and usage
+- **[Antigravity Compatibility](docs/ANTIGRAVITY_COMPATIBILITY.md)**: Antigravity/AGK compatibility detail
+- **[First Project Walkthrough](docs/FIRST_PROJECT_WALKTHROUGH.md)**: guided example from bootstrap to first milestone
+- **[Visual Diagrams](docs/DIAGRAMS.md)**: architecture, flow, and ownership diagrams
+- **[Features and Modes](docs/FEATURES_AND_MODES.md)**: APW features and usage modes
+- **[Common Workflows](docs/COMMON_WORKFLOWS.md)**: day-to-day usage patterns
+- **[Real-World Scenarios](docs/REAL_WORLD_SCENARIOS.md)**: story-style APW scenarios
+- **[APW Handbook](docs/APW_HANDBOOK.md)**, **[Glossary](docs/GLOSSARY.md)**, **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**, **[Operating Model](docs/OPERATING_MODEL.md)**, **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**, **[FAQ](docs/FAQ.md)**: broader reference layer
+
+### Maintainer / Validation Layer
+
+- **[Real User Onboarding Validation Plan](docs/USER_ONBOARDING_VALIDATION_PLAN.md)**: test whether real users can onboard successfully
+- **[Onboarding Test Scenarios](docs/ONBOARDING_TEST_SCENARIOS.md)**: realistic onboarding tasks
+- **[User Feedback Template](docs/USER_FEEDBACK_TEMPLATE.md)**: consistent feedback capture
+- **[User Personas](docs/USER_PERSONAS.md)**: participant balancing aid
 
 ## 📚 Policy and Contract Reference
 

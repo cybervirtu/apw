@@ -1,0 +1,53 @@
+import { Callout, Cards } from 'nextra/components'
+
+# Documentation Levels
+
+Use this page when you want the simple APW reading model: what to read now, what to use next, and what to ignore until you actually need it.
+
+<Callout type="info" emoji="🪜">
+APW keeps the full documentation set. The goal here is not to remove depth, but to expose it in layers.
+</Callout>
+
+<Callout type="info" emoji="📚">
+Canonical source doc: `docs/DOCUMENTATION_LEVELS.md`
+</Callout>
+
+## The three levels
+
+<Cards num={3}>
+  <Cards.Card href="/basic-onboarding" title="Level 1 — Start Now">
+    The minimum safe path for first-time users: what APW is, where to work, what to do first, and which command or workflow to choose first.
+  </Cards.Card>
+  <Cards.Card href="/get-started-flow" title="Level 2 — Use APW Better">
+    The guided support layer for idea shaping, stack choice, workflow usage, switching, initialization, persistence, and upgrade.
+  </Cards.Card>
+  <Cards.Card href="/reference" title="Level 3 — Deep Reference">
+    The framework contract, compatibility, validation, CI, and maintainer-level architecture material.
+  </Cards.Card>
+</Cards>
+
+## Read this now
+
+- Go to [Basic Onboarding](/basic-onboarding)
+- Go to [First Run In IDE](/first-run-in-ide)
+- Keep `COMMAND_CHEATSHEET.md` nearby
+
+## Only if needed
+
+- Go to [Help Me Get Started](/get-started-flow)
+- Go to [Safe Context Switching](/safe-context-switching)
+- Go to [Commands & Workflows](/commands-and-workflows)
+- Go to [Downstream Project Upgrade](/downstream-project-upgrade)
+
+## Advanced reference
+
+- Go to [Reference](/reference)
+- Read the repo's `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, and `COMMAND_POLICY.md` when you need the real framework contract
+
+## Why this matters
+
+- beginners get a lighter entry path
+- intermediate users get guided help without reading everything
+- advanced users and maintainers still have direct access to the deeper framework layer
+
+Read the repo's `docs/DOCUMENTATION_LEVELS.md` for the full level table and doc assignments.

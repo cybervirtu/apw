@@ -6,6 +6,9 @@
 > [!NOTE]
 > The preferred APW path is action-first: ask for the APW action in chat first, use the matching IDE action when available, and use these terminal commands as the fallback reference. For that model, read `docs/APW_ACTION_MODEL.md`.
 
+> [!NOTE]
+> In the APW documentation levels, this file is a `Level 1 — Start now` fast reference. For the full reading model, read `docs/DOCUMENTATION_LEVELS.md`.
+
 For the first beginner layer, start with:
 
 - `APW: Create Project`

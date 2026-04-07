@@ -67,23 +67,29 @@ For the first beginner layer, keep these three actions in mind:
 
 ## Read Next
 
-Read the minimum next files, not everything at once:
+Read the minimum next files, not everything at once.
 
-1. `PROJECT_RULES.md`
-2. `AGENT_SYSTEM.md`
-3. `COMMAND_POLICY.md`
-4. `COMMAND_CHEATSHEET.md`
-5. `docs/APW_ACTION_MODEL.md` when present
-6. `docs/FIRST_RUN_IN_IDE.md` when present
-7. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
-8. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
-9. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+Read now:
 
-Read these only if you need them:
+1. `COMMAND_CHEATSHEET.md`
+2. `docs/FIRST_RUN_IN_IDE.md` when present
+3. `docs/APW_ACTION_MODEL.md` when present
 
-10. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-11. `docs/WHERE_DO_I_WORK.md`
-12. `docs/START_HERE.md`
+Only if needed:
+
+4. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
+5. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+6. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+7. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+8. `docs/WHERE_DO_I_WORK.md`
+
+Advanced reference:
+
+9. `PROJECT_RULES.md`
+10. `AGENT_SYSTEM.md`
+11. `COMMAND_POLICY.md`
+
+For the fuller routing model, read `docs/DOCUMENTATION_LEVELS.md`.
 
 ## Do Not
 

@@ -18,6 +18,8 @@ This guide is intentionally short.
 
 It tells you what to do first, why it matters, what "done" looks like, and where to go only if you need more help.
 
+For the explicit APW reading levels, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
+
 ## Where you should normally work
 
 Use this quick rule:
@@ -247,6 +249,12 @@ If you need more help:
 - Read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md).
 - Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
+
+Ignore for now:
+
+- `PROJECT_RULES.md`
+- `AGENT_SYSTEM.md`
+- `COMMAND_POLICY.md`
 
 ## Step 8 — Start implementation safely
 

@@ -10,6 +10,10 @@ APW helps humans and AI agents build software without losing track of project st
 This homepage is a guided entry page. The canonical APW rules still live in the repo-root governance files and the source docs under `docs/`.
 </Callout>
 
+<Callout type="info" emoji="🪜">
+APW now exposes its docs in three layers: Start Now, Use APW Better, and Deep Reference.
+</Callout>
+
 <Callout type="info" emoji="🛠️">
 For a brand-new repo, think `APW: Create Project` first. Terminal fallback: `/path/to/apw/apw new MyProject --profile base --stack base`.
 </Callout>
@@ -63,53 +67,56 @@ APW is useful for:
 - teams who need shared project memory instead of chat-by-chat drift
 - maintainers who want one framework that works with Codex, Antigravity, and related tooling
 
-## Choose your path
+## Choose your level
 
 <Cards num={2}>
+  <Cards.Card href="/documentation-levels" title="Documentation Levels">
+    See the full APW reading model for Start Now, Use APW Better, and Deep Reference.
+  </Cards.Card>
   <Cards.Card href="/basic-onboarding" title="Basic Onboarding">
-    Use the repo's `docs/BASIC_ONBOARDING_PROCEDURE.md` if you want the shortest safe first-use path.
+    Level 1: use the repo's `docs/BASIC_ONBOARDING_PROCEDURE.md` if you want the shortest safe first-use path.
   </Cards.Card>
   <Cards.Card href="/first-run-in-ide" title="First Run In IDE">
-    Use the repo's `docs/FIRST_RUN_IN_IDE.md` if you already opened a downstream project and want the shortest in-editor checklist.
-  </Cards.Card>
-  <Cards.Card href="/apw-action-model" title="APW Action Model">
-    Use the repo's `docs/APW_ACTION_MODEL.md` if you want the preferred chat-first and IDE-friendly interaction model.
-  </Cards.Card>
-  <Cards.Card href="/safe-context-switching" title="Safe Context Switching">
-    Use the repo's `docs/SAFE_CONTEXT_SWITCHING.md` if you want visible helpers for moving between APW root, project roots, and the workspace parent.
+    Level 1: use the repo's `docs/FIRST_RUN_IN_IDE.md` if you already opened a downstream project and want the shortest in-editor checklist.
   </Cards.Card>
   <Cards.Card href="/start-here" title="Start Here">
-    Follow the guided beginner path without guessing what to read next.
+    Level 1: follow the guided beginner path without guessing what to read next.
   </Cards.Card>
   <Cards.Card href="/get-started-flow" title="Help Me Get Started">
-    Start from your current situation and get routed to the right APW docs and next steps.
+    Level 2: start from your current situation and get routed to the right APW docs and next steps.
+  </Cards.Card>
+  <Cards.Card href="/apw-action-model" title="APW Action Model">
+    Level 1: use the preferred chat-first and IDE-friendly interaction model.
+  </Cards.Card>
+  <Cards.Card href="/safe-context-switching" title="Safe Context Switching">
+    Level 2: use visible helpers for moving between APW root, project roots, and the workspace parent.
   </Cards.Card>
   <Cards.Card href="/choose-your-profile" title="Choose Your Profile">
-    Decide whether `minimal`, `base`, or `advanced` fits your project best.
+    Level 2: decide whether `minimal`, `base`, or `advanced` fits your project best.
   </Cards.Card>
   <Cards.Card href="/choose-your-project-type" title="Choose Your Project Type">
-    Match your project idea to a likely profile, stack direction, and next doc.
+    Level 2: match your project idea to a likely profile, stack direction, and next doc.
   </Cards.Card>
   <Cards.Card href="/idea-to-project" title="I Have An Idea">
-    See how APW turns a rough idea into a structured project that is safe to build.
+    Level 2: see how APW turns a rough idea into a structured project that is safe to build.
   </Cards.Card>
   <Cards.Card href="/real-world-examples" title="Show Me Examples">
-    See how APW fits real project ideas like dashboards, chatbots, and platforms.
+    Level 2: see how APW fits real project ideas like dashboards, chatbots, and platforms.
   </Cards.Card>
   <Cards.Card href="/commands-and-workflows" title="Teach Me Commands And Workflows">
-    Learn the operator path for status, create, debug, test, and orchestrate work.
+    Level 2: learn the operator path for status, create, debug, test, and orchestrate work.
   </Cards.Card>
   <Cards.Card href="/brainstorm-persistence-and-promotion" title="Brainstorm Persistence">
-    Learn how `/brainstorm` results are saved safely instead of staying only in chat.
+    Level 2: learn how `/brainstorm` results are saved safely instead of staying only in chat.
   </Cards.Card>
   <Cards.Card href="/workflow-persistence-policy" title="Workflow Persistence">
-    Learn the APW-wide rule for what `/status`, `/create`, `/debug`, `/test`, and `/orchestrate` save by default.
+    Level 2: learn the APW-wide rule for what `/status`, `/create`, `/debug`, `/test`, and `/orchestrate` save by default.
   </Cards.Card>
   <Cards.Card href="/downstream-project-upgrade" title="Project Upgrade">
-    Learn the safe preview-first way to refresh APW-managed files in an existing downstream project.
+    Level 2: learn the safe preview-first way to refresh APW-managed files in an existing downstream project.
   </Cards.Card>
   <Cards.Card href="/reference" title="Technical Reference">
-    Reach the deeper governance, compatibility, validation, and adoption material.
+    Level 3: reach the deeper governance, compatibility, validation, and adoption material.
   </Cards.Card>
 </Cards>
 
@@ -149,38 +156,38 @@ Let the orchestrator update canonical state when `STATE.md`, `ROADMAP.md`, `TODO
 Use validation and CI to keep the repo aligned as work continues.
 </Steps>
 
-## Highest-value docs first
+## Progressive disclosure path
 
 <Cards num={2}>
   <Cards.Card href="/basic-onboarding" title="Basic Onboarding Procedure">
-    Start with the repo's `docs/BASIC_ONBOARDING_PROCEDURE.md` if you want the shortest safe APW path.
+    Level 1: start here if you want the shortest safe APW path.
   </Cards.Card>
   <Cards.Card href="/first-run-in-ide" title="First Run In IDE">
-    Use the repo's `docs/FIRST_RUN_IN_IDE.md` if you want the short downstream-project checklist after opening the repo in your IDE.
+    Level 1: use this for the short downstream-project checklist after opening the repo in your IDE.
   </Cards.Card>
   <Cards.Card href="/what-is-apw" title="What Is APW?">
-    Read the plain-English explanation of what APW is and why it exists.
+    Level 1 optional next: read the plain-English explanation of what APW is and why it exists.
   </Cards.Card>
   <Cards.Card href="/idea-to-project" title="Idea To Project">
-    Follow the practical journey from rough idea to structured repo and safe implementation.
+    Level 2: follow the practical journey from rough idea to structured repo and safe implementation.
   </Cards.Card>
   <Cards.Card href="/profiles-and-stack-selection" title="Profiles & Stack Selection">
-    Choose a practical APW profile and stack direction without overcomplicating it.
+    Level 2: choose a practical APW profile and stack direction without overcomplicating it.
   </Cards.Card>
   <Cards.Card href="/real-world-examples" title="Real-world Examples">
-    See how APW fits real project ideas before you commit to a path.
+    Level 2: see how APW fits real project ideas before you commit to a path.
   </Cards.Card>
   <Cards.Card href="/commands-and-workflows" title="Commands And Workflows">
-    Learn the practical operator layer once the repo exists and work is ready to start.
+    Level 2: learn the practical operator layer once the repo exists and work is ready to start.
   </Cards.Card>
   <Cards.Card href="/brainstorm-persistence-and-promotion" title="Brainstorm Persistence">
-    See the safe default for saving brainstorm outcomes and when orchestrator should promote them.
+    Level 2: see the safe default for saving brainstorm outcomes and when orchestrator should promote them.
   </Cards.Card>
   <Cards.Card href="/workflow-persistence-policy" title="Workflow Persistence">
-    See the APW-wide save/promote model for the core workflows in one place.
+    Level 2: see the APW-wide save/promote model for the core workflows in one place.
   </Cards.Card>
   <Cards.Card href="/reference" title="Reference">
-    Reach the deeper contract, compatibility, validation, and CI material when you need the full source.
+    Level 3: reach the deeper contract, compatibility, validation, and CI material when you need the full source.
   </Cards.Card>
 </Cards>
 
@@ -188,6 +195,7 @@ Use validation and CI to keep the repo aligned as work continues.
 
 - Go to [Basic Onboarding](/basic-onboarding) if you want the shortest safe first-use path.
 - Go to [First Run In IDE](/first-run-in-ide) if the repo already exists and you want the shortest in-editor checklist.
+- Go to [Documentation Levels](/documentation-levels) if you want the full APW reading model in one page.
 - Go to [Start Here](/start-here) if you want the full beginner reading path.
 - Go to [Help Me Get Started](/get-started-flow) if you want APW to route you based on your current situation.
 - Go to [Reference](/reference) if you already know APW and need the deeper contract material.
@@ -206,6 +214,7 @@ This page summarizes the front-door guidance from:
 - `README.md`
 - `docs/BASIC_ONBOARDING_PROCEDURE.md`
 - `docs/APW_ACTION_MODEL.md`
+- `docs/DOCUMENTATION_LEVELS.md`
 - `docs/FIRST_RUN_IN_IDE.md`
 - `COMMAND_CHEATSHEET.md`
 - `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md`

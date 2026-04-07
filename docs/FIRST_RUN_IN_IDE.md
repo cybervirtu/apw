@@ -60,6 +60,7 @@ It should help you answer:
 It should not force you to read the whole handbook before you can move.
 
 If you want the command names fast without opening multiple docs, keep [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md) nearby.
+If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 
 ## First-run checklist
 
@@ -174,17 +175,26 @@ The same safe rule works for the other core workflows too:
 
 Use only the next doc you need:
 
-- Need the shortest beginner path: [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
-- Need the workspace/project location model: [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
-- Need explicit switch helpers: [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
-- Need the brainstorm persistence model: [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
-- Need the APW-wide workflow persistence model: [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md)
-- Need command choice help: [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
-- Need command details and read-first context: [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
-- Need the one-minute command list: [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
-- Need the preferred chat/IDE action model: [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md)
-- Need help initializing state: [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
-- Need broader beginner context: [START_HERE.md](./START_HERE.md)
+Read now:
+
+- [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
+- [BASIC_ONBOARDING_PROCEDURE.md](./BASIC_ONBOARDING_PROCEDURE.md)
+
+Only if needed:
+
+- [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md)
+- [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md)
+- [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
+- [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
+- [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+- [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
+- [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md)
+- [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md)
+- [START_HERE.md](./START_HERE.md)
+
+Advanced reference:
+
+- [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md)
 
 ## The simple operating model in IDE terms
 
