@@ -256,8 +256,9 @@ If you already understand the beginner path and need the framework rules directl
 If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/UPGRADE_STRATEGY.md), the [Command Policy](COMMAND_POLICY.md), and the [Bootstrap Contract](PROJECT_BOOTSTRAP.md).
 
 ### Template Contract
-- `templates/` is the only downstream bootstrap source in the active APW contract.
+- `templates/` is the canonical profile source in the active downstream bootstrap contract, and `base`/`advanced` also receive the shared core command pack from the canonical root `.agent/` tree.
 - The canonical downstream `.gsd` contract for `base` and `advanced` is: `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`.
+- `base` and `advanced` receive the shared downstream core command pack directly in `.agent/workflows/`: `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, `/orchestrate`.
 - `advanced` is stronger through richer `.agent/` content, not through extra root `.gsd` state files.
 - Canonical state synchronization for `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is a controlled orchestrator/governance step, not a routine side effect of execution work.
 - Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
@@ -269,8 +270,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
    ```
 2. Choose a profile intentionally:
    - `minimal`: lightweight lifecycle starter set plus any minimal profile `.agent` content
-   - `base`: default downstream bootstrap profile with the standard lifecycle templates
-   - `advanced`: the same canonical eight-file `.gsd` contract as `base`, plus specialist execution material
+   - `base`: default downstream bootstrap profile with the standard lifecycle templates plus the shared downstream core workflow pack
+   - `advanced`: the same canonical eight-file `.gsd` contract as `base`, plus the shared downstream core workflow pack and extra specialist execution material
 3. Validate the repo against the same profile:
    ```bash
    /path/to/apw/scripts/validate.sh . --profile base --stack base
@@ -278,8 +279,9 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 4. Review the [Downstream Adoption Guide](docs/DOWNSTREAM_ADOPTION_GUIDE.md) and complete the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) before coding starts.
 5. Enable CI enforcement using [CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md) and [the example GitHub Actions workflow](examples/github/apw-validate.yml).
 6. Start new tool sessions from root `AGENTS.md`, then follow the linked APW files and docs.
-7. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md) if needed.
-8. Use a single lead/orchestrator-style pass to populate the first canonical `.gsd/` state coherently, then begin implementation work.
+7. In `base` and `advanced` downstream repos, use the core APW commands directly from the local `.agent/workflows/` pack.
+8. Open your new directory in Cursor/Antigravity and copy the prompt from [PROJECT_INSTANTIATION_PROMPT.md](docs/PROJECT_INSTANTIATION_PROMPT.md) if needed.
+9. Use a single lead/orchestrator-style pass to populate the first canonical `.gsd/` state coherently, then begin implementation work.
 
 ### For Migrating an Existing Project
 1. Start with the [Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md).

@@ -15,6 +15,11 @@ Use the smallest profile that still matches the repo's operating needs:
 
 If a team is unsure, choose `base`.
 
+For downstream command availability:
+
+- `base` and `advanced` receive the shared core APW workflows directly in `.agent/workflows/`
+- `minimal` stays lighter and may not vendor the full core command pack
+
 ## 2. Required Day-1 Steps
 
 Before routine coding starts in a newly bootstrapped repo:
@@ -25,6 +30,16 @@ Before routine coding starts in a newly bootstrapped repo:
 4. Use a single orchestrator or explicit governance pass to populate the first canonical `.gsd/` state.
 5. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
 6. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
+
+For `base` and `advanced`, also confirm that the core downstream commands are present locally:
+
+- `/status`
+- `/brainstorm`
+- `/create`
+- `/enhance`
+- `/debug`
+- `/test`
+- `/orchestrate`
 
 Do not begin normal implementation work until those steps are complete.
 

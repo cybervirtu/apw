@@ -100,12 +100,12 @@ Designed for simple scripts, research, or rapid prototyping workflows where deep
 
 ### **Base Profile (`templates/base`)**
 The standard, non-negotiable baseline for standard software engineering projects.
-- **Current downstream behavior**: This is the default profile. It contributes the standard `.gsd/` lifecycle set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `JOURNAL.md`, `ARCHITECTURE.md`, `STACK.md`, `DECISIONS.md`, `TODO.md`). The `.agent/` directories are still created by `bootstrap.sh`, but this profile does not currently add profile-specific `.agent/` files of its own.
+- **Current downstream behavior**: This is the default profile. It contributes the standard `.gsd/` lifecycle set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `JOURNAL.md`, `ARCHITECTURE.md`, `STACK.md`, `DECISIONS.md`, `TODO.md`). `bootstrap.sh` also vendors the shared downstream core command pack from the canonical root `.agent/` tree, so `base` repos can use `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` directly in the IDE.
 - **Use when**: You want the canonical APW bootstrap baseline for most product repositories.
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root APW entrypoint and operating files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus the same shared downstream core command pack as `base`, plus additional profile-local `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root APW entrypoint and operating files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
 - **Use when**: You need the richest APW execution bundle while keeping project state in the same lean canonical `.gsd` contract as the base profile.
 
 ### **Advanced State Consolidation Rule**
@@ -120,6 +120,7 @@ Designed for production-grade applications, strict CI/CD pipelines, and monorepo
 ## 6. Bootstrap Overwrite Rules
 
 - Root APW entrypoint and operating files are always overwritten.
+- The shared downstream core command pack is always re-synced for `base` and `advanced`.
 - `.agent/` execution-layer content is always synced from the selected profile when source content exists.
 - `.gsd/` lifecycle files are preserved unless `--force` is supplied.
 - Optional profile directories that do not exist are treated as empty and logged, not as bootstrap failures.

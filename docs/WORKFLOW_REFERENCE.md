@@ -122,6 +122,18 @@ Execution-oriented workflows commonly include:
 
 Not every downstream repo will vendor the same execution workflows.
 
+`base` and `advanced` downstream repos are expected to receive the shared core workflow pack:
+
+- `/status`
+- `/brainstorm`
+- `/create`
+- `/enhance`
+- `/debug`
+- `/test`
+- `/orchestrate`
+
+`advanced` may vendor additional workflows on top of that core set.
+
 What matters is the operating model:
 
 - governance controls lifecycle and canonical state

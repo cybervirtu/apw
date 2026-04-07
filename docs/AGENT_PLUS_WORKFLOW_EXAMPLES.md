@@ -17,6 +17,8 @@ Why this matters:
 - the **workflow** gives you the right operating pattern
 - the **task description** tells the agent what bounded work to perform
 
+For downstream repos bootstrapped with `base` or `advanced`, the core workflows in these examples are expected to exist directly under `.agent/workflows/`.
+
 ## Example 1: Re-orient after time away
 
 ```text

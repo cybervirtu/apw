@@ -14,9 +14,11 @@ That is the safest default.
 
 ## Important scope note
 
-These are the standard APW execution workflows most commonly vendored by the `advanced` profile.
+These are the standard APW execution workflows vendored into downstream `base` and `advanced` repos as the shared core command pack.
 
-If your downstream repo uses `base` or `minimal`, keep the same operator logic, but confirm that the local workflow file actually exists before relying on it.
+If your downstream repo uses `minimal`, keep the same operator logic, but confirm that the local workflow file actually exists before relying on it.
+
+`advanced` may also vendor additional workflows such as `/design`, `/preview`, `/deploy`, and `/ui-ux-pro-max`.
 
 ## The fast chooser
 

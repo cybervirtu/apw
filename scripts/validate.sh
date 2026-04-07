@@ -49,6 +49,44 @@ advice() {
     echo "➡️  $message"
 }
 
+require_named_source_markdown_set() {
+    local source_dir="$1"
+    local label="$2"
+    shift 2
+
+    local name
+    local path
+
+    for name in "$@"; do
+        path="$source_dir/$name.md"
+
+        if [[ -f "$APW_ROOT/$path" ]]; then
+            pass "APW source $label present: $path"
+        else
+            fail "APW source $label missing: $path"
+        fi
+    done
+}
+
+require_named_target_markdown_set() {
+    local target_dir="$1"
+    local label="$2"
+    shift 2
+
+    local name
+    local path
+
+    for name in "$@"; do
+        path="$target_dir/$name.md"
+
+        if [[ -f "$TARGET_DIR/$path" ]]; then
+            pass "$label present: $path"
+        else
+            fail "$label missing: $path"
+        fi
+    done
+}
+
 check_source_file() {
     local path="$1"
     if [[ -f "$APW_ROOT/$path" ]]; then
@@ -503,10 +541,19 @@ if [[ "$PROFILE" != "base" && "$PROFILE" != "minimal" && "$PROFILE" != "advanced
 fi
 
 APW_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CORE_PACK_LIB="$APW_ROOT/scripts/lib/downstream_core_pack.sh"
 PROFILE_ROOT="$APW_ROOT/templates/$PROFILE"
 PROFILE_GSD_DIR="$PROFILE_ROOT/.gsd"
 PROFILE_AGENT_DIR="$PROFILE_ROOT/.agent"
 STACK_SKILLS_DIR="$APW_ROOT/templates/stack/$STACK/.agent/skills"
+
+if [[ ! -f "$CORE_PACK_LIB" ]]; then
+    echo "❌ Error: Missing downstream core pack definition in APW source: $CORE_PACK_LIB"
+    exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$CORE_PACK_LIB"
 
 if [[ ! -d "$TARGET_DIR" ]]; then
     echo "❌ Error: Target directory does not exist: $TARGET_DIR"
@@ -604,7 +651,11 @@ check_source_file "website/pages/reference/validation-and-ci.mdx"
 check_source_file "scripts/bootstrap.sh"
 check_source_file "scripts/ci-validate.sh"
 check_source_file "scripts/validate.sh"
+check_source_file "scripts/lib/downstream_core_pack.sh"
 check_source_file "examples/github/apw-validate.yml"
+require_named_source_markdown_set ".agent/workflows" "core downstream workflow source" "${APW_CORE_DOWNSTREAM_WORKFLOWS[@]}"
+require_named_source_markdown_set ".agent/agents" "core downstream agent source" "${APW_CORE_DOWNSTREAM_AGENTS[@]}"
+require_named_source_markdown_set ".agent/rules" "core downstream rule source" "${APW_CORE_DOWNSTREAM_RULES[@]}"
 check_source_content_contract
 check_source_ownership_drift
 
@@ -629,6 +680,14 @@ check_target_dir ".agent/rules"
 check_target_dir ".agent/scripts"
 check_target_dir ".agent/workflows"
 check_target_dir ".agent/skills"
+
+if apw_profile_gets_core_downstream_pack "$PROFILE"; then
+    require_named_target_markdown_set ".agent/workflows" "Core downstream workflow" "${APW_CORE_DOWNSTREAM_WORKFLOWS[@]}"
+    require_named_target_markdown_set ".agent/agents" "Core downstream agent" "${APW_CORE_DOWNSTREAM_AGENTS[@]}"
+    require_named_target_markdown_set ".agent/rules" "Core downstream rule" "${APW_CORE_DOWNSTREAM_RULES[@]}"
+else
+    info "Profile '$PROFILE' does not require the shared downstream command pack."
+fi
 
 require_template_files "$PROFILE_AGENT_DIR/agents" ".agent/agents" ".agent/agents"
 require_template_files "$PROFILE_AGENT_DIR/rules" ".agent/rules" ".agent/rules"

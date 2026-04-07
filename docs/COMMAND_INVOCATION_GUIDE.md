@@ -16,9 +16,11 @@ It explains how to drive real work in tools such as Antigravity, Codex, and Curs
 
 ## Important scope note
 
-These workflows are most commonly vendored by the `advanced` profile under `.agent/workflows/`.
+These core workflows are vendored into downstream `base` and `advanced` repos under `.agent/workflows/`.
 
-If a downstream repo uses `base` or `minimal`, teams can still follow the same operator pattern, but some workflow files may need to be added locally first.
+If a downstream repo uses `minimal`, teams can still follow the same operator pattern, but some workflow files may need to be added locally first.
+
+`advanced` may also include additional workflows beyond this core pack.
 
 ## The shared invocation pattern
 
