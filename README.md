@@ -287,6 +287,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 1. Read the [Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md).
 2. Turn on [CI/CD Enforcement](docs/CI_CD_ENFORCEMENT.md) early.
 3. Use the [Downstream Compliance Checklist](docs/DOWNSTREAM_COMPLIANCE_CHECKLIST.md) as a repeatable operating checklist.
+4. Before broader rollout, run the [Real User Onboarding Validation Plan](docs/USER_ONBOARDING_VALIDATION_PLAN.md) with the [Onboarding Test Scenarios](docs/ONBOARDING_TEST_SCENARIOS.md) and [User Feedback Template](docs/USER_FEEDBACK_TEMPLATE.md).
 
 ---
 
@@ -323,6 +324,13 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Use Cases and Examples](docs/USE_CASES_AND_EXAMPLES.md)**: Scenario-driven examples.
 - **[Team Adoption Guide](docs/TEAM_ADOPTION_GUIDE.md)**: How teams should adopt and operate APW.
 - **[FAQ](docs/FAQ.md)**: Short answers to common questions.
+
+### Maintainer Validation
+
+- **[Real User Onboarding Validation Plan](docs/USER_ONBOARDING_VALIDATION_PLAN.md)**: Practical guide for testing whether real users can onboard into APW successfully.
+- **[Onboarding Test Scenarios](docs/ONBOARDING_TEST_SCENARIOS.md)**: Realistic tasks maintainers can run across multiple user types.
+- **[User Feedback Template](docs/USER_FEEDBACK_TEMPLATE.md)**: Consistent capture format for confusion, blockers, and improvement ideas.
+- **[User Personas](docs/USER_PERSONAS.md)**: Lightweight persona set for choosing balanced onboarding participants.
 
 ## 📚 Policy and Contract Reference
 

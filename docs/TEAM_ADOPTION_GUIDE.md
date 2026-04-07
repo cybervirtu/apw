@@ -83,6 +83,13 @@ Then show them:
 - the CI workflow
 - who owns orchestrator sync
 
+If you are preparing for broader team rollout, also run the real-user onboarding validation set:
+
+1. [USER_ONBOARDING_VALIDATION_PLAN.md](./USER_ONBOARDING_VALIDATION_PLAN.md)
+2. [ONBOARDING_TEST_SCENARIOS.md](./ONBOARDING_TEST_SCENARIOS.md)
+3. [USER_FEEDBACK_TEMPLATE.md](./USER_FEEDBACK_TEMPLATE.md)
+4. [USER_PERSONAS.md](./USER_PERSONAS.md)
+
 ## 8. Team Handoffs
 
 Healthy team handoffs look like this:
