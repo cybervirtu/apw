@@ -35,6 +35,12 @@ APW utilizes a "Tick-Tock" release rhythm to protect active projects from stabil
 - **Action**: Bumps a minor/patch version (e.g., `v2.1.0`).
 - **Rollout**: For existing downstream repos, prefer `apw upgrade-project <name-or-path> --dry-run` first. That wrapper previews what will refresh automatically, what will be skipped for review, and what remains protected. Use raw `bootstrap.sh` only when you intentionally want the lower-level contract behavior. Add `--force` only when lifecycle templates in `.gsd/` are intentionally being replaced. If downstream CI pins APW to a release tag or commit SHA, update that reference as part of the rollout.
 
+The beginner-friendly action sequence is:
+
+1. `APW: Preview Upgrade`
+2. `APW: Upgrade Project`
+3. `APW: Validate After Upgrade`
+
 ### Downstream upgrade boundary
 
 APW keeps one clear ownership split:
@@ -47,6 +53,8 @@ In practice:
 - safe auto-upgrade: vendored downstream `.agent` core pack
 - review-before-overwrite: APW-managed root contract files and profile/stack extras
 - never blindly overwrite: `.gsd/*`, project code, and repo-specific implementation files
+
+Preview-first visibility is mandatory. The upgrade flow must not hide those boundaries.
 
 ---
 

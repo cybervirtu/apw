@@ -20,6 +20,12 @@ For the context and switching layer, think in:
 - `APW: Switch To Framework`
 - `APW: Switch To Parent`
 
+For the upgrade layer, think in:
+
+- `APW: Preview Upgrade`
+- `APW: Upgrade Project`
+- `APW: Validate After Upgrade`
+
 ## Quick rule
 
 - create projects from APW
@@ -161,12 +167,15 @@ These examples use the APW-root form.
 git add .
 git commit -m "checkpoint before APW upgrade"
 ./apw upgrade-project /path/to/project --dry-run
+./apw upgrade-project /path/to/project
 ./apw upgrade-project /path/to/project --validate
 ```
 
 ## Practical notes
 
 - path-based forms are usually safer for beginners than implicit `.`-based commands
+- preview-first is the safe upgrade rule
+- project-owned `.gsd` memory and product code stay protected during APW upgrade
 - start from `AGENTS.md`
 - use this file when you just need the command names fast
 - use `WORKFLOW_SELECTION_GUIDE.md` or `COMMAND_INVOCATION_GUIDE.md` only when you need more detail

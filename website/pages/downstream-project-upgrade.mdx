@@ -8,9 +8,19 @@ Use this page when APW itself has been updated and you want an existing downstre
 The key boundary is simple: APW-managed files may be refreshed, but project-owned `.gsd` memory and product code stay protected by default.
 </Callout>
 
+<Callout type="info" emoji="🔎">
+The safe beginner sequence is: Preview Upgrade, then Upgrade Project, then Validate After Upgrade.
+</Callout>
+
 Canonical source doc: `docs/DOWNSTREAM_PROJECT_UPGRADE.md`
 
 ## The short version
+
+Think in these actions:
+
+- `APW: Preview Upgrade`
+- `APW: Upgrade Project`
+- `APW: Validate After Upgrade`
 
 Use:
 
@@ -23,6 +33,7 @@ Then:
 - review what APW will refresh automatically
 - review what APW will skip by default
 - run the real upgrade only when the preview looks right
+- validate afterward
 
 ## What gets refreshed safely
 

@@ -14,6 +14,18 @@ The important rule is simple:
 
 `apw upgrade-project` is the beginner-safe wrapper for that job.
 
+The beginner-friendly action names are:
+
+- `APW: Preview Upgrade`
+- `APW: Upgrade Project`
+- `APW: Validate After Upgrade`
+
+Chat-first forms can sound like:
+
+- "Preview the APW upgrade for this project."
+- "Upgrade this project from the latest APW."
+- "Validate this project after the upgrade."
+
 ## The upgrade boundary
 
 APW treats downstream files in three categories.
@@ -77,6 +89,10 @@ If you remember one rule, remember this:
 
 ## The safest command to use
 
+The safest beginner action is:
+
+- `APW: Preview Upgrade`
+
 From APW root, the workspace parent, or any other convenient location, run:
 
 ```bash
@@ -106,6 +122,12 @@ The preview tells you:
 
 Use preview first whenever the repo matters.
 
+That is why the recommended sequence is:
+
+1. `APW: Preview Upgrade`
+2. `APW: Upgrade Project`
+3. `APW: Validate After Upgrade`
+
 ## When to use `--force-managed`
 
 Use:
@@ -127,16 +149,17 @@ If you are unsure, do not use `--force-managed` yet.
 ## Recommended upgrade flow
 
 1. Commit or checkpoint the downstream repo first.
-2. Run `apw upgrade-project <name-or-path> --dry-run`.
+2. Run `APW: Preview Upgrade`.
 3. Review what APW will refresh automatically and what it will skip.
-4. Run `apw upgrade-project <name-or-path>` for the safe default upgrade.
+4. Run `APW: Upgrade Project`.
 5. Re-run with `--force-managed` only if you intentionally want the skipped APW-managed review surfaces refreshed too.
-6. Run validation with the same profile and stack.
+6. Run `APW: Validate After Upgrade`.
 
 Example:
 
 ```bash
 /path/to/apw/apw upgrade-project MyProject --dry-run
+/path/to/apw/apw upgrade-project MyProject
 /path/to/apw/apw upgrade-project MyProject --validate
 ```
 
@@ -187,10 +210,11 @@ Or let the wrapper do it:
 
 If APW itself changed and you want your project to receive those APW improvements:
 
-- use `apw upgrade-project`
-- preview first
+- use `APW: Preview Upgrade` first
+- then `APW: Upgrade Project`
+- then `APW: Validate After Upgrade`
 - keep `.gsd` memory and product code protected
-- validate after the upgrade
+- never skip the preview-first step
 
 ## Read next only if needed
 

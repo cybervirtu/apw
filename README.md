@@ -50,6 +50,8 @@ Choose the path that matches what you need:
   [Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)
 - I want to safely update an existing APW project from the latest framework:
   [Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)
+- I want the beginner-safe upgrade sequence:
+  Preview Upgrade -> Upgrade Project -> Validate After Upgrade
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:

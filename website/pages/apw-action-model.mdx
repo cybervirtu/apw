@@ -50,6 +50,16 @@ Once the project exists, the next APW actions to remember are:
 
 These are the preferred chat and future IDE labels for orientation and safe switching.
 
+## The upgrade action layer
+
+When APW itself changes and a downstream repo needs the newer APW-managed layer, the preferred action sequence is:
+
+- `APW: Preview Upgrade`
+- `APW: Upgrade Project`
+- `APW: Validate After Upgrade`
+
+This keeps the upgrade flow preview-first and makes the protection boundary visible.
+
 ## Why this matters
 
 - beginners do not need to think in terminal flags first

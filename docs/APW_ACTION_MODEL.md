@@ -53,6 +53,26 @@ They must stay:
 
 They do not silently change shell or IDE context.
 
+## The upgrade action layer
+
+When APW itself changes and a downstream repo needs the newer APW-managed layer, think in this sequence:
+
+1. `APW: Preview Upgrade`
+2. `APW: Upgrade Project`
+3. `APW: Validate After Upgrade`
+
+This must stay:
+
+- preview-first
+- explicit
+- beginner-safe
+
+It must not hide:
+
+- what APW will update
+- what APW will skip
+- what APW protects as project-owned
+
 ## What this means in practice
 
 For common APW tasks, the easiest user-facing path should be:
@@ -84,7 +104,9 @@ They are the preferred user-facing names for the same existing APW engine and co
 | `APW: Switch To Framework` | chat-first or IDE action | `apw switch framework [--open]` |
 | `APW: Switch To Parent` | chat-first or IDE action | `apw switch parent [--workspace dir] [--open]` |
 | `APW: Initialize Project State` | chat-first or IDE action | `scripts/init-project-state.sh --target <repo>` |
+| `APW: Preview Upgrade` | chat-first or IDE action | `apw upgrade-project <name-or-path> --dry-run` |
 | `APW: Upgrade Project` | chat-first or IDE action | `apw upgrade-project <name-or-path> ...` |
+| `APW: Validate After Upgrade` | chat-first or IDE action | `apw upgrade-project <name-or-path> --validate` or `scripts/validate.sh ...` |
 
 ## Preferred path per action
 
@@ -269,16 +291,70 @@ Engine:
 /path/to/apw/scripts/init-project-state.sh --target /path/to/project
 ```
 
-### 9. APW: Upgrade Project
+### 9. APW: Preview Upgrade
 
 Use this when:
 
-- APW itself changed and you want a downstream project to receive the latest APW-managed layer safely
+- APW itself changed and you want to see exactly what an upgrade would do before touching the repo
+
+Chat-first forms:
+
+- "Preview the APW upgrade for this project."
+- "Show me what APW would upgrade."
+- "Preview upgrade before changing anything."
+
+Preferred IDE label:
+
+- `APW: Preview Upgrade`
 
 Engine:
 
 ```bash
 /path/to/apw/apw upgrade-project /path/to/project --dry-run
+```
+
+### 10. APW: Upgrade Project
+
+Use this when:
+
+- APW itself changed and you want a downstream project to receive the latest APW-managed layer safely
+
+Chat-first forms:
+
+- "Upgrade this project from the latest APW."
+- "Apply the APW-managed upgrade now."
+- "Run the safe APW upgrade for this repo."
+
+Preferred IDE label:
+
+- `APW: Upgrade Project`
+
+Engine:
+
+```bash
+/path/to/apw/apw upgrade-project /path/to/project
+```
+
+### 11. APW: Validate After Upgrade
+
+Use this when:
+
+- the upgrade is complete and you want to confirm the repo still matches the APW contract
+
+Chat-first forms:
+
+- "Validate this project after the upgrade."
+- "Run post-upgrade validation."
+- "Check that the upgraded repo still matches APW."
+
+Preferred IDE label:
+
+- `APW: Validate After Upgrade`
+
+Engine:
+
+```bash
+/path/to/apw/apw upgrade-project /path/to/project --validate
 ```
 
 ## How chat-first should feel
@@ -294,7 +370,9 @@ Examples:
 - "Switch to the APW framework."
 - "Create a new APW project called MyProject."
 - "Initialize this project."
-- "Upgrade this project from the latest APW, but preview first."
+- "Preview the APW upgrade for this project."
+- "Upgrade this project from the latest APW."
+- "Validate this project after the upgrade."
 
 The user should not need to remember raw flags first if the tool can map the request safely.
 
@@ -307,6 +385,7 @@ When an IDE, extension, or command palette exposes APW directly, the preferred l
 - `APW: Show Context`
 - `APW: List Projects`
 - `APW: Switch To Project`
+- `APW: Preview Upgrade`
 - `APW: Switch To Framework`
 - `APW: Switch To Parent`
 - `APW: Initialize Project State`
