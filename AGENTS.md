@@ -27,11 +27,15 @@ If this is your first time opening this downstream project in an IDE, do this:
 1. Confirm you are in the downstream project root, not APW root or a workspace parent folder.
 2. Read this file once.
 3. Check whether `.gsd/SPEC.md`, `.gsd/STACK.md`, `.gsd/STATE.md`, `.gsd/TODO.md`, and `.gsd/ROADMAP.md` already describe the real project.
-4. If those files still look like starter templates, run:
+4. If those files still look like starter templates, prefer:
+   - `APW: Initialize Project State`
+   Terminal fallback:
    ```bash
    /path/to/apw/scripts/init-project-state.sh --target .
    ```
-5. If you want the same checklist in command form, run:
+5. If you want the same checklist in terminal form, use:
+   - `APW: First Run`
+   Terminal fallback:
    ```bash
    /path/to/apw/apw first-run
    ```
@@ -99,5 +103,5 @@ See `docs/COMPATIBILITY_MODEL.md`, `docs/CODEX_COMPATIBILITY.md`, and `docs/ANTI
 
 ## Where To Start
 
-- **Humans**: work from the downstream project root. Read `docs/FIRST_RUN_IN_IDE.md` first when present, then use `docs/WORKFLOW_SELECTION_GUIDE.md` or `docs/COMMAND_INVOCATION_GUIDE.md` only as needed.
+- **Humans**: work from the downstream project root. Prefer the APW action path first, read `docs/FIRST_RUN_IN_IDE.md` first when present, then use `docs/WORKFLOW_SELECTION_GUIDE.md` or `docs/COMMAND_INVOCATION_GUIDE.md` only as needed.
 - **Tools and agents**: read `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, and the repo's current `.gsd/STATE.md` and `.gsd/TODO.md` before acting.

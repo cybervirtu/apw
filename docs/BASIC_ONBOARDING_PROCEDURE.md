@@ -22,7 +22,7 @@ It tells you what to do first, why it matters, what "done" looks like, and where
 
 Use this quick rule:
 
-- create new projects from anywhere with `apw new`
+- create new projects from anywhere with `APW: Create Project`
 - do day-to-day project work inside the downstream project root
 - use APW root mainly when you are maintaining APW itself
 - treat the workspace parent folder as an organizer, not the normal place for project workflows
@@ -146,6 +146,9 @@ If you need more help:
 
 Later, when APW itself is updated and you want this project to receive the newer APW-managed framework layer safely, use:
 
+- `APW: Preview Upgrade`
+  Terminal fallback:
+
 ```bash
 /path/to/apw/apw upgrade-project MyProject --dry-run
 ```
@@ -156,6 +159,7 @@ What to do:
 
 - If you created the repo with `apw new`, validation already ran for you.
 - Re-run validation manually any time you want to confirm the repo still matches the contract.
+- Think of the command below as the exact fallback, not the main beginner path.
 
 ```bash
 /path/to/apw/scripts/validate.sh /path/to/MyProject --profile base --stack base

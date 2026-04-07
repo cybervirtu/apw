@@ -42,7 +42,7 @@ Natural chat-first phrasing can sound like:
 - "Switch to the APW framework."
 - "Go back to the workspace parent."
 
-Then use the terminal form only when you need the explicit fallback.
+Then use the terminal form only when you need the explicit fallback or exact flags.
 
 ## The three places in plain language
 
@@ -73,7 +73,8 @@ They do not silently move your IDE.
 
 ### Check your current context
 
-Use:
+- `APW: Show Context`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw context
@@ -91,13 +92,10 @@ Use this when you are unsure whether you are in:
 - a downstream project root
 - the workspace parent folder
 
-Action name:
-
-- `APW: Show Context`
-
 ### List known downstream projects
 
-Use:
+- `APW: List Projects`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw list-projects
@@ -115,13 +113,10 @@ What it does:
 - lists APW downstream projects it can recognize
 - gives you enough information to choose the right project
 
-Action name:
-
-- `APW: List Projects`
-
 ### Switch to APW root
 
-Use:
+- `APW: Switch To Framework`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw switch framework
@@ -133,11 +128,10 @@ Use this when you mean to:
 - change templates
 - update scripts or workflow definitions
 
-Action name:
-
-- `APW: Switch To Framework`
-
 ### Switch to a downstream project
+
+- `APW: Switch To Project`
+  Terminal fallback:
 
 Use a known project name:
 
@@ -164,13 +158,10 @@ Use this when you mean to:
 - read `AGENTS.md`
 - run project workflows such as `/status`, `/brainstorm`, `/create`, or `/orchestrate`
 
-Action name:
-
-- `APW: Switch To Project`
-
 ### Switch to the workspace parent folder
 
-Use:
+- `APW: Switch To Parent`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw switch parent
@@ -188,13 +179,12 @@ Use this when you want to:
 - decide which project to open next
 - create a new project from a clean launch point
 
-Action name:
-
-- `APW: Switch To Parent`
-
 ## Upgrade an existing downstream project safely
 
 If APW itself has changed and you want one downstream repo to receive those APW-managed updates, you can launch the upgrade helper explicitly from APW root, the workspace parent, or another convenient location:
+
+- `APW: Preview Upgrade`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw upgrade-project ProjectA --dry-run

@@ -31,7 +31,8 @@ Choose the path that matches what you need:
 - I want to start a real project now:
   [Quick Start](docs/QUICK_START.md)
 - I want the easiest way to create a new APW project from anywhere:
-  run `/path/to/apw/apw new MyProject --profile base --stack base`
+  `APW: Create Project`
+  Terminal fallback: `/path/to/apw/apw new MyProject --profile base --stack base`
 - I want to understand where I should actually work:
   [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
 - I want safe helpers for moving between APW root, project roots, and the workspace parent:
@@ -122,7 +123,7 @@ APW uses one simple operating model across the workspace:
 
 | Location | Role | Typical Actions | Avoid Doing Here |
 | :--- | :--- | :--- | :--- |
-| `APW root` | framework source and maintenance repo | maintain APW docs, templates, scripts, workflows, and compatibility material; run `apw new`; run bootstrap, validation, or initialization against target repos | normal downstream project implementation |
+| `APW root` | framework source and maintenance repo | maintain APW docs, templates, scripts, workflows, and compatibility material; use `APW: Create Project`; run bootstrap, validation, or initialization against target repos | normal downstream project implementation |
 | `downstream project root` | the real project you are building | open your IDE here; start from `AGENTS.md`; run slash workflows here; edit code and `.gsd` state here | treating it as the source of APW framework templates or validators |
 | `workspace parent folder` | organizer for APW plus multiple projects | launch `apw new`; organize sibling repos; move into the project you actually want to work on | day-to-day project workflows unless a helper explicitly supports it |
 
@@ -135,6 +136,15 @@ The practical rule is straightforward:
 If you want the fuller beginner explanation, read [WHERE_DO_I_WORK.md](docs/WHERE_DO_I_WORK.md).
 
 If you want explicit helpers for detecting and switching between those locations, use:
+
+- `APW: Show Context`
+- `APW: List Projects`
+- `APW: Switch To Framework`
+- `APW: Switch To Project`
+- `APW: Switch To Parent`
+- `APW: Preview Upgrade`
+
+Terminal fallback:
 
 - `apw context`
 - `apw list-projects`

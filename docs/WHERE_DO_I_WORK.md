@@ -96,7 +96,7 @@ The workspace parent folder is mostly an organizer.
 Use it when you are:
 
 - deciding where projects should live
-- creating a new repo with `apw new`
+- creating a new repo with `APW: Create Project`
 - launching `apw upgrade-project <name>` by workspace-aware project name
 - moving between APW root and different downstream projects
 
@@ -145,6 +145,9 @@ Do not assume the workspace parent folder is a project root just because it cont
 
 For a brand-new project, the friendliest path is:
 
+- `APW: Create Project`
+  Terminal fallback:
+
 ```bash
 /path/to/apw/apw new MyProject --profile base --stack base
 ```
@@ -169,13 +172,19 @@ What this means:
 
 If you later need help moving back to the right place, use:
 
-```bash
-/path/to/apw/apw list-projects
-/path/to/apw/apw switch project <name>
-/path/to/apw/apw switch framework
-/path/to/apw/apw switch parent
-/path/to/apw/apw upgrade-project <name> --dry-run
-```
+- `APW: List Projects`
+- `APW: Switch To Project`
+- `APW: Switch To Framework`
+- `APW: Switch To Parent`
+- `APW: Preview Upgrade`
+  Terminal fallback:
+  ```bash
+  /path/to/apw/apw list-projects
+  /path/to/apw/apw switch project <name>
+  /path/to/apw/apw switch framework
+  /path/to/apw/apw switch parent
+  /path/to/apw/apw upgrade-project <name> --dry-run
+  ```
 
 ## Where you should work day to day
 
@@ -221,7 +230,8 @@ If you are lost, use this action order:
 
 You can be in the workspace parent folder or anywhere else.
 
-Use:
+- `APW: Create Project`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw new MyProject --profile base --stack base
@@ -239,23 +249,20 @@ Be in APW root.
 
 ### I want to know what kind of folder I am in
 
-Use:
+- `APW: Show Context`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw context
 ```
 
-Or point it at a specific path:
+Or point it at a specific path with the terminal fallback:
 
 ```bash
 /path/to/apw/apw context /path/to/somewhere
 ```
 
 If you want the dedicated switching guide, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
-
-```bash
-/path/to/apw/apw context /path/to/MyWork/ProjectA
-```
 
 ## Related docs
 

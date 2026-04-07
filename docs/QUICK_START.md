@@ -33,7 +33,7 @@ Before you do anything else, keep this model in mind:
 
 | Location | Use It For | Avoid |
 | :--- | :--- | :--- |
-| `APW root` | framework maintenance, templates, bootstrap/validation engine, `apw new` | day-to-day downstream project work |
+| `APW root` | framework maintenance, templates, bootstrap/validation engine, `APW: Create Project` | day-to-day downstream project work |
 | `downstream project root` | normal project work, `AGENTS.md`, slash workflows, `.gsd` state, code changes | treating it as the source of APW framework updates |
 | `workspace parent folder` | organizing APW plus multiple projects, launching `apw new` | normal project workflows |
 
@@ -111,7 +111,7 @@ Use raw bootstrap directly only when you intentionally want the lower-level engi
 
 ## 3. Validate Immediately
 
-`apw new` runs validation for you by default.
+The action path usually handles this for you because `apw new` runs validation by default.
 
 If you used raw bootstrap directly, or you want to re-check the repo later, run validation with the same profile and stack:
 
@@ -140,7 +140,13 @@ If you want the shortest next-step action instead of remembering the command, th
 
 - `APW: First Run`
 
-If you lose track of the right folder later, recover with:
+If you lose track of the right folder later, think in these actions first:
+
+- `APW: Show Context`
+- `APW: List Projects`
+- `APW: Switch To Project`
+
+Terminal fallback:
 
 ```bash
 /path/to/apw/apw context
@@ -148,7 +154,11 @@ If you lose track of the right folder later, recover with:
 /path/to/apw/apw switch project <name>
 ```
 
-If APW itself evolves later and you want this downstream repo to receive the newer APW-managed files safely, use:
+If APW itself evolves later and you want this downstream repo to receive the newer APW-managed files safely, think:
+
+- `APW: Preview Upgrade`
+
+Terminal fallback:
 
 ```bash
 /path/to/apw/apw upgrade-project MyProject --dry-run
@@ -175,10 +185,9 @@ Before coding starts, do two things:
 2. Prefer the action:
    - `APW: Initialize Project State`
    Terminal fallback:
-
-```bash
-/path/to/apw/scripts/init-project-state.sh --target .
-```
+   ```bash
+   /path/to/apw/scripts/init-project-state.sh --target .
+   ```
 
 This writes:
 
@@ -239,14 +248,15 @@ If you want more beginner context before doing that, go back to:
 
 If you want the deeper reference layer, read [APW_HANDBOOK.md](./APW_HANDBOOK.md).
 
-## 11. If You Only Remember Nine Things
+## 11. If You Only Remember Ten Things
 
-1. Use `base` unless you have a reason not to.
-2. Bootstrap and validate with the same profile.
-3. Start tool sessions from root `AGENTS.md`.
-4. Use the operator guides instead of vague prompts.
-5. Keep `.gsd` as the canonical memory layer.
-6. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
-7. Turn on CI before the repo starts drifting.
-8. Normal project workflows belong in the downstream project root, not APW root.
-9. When APW itself changes later, use `apw upgrade-project` before reaching for raw bootstrap on an existing repo.
+1. Think in APW actions first, then use terminal commands when you need the fallback.
+2. Use `base` unless you have a reason not to.
+3. Bootstrap and validate with the same profile.
+4. Start tool sessions from root `AGENTS.md`.
+5. Use the operator guides instead of vague prompts.
+6. Keep `.gsd` as the canonical memory layer.
+7. Let execution agents write code and `JOURNAL.md`, not casual summary rewrites.
+8. Turn on CI before the repo starts drifting.
+9. Normal project workflows belong in the downstream project root, not APW root.
+10. When APW itself changes later, use `APW: Preview Upgrade` or `apw upgrade-project --dry-run` before reaching for raw bootstrap on an existing repo.

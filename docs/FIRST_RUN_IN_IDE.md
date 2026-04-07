@@ -77,25 +77,21 @@ That means the folder should contain things such as:
 
 If you are unsure, use:
 
-```bash
-/path/to/apw/apw context
-```
-
-Or think in the action name:
-
 - `APW: Show Context`
+  Terminal fallback:
+  ```bash
+  /path/to/apw/apw context
+  ```
 
 If that shows you are in APW root or the workspace parent folder, recover with:
 
-```bash
-/path/to/apw/apw list-projects
-/path/to/apw/apw switch project <name>
-```
-
-Action names:
-
 - `APW: List Projects`
 - `APW: Switch To Project`
+  Terminal fallback:
+  ```bash
+  /path/to/apw/apw list-projects
+  /path/to/apw/apw switch project <name>
+  ```
 
 ### 2. Read `AGENTS.md`
 
@@ -123,11 +119,17 @@ Check whether the core `.gsd` files already tell a real project story:
 
 If those still look like starter templates, run:
 
+- `APW: Initialize Project State`
+  Terminal fallback:
+
 ```bash
 /path/to/apw/scripts/init-project-state.sh --target .
 ```
 
-If you want a helper reminder instead of remembering the steps yourself, run:
+If you want a helper reminder instead of remembering the steps yourself, think:
+
+- `APW: First Run`
+  Terminal fallback:
 
 ```bash
 /path/to/apw/apw first-run

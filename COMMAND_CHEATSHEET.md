@@ -4,7 +4,7 @@
 > Use this as the one-minute command reference for day-to-day APW use.
 
 > [!NOTE]
-> The preferred APW path is chat-first or IDE action first, then terminal fallback. For that model, read `docs/APW_ACTION_MODEL.md`.
+> The preferred APW path is action-first: ask for the APW action in chat first, use the matching IDE action when available, and use these terminal commands as the fallback reference. For that model, read `docs/APW_ACTION_MODEL.md`.
 
 For the first beginner layer, start with:
 
@@ -73,7 +73,7 @@ Notes:
 
 - advanced extras like `/deploy`, `/design`, `/preview`, and `/ui-ux-pro-max` depend on profile/extras and may not always be present
 
-## Terminal commands
+## Terminal fallback commands
 
 ### APW wrapper commands
 
