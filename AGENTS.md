@@ -43,6 +43,7 @@ If this is your first time opening this downstream project in an IDE, do this:
 7. If you use `/brainstorm`, do not assume the chat became permanent project memory:
    - save the useful result to `.gsd/JOURNAL.md`
    - use orchestrator or governance sync if the result should change official project files
+8. Keep `COMMAND_CHEATSHEET.md` nearby if you want the main slash commands and terminal commands in one page.
 
 ## Read Next
 
@@ -51,16 +52,17 @@ Read the minimum next files, not everything at once:
 1. `PROJECT_RULES.md`
 2. `AGENT_SYSTEM.md`
 3. `COMMAND_POLICY.md`
-4. `docs/FIRST_RUN_IN_IDE.md` when present
-5. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
-6. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
-7. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+4. `COMMAND_CHEATSHEET.md`
+5. `docs/FIRST_RUN_IN_IDE.md` when present
+6. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
+7. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+8. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
 
 Read these only if you need them:
 
-8. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-9. `docs/WHERE_DO_I_WORK.md`
-10. `docs/START_HERE.md`
+9. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+10. `docs/WHERE_DO_I_WORK.md`
+11. `docs/START_HERE.md`
 
 ## Do Not
 

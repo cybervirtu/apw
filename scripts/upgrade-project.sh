@@ -42,6 +42,7 @@ source "$CORE_PACK_LIB"
 
 ROOT_REVIEW_FILES=(
     "AGENTS.md"
+    "COMMAND_CHEATSHEET.md"
     "PROJECT_RULES.md"
     "AGENT_SYSTEM.md"
     "COMMAND_POLICY.md"

@@ -41,6 +41,7 @@ For `base` and `advanced`, this includes the core commands:
 These are APW-managed files, but teams may have made local edits to them:
 
 - `AGENTS.md`
+- `COMMAND_CHEATSHEET.md`
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
 - `COMMAND_POLICY.md`

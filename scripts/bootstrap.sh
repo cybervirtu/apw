@@ -136,6 +136,7 @@ echo "✅ Created APW directory structure."
 # 2. Copy Root Entrypoint and Operating Files
 # These are always overwritten to keep the APW contract current.
 cp "$APW_ROOT/AGENTS.md" "$TARGET_DIR/"
+cp "$APW_ROOT/COMMAND_CHEATSHEET.md" "$TARGET_DIR/"
 cp "$APW_ROOT/PROJECT_RULES.md" "$TARGET_DIR/"
 cp "$APW_ROOT/AGENT_SYSTEM.md" "$TARGET_DIR/"
 cp "$APW_ROOT/COMMAND_POLICY.md" "$TARGET_DIR/"
@@ -211,5 +212,6 @@ echo "   1. Validate: $VALIDATE_SCRIPT \"$TARGET_DIR\" --profile $PROFILE --stac
 echo "   2. Generate first drafts of core project state: $APW_ROOT/scripts/init-project-state.sh --target \"$TARGET_DIR\""
 echo "   3. Use the core workflows directly in $TARGET_DIR/.agent/workflows for base/advanced repos."
 echo "   4. Start from: $TARGET_DIR/AGENTS.md"
-echo "   5. Review: $APW_ROOT/docs/DOWNSTREAM_ADOPTION_GUIDE.md"
-echo "   6. Keep canonical .gsd summary files under deliberate orchestrator/governance control as the project evolves."
+echo "   5. Keep $TARGET_DIR/COMMAND_CHEATSHEET.md nearby as the fast command reference."
+echo "   6. Review: $APW_ROOT/docs/DOWNSTREAM_ADOPTION_GUIDE.md"
+echo "   7. Keep canonical .gsd summary files under deliberate orchestrator/governance control as the project evolves."

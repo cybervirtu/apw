@@ -7,6 +7,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 ```text
 ./apw/
 ├── AGENTS.md            # Tool-facing entrypoint into the APW contract
+├── COMMAND_CHEATSHEET.md # Fast APW command reference
 ├── .agent/              # Specialist execution + capability namespace
 │   ├── agents/          # Merged definitions (GSD.md, AGK.md)
 │   ├── rules/           # Machine-readable governing prompts
@@ -51,6 +52,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 | **.agent/workflows/** | Execution workflows / slash commands | Curated | **Mandatory** |
 | **.agent/skills/** | Specialist implementations | Syncable | **Optional** |
 | **AGENTS.md** | Tool-facing front door into the APW contract | Keep concise, sync from APW | **Mandatory** |
+| **COMMAND_CHEATSHEET.md** | Fast human command reference | Sync from APW | **Mandatory** |
 | **PROJECT_RULES.md**| Core governance rules | Never | **Mandatory** |
 | **AGENT_SYSTEM.md** | Precedence rules | Never | **Mandatory** |
 | **COMMAND_POLICY.md** | Command ownership rules | Never | **Mandatory** |
@@ -62,7 +64,7 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 - **Copy-Don't-Reference**: All root `.md` files and `.gsd/` templates are **copied** into new projects to ensure repository independence.
 - **Selective Sync**: `.agent/skills/` entries are **imported/synced** based on the chosen tech stack.
-- **Never Edit Casually**: `AGENTS.md`, `PROJECT_RULES.md`, `GSD-STYLE.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, and `PROJECT_BOOTSTRAP.md` are part of the APW contract and should only be modified in `./apw` before rolling out updates.
+- **Never Edit Casually**: `AGENTS.md`, `COMMAND_CHEATSHEET.md`, `PROJECT_RULES.md`, `GSD-STYLE.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, and `PROJECT_BOOTSTRAP.md` are part of the APW contract and should only be modified in `./apw` before rolling out updates.
 
 ---
 
@@ -83,7 +85,7 @@ The following ownership pattern applies during implementation:
 **Current Ownership Rule**:
 - `templates/` is the only active downstream source for profile-selected `.gsd/` and `.agent/` scaffolding.
 - `.gsd/` in the repo root is reserved for APW governance use and is not a downstream profile source.
-- Root APW entrypoint and operating files (`AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
+- Root APW entrypoint, cheat sheet, and operating files (`AGENTS.md`, `COMMAND_CHEATSHEET.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
 
 **Ownership Classification**:
 - `templates/`: **canonical downstream source**
@@ -119,7 +121,7 @@ Designed for production-grade applications, strict CI/CD pipelines, and monorepo
 
 ## 6. Bootstrap Overwrite Rules
 
-- Root APW entrypoint and operating files are always overwritten.
+- Root APW entrypoint, cheat sheet, and operating files are always overwritten.
 - The shared downstream core command pack is always re-synced for `base` and `advanced`.
 - `.agent/` execution-layer content is always synced from the selected profile when source content exists.
 - `.gsd/` lifecycle files are preserved unless `--force` is supplied.

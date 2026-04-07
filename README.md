@@ -9,6 +9,7 @@ If you are new to APW, you should not have to read half the repo before it makes
 
 This README is the human-facing front door.
 Root [AGENTS.md](AGENTS.md) is the zero-touch tool-facing front door.
+Root [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) is the fast command reference.
 Together, they give you the short version, then send you through the docs in a beginner-friendly order.
 
 If you want a visual docs experience, APW also includes an in-repo Nextra portal under [`website/`](website/README.md).
@@ -37,6 +38,8 @@ Choose the path that matches what you need:
   [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
 - I want to know what to do the first time I open a project in my IDE:
   [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
+- I want the one-minute command reference:
+  [Command Cheatsheet](COMMAND_CHEATSHEET.md)
 - I want to know what happens to `/brainstorm` results after the chat:
   [Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
 - I want one rule for what core workflow results save and where they go:
@@ -203,6 +206,7 @@ And when there is a conflict:
 ```text
 ./apw/
 ├── AGENTS.md             # Tool-facing entrypoint into the APW contract
+├── COMMAND_CHEATSHEET.md # Fast APW command reference
 ├── .agent/              # Execution + capability namespace
 │   ├── agents/          # Specialist agent definitions
 │   ├── rules/           # Governing prompts and routing rules
@@ -256,13 +260,14 @@ If you want the shortest path to using APW on a new project:
 2. Let it bootstrap and validate the new repo
 3. Move into the downstream project root
 4. Open root `AGENTS.md` in the target repo
-5. Use [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) if you want the short in-editor checklist
-6. Run the guided project-state initializer
-7. Start work from `STATE.md` and `TODO.md`
-8. Log bounded evidence in `JOURNAL.md`
-9. Sync canonical state deliberately
-10. Turn on CI early
-11. When APW itself evolves later, use `apw upgrade-project` instead of treating raw bootstrap as the only upgrade path
+5. Keep [COMMAND_CHEATSHEET.md](COMMAND_CHEATSHEET.md) open if you want the command names fast
+6. Use [FIRST_RUN_IN_IDE.md](docs/FIRST_RUN_IN_IDE.md) if you want the short in-editor checklist
+7. Run the guided project-state initializer
+8. Start work from `STATE.md` and `TODO.md`
+9. Log bounded evidence in `JOURNAL.md`
+10. Sync canonical state deliberately
+11. Turn on CI early
+12. When APW itself evolves later, use `apw upgrade-project` instead of treating raw bootstrap as the only upgrade path
 
 ### Visual Docs Portal
 

@@ -42,9 +42,10 @@ Before routine coding starts in a newly bootstrapped repo:
 2. If you are not using the wrapper, bootstrap the repo with an explicit profile and stack.
 3. Validate the repo with the same `--profile` and `--stack` values if validation was not already run by the wrapper.
 4. Start from root `AGENTS.md`, then review `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and `GSD-STYLE.md`.
-5. Run guided project-state initialization to populate the first canonical `.gsd/` state.
-6. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
-7. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
+5. Keep `COMMAND_CHEATSHEET.md` nearby for the fast command reference.
+6. Run guided project-state initialization to populate the first canonical `.gsd/` state.
+7. Confirm the repo has a project-local execution rule file if needed, such as `.agent/rules/PROJECT.md`.
+8. Make sure the team knows which profile was chosen and uses the same values for future validation and upgrades.
 
 For `base` and `advanced`, also confirm that the core downstream commands are present locally:
 
@@ -67,6 +68,7 @@ The practical day-to-day rule is simple:
 These must remain present in every APW-compliant downstream repo:
 
 - `AGENTS.md`
+- `COMMAND_CHEATSHEET.md`
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
 - `COMMAND_POLICY.md`

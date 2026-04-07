@@ -41,6 +41,8 @@ It should help you answer:
 
 It should not force you to read the whole handbook before you can move.
 
+If you want the command names fast without opening multiple docs, keep [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md) nearby.
+
 ## First-run checklist
 
 Use this checklist inside the downstream project:
@@ -77,6 +79,10 @@ You should come away knowing:
 - GSD governs
 - AGK executes
 - the orchestrator synchronizes canonical summary state
+
+Then, if you want the fast command reference, open:
+
+- `COMMAND_CHEATSHEET.md`
 
 ### 3. Confirm project state exists
 
@@ -146,6 +152,7 @@ Use only the next doc you need:
 - Need the APW-wide workflow persistence model: [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md)
 - Need command choice help: [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md)
 - Need command details and read-first context: [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
+- Need the one-minute command list: [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
 - Need help initializing state: [GUIDED_PROJECT_STATE_INITIALIZATION.md](./GUIDED_PROJECT_STATE_INITIALIZATION.md)
 - Need broader beginner context: [START_HERE.md](./START_HERE.md)
 

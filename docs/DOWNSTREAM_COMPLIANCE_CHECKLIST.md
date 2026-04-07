@@ -7,7 +7,7 @@
 
 - [ ] The repo was bootstrapped with an explicit `--profile` and `--stack`.
 - [ ] The same `--profile` and `--stack` values were used for validation.
-- [ ] `AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`, and `.gitmessage` exist at the repo root.
+- [ ] `AGENTS.md`, `COMMAND_CHEATSHEET.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`, and `.gitmessage` exist at the repo root.
 - [ ] The required `.gsd/` files for the selected profile exist.
 - [ ] `.agent/agents/`, `.agent/rules/`, `.agent/scripts/`, `.agent/workflows/`, and `.agent/skills/` exist.
 - [ ] A single orchestrator or governance pass populated the initial canonical `.gsd` state before coding started.

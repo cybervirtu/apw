@@ -15,6 +15,7 @@
 - APW remains one canonical framework. Bootstrap does not create separate Codex and Antigravity variants of the standard.
 - Bootstrap generates a repo-root `AGENTS.md` as the default modern tool-facing entrypoint.
 - That root `AGENTS.md` routes readers into the deeper APW operating documents; it does not replace them.
+- Bootstrap also copies repo-root `COMMAND_CHEATSHEET.md` so downstream repos have the same fast command reference as the APW framework repo.
 - The script never creates or expects a top-level `.agents/` directory.
 - The active downstream execution namespace is always `.agent/`.
 - `base` and `advanced` receive a shared downstream core command pack from the canonical root `.agent/` tree so the main APW slash commands work directly inside bootstrapped projects.
@@ -55,6 +56,7 @@ Bootstrap always creates this downstream directory skeleton:
 Bootstrap also copies these root APW entrypoint and operating files into the target:
 
 - `AGENTS.md`
+- `COMMAND_CHEATSHEET.md`
 - `PROJECT_RULES.md`
 - `AGENT_SYSTEM.md`
 - `COMMAND_POLICY.md`
@@ -91,7 +93,7 @@ Bootstrap also copies these root APW entrypoint and operating files into the tar
 
 Bootstrap applies overwrite rules by content class:
 
-- Root entrypoint and operating files are always overwritten.
+- Root entrypoint, cheat sheet, and operating files are always overwritten.
 - Execution-layer content under `.agent/` is always synced from the selected profile when source content exists.
 - `.gsd` lifecycle files are preserved by default and only overwritten when `--force` is supplied.
 - Missing optional profile directories do not fail the run; they are logged and the pre-created target directory remains empty.
@@ -187,6 +189,7 @@ Before a downstream team begins routine coding work:
    ```
 4. Confirm the mandatory contract files remain present:
    - `AGENTS.md`
+   - `COMMAND_CHEATSHEET.md`
    - `PROJECT_RULES.md`
    - `AGENT_SYSTEM.md`
    - `COMMAND_POLICY.md`
