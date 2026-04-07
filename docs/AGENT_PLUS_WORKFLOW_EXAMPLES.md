@@ -43,12 +43,15 @@ The orchestrator is the best choice when you need a high-level briefing without 
 - current milestone
 - blockers
 - recommended next command
+- optional bounded summary in `.gsd/JOURNAL.md` when the orientation should be preserved
 
 ### Orchestrator sync after
 
 Usually no.
 
 This is primarily a read-and-brief step unless it discovers that canonical state itself is stale.
+
+If it reveals real drift, keep evidence first and then use orchestrator for official sync.
 
 ## Example 2: Explore options before implementation
 
@@ -105,6 +108,7 @@ The backend specialist owns API and server-side work, and `/create` is the right
 - the endpoint or service implementation
 - related tests or verification notes
 - bounded evidence in `.gsd/JOURNAL.md`
+- promotion candidates for `TODO.md`, `STATE.md`, `ROADMAP.md`, or `DECISIONS.md` when official project memory changed
 
 ### Orchestrator sync after
 
@@ -133,6 +137,7 @@ The code archaeologist is ideal for existing messy code, and `/enhance` is the r
 - cleaner code
 - preserved behavior
 - updated tests or proof
+- bounded evidence in `.gsd/JOURNAL.md`
 
 ### Orchestrator sync after
 
@@ -162,6 +167,7 @@ The frontend specialist is the right domain owner when the visible symptom start
 - targeted fix
 - verification proof
 - ideally a regression test or explicit follow-up
+- bounded debugging evidence in `.gsd/JOURNAL.md`
 
 ### Orchestrator sync after
 
@@ -190,6 +196,7 @@ The QA automation engineer is a strong fit when the work needs system-level veri
 - test coverage for the flow
 - execution results
 - clear pass/fail evidence
+- bounded verification evidence in `.gsd/JOURNAL.md`
 
 ### Orchestrator sync after
 
@@ -339,6 +346,7 @@ The orchestrator is the right choice when the work crosses multiple specialties 
 - execution sequence
 - verification expectations
 - orchestration report
+- bounded orchestration evidence in `.gsd/JOURNAL.md`
 
 ### Orchestrator sync after
 
@@ -356,5 +364,6 @@ If you are unsure which agent/workflow pair to use:
 ## What to read next
 
 - If you want the command-level rules behind these examples, read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
+- If you want the APW-wide save/promote model behind the workflows, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 - If you want the faster chooser for "which workflow now?", read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - If you want the full beginner map again, read [START_HERE.md](./START_HERE.md).

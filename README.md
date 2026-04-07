@@ -39,6 +39,8 @@ Choose the path that matches what you need:
   [First Run In IDE](docs/FIRST_RUN_IN_IDE.md)
 - I want to know what happens to `/brainstorm` results after the chat:
   [Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
+- I want one rule for what core workflow results save and where they go:
+  [Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)
 - I want to learn how to operate APW workflows:
   [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md) -> [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md) -> [Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)
 - I want the deeper framework explanation:

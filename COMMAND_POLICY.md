@@ -58,6 +58,7 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 - Execution commands may write code and implementation artifacts.
 - Execution commands may append bounded evidence to `.gsd/JOURNAL.md`.
 - Brainstorm outcomes are not canonical state automatically. Persist useful exploration deliberately, usually in `.gsd/JOURNAL.md` first.
+- Core workflow output across `/status`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` is also non-canonical by default unless it is deliberately promoted.
 - Free editing of `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is not part of routine AGK execution.
 - Safe synchronization of those canonical files belongs to the orchestrator or an explicit GSD/governance command.
 

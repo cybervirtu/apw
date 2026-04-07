@@ -1,0 +1,43 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Workflow Persistence Policy
+
+This page explains the APW-wide rule for what the core workflows save by default and when orchestrator should own official synchronization.
+
+<Callout type="info" emoji="📝">
+Canonical source doc: `docs/WORKFLOW_PERSISTENCE_POLICY.md`
+</Callout>
+
+<Callout type="info" emoji="🧭">
+The practical APW rule is simple: workflow output is not canonical state by default, `JOURNAL.md` is the safe default save path, and orchestrator owns official cross-file sync.
+</Callout>
+
+## The practical model
+
+<Steps>
+### Run the workflow
+
+Use `/status`, `/create`, `/enhance`, `/debug`, `/test`, or `/orchestrate` for the actual job.
+
+### Keep the useful evidence
+
+Do not leave the useful result floating only in chat or terminal output.
+
+### Save it safely
+
+Use `JOURNAL.md` as the default evidence layer.
+
+### Promote only what became official
+
+Move tasks, status, roadmap changes, or rationale into canonical `.gsd` files deliberately.
+
+### Use orchestrator when project memory changes across files
+
+Persist evidence first, then let orchestrator synchronize the official state.
+</Steps>
+
+## Read next
+
+- Read the repo's `docs/WORKFLOW_PERSISTENCE_POLICY.md` for the full workflow-by-workflow table.
+- Read the repo's `docs/COMMAND_INVOCATION_GUIDE.md` for command-level details.
+- Read the repo's `docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md` to see the pattern in real usage.

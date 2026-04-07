@@ -96,6 +96,21 @@ After execution:
 
 - use the orchestrator or an explicit governance pass when canonical state must change
 
+## APW-Wide Persistence Rule
+
+Across the core workflows, APW uses one simple persistence model:
+
+- workflow output is not canonical project state by default
+- the preferred safe save path is bounded evidence in `.gsd/JOURNAL.md`
+- promotion into `SPEC.md`, `STATE.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md` is deliberate
+- orchestrator or governance owns official cross-file synchronization
+
+Use this rule of thumb:
+
+1. keep the useful evidence
+2. save it safely in `JOURNAL.md`
+3. use orchestrator when official project memory should change
+
 ## Command Flow At A Glance
 
 ```mermaid
@@ -161,6 +176,24 @@ Use it to answer: "Where are we, what matters now, and what should happen next?"
 - blockers or risks
 - the next best action
 - the most likely follow-up command
+
+### Safe default persistence
+
+The default is:
+
+- no canonical state change
+
+Optional safe persistence:
+
+- save a bounded orientation summary to `.gsd/JOURNAL.md` when the briefing should be preserved for handoff or session recovery
+
+### Promotion map
+
+If `/status` reveals real drift, promotion may affect:
+
+- current status or blockers -> `.gsd/STATE.md`
+- clarified follow-up work -> `.gsd/TODO.md`
+- milestone or phase implications -> `.gsd/ROADMAP.md`
 
 ### After it finishes
 
@@ -321,6 +354,21 @@ Build a new feature, file, flow, or implementation slice that is already inside 
 - verification notes or follow-up testing needs
 - bounded evidence added to `.gsd/JOURNAL.md` when useful
 
+### Safe default persistence
+
+The safe default is:
+
+- implementation evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/create` changes official project understanding, promotion may affect:
+
+- next actions or backlog -> `.gsd/TODO.md`
+- progress, blockers, or completion status -> `.gsd/STATE.md`
+- milestone or phase implications -> `.gsd/ROADMAP.md`
+- important design rationale -> `.gsd/DECISIONS.md`
+
 ### After it finishes
 
 Usually run:
@@ -332,6 +380,11 @@ Usually run:
 ### Orchestrator handoff
 
 Yes when the implementation changes official project status, next steps, canonical backlog, or design rationale.
+
+The safe APW path is:
+
+1. persist bounded implementation evidence in `.gsd/JOURNAL.md`
+2. hand off for canonical sync if official project memory changed
 
 ### Example invocation
 
@@ -387,6 +440,20 @@ In APW, think of `/enhance` as the safe workflow for polish, refactoring, mainta
 - updated tests or verification notes
 - bounded evidence in `.gsd/JOURNAL.md` when useful
 
+### Safe default persistence
+
+The safe default is:
+
+- bounded enhancement or refactor evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/enhance` changes official project understanding, promotion may affect:
+
+- technical debt follow-ups -> `.gsd/TODO.md`
+- important architecture or refactor rationale -> `.gsd/DECISIONS.md`
+- meaningful status or blocker changes -> `.gsd/STATE.md`
+
 ### After it finishes
 
 Usually run:
@@ -397,6 +464,11 @@ Usually run:
 ### Orchestrator handoff
 
 Only when the enhancement changes official blockers, next steps, backlog, or design rationale.
+
+The safe APW path is:
+
+1. persist bounded enhancement evidence in `.gsd/JOURNAL.md`
+2. hand off for canonical sync if official project memory changed
 
 ### Example invocation
 
@@ -452,6 +524,20 @@ Diagnose and safely fix broken behavior.
 - regression test or proof of fix
 - bounded evidence in `.gsd/JOURNAL.md`
 
+### Safe default persistence
+
+The safe default is:
+
+- debugging evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/debug` changes official project understanding, promotion may affect:
+
+- follow-up fixes or backlog items -> `.gsd/TODO.md`
+- authoritative root-cause rationale -> `.gsd/DECISIONS.md`
+- blocker, readiness, or status changes -> `.gsd/STATE.md`
+
 ### After it finishes
 
 Usually run:
@@ -462,6 +548,11 @@ Usually run:
 ### Orchestrator handoff
 
 Yes when the bug meaningfully changes blockers, current status, backlog priority, or release readiness.
+
+The safe APW path is:
+
+1. persist bounded debugging evidence in `.gsd/JOURNAL.md`
+2. hand off for canonical sync if official project memory changed
 
 ### Example invocation
 
@@ -515,6 +606,20 @@ Verify work before you treat it as complete.
 - failures, gaps, or passing evidence
 - bounded evidence in `.gsd/JOURNAL.md` when useful
 
+### Safe default persistence
+
+The safe default is:
+
+- verification evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/test` changes official project understanding, promotion may affect:
+
+- failed coverage or follow-up verification work -> `.gsd/TODO.md`
+- readiness, blocker, or verification status changes -> `.gsd/STATE.md`
+- major milestone implications -> `.gsd/ROADMAP.md`
+
 ### After it finishes
 
 Usually:
@@ -526,6 +631,11 @@ Usually:
 ### Orchestrator handoff
 
 Yes when verification is strong enough that official state, backlog, or milestone status should change.
+
+The safe APW path is:
+
+1. persist bounded verification evidence in `.gsd/JOURNAL.md`
+2. hand off for canonical sync if official project memory changed
 
 ### Example invocation
 
@@ -843,6 +953,21 @@ Coordinate work that is too large, too cross-cutting, or too multi-agent for one
 - verification results
 - explicit next-step and handoff guidance
 
+### Safe default persistence
+
+The safe default is:
+
+- decomposition, coordination, and execution evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/orchestrate` changes official project understanding, promotion commonly affects:
+
+- canonical follow-up tasks -> `.gsd/TODO.md`
+- current status, blockers, or next-step state -> `.gsd/STATE.md`
+- milestone or phase changes -> `.gsd/ROADMAP.md`
+- important architecture or design rationale -> `.gsd/DECISIONS.md`
+
 ### After it finishes
 
 The orchestrator either:
@@ -856,6 +981,11 @@ Yes.
 
 `/orchestrate` is the practical command for orchestrator-led work and for canonical post-execution synchronization when complex multi-agent work changes official state.
 
+The safe APW path is:
+
+1. persist bounded orchestration evidence in `.gsd/JOURNAL.md`
+2. perform or hand off deliberate canonical synchronization
+
 ### Example invocation
 
 ```text
@@ -864,6 +994,7 @@ Yes.
 
 ## What to read next
 
+- If you want the APW-wide workflow persistence model in one place, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 - Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) next to see how these workflows pair with real specialist agents.
 - If you are still not sure which workflow to choose, go back to [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - If you want the faster repo-start path, read [QUICK_START.md](./QUICK_START.md).

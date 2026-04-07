@@ -1,59 +1,96 @@
 ---
-description: Create new application command. Triggers App Builder skill and starts interactive dialogue with user.
+description: Build a new implementation slice that is already inside approved scope. Writes code and bounded evidence, not canonical state by default.
 ---
 
-# /create - Create Application
+# /create - Scoped Implementation
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Purpose
 
-This command starts a new application creation process.
+Use `/create` to build a new feature, file, flow, or implementation slice that is already inside approved project scope.
 
-### Steps:
-
-1. **Request Analysis**
-   - Understand what the user wants
-   - If information is missing, use `conversation-manager` skill to ask
-
-2. **Project Planning**
-   - Use `project-planner` agent for task breakdown
-   - Determine tech stack
-   - Plan file structure
-   - Create plan file and proceed to building
-
-3. **Application Building (After Approval)**
-   - Orchestrate with `app-builder` skill
-   - Coordinate expert agents:
-     - `database-architect` → Schema
-     - `backend-specialist` → API
-     - `frontend-specialist` → UI
-
-4. **Preview**
-   - Start with `auto_preview.py` when complete
-   - Present URL to user
+This workflow is for execution, not for silent project-memory rewrites.
 
 ---
 
-## Usage Examples
+## Behavior
 
-```
-/create blog site
-/create e-commerce app with product listing and cart
-/create todo app
-/create Instagram clone
-/create crm system with customer management
+When `/create` is triggered:
+
+1. **Confirm scope**
+   - what is being built
+   - where it belongs in current requirements or backlog
+   - what constraints already exist
+
+2. **Implement the slice**
+   - create or update the needed code, files, or assets
+   - stay inside the approved scope
+
+3. **Verify the work**
+   - record proof, follow-up testing needs, or known gaps
+
+4. **Make persistence explicit**
+   - write bounded execution evidence safely
+   - do not silently treat implementation output as canonical project state
+
+---
+
+## Persistence Rules
+
+### Safe default
+
+The safe default is:
+
+- implementation evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/create` changes official project understanding, promotion may affect:
+
+- next actions or follow-up backlog -> `.gsd/TODO.md`
+- current progress, blockers, or completion status -> `.gsd/STATE.md`
+- milestone or phase implications -> `.gsd/ROADMAP.md`
+- important design rationale or tradeoffs -> `.gsd/DECISIONS.md`
+
+### Orchestrator rule
+
+If implementation changes official project memory across canonical files, use this APW path:
+
+1. save bounded execution evidence in `.gsd/JOURNAL.md`
+2. hand off to orchestrator or governance sync for official updates
+
+---
+
+## Output Format
+
+```markdown
+## Create: [Scope]
+
+### Scope
+[What was built]
+
+### Implementation
+- [main change]
+- [main change]
+
+### Verification
+- [tests run or proof gathered]
+- [known follow-up if any]
+
+### Persistence Recommendation
+- Default save: bounded evidence to `.gsd/JOURNAL.md`
+- Promote to `TODO.md`, `STATE.md`, `ROADMAP.md`, or `DECISIONS.md` only if official project memory changed
+- Use orchestrator for cross-file synchronization
 ```
 
 ---
 
-## Before Starting
+## Key Principles
 
-If request is unclear, ask these questions:
-- What type of application?
-- What are the basic features?
-- Who will use it?
-
-Use defaults, add details later.
+- build inside approved scope
+- keep evidence bounded
+- do not treat code changes alone as canonical state updates
+- use orchestrator when official state must change

@@ -185,13 +185,19 @@ Combine all agent outputs into unified report.
 
 Before declaring orchestration complete:
 
-- append bounded execution evidence to `.gsd/JOURNAL.md`
+- persist decomposition, coordination, and execution evidence in `.gsd/JOURNAL.md` as the default save path
+- do not treat subagent output or orchestration chat as canonical state by default
 - update `.gsd/STATE.md` if current status, blockers, or next steps changed
 - update `.gsd/TODO.md` if follow-up tasks must become canonical
 - update `.gsd/ROADMAP.md` only if milestone or phase state changed
 - update `.gsd/DECISIONS.md` only if architectural or design rationale changed
 
 Subagents may supply evidence and recommendations, but the orchestrator performs the canonical sync.
+
+Use this APW path:
+
+1. persist bounded orchestration evidence in `.gsd/JOURNAL.md`
+2. synchronize official project memory deliberately through the orchestrator
 
 ---
 

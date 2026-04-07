@@ -1,86 +1,103 @@
 ---
-description: Display agent and project status. Progress tracking and status board.
+description: Re-orient on current project state and next best action. Orientation-first workflow with no silent canonical state mutation by default.
 ---
 
-# /status - Show Status
+# /status - Project Orientation
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Purpose
 
-Show current project and agent status.
+Use `/status` to re-orient quickly when you need to understand:
 
-### What It Shows
+- where the project stands
+- what matters now
+- what the next likely step should be
 
-1. **Project Info**
-   - Project name and path
-   - Tech stack
-   - Current features
-
-2. **Agent Status Board**
-   - Which agents are running
-   - Which tasks are completed
-   - Pending work
-
-3. **File Statistics**
-   - Files created count
-   - Files modified count
-
-4. **Preview Status**
-   - Is server running
-   - URL
-   - Health check
+This is an orientation workflow, not a hidden state-sync workflow.
 
 ---
 
-## Example Output
+## Behavior
 
-```
-=== Project Status ===
+When `/status` is triggered:
 
-📁 Project: my-ecommerce
-📂 Path: C:/projects/my-ecommerce
-🏷️ Type: nextjs-ecommerce
-📊 Status: active
+1. **Read the current project memory**
+   - current status
+   - roadmap and active backlog
+   - recent evidence when useful
 
-🔧 Tech Stack:
-   Framework: next.js
-   Database: postgresql
-   Auth: clerk
-   Payment: stripe
+2. **Summarize what matters now**
+   - active milestone or phase
+   - blockers or risks
+   - likely next action
 
-✅ Features (5):
-   • product-listing
-   • cart
-   • checkout
-   • user-auth
-   • order-history
+3. **Stay read-first by default**
+   - do not silently mutate canonical project files
+   - recommend a next workflow when appropriate
 
-⏳ Pending (2):
-   • admin-panel
-   • email-notifications
+---
 
-📄 Files: 73 created, 12 modified
+## Persistence Rules
 
-=== Agent Status ===
+### Safe default
 
-✅ database-architect → Completed
-✅ backend-specialist → Completed
-🔄 frontend-specialist → Dashboard components (60%)
-⏳ test-engineer → Waiting
+The default is:
 
-=== Preview ===
+- no canonical state change
 
-🌐 URL: http://localhost:3000
-💚 Health: OK
+Optional safe persistence:
+
+- add a bounded orientation summary to `.gsd/JOURNAL.md` when the briefing itself is useful for handoff or session recovery
+
+### Promotion map
+
+If `/status` reveals real project-memory drift, promotion may later affect:
+
+- status progress, blockers, or next-step changes -> `.gsd/STATE.md`
+- newly clarified follow-up work -> `.gsd/TODO.md`
+- milestone or phase implications -> `.gsd/ROADMAP.md`
+
+### Orchestrator rule
+
+If `/status` reveals that canonical state is stale, use this APW path:
+
+1. capture bounded evidence or summary in `.gsd/JOURNAL.md` when useful
+2. hand off to orchestrator or governance sync for official updates
+
+---
+
+## Output Format
+
+```markdown
+## Status: [Project or Topic]
+
+### Current Position
+- Active phase: [value]
+- Current focus: [value]
+- Main blockers: [value]
+
+### What Matters Now
+- [important point]
+- [important point]
+
+### Next Best Action
+- Recommended workflow: `/create` | `/debug` | `/test` | `/brainstorm` | `/orchestrate`
+- Why: [reason]
+
+### Persistence Recommendation
+- Default: no canonical change
+- Save to `JOURNAL.md` only if this orientation summary should be preserved
+- Use orchestrator if canonical state is stale
 ```
 
 ---
 
-## Technical
+## Key Principles
 
-Status uses these scripts:
-- `python .agent/scripts/session_manager.py status`
-- `python .agent/scripts/auto_preview.py status`
+- orientation first
+- no silent canonical mutation
+- bounded `JOURNAL.md` evidence only when useful
+- orchestrator owns official cross-file synchronization

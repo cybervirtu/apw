@@ -32,6 +32,7 @@ Any future structural change to that workspace architecture must be handled as a
 - **Skill Orchestration**: Reusable skills from AGK are the primary tools for complex coding, debugging, and deployment tasks.
 - **Evidence Logging**: AGK execution agents may append bounded evidence to `.gsd/JOURNAL.md`, but they do not freely rewrite canonical summary files during routine execution.
 - **Brainstorm Persistence**: `/brainstorm` may generate useful requirements, options, and follow-up ideas, but those outcomes only persist through deliberate capture. The safe default is a bounded `JOURNAL.md` summary. Promotion into canonical state belongs to orchestrator or explicit governance sync.
+- **Core Workflow Persistence**: Across `/status`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate`, workflow output is not canonical state by default. The preferred default is bounded evidence in `.gsd/JOURNAL.md`, followed by orchestrator/governance sync when official project memory changes.
 
 ### Conflict Resolution: "GSD Documentation Wins"
 If a conflict arises between execution logs (AGK) and state documentation (GSD), the GSD documentation remains the canonical source. All AGK execution results must be rectified against the GSD state before the session is closed.

@@ -1,8 +1,8 @@
 ---
-description: Test generation and test running command. Creates and executes tests for code.
+description: Verification workflow for generating tests, running tests, and recording evidence without treating test output as canonical state automatically.
 ---
 
-# /test - Test Generation and Execution
+# /test - Verification and Test Evidence
 
 $ARGUMENTS
 
@@ -10,16 +10,18 @@ $ARGUMENTS
 
 ## Purpose
 
-This command generates tests, runs existing tests, or checks test coverage.
+Use `/test` to generate tests, run tests, check coverage, and produce verification evidence before work is treated as complete.
+
+This workflow is about proof. Test output is not canonical project state by default.
 
 ---
 
 ## Sub-commands
 
-```
+```text
 /test                - Run all tests
-/test [file/feature] - Generate tests for specific target
-/test coverage       - Show test coverage report
+/test [file/feature] - Generate tests for a specific target
+/test coverage       - Show or improve coverage understanding
 /test watch          - Run tests in watch mode
 ```
 
@@ -27,118 +29,79 @@ This command generates tests, runs existing tests, or checks test coverage.
 
 ## Behavior
 
-### Generate Tests
+When `/test` is triggered:
 
-When asked to test a file or feature:
+1. **Analyze the target**
+   - identify the behavior under test
+   - find risks, edge cases, and dependencies
 
-1. **Analyze the code**
-   - Identify functions and methods
-   - Find edge cases
-   - Detect dependencies to mock
+2. **Generate or run tests**
+   - use the project test framework
+   - follow existing patterns
+   - collect pass/fail evidence
 
-2. **Generate test cases**
-   - Happy path tests
-   - Error cases
-   - Edge cases
-   - Integration tests (if needed)
+3. **Report verification clearly**
+   - what passed
+   - what failed
+   - what gaps or follow-ups remain
 
-3. **Write tests**
-   - Use project's test framework (Jest, Vitest, etc.)
-   - Follow existing test patterns
-   - Mock external dependencies
+4. **Make persistence explicit**
+   - preserve verification evidence safely
+   - promote only what should become official project memory
+
+---
+
+## Persistence Rules
+
+### Safe default
+
+The safe default is:
+
+- test and verification evidence goes to `.gsd/JOURNAL.md`
+
+### Promotion map
+
+When `/test` changes official project understanding, promotion may affect:
+
+- failed coverage, flaky behavior, or follow-up verification tasks -> `.gsd/TODO.md`
+- readiness, blocker, or verification status changes -> `.gsd/STATE.md`
+- major milestone implications from verification results -> `.gsd/ROADMAP.md`
+
+### Orchestrator rule
+
+If verification results change official project memory across canonical files, use this APW path:
+
+1. save bounded verification evidence in `.gsd/JOURNAL.md`
+2. hand off to orchestrator or governance sync for official updates
 
 ---
 
 ## Output Format
 
-### For Test Generation
-
 ```markdown
-## 🧪 Tests: [Target]
+## Test: [Target]
 
-### Test Plan
-| Test Case | Type | Coverage |
-|-----------|------|----------|
-| Should create user | Unit | Happy path |
-| Should reject invalid email | Unit | Validation |
-| Should handle db error | Unit | Error case |
+### Scope
+[what was tested]
 
-### Generated Tests
+### Results
+- [pass/fail result]
+- [coverage or gap]
 
-`tests/[file].test.ts`
+### Follow-ups
+- [remaining issue or next step]
 
-[Code block with tests]
-
----
-
-Run with: `npm test`
-```
-
-### For Test Execution
-
-```
-🧪 Running tests...
-
-✅ auth.test.ts (5 passed)
-✅ user.test.ts (8 passed)
-❌ order.test.ts (2 passed, 1 failed)
-
-Failed:
-  ✗ should calculate total with discount
-    Expected: 90
-    Received: 100
-
-Total: 15 tests (14 passed, 1 failed)
-```
-
----
-
-## Examples
-
-```
-/test src/services/auth.service.ts
-/test user registration flow
-/test coverage
-/test fix failed tests
-```
-
----
-
-## Test Patterns
-
-### Unit Test Structure
-
-```typescript
-describe('AuthService', () => {
-  describe('login', () => {
-    it('should return token for valid credentials', async () => {
-      // Arrange
-      const credentials = { email: 'test@test.com', password: 'pass123' };
-      
-      // Act
-      const result = await authService.login(credentials);
-      
-      // Assert
-      expect(result.token).toBeDefined();
-    });
-
-    it('should throw for invalid password', async () => {
-      // Arrange
-      const credentials = { email: 'test@test.com', password: 'wrong' };
-      
-      // Act & Assert
-      await expect(authService.login(credentials)).rejects.toThrow('Invalid credentials');
-    });
-  });
-});
+### Persistence Recommendation
+- Default save: bounded verification evidence to `.gsd/JOURNAL.md`
+- Promote to `TODO.md`, `STATE.md`, or `ROADMAP.md` only if official project understanding changed
+- Use orchestrator for cross-file synchronization
 ```
 
 ---
 
 ## Key Principles
 
-- **Test behavior not implementation**
-- **One assertion per test** (when practical)
-- **Descriptive test names**
-- **Arrange-Act-Assert pattern**
-- **Mock external dependencies**
+- verify behavior, not wishful thinking
+- keep evidence bounded and factual
+- do not treat passing tests alone as canonical state updates
+- use orchestrator when verification changes official status or milestone understanding

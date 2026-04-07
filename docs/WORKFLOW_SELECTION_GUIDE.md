@@ -27,6 +27,7 @@ Do not treat APW root or the workspace parent folder as the normal home for thes
 If you want the location model in one page, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want the explicit switch helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+If you want the APW-wide save/promote model for workflows, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 
 ## Important scope note
 
@@ -93,6 +94,7 @@ What this means:
 - start by naming the kind of problem you have
 - choose the workflow that matches that problem
 - escalate to `/orchestrate` when one clean direct workflow is no longer enough
+- keep useful evidence in `JOURNAL.md`, then promote official changes deliberately
 
 ## Beginner decision paths
 

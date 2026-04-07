@@ -148,8 +148,10 @@ What matters is the operating model:
 
 - governance controls lifecycle and canonical state
 - execution performs scoped implementation work
+- bounded workflow evidence is usually kept in `JOURNAL.md` first
+- official project memory changes are synchronized deliberately afterward
 
-For command-by-command operator guidance, see [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md), [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md), and [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md).
+For command-by-command operator guidance, see [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md), [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md), [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md), and [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 
 ## 10. When to Pause and Re-Sync
 

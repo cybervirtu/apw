@@ -11,6 +11,7 @@ export default {
   'basic-onboarding': 'Basic Onboarding',
   'first-run-in-ide': 'First Run In IDE',
   'brainstorm-persistence-and-promotion': 'Brainstorm Persistence',
+  'workflow-persistence-policy': 'Workflow Persistence',
   'safe-context-switching': 'Safe Context Switching',
   'start-here': 'Start Here',
   'get-started-flow': 'Help Me Get Started',
