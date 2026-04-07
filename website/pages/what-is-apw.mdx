@@ -1,80 +1,135 @@
 import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
 
 # What Is APW?
 
-APW stands for **Agentic Project Workspace**.
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Plain-English Explanation"
+    title="APW is a framework for AI-assisted projects that need to stay understandable over time."
+    lede="It gives the project a governed memory layer, a practical execution layer, and a controlled way to keep official state in sync as implementation moves forward."
+    actions={[
+      { href: '/basic-usage-guide', label: 'Start Using APW' },
+      { href: '/idea-to-project', label: 'See The Project Journey', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: '.gsd', label: 'Governed project memory and official state' },
+      { value: '.agent', label: 'Execution workflows, rules, agents, and skills' },
+      { value: 'Orchestrator', label: 'Deliberate synchronization for canonical summaries' }
+    ]}
+  />
 
-It is a framework for running software projects with humans and AI agents in a way that stays understandable over time.
+  <Callout type="info" emoji="📘">
+    This is a beginner-friendly explanation. The canonical APW contract still lives in the repo-root governance files and the deeper source docs under <code>docs/</code>.
+  </Callout>
 
-<Callout type="info" emoji="📘">
-This page is a beginner-friendly explanation. The canonical APW contract still lives in the repo-root governance files and the deeper source docs under `docs/`.
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Why APW matters"
+      title="AI sessions move fast. Project truth should not drift with them."
+      lede="APW prevents the common failure mode where one good session turns into a repo full of unclear state, conflicting notes, and undocumented decisions."
+    />
+    <div className="apw-signal-grid">
+      <div className="apw-signal-card">
+        <h3>The project gets a memory</h3>
+        <p>APW gives the repo a trusted place to hold requirements, state, tasks, decisions, and evidence.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>Agents get a disciplined workspace</h3>
+        <p>Instead of improvising context every time, execution tools work inside governed scope and reusable workflows.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>The team keeps alignment</h3>
+        <p>Canonical summaries do not get rewritten casually. Important state changes stay controlled and explainable.</p>
+      </div>
+    </div>
+  </section>
 
-## Why APW matters
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The APW model"
+      title="Three roles, one operating system."
+      lede="APW works because it separates what the project officially knows, how work gets executed, and how official summaries are synchronized."
+    />
+    <div className="apw-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Layer</th>
+            <th>Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GSD</strong></td>
+            <td><code>.gsd/</code></td>
+            <td>project memory, lifecycle, roadmap, and canonical state</td>
+          </tr>
+          <tr>
+            <td><strong>AGK</strong></td>
+            <td><code>.agent/</code></td>
+            <td>execution rules, workflows, specialists, and skills</td>
+          </tr>
+          <tr>
+            <td><strong>Orchestrator</strong></td>
+            <td>sync layer</td>
+            <td>updates official project summaries when the canonical state needs to change</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-In plain English:
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The team model"
+      title="Think of APW like a disciplined project team."
+      lede="This mental model is easier to remember than raw framework vocabulary."
+    />
+    <Steps>
+    ### GSD governs
 
-- APW gives the project a memory
-- APW gives agents a place to work
-- APW gives the team a way to keep that work aligned over time
+    GSD owns lifecycle, verification, and canonical project memory.
 
-AI tools move fast, but they drift effortlessly. APW prevents that by separating **Memory** from **Execution** and by keeping official project state under deliberate control.
+    ### AGK executes
 
-## The APW model
+    AGK provides the specialist execution help that builds, debugs, tests, and improves the project.
 
-APW is built on a dual-engine model where **GSD** manages the brain of the project and **AGK** provides the execution muscle.
+    ### The orchestrator synchronizes
 
-| Part | Layer | Responsibility |
-| --- | --- | --- |
-| **GSD** | `.gsd/` | project memory, lifecycle, roadmap, and canonical state |
-| **AGK** | `.agent/` | execution rules, workflows, specialists, and skills |
-| **Orchestrator** | sync layer | updates official project summaries when the canonical state needs to change |
+    The orchestrator reads execution results and updates canonical state when the official summary needs to change.
+    </Steps>
+  </section>
 
-## The team model in plain language
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="What APW helps you do"
+      title="Replace prompt chaos with a credible operating model."
+      lede="The framework is most valuable when the project lasts longer than a single burst of coding."
+    />
+    <PortalPillRow
+      items={[
+        'Start with structure',
+        'Keep sessions aligned',
+        'Separate evidence from official status',
+        'Hand work across sessions safely',
+        'Validate the repo over time'
+      ]}
+    />
+  </section>
 
-<Steps>
-### GSD governs
-
-GSD owns lifecycle, verification, and canonical project memory.
-
-### AGK executes
-
-AGK provides the specialist execution help that builds, debugs, tests, and improves the project.
-
-### The orchestrator synchronizes
-
-The orchestrator reads execution results and updates canonical state when the official summary needs to change.
-</Steps>
-
-## What APW helps you do
-
-APW helps you:
-
-- start a project with structure instead of prompt chaos
-- keep AI sessions aligned with shared project memory
-- separate implementation evidence from official status
-- hand work between sessions or teammates more safely
-- validate and enforce the repo structure over time
-
-## Who APW is for
-
-APW is useful for:
-
-- beginners using AI coding tools for the first time
-- solo builders who want stronger project memory
-- product teams working across multiple AI sessions
-- maintainers who need one framework instead of tool-specific forks
-
-## Canonical source docs
-
-The main source material behind this page lives in:
-
-- `docs/APW_FOR_BEGINNERS.md`
-- `docs/HOW_APW_WORKS.md`
-- `docs/APW_HANDBOOK.md`
-
-## What to do next
-
-- Go to [Idea To Project](/idea-to-project) to see how APW turns a rough idea into a structured project.
-- Go to [Profiles & Stack Selection](/profiles-and-stack-selection) if you already know the idea and need help choosing a direction.
-- Go to [Reference](/reference) if you need the deeper governance source directly.
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="What to do next"
+      title="Keep moving without over-reading."
+      lede="Once the model makes sense, take the next page that matches your actual need."
+    />
+    <div className="apw-next-strip">
+      <a href="/basic-usage-guide">Start using APW</a>
+      <a href="/idea-to-project">See how an idea becomes a project</a>
+      <a href="/profiles-and-stack-selection">Choose a likely direction</a>
+      <a href="/reference">Reach the deeper contract</a>
+    </div>
+  </section>
+</div>

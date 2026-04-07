@@ -1,40 +1,71 @@
 import { Callout, Cards, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
 
 # Commands & Workflows
 
-This is the operator layer for APW.
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Operator Layer"
+    title="Run the right workflow for the right job."
+    lede="APW works best when operators choose by intent instead of relying on vague prompting. This page helps you route work through the workflow that fits the situation, the state, and the scale of the task."
+    actions={[
+      { href: '/first-run-in-ide', label: 'First Run In IDE' },
+      { href: '/safe-context-switching', label: 'Fix Context First', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: '/status', label: 'Re-orient and summarize the current state' },
+      { value: '/create', label: 'Build new work tied to real project context' },
+      { value: '/orchestrate', label: 'Decompose large or cross-cutting work safely' }
+    ]}
+  />
 
-This page is a portal summary for operators. The detailed workflow rules and command behavior remain canonical in the repo docs it wraps.
+  <Callout type="warning" emoji="🎯">
+    Use a specific workflow for a specific job. In APW, vague prompting is weaker than routing work through the right agent and workflow pair.
+  </Callout>
 
-<Callout type="warning" emoji="🎯">
-Use a specific workflow for a specific job. In APW, vague prompting is weaker than routing work through the right agent and workflow pair.
-</Callout>
+  <PortalPillRow
+    items={[
+      'Downstream project root only',
+      'Context first',
+      'Evidence stays bounded',
+      'Official state stays deliberate'
+    ]}
+  />
 
-<Callout type="info" emoji="🧱">
-If the repo is brand new, run the repo's `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md` flow first so the workflows have real `.gsd` context to read.
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Quick chooser"
+      title="Choose the workflow by intent."
+      lede="If the repo is brand new, initialize the core `.gsd` state first so workflows have real context to read."
+    />
+    <Cards num={2}>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Re-orient">
+        Use `/status` if you are returning after time away or need a briefing before acting.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Shape an idea">
+        Use `/brainstorm` before implementation when the idea still needs structure.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Build something new">
+        Use `/create` for new feature or file work tied to requirements and TODOs.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Improve existing code">
+        Use `/enhance` when behavior should stay the same but the code needs cleanup or refinement.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Fix a bug">
+        Use `/debug` for diagnosis and safe bug fixing without unnecessary rewrites.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows#quick-chooser" title="Handle a large task">
+        Use `/orchestrate` when work crosses modules, files, or specialties and needs decomposition first.
+      </Cards.Card>
+    </Cards>
+  </section>
 
-<Callout type="info" emoji="📍">
-These workflows belong in the downstream project root, not APW root and not the workspace parent folder.
-</Callout>
-
-<Callout type="info" emoji="🔀">
-If you are in the wrong folder, use `apw context`, `apw list-projects`, or `apw switch project <name>` before running workflows.
-</Callout>
-
-<Callout type="info" emoji="🧭">
-If the repo is open in your IDE and you want the shortest first-run checklist before choosing a workflow, go to [First Run In IDE](/first-run-in-ide).
-</Callout>
-
-<Callout type="info" emoji="🧠">
-`/brainstorm` is exploration first. Useful outcomes should usually be saved to `JOURNAL.md`, and official cross-file state changes should go through orchestrator sync.
-</Callout>
-
-<Callout type="info" emoji="📝">
-The same APW rule applies across the core workflows: useful evidence usually goes to `JOURNAL.md` first, while official project memory changes stay deliberate.
-</Callout>
-
-## The practical invocation pattern
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Invocation pattern"
+      title="Keep workflow usage explicit and readable."
+      lede="The workflow name should tell the next operator what kind of work is happening, not force them to reverse-engineer an open-ended prompt."
+    />
 
 ```text
 @agent /workflow task description
@@ -48,30 +79,14 @@ Examples:
 @qa-automation-engineer /test verify checkout integration flow
 ```
 
-## Choose the workflow by intent
+  </section>
 
-<Cards num={2}>
-  <Cards.Card href="/get-started-flow" title="I Need To Re-orient">
-    Use `/status` if you are returning after time away or need a quick project briefing.
-  </Cards.Card>
-  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Shape An Idea">
-    Use `/brainstorm` before implementation when the idea still needs structure.
-  </Cards.Card>
-  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Build Something New">
-    Use `/create` for new feature or file work tied to requirements and TODOs.
-  </Cards.Card>
-  <Cards.Card href="/commands-and-workflows#quick-chooser" title="I Need To Improve Existing Code">
-    Use `/enhance` when behavior should stay the same but the code needs cleanup or refinement.
-  </Cards.Card>
-  <Cards.Card href="/commands-and-workflows#quick-chooser" title="Something Is Broken">
-    Use `/debug` for diagnosis and safe bug fixing without unnecessary rewrites.
-  </Cards.Card>
-  <Cards.Card href="/commands-and-workflows#quick-chooser" title="The Task Is Too Large">
-    Use `/orchestrate` when work crosses modules, files, or specialties and needs decomposition first.
-  </Cards.Card>
-</Cards>
-
-## Quick chooser
+  <section className="apw-section" id="quick-chooser">
+    <PortalSectionIntro
+      eyebrow="Workflow table"
+      title="Use the full quick chooser when the task is less obvious."
+      lede="The table below gives you the broader APW workflow surface, including profile-dependent extras."
+    />
 
 | Situation | Workflow |
 | --- | --- |
@@ -87,52 +102,68 @@ Examples:
 | preparing release or deployment | `/deploy` |
 | decomposing a large cross-cutting task | `/orchestrate` |
 
-## The APW execution rule
+  </section>
 
-<Steps>
-### Read context first
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Execution rule"
+      title="Fast execution, careful official state."
+      lede="APW lets operators move quickly, but it keeps project truth deliberate and controlled."
+    />
 
-Start from `AGENTS.md`, then read the minimum required `.gsd` context for the task.
+    <Steps>
+    ### Read context first
 
-### Do scoped work
+    Start from `AGENTS.md`, then read the minimum required `.gsd` context for the task.
 
-Use the workflow that matches the job instead of issuing a vague prompt.
+    ### Do scoped work
 
-### Keep evidence bounded
+    Use the workflow that matches the job instead of issuing a vague prompt.
 
-Execution agents may append bounded evidence to `.gsd/JOURNAL.md`.
+    ### Keep evidence bounded
 
-### Let the orchestrator synchronize official state
+    Execution agents may append bounded evidence to `.gsd/JOURNAL.md`.
 
-Execution agents should not freely rewrite `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md`.
+    ### Let the orchestrator synchronize official state
 
-For brainstorm-specific persistence and promotion guidance, read the repo's `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`.
+    Execution agents should not freely rewrite `STATE.md`, `ROADMAP.md`, `TODO.md`, or `DECISIONS.md`.
 
-For the APW-wide save/promote model across the core workflows, read the repo's `docs/WORKFLOW_PERSISTENCE_POLICY.md`.
-</Steps>
+    For brainstorm-specific persistence and promotion guidance, read the repo's `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`.
 
-## The three key operator docs
+    For the APW-wide save/promote model across the core workflows, read the repo's `docs/WORKFLOW_PERSISTENCE_POLICY.md`.
+    </Steps>
+  </section>
 
-| Source doc | What it is for |
-| --- | --- |
-| `docs/WORKFLOW_SELECTION_GUIDE.md` | choosing the right workflow for the current problem |
-| `docs/COMMAND_INVOCATION_GUIDE.md` | read-first context, expected outputs, and handoff rules |
-| `docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md` | real invocation patterns and good agent-workflow pairings |
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Use one more operator page, not ten."
+      lede="Most users only need one of these source docs next, depending on whether they need command choice, invocation detail, or real examples."
+    />
 
-## Canonical source docs
-
-This page wraps:
-
-- `docs/WORKFLOW_SELECTION_GUIDE.md`
-- `docs/COMMAND_INVOCATION_GUIDE.md`
-- `docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md`
-- `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`
-- `docs/WORKFLOW_PERSISTENCE_POLICY.md`
-- `docs/SAFE_CONTEXT_SWITCHING.md`
-- `docs/TOOLING_GUIDE.md`
-- `docs/DOCS_SOURCE_OF_TRUTH.md`
-
-## What to do next
-
-- Go to [Reference](/reference) if you need the deeper governance, compatibility, validation, or CI documentation behind the workflow layer.
-- Go to [Team / Migration / Adoption](/team-migration-and-adoption) if you are introducing APW to a team or existing repo.
+    <div className="apw-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Source doc</th>
+            <th>What it is for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>docs/WORKFLOW_SELECTION_GUIDE.md</code></td>
+            <td>choosing the right workflow for the current problem</td>
+          </tr>
+          <tr>
+            <td><code>docs/COMMAND_INVOCATION_GUIDE.md</code></td>
+            <td>read-first context, expected outputs, and handoff rules</td>
+          </tr>
+          <tr>
+            <td><code>docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md</code></td>
+            <td>real invocation patterns and good agent-workflow pairings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

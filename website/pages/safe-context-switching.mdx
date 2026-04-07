@@ -1,48 +1,85 @@
 import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalSectionIntro } from '../components/portal-ui'
 
 # Safe Context Switching
 
-This page explains how APW helps you move between the framework repo, downstream projects, and the workspace parent folder without silent context changes.
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Safe Switching"
+    title="Move between APW root, projects, and the workspace parent without guesswork."
+    lede="APW helps you switch explicitly and visibly. It does not hide context changes, and it does not blur the difference between framework work and project work."
+    actions={[
+      { href: '/first-run-in-ide', label: 'First Run In IDE' },
+      { href: '/documentation-levels', label: 'See The Reading Levels', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'APW root', label: 'Framework maintenance and shared APW behavior' },
+      { value: 'Project root', label: 'Normal day-to-day implementation work' },
+      { value: 'Workspace parent', label: 'Organizer and launch point, not the real work site' }
+    ]}
+  />
 
-<Callout type="info" emoji="🔀">
-Canonical source doc: `docs/SAFE_CONTEXT_SWITCHING.md`
-</Callout>
+  <Callout type="info" emoji="🔀">
+    Canonical source doc: <code>docs/SAFE_CONTEXT_SWITCHING.md</code>
+  </Callout>
 
-<Callout type="info" emoji="📍">
-The practical rule stays the same: create from APW, but do normal implementation work in the downstream project root.
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="What the helpers are for"
+      title="Use switching to recover orientation, not to hide it."
+      lede="The helpers answer the practical questions people actually ask when working across multiple repos."
+    />
+    <div className="apw-signal-grid">
+      <div className="apw-signal-card">
+        <h3>Where am I right now?</h3>
+        <p>Use context detection instead of assuming a folder is the right repo because it looks familiar.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>What projects are here?</h3>
+        <p>List recognized downstream projects instead of manually hunting the workspace tree.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>How do I get back to the right place?</h3>
+        <p>Switch explicitly to framework, project, or parent and keep the destination visible to the user.</p>
+      </div>
+    </div>
+  </section>
 
-## What the helpers are for
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Practical helper flow"
+      title="Use the helpers in a calm, visible sequence."
+      lede="APW switching is intentionally boring: resolve, classify, confirm, and keep going in the right repo."
+    />
+    <Steps>
+    ### Check your current location
 
-Use the `apw` helpers when you want a visible answer to:
+    Run `apw context`.
 
-- where am I right now?
-- what projects exist in this workspace?
-- how do I get back to APW root safely?
-- how do I get into the right downstream project without manual folder hunting?
+    ### See the known projects
 
-## The practical helper flow
+    Run `apw list-projects`.
 
-<Steps>
-### Check your current location
+    ### Switch explicitly
 
-Run `apw context`.
+    Run `apw switch framework`, `apw switch project <name>`, or `apw switch parent`.
 
-### See the known projects
+    ### Work in the right place
 
-Run `apw list-projects`.
+    Once you are in the downstream project root, open `AGENTS.md` and continue normal project work there.
+    </Steps>
+  </section>
 
-### Switch explicitly
-
-Run `apw switch framework`, `apw switch project <name>`, or `apw switch parent`.
-
-### Work in the right place
-
-Once you are in the downstream project root, open `AGENTS.md` and continue normal project work there.
-</Steps>
-
-## Read next
-
-- Read the repo's `docs/SAFE_CONTEXT_SWITCHING.md` for the full switching model.
-- Read the repo's `docs/WHERE_DO_I_WORK.md` if you want the broader location model.
-- Read the repo's `docs/FIRST_RUN_IN_IDE.md` if the downstream project is already open and you want the short first-run checklist.
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Take the next page that reduces confusion."
+      lede="Most users only need one more context page after this."
+    />
+    <div className="apw-next-strip">
+      <a href="/first-run-in-ide">Open the project correctly in the IDE</a>
+      <a href="/commands-and-workflows">Run the right workflow next</a>
+      <a href="/start-here">Return to the beginner path</a>
+    </div>
+  </section>
+</div>

@@ -1,53 +1,89 @@
-import { Callout, Steps } from 'nextra/components'
+import { Callout, Cards, Steps } from 'nextra/components'
+import { PortalHero, PortalSectionIntro } from '../components/portal-ui'
 
 # First Run In IDE
 
-This page is the shortest portal summary for what to do when you open a downstream APW project in your IDE for the first time.
+<div className="apw-page">
+  <PortalHero
+    eyebrow="In-IDE Front Door"
+    title="Know what to do the first time you open a downstream project."
+    lede="First-run should feel guided, not like a file hunt. Open the right repo, read the right front door, confirm the core state, and choose the workflow that matches reality."
+    actions={[
+      { href: '/basic-usage-guide', label: 'Basic Usage' },
+      { href: '/commands-and-workflows', label: 'Explore Workflows', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'Open', label: 'Downstream project root, not APW root' },
+      { value: 'Read', label: 'AGENTS.md as the in-IDE front door' },
+      { value: 'Choose', label: 'Use the first workflow that matches the real situation' }
+    ]}
+  />
 
-<Callout type="info" emoji="✅">
-Canonical source doc: `docs/FIRST_RUN_IN_IDE.md`
-</Callout>
+  <Callout type="info" emoji="✅">
+    Canonical source doc: <code>docs/FIRST_RUN_IN_IDE.md</code>
+  </Callout>
 
-<Callout type="info" emoji="📍">
-Open the downstream project root, not APW root. Then open `AGENTS.md` first.
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The short path"
+      title="Five moves are enough to get oriented."
+      lede="This is the sequence that makes APW feel predictable inside the IDE."
+    />
+    <Steps>
+    ### Confirm you are in the downstream project root
 
-## The short first-run path
+    This is the real project repo where normal work happens.
 
-<Steps>
-### Confirm you are in the downstream project root
+    ### Read `AGENTS.md`
 
-This is the real project repo where normal work happens.
+    Treat it as the in-IDE front door, not the whole handbook.
 
-### Read `AGENTS.md`
+    ### Make sure the core `.gsd` state is initialized
 
-Treat it as the in-IDE front door, not the whole handbook.
+    If those files still look like starter templates, run the guided initialization flow.
 
-### Make sure the core `.gsd` state is initialized
+    ### Pick the first workflow that matches your situation
 
-If those files still look like starter templates, run the guided initialization flow.
+    Use `/brainstorm`, `/create`, `/orchestrate`, or `/status` based on what is actually true right now.
 
-### Pick the first workflow that matches your situation
+    ### Use orchestrator when official summary state needs synchronized updates
 
-Use `/brainstorm`, `/create`, `/orchestrate`, or `/status` based on what is actually true right now.
+    Execution can move quickly, but canonical state should stay deliberate.
+    </Steps>
+  </section>
 
-### Use orchestrator when official summary state needs synchronized updates
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="First workflow chooser"
+      title="Choose by reality, not habit."
+      lede="The first workflow should match the current state of the project, not just whatever command you remember first."
+    />
+    <Cards num={2}>
+      <Cards.Card href="/commands-and-workflows" title="/brainstorm">
+        Use this when the idea or first step is still unclear.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows" title="/create">
+        Use this when the first feature is already clear and ready to build.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows" title="/orchestrate">
+        Use this when the work is large, cross-cutting, or needs decomposition first.
+      </Cards.Card>
+      <Cards.Card href="/commands-and-workflows" title="/status">
+        Use this when you are returning later and need orientation before acting.
+      </Cards.Card>
+    </Cards>
+  </section>
 
-Execution can move quickly, but canonical state should stay deliberate.
-</Steps>
-
-## First command chooser
-
-| Situation | First workflow |
-| --- | --- |
-| the idea or first step is still unclear | `/brainstorm` |
-| the first feature is already clear | `/create` |
-| the work is large or cross-cutting | `/orchestrate` |
-| you need orientation or are returning later | `/status` |
-
-## Read next
-
-- Read the repo's `docs/FIRST_RUN_IN_IDE.md` for the full in-editor checklist.
-- Go to [Commands & Workflows](/commands-and-workflows) if you want the operator layer next.
-- Go to [Start Here](/start-here) if you want the broader beginner path.
-- Read the repo's `docs/WHERE_DO_I_WORK.md` if you need the workspace/project context model.
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Keep the next step small."
+      lede="Most users only need one more page after this, not the entire operator and reference tree."
+    />
+    <div className="apw-next-strip">
+      <a href="/commands-and-workflows">Go to the operator layer</a>
+      <a href="/start-here">Return to the broader beginner path</a>
+      <a href="/safe-context-switching">Recover if you are in the wrong folder</a>
+    </div>
+  </section>
+</div>

@@ -54,6 +54,8 @@ Build artifacts such as `website/.next/` and local dependencies in `website/node
 
 - `website/pages/`: portal pages and information architecture
 - `website/pages/reference/`: deeper technical/reference portal entry pages
+- `website/components/portal-ui.jsx`: shared hero, section-intro, and pill-row presentation helpers
+- `website/styles/portal.css`: shared APW visual system for landing-page rhythm, cards, callouts, and page polish
 - `website/theme.config.jsx`: docs portal theme and navigation settings
 - `website/next.config.mjs`: Nextra/Next.js wiring
 - `website/package.json`: local portal scripts and dependencies
@@ -76,6 +78,9 @@ When adding a new page:
 
 Use the portal components intentionally:
 
+- `PortalHero` for stronger page headers, entry routing, and confident first-use framing
+- `PortalSectionIntro` for cleaner section hierarchy and better scanability
+- `PortalPillRow` for compact trust signals, flow markers, and quick concept grouping
 - `Cards` for homepage routing, chooser sections, and beginner path selection
 - `Callout` for important rules, source-of-truth reminders, warnings, and beginner tips
 - `Steps` for onboarding flows, workflow sequences, and "what to do next" guidance

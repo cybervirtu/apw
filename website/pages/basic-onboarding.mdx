@@ -1,68 +1,91 @@
 import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalSectionIntro } from '../components/portal-ui'
 
 # Basic Onboarding
 
-This page is the shortest beginner route into APW.
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Level 1 — Start Now"
+    title="The shortest safe beginner route into APW."
+    lede="Use this page when you want a clear first-use path without hunting across the full docs set. It keeps setup, first use, and first-run guidance easy to find without flattening the real framework."
+    actions={[
+      { href: '/installation-guide', label: 'Install APW' },
+      { href: '/basic-usage-guide', label: 'Basic Usage', variant: 'secondary' },
+      { href: '/first-run-in-ide', label: 'First Run In IDE', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'Install', label: 'Set up APW locally and verify the wrapper works' },
+      { value: 'Create', label: 'Make the downstream repo safely and initialize real state' },
+      { value: 'Start', label: 'Open the project, read AGENTS.md, and choose the first workflow' }
+    ]}
+  />
 
-It exists to point you to the canonical first-use guide in the repo without making you hunt for it.
+  <Callout type="info" emoji="✅">
+    Canonical source doc: <code>docs/BASIC_ONBOARDING_PROCEDURE.md</code>
+  </Callout>
 
-<Callout type="info" emoji="✅">
-Canonical source doc: `docs/BASIC_ONBOARDING_PROCEDURE.md`
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Who this is for"
+      title="Beginner-safe by design."
+      lede="This path is best for first-time APW users, non-technical or semi-technical builders, and anyone who wants the minimum safe route before touching deeper framework material."
+    />
+    <div className="apw-signal-grid">
+      <div className="apw-signal-card">
+        <h3>New to APW</h3>
+        <p>You want a safe first-use path instead of a large documentation tree.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>Trying a real project</h3>
+        <p>You want to create a project, initialize state, and begin with confidence.</p>
+      </div>
+      <div className="apw-signal-card">
+        <h3>Trying to avoid framework overload</h3>
+        <p>You want to know what matters now and what can wait until later.</p>
+      </div>
+    </div>
+  </section>
 
-<Callout type="info" emoji="📍">
-Create the repo from anywhere with `apw new`, then do day-to-day work from the downstream project root.
-</Callout>
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="What this path covers"
+      title="The first-use flow, without the documentation dump."
+      lede="Basic onboarding is designed to compress the first-use path into a sequence a beginner can actually follow."
+    />
+    <Steps>
+    ### Understand APW in one minute
 
-<Callout type="info" emoji="🪜">
-This page belongs to `Level 1 — Start Now` in the APW documentation model.
-</Callout>
+    Get the plain-English idea before touching deeper docs.
 
-<Callout type="info" emoji="⚙️">
-If APW is not installed locally yet, use the repo's `docs/INSTALLATION_GUIDE.md` first. If APW is installed and you want the shortest first-use flow, use `docs/BASIC_USAGE_GUIDE.md`.
-</Callout>
+    ### Choose the project shape and profile
 
-## Who this is for
+    Figure out what you are building and choose a likely APW profile.
 
-Use this path if you are:
+    ### Bootstrap and validate
 
-- new to APW
-- a beginner
-- non-technical or semi-technical
-- trying APW for the first time and want the shortest safe path
+    Create the APW repo structure from anywhere in the workspace and let the wrapper validate it.
 
-## What this path covers
+    ### Run guided project-state initialization
 
-<Steps>
-### Understand APW in one minute
+    Capture the project in plain language and generate the first core `.gsd` drafts.
 
-Get the plain-English idea before touching the deeper docs.
+    ### Start work safely
 
-### Choose the project shape and profile
+    Move into the downstream project, use the first-run flow, and begin with the right workflow.
+    </Steps>
+  </section>
 
-Figure out what you are building and choose a likely APW profile.
-
-### Bootstrap and validate
-
-Create the APW repo structure from anywhere in the workspace and let the wrapper validate it for you.
-
-### Run guided project-state initialization and start work safely
-
-Capture the project in plain language, generate the first core `.gsd` drafts, then move into workflows and implementation.
-
-### Use orchestrator and validation as the project grows
-
-Keep official state controlled and keep the repo aligned over time.
-</Steps>
-
-## Read next
-
-- Read the repo's `docs/INSTALLATION_GUIDE.md` if you still need the local setup path.
-- Read the repo's `docs/BASIC_USAGE_GUIDE.md` if APW is installed and you want the short first-use path before the broader onboarding material.
-- Read the repo's `docs/BASIC_ONBOARDING_PROCEDURE.md` for the full basic onboarding checklist.
-- Read the repo's `docs/FIRST_RUN_IN_IDE.md` once the downstream project is open in your IDE and you want the shortest next-step checklist.
-- Read the repo's `docs/SAFE_CONTEXT_SWITCHING.md` if you want visible helpers for getting back to the right repo later.
-- Read the repo's `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` if you want the safe rule for saving brainstorm outcomes.
-- Read the repo's `docs/GUIDED_PROJECT_STATE_INITIALIZATION.md` right after bootstrap and validation if you want APW to generate the first core state files for you.
-- Go to [Start Here](/start-here) if you want the broader guided beginner path.
-- Go to [Help Me Get Started](/get-started-flow) if you want APW to route you based on your current situation.
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Take the next page that matches what is actually missing."
+      lede="The point of this page is to reduce hunting, not create a second wall of links."
+    />
+    <div className="apw-next-strip">
+      <a href="/installation-guide">Install APW first</a>
+      <a href="/basic-usage-guide">Use APW after install</a>
+      <a href="/first-run-in-ide">Open the project the right way</a>
+      <a href="/get-started-flow">Let APW route you by situation</a>
+    </div>
+  </section>
+</div>
