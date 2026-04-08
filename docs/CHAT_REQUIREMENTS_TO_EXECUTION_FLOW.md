@@ -9,6 +9,10 @@ This guide unifies APW's requirement flow from chat input to workflow-driven exe
 
 It exists so operators and maintainers do not have to stitch together the earlier requirement docs manually.
 
+If you only want one APW requirement-flow page first, use this one.
+
+Then open the focused detail docs only when you need deeper policy or workflow guidance.
+
 APW uses one coherent route:
 
 1. requirement-bearing chat arrives

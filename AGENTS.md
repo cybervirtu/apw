@@ -89,6 +89,8 @@ Use this unified APW requirement flow:
 - execute those slices with `/create`, `/debug`, `/test`, and `/orchestrate` as needed
 - use orchestrator or governance when official cross-file memory must change
 
+If you need one APW requirement doc first instead of four separate ones, start with `docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md`.
+
 For large requirement sets, use this APW decomposition rule:
 
 - keep the high-level scope in `SPEC.md`

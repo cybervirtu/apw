@@ -53,6 +53,8 @@ Optional next:
 - [Requirement Module Breakdown](docs/REQUIREMENT_MODULE_BREAKDOWN.md)
 - [Atomic Implementation Planning](docs/ATOMIC_IMPLEMENTATION_PLANNING.md)
 
+If you want one APW requirement page first instead of opening the focused detail docs separately, start with [Chat Requirements Flow](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+
 ### Level 2 — Use APW Better
 
 Read these when you want guided support after the repo exists:
