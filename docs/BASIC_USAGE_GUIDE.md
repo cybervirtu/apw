@@ -96,7 +96,7 @@ Terminal fallback:
 ```bash
 apw context
 apw list-projects
-apw switch project MyProject
+apw switch MyProject
 ```
 
 ## 4. Read `AGENTS.md`

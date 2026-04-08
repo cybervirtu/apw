@@ -96,7 +96,7 @@ Recommended operating pattern:
 3. Keep the request phase-bounded.
 4. Require it to summarize what changed and what still needs verification.
 5. If it is acting as an execution agent, have it stop at evidence logging and hand canonical `.gsd` sync back to the orchestrator.
-6. Use `apw switch framework`, `apw switch parent`, or `apw switch project <name-or-path>` when you need to re-orient between repos; APW will print the exact folder path and can optionally ask an Antigravity-compatible launcher to open it.
+6. Use `apw switch framework`, `apw switch parent`, or `apw switch <name-or-path>` when you need to re-orient between repos; APW will print the exact folder path and run Antigravity when the `antigravity` launcher is available.
 
 Avoid:
 

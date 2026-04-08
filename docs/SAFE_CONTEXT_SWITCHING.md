@@ -140,13 +140,13 @@ Use this when you mean to:
 Use a known project name:
 
 ```bash
-apw switch project ProjectA
+apw switch ProjectA
 ```
 
 Or use a direct path:
 
 ```bash
-apw switch project /path/to/MyWork/ProjectA
+apw switch /path/to/MyWork/ProjectA
 ```
 
 If the workspace parent is not the default one, add:
@@ -223,10 +223,10 @@ What this means:
 
 ## Optional open behavior
 
-APW can also support:
+APW switch uses Antigravity when it is available:
 
 ```bash
-apw switch project ProjectA --open
+apw switch ProjectA
 ```
 
 What this means:
@@ -234,20 +234,14 @@ What this means:
 - APW still prints the destination clearly
 - APW still tells you what the location is for
 - APW prints the exact resolved folder path either way
-- APW prefers an Antigravity-compatible launcher when one is available
-- APW only tries to open the folder if a supported launcher is available
-- opening is optional, not required for switching
+- APW runs `antigravity <resolved-path>` when that launcher is available
+- if Antigravity is unavailable, APW says so clearly and leaves you with the exact folder path to open manually
 
-Launcher preference is:
+Launcher expectation is simple:
 
 1. `antigravity`
-2. `cursor`
-3. macOS `open -a "Antigravity"`
-4. macOS `open -a "Cursor"`
-5. `code`
-6. macOS `open -a "Visual Studio Code"`
 
-If no supported launcher is available, APW falls back to clear printed guidance and the exact folder path you should open manually in Antigravity or another IDE.
+If the `antigravity` launcher is unavailable, APW falls back to clear printed guidance and the exact folder path you should open manually in Antigravity.
 
 ## The beginner recovery flow
 
@@ -255,7 +249,7 @@ If you feel lost:
 
 1. run `apw context`
 2. if needed, run `apw list-projects`
-3. run `apw switch project <name>` or `apw switch framework`
+3. run `apw switch <name>` or `apw switch framework`
 4. once you reach the downstream project root, open `AGENTS.md`
 5. if the repo simply needs newer APW-managed files, run `apw upgrade-project <name> --dry-run`
 

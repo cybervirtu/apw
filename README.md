@@ -202,7 +202,7 @@ Terminal fallback:
 - `apw context`
 - `apw list-projects`
 - `apw switch framework`
-- `apw switch project <name>`
+- `apw switch <name>`
 - `apw switch parent`
 - `apw upgrade-project <name-or-path> --dry-run`
 

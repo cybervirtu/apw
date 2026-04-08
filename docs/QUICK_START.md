@@ -161,7 +161,7 @@ Terminal fallback:
 ```bash
 apw context
 apw list-projects
-apw switch project <name>
+apw switch <name>
 ```
 
 If APW itself evolves later and you want this downstream repo to receive the newer APW-managed files safely, think:

@@ -100,7 +100,7 @@ If that shows you are in APW root or the workspace parent folder, recover with:
   Terminal fallback:
   ```bash
   apw list-projects
-  apw switch project <name>
+  apw switch <name>
   ```
 
 If the project does not exist yet, create it with:

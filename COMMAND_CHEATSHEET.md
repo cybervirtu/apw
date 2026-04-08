@@ -111,14 +111,12 @@ These use the canonical workspace launcher form.
 | `apw new MyProject --profile base --stack base --target /path/to/workspace --init-state` | create the project in a chosen workspace and initialize state immediately |
 | `apw list-projects` | list known downstream projects in the default workspace |
 | `apw list-projects --workspace /path/to/workspace` | list downstream projects under a chosen workspace parent |
-| `apw switch framework` | show the APW framework root clearly |
-| `apw switch framework --open` | show the APW framework root and try to open it when supported |
-| `apw switch parent` | show the workspace parent clearly |
+| `apw switch framework` | resolve the APW framework root and launch Antigravity when available |
+| `apw switch parent` | resolve the workspace parent and launch Antigravity when available |
 | `apw switch parent --workspace /path/to/workspace` | resolve a specific workspace parent |
-| `apw switch parent --workspace /path/to/workspace --open` | resolve that workspace parent and try to open it |
-| `apw switch project <name-or-path>` | resolve a downstream project clearly |
-| `apw switch project <name-or-path> --workspace /path/to/workspace` | resolve a named project under a chosen workspace parent |
-| `apw switch project <name-or-path> --workspace /path/to/workspace --open` | resolve that project and try to open it |
+| `apw switch MyProject` | resolve a downstream project and launch Antigravity when available |
+| `apw switch MyProject --workspace /path/to/workspace` | resolve a named project under a chosen workspace parent |
+| `apw switch /path/to/workspace/MyProject` | resolve an explicit downstream project path |
 | `apw upgrade-project <name-or-path> --dry-run` | preview a safe downstream APW upgrade |
 | `apw upgrade-project <name-or-path> --workspace /path/to/workspace --dry-run` | preview an upgrade by project name under a chosen workspace parent |
 | `apw upgrade-project <name-or-path> --validate` | upgrade and run validation afterward |
@@ -184,7 +182,7 @@ apw first-run /path/to/project
 ### Switch to a named project in a workspace
 
 ```bash
-apw switch project MyProject --workspace /path/to/workspace
+apw switch MyProject --workspace /path/to/workspace
 ```
 
 ### Safely upgrade an older project
@@ -200,8 +198,9 @@ apw upgrade-project /path/to/project --validate
 ## Practical notes
 
 - path-based forms are usually safer for beginners than implicit `.`-based commands
-- switch commands always print the exact resolved folder path before any optional open attempt
-- `apw switch ... --open` prefers an Antigravity-compatible launcher, then falls back to Cursor or VS Code when available
+- switch commands always print the exact resolved folder path before any launch attempt
+- `apw switch ...` uses Antigravity directly when the `antigravity` launcher is available
+- if Antigravity is unavailable, APW prints a clear launcher-not-found message and the exact folder path to open manually
 - preview-first is the safe upgrade rule
 - project-owned `.gsd` memory and product code stay protected during APW upgrade
 - start from `AGENTS.md`

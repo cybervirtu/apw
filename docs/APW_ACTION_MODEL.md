@@ -100,9 +100,9 @@ They are the preferred user-facing names for the same existing APW engine and co
 | `APW: First Run` | chat-first or IDE action | `apw first-run [path]` |
 | `APW: Show Context` | chat-first or IDE action | `apw context [path]` |
 | `APW: List Projects` | chat-first or IDE action | `apw list-projects [--workspace dir]` |
-| `APW: Switch To Project` | chat-first or IDE action | `apw switch project <name-or-path> ...` |
-| `APW: Switch To Framework` | chat-first or IDE action | `apw switch framework [--open]` |
-| `APW: Switch To Parent` | chat-first or IDE action | `apw switch parent [--workspace dir] [--open]` |
+| `APW: Switch To Project` | chat-first or IDE action | `apw switch <name-or-path> ...` |
+| `APW: Switch To Framework` | chat-first or IDE action | `apw switch framework` |
+| `APW: Switch To Parent` | chat-first or IDE action | `apw switch parent [--workspace dir]` |
 | `APW: Initialize Project State` | chat-first or IDE action | `scripts/init-project-state.sh --target <repo>` |
 | `APW: Preview Upgrade` | chat-first or IDE action | `apw upgrade-project <name-or-path> --dry-run` |
 | `APW: Upgrade Project` | chat-first or IDE action | `apw upgrade-project <name-or-path> ...` |
@@ -237,14 +237,15 @@ Preferred IDE label:
 Engine:
 
 ```bash
-apw switch project MyProject --workspace /path/to/workspace
+apw switch MyProject --workspace /path/to/workspace
 ```
 
 Behavior rule:
 
 - resolve and print the exact downstream project path first
 - show the terminal `cd` next step without pretending the shell already changed
-- if `--open` is requested, try an Antigravity-compatible launcher cleanly and otherwise leave a manual IDE-ready path
+- run Antigravity with that resolved folder path when the `antigravity` launcher is available
+- if Antigravity is unavailable, leave a clear launcher-not-found message and the exact folder path
 
 ### 6. APW: Switch To Framework
 
@@ -272,7 +273,7 @@ Behavior rule:
 
 - resolve and print the APW framework root exactly
 - keep the shell mutation explicit instead of silent
-- allow optional `--open` only as a real launcher request, not as a fake switch
+- run Antigravity automatically when the `antigravity` launcher is available
 
 ### 7. APW: Switch To Parent
 
@@ -299,7 +300,7 @@ apw switch parent --workspace /path/to/workspace
 Behavior rule:
 
 - resolve and print the workspace parent exactly
-- keep the result usable in Antigravity or another IDE by showing the exact folder path
+- keep the result usable in Antigravity by showing the exact folder path
 - if workspace inference is not supported from the current location, require `--workspace` instead of guessing
 
 ### 8. APW: Initialize Project State

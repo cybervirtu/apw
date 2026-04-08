@@ -168,7 +168,7 @@ Done looks like:
 - APW prints the resolved parent and exact destination before creation.
 - The wrapper tells you exactly where the project was created.
 - You know that the new downstream project root is now the normal place to work.
-- You know you can recover later with `apw list-projects` and `apw switch project <name>` if you lose track of the right repo.
+- You know you can recover later with `apw list-projects` and `apw switch <name>` if you lose track of the right repo.
 
 If you need more help:
 

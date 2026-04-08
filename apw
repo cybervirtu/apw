@@ -19,9 +19,9 @@ Usage:
   $APW_COMMAND_NAME context [path]
   $APW_COMMAND_NAME first-run [path]
   $APW_COMMAND_NAME list-projects [--workspace dir]
-  $APW_COMMAND_NAME switch framework [--open]
-  $APW_COMMAND_NAME switch project <name-or-path> [--workspace dir] [--open]
-  $APW_COMMAND_NAME switch parent [--workspace dir] [--open]
+  $APW_COMMAND_NAME switch framework
+  $APW_COMMAND_NAME switch parent [--workspace dir]
+  $APW_COMMAND_NAME switch <project-name-or-path> [--workspace dir]
   $APW_COMMAND_NAME help
 
 Examples:
@@ -40,9 +40,9 @@ Examples:
   $APW_COMMAND_NAME first-run /path/to/MyWork/ProjectA
   $APW_COMMAND_NAME list-projects
   $APW_COMMAND_NAME switch framework
-  $APW_COMMAND_NAME switch project ProjectA
-  $APW_COMMAND_NAME switch project /path/to/MyWork/ProjectA
   $APW_COMMAND_NAME switch parent
+  $APW_COMMAND_NAME switch ProjectA
+  $APW_COMMAND_NAME switch /path/to/MyWork/ProjectA
 
 What it does:
   - installs or verifies the first-time APW launcher and prerequisite setup
@@ -54,7 +54,7 @@ What it does:
   - explains whether a path is APW root, a downstream project root, or a workspace/general folder
   - prints the beginner-friendly first-run checklist for a downstream project
   - lists known downstream projects in the workspace
-  - resolves a switch target clearly without silently changing your shell
+  - resolves a switch target clearly and launches Antigravity when available without silently changing your shell
 
 Notes:
   - Canonical invocation is: apw ...
@@ -75,7 +75,7 @@ Notes:
     - use --target to override the parent location explicitly
   - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
   - upgrade-project protects project-owned .gsd memory and code by default.
-  - Switch helpers are explicit and visible. They print where to go next; they do not silently mutate your shell context.
+  - Switch helpers are explicit and visible. They print the exact resolved path, try Antigravity when available, and do not silently mutate your shell context.
 EOF
 }
 
@@ -531,117 +531,49 @@ format_shell_command() {
 }
 
 LAUNCHER_LABEL=""
-LAUNCHER_KIND=""
 LAUNCHER_PRIMARY_CMD=""
-LAUNCHER_APP_NAME=""
 
-detect_open_launcher() {
+detect_antigravity_launcher() {
     LAUNCHER_LABEL=""
-    LAUNCHER_KIND=""
     LAUNCHER_PRIMARY_CMD=""
-    LAUNCHER_APP_NAME=""
 
     if command -v antigravity >/dev/null 2>&1; then
         LAUNCHER_LABEL="Antigravity CLI"
-        LAUNCHER_KIND="cli"
         LAUNCHER_PRIMARY_CMD="antigravity"
         return 0
-    fi
-
-    if command -v cursor >/dev/null 2>&1; then
-        LAUNCHER_LABEL="Cursor CLI"
-        LAUNCHER_KIND="cli"
-        LAUNCHER_PRIMARY_CMD="cursor"
-        return 0
-    fi
-
-    if [[ "${OSTYPE:-}" == darwin* ]] && command -v open >/dev/null 2>&1; then
-        if open -Ra "Antigravity" >/dev/null 2>&1; then
-            LAUNCHER_LABEL="Antigravity app"
-            LAUNCHER_KIND="macos-app"
-            LAUNCHER_APP_NAME="Antigravity"
-            return 0
-        fi
-
-        if open -Ra "Cursor" >/dev/null 2>&1; then
-            LAUNCHER_LABEL="Cursor app"
-            LAUNCHER_KIND="macos-app"
-            LAUNCHER_APP_NAME="Cursor"
-            return 0
-        fi
-    fi
-
-    if command -v code >/dev/null 2>&1; then
-        LAUNCHER_LABEL="VS Code CLI"
-        LAUNCHER_KIND="cli"
-        LAUNCHER_PRIMARY_CMD="code"
-        return 0
-    fi
-
-    if [[ "${OSTYPE:-}" == darwin* ]] && command -v open >/dev/null 2>&1; then
-        if open -Ra "Visual Studio Code" >/dev/null 2>&1; then
-            LAUNCHER_LABEL="Visual Studio Code app"
-            LAUNCHER_KIND="macos-app"
-            LAUNCHER_APP_NAME="Visual Studio Code"
-            return 0
-        fi
     fi
 
     return 1
 }
 
-run_open_launcher() {
+run_antigravity_launcher() {
     local target_path="$1"
 
-    case "$LAUNCHER_KIND" in
-        cli)
-            "$LAUNCHER_PRIMARY_CMD" "$target_path"
-            ;;
-        macos-app)
-            open -a "$LAUNCHER_APP_NAME" "$target_path"
-            ;;
-        *)
-            return 1
-            ;;
-    esac
+    "$LAUNCHER_PRIMARY_CMD" "$target_path"
 }
 
-format_open_launcher_command() {
+format_antigravity_launcher_command() {
     local target_path="$1"
 
-    case "$LAUNCHER_KIND" in
-        cli)
-            format_shell_command "$LAUNCHER_PRIMARY_CMD" "$target_path"
-            ;;
-        macos-app)
-            format_shell_command open -a "$LAUNCHER_APP_NAME" "$target_path"
-            ;;
-        *)
-            return 1
-            ;;
-    esac
+    format_shell_command "$LAUNCHER_PRIMARY_CMD" "$target_path"
 }
 
 print_switch_next_steps() {
     local target_path="$1"
     local target_kind="$2"
-    local open_requested="$3"
+    local launcher_available="$3"
     local open_command=""
 
     echo "Next:"
     echo "- APW does not silently change your shell or IDE."
     printf '%s\n' "- Run: $(format_cd_command "$target_path")"
-    echo "- Exact folder for Antigravity or another IDE: $target_path"
+    echo "- Exact folder for Antigravity: $target_path"
 
-    if detect_open_launcher; then
-        open_command="$(format_open_launcher_command "$target_path")"
-        if [[ "$open_requested" -eq 1 ]]; then
-            printf '%s\n' "- Open request: APW will try $LAUNCHER_LABEL with: $open_command"
-        else
-            printf '%s\n' "- Antigravity-friendly open command: $open_command"
-        fi
+    if [[ "$launcher_available" -eq 1 ]]; then
+        open_command="$(format_antigravity_launcher_command "$target_path")"
+        printf '%s\n' "- Antigravity launch command: $open_command"
     else
-        echo "- Manual Antigravity step: open that exact folder path in Antigravity."
+        echo "- Antigravity launcher not found. Open that exact folder manually in Antigravity."
     fi
 
     case "$target_kind" in
@@ -659,25 +591,21 @@ print_switch_next_steps() {
 
 maybe_open_target() {
     local target_path="$1"
-    local open_requested="$2"
-
-    if [[ "$open_requested" -eq 0 ]]; then
-        return 0
-    fi
+    local launcher_available="$2"
 
     echo
 
-    if detect_open_launcher; then
-        echo "Optional open requested: launching the selected folder with $LAUNCHER_LABEL."
-        if ! run_open_launcher "$target_path" >/dev/null 2>&1; then
+    if [[ "$launcher_available" -eq 1 ]]; then
+        echo "Launching the selected folder with $LAUNCHER_LABEL."
+        if ! run_antigravity_launcher "$target_path" >/dev/null 2>&1; then
             echo "$LAUNCHER_LABEL did not open cleanly."
-            printf '%s\n' "Run manually: $(format_open_launcher_command "$target_path")"
+            printf '%s\n' "Run manually: $(format_antigravity_launcher_command "$target_path")"
             return 1
         fi
-        echo "Open request sent via: $LAUNCHER_LABEL."
+        echo "Launch request sent via: $LAUNCHER_LABEL."
     else
-        echo "Optional open requested, but no Antigravity-compatible launcher was detected."
-        echo "Open the folder manually in Antigravity or another IDE with this exact path:"
+        echo "Antigravity launcher not found."
+        echo "Open the folder manually in Antigravity with this exact path:"
         echo "  $target_path"
     fi
 }
@@ -685,7 +613,7 @@ maybe_open_target() {
 print_switch_summary() {
     local target_kind="$1"
     local target_path="$2"
-    local open_requested="$3"
+    local launcher_available="$3"
 
     echo "APW switch helper"
     echo "Resolved path: $target_path"
@@ -723,7 +651,20 @@ print_switch_summary() {
     esac
 
     echo
-    print_switch_next_steps "$target_path" "$target_kind" "$open_requested"
+    print_switch_next_steps "$target_path" "$target_kind" "$launcher_available"
+}
+
+is_selector_path_like() {
+    local selector="$1"
+
+    case "$selector" in
+        /*|./*|../*|*/*)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
 }
 
 resolve_project_switch_target() {
@@ -733,7 +674,16 @@ resolve_project_switch_target() {
     local downstream_root=""
     local child=""
     local project_roots=()
-    local matched_project=""
+    local exact_matches=()
+    local close_matches=()
+    local basename_match=""
+    local selector_lower=""
+    local basename_lower=""
+
+    if is_selector_path_like "$selector" && [[ ! -e "$selector" ]]; then
+        echo "Error: Downstream project path does not exist: $selector" >&2
+        exit 1
+    fi
 
     if [[ -e "$selector" ]]; then
         resolved_path="$(resolve_existing_path "$selector")"
@@ -743,7 +693,7 @@ resolve_project_switch_target() {
             return 0
         fi
 
-        echo "Error: Path is not inside a downstream APW project: $resolved_path"
+        echo "Error: Path is not inside a downstream APW project: $resolved_path" >&2
         exit 1
     fi
 
@@ -752,25 +702,56 @@ resolve_project_switch_target() {
         project_roots+=("$child")
     done < <(list_workspace_projects "$workspace_parent")
 
+    selector_lower="$(printf '%s' "$selector" | tr '[:upper:]' '[:lower:]')"
+
     for child in "${project_roots[@]}"; do
-        if [[ "$(basename "$child")" == "$selector" ]]; then
-            matched_project="$child"
-            break
+        basename_match="$(basename "$child")"
+        if [[ "$basename_match" == "$selector" ]]; then
+            exact_matches+=("$child")
+            continue
+        fi
+
+        basename_lower="$(printf '%s' "$basename_match" | tr '[:upper:]' '[:lower:]')"
+        if [[ "$basename_lower" == "$selector_lower" || "$basename_lower" == "$selector_lower"* || "$basename_lower" == *"$selector_lower"* ]]; then
+            close_matches+=("$child")
         fi
     done
 
-    if [[ -n "$matched_project" ]]; then
-        printf '%s\n' "$matched_project"
+    if [[ "${#exact_matches[@]}" -eq 1 ]]; then
+        printf '%s\n' "${exact_matches[0]}"
         return 0
     fi
 
-    echo "Error: Could not find downstream project '$selector' under workspace parent: $workspace_parent"
+    if [[ "${#exact_matches[@]}" -gt 1 ]]; then
+        echo "Error: Downstream project selector is ambiguous: $selector" >&2
+        echo "Searched workspace parent: $workspace_parent" >&2
+        echo "Matching downstream project paths:" >&2
+        printf '%s\n' "${exact_matches[@]}" | sed 's|^|- |' >&2
+        exit 1
+    fi
+
+    if [[ "${#close_matches[@]}" -gt 1 ]]; then
+        echo "Error: Downstream project selector is ambiguous: $selector" >&2
+        echo "Searched workspace parent: $workspace_parent" >&2
+        echo "Close matching downstream project paths:" >&2
+        printf '%s\n' "${close_matches[@]}" | sed 's|^|- |' >&2
+        exit 1
+    fi
+
+    echo "Error: Could not find downstream project '$selector'" >&2
+    echo "Searched workspace parent: $workspace_parent" >&2
+
+    if [[ "${#close_matches[@]}" -eq 1 ]]; then
+        echo "Close match:" >&2
+        printf '%s\n' "${close_matches[0]}" | sed 's|^|- |' >&2
+        exit 1
+    fi
 
     if [[ "${#project_roots[@]}" -gt 0 ]]; then
-        echo "Known downstream projects:"
-        printf '%s\n' "${project_roots[@]}" | sed 's|.*/|- |'
+        echo "Known downstream projects:" >&2
+        printf '%s\n' "${project_roots[@]}" | sed 's|^|- |' >&2
     else
-        echo "No downstream projects were detected under that workspace parent."
+        echo "No downstream projects were detected under that workspace parent." >&2
     fi
 
     exit 1
@@ -916,10 +897,10 @@ run_setup() {
 
     echo
     echo "Optional framework convenience"
-    if detect_open_launcher; then
-        echo "- IDE launcher for apw switch ... --open: available via $LAUNCHER_LABEL"
+    if detect_antigravity_launcher; then
+        echo "- Antigravity launcher for apw switch ...: available via $LAUNCHER_LABEL"
     else
-        echo "- IDE launcher for apw switch ... --open: not detected"
+        echo "- Antigravity launcher for apw switch ...: not detected"
         echo "  Optional only. APW will still print the exact folder path for manual opening."
     fi
 
@@ -983,7 +964,7 @@ run_context() {
         echo
         echo "Helpful next commands:"
         echo "- $APW_COMMAND_NAME list-projects"
-        echo "- $APW_COMMAND_NAME switch project <name>"
+        echo "- $APW_COMMAND_NAME switch <name>"
         echo "- $APW_COMMAND_NAME switch parent"
         return 0
     fi
@@ -1002,7 +983,7 @@ run_context() {
         echo
         echo "Helpful next commands:"
         echo "- $APW_COMMAND_NAME first-run \"$resolved_path\""
-        echo "- $APW_COMMAND_NAME switch project \"$resolved_path\""
+        echo "- $APW_COMMAND_NAME switch \"$resolved_path\""
         echo "- $APW_COMMAND_NAME switch framework"
         return 0
     fi
@@ -1021,7 +1002,7 @@ run_context() {
         echo "Helpful next commands:"
         echo "- $APW_COMMAND_NAME list-projects"
         echo "- $APW_COMMAND_NAME switch framework"
-        echo "- $APW_COMMAND_NAME switch project <name>"
+        echo "- $APW_COMMAND_NAME switch <name>"
         return 0
     fi
 
@@ -1074,7 +1055,7 @@ run_first_run() {
         echo
         echo "If the project already exists but you are in the wrong folder:"
         echo "1. Run: $APW_COMMAND_NAME list-projects"
-        echo "2. Run: $APW_COMMAND_NAME switch project <name>"
+        echo "2. Run: $APW_COMMAND_NAME switch <name>"
         return 0
     fi
 
@@ -1198,7 +1179,7 @@ run_list_projects() {
     echo
     echo "Switch explicitly with:"
     echo "- $APW_COMMAND_NAME switch framework"
-    echo "- $APW_COMMAND_NAME switch project <name>"
+    echo "- $APW_COMMAND_NAME switch <name>"
     echo "- $APW_COMMAND_NAME switch parent"
 }
 
@@ -1209,13 +1190,20 @@ run_switch() {
     local workspace_parent=""
     local target_path=""
     local target_kind=""
-    local open_requested=0
+    local launcher_available=0
 
     if [[ -z "$destination" ]]; then
         echo "Error: switch requires a destination."
         usage
         exit 1
     fi
+
+    case "$destination" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+    esac
 
     shift || true
 
@@ -1224,18 +1212,22 @@ run_switch() {
             ;;
         project)
             selector="${1:-}"
-            if [[ -z "$selector" ]]; then
+            if [[ -z "$selector" || "$selector" == --* || "$selector" == -?* ]]; then
                 echo "Error: switch project requires a project name or path."
                 exit 1
             fi
             shift || true
             ;;
         *)
-            echo "Error: Unknown switch destination '$destination'."
-            usage
-            exit 1
+            selector="$destination"
+            destination="project"
             ;;
     esac
+
+    if [[ "$destination" == "project" && -z "$selector" ]]; then
+        echo "Error: switch requires a project name or path."
+        exit 1
+    fi
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
@@ -1245,7 +1237,6 @@ run_switch() {
                 shift 2
                 ;;
             --open)
-                open_requested=1
                 shift
                 ;;
             -h|--help)
@@ -1266,10 +1257,10 @@ run_switch() {
             target_kind="framework"
             ;;
         project)
-            if [[ -e "$selector" ]]; then
+            if [[ -e "$selector" ]] || is_selector_path_like "$selector"; then
                 workspace_parent=""
             else
-                workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME switch project")"
+                workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME switch $selector")"
             fi
             target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
             target_kind="project"
@@ -1281,8 +1272,12 @@ run_switch() {
             ;;
     esac
 
-    print_switch_summary "$target_kind" "$target_path" "$open_requested"
-    maybe_open_target "$target_path" "$open_requested"
+    if detect_antigravity_launcher; then
+        launcher_available=1
+    fi
+
+    print_switch_summary "$target_kind" "$target_path" "$launcher_available"
+    maybe_open_target "$target_path" "$launcher_available"
 }
 
 preflight_validate_dependencies() {

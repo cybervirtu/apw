@@ -194,7 +194,7 @@ If you later need help moving back to the right place, use:
   Terminal fallback:
   ```bash
   apw list-projects
-  apw switch project <name>
+  apw switch <name>
   apw switch framework
   apw switch parent
   apw upgrade-project <name> --dry-run
