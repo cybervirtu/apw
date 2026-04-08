@@ -66,7 +66,7 @@ Classify requirement-bearing chat into one of these categories first:
 | Category | What it means | Default persistence posture |
 | :--- | :--- | :--- |
 | `new requirement` | new product need, feature, user need, scope, or problem statement | usually `JOURNAL.md` first, then promote deliberately |
-| `modification / change request` | change to existing scope, behavior, priority, or constraint | usually `JOURNAL.md` first, then orchestrator or governance sync |
+| `requirement change` | change to existing scope, behavior, priority, or constraint | usually `JOURNAL.md` first, then orchestrator or governance sync |
 | `clarification` | removes ambiguity without necessarily changing scope | may stay in `JOURNAL.md` or promote to canonical memory if now official |
 | `decision` | chosen tradeoff, rationale, architecture, policy, or approach | usually candidate for `DECISIONS.md` after deliberate sync |
 | `task request` | asks for concrete next work, backlog slices, or implementation actions | usually candidate for `TODO.md` after deliberate sync |
@@ -77,6 +77,17 @@ If the category is unclear, use the safe APW default:
 
 - capture a bounded summary in `JOURNAL.md`
 - escalate to orchestrator or governance only after the project impact is clear
+
+## What is not canonical by default
+
+These do not become official project memory automatically:
+
+- raw chat transcript
+- chat reasoning or exploratory back-and-forth
+- unpersisted requirement suggestions
+- draft directions that were not deliberately saved
+
+They become APW project memory only through deliberate persistence into `JOURNAL.md` or deliberate promotion into canonical `.gsd` files.
 
 ## The mapping model
 
@@ -183,7 +194,7 @@ Do not build public signup yet. Admins should create accounts manually in v1.
 
 Classification:
 
-- `modification / change request`
+- `requirement change`
 
 Likely persistence:
 

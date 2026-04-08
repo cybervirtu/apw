@@ -60,7 +60,7 @@ APW does **not** treat chat as canonical memory by default.
 Use this classification set:
 
 - `new requirement`
-- `modification / change request`
+- `requirement change`
 - `clarification`
 - `decision`
 - `task request`
