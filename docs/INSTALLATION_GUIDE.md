@@ -25,6 +25,7 @@ MyWork/
 APW is not a global package install.
 
 It is a local framework checkout that you use alongside real project repos.
+The canonical command is still `apw`, but you expose it through a workspace-scoped launcher instead of through per-project copies.
 
 In the APW documentation levels, this is a `Level 1 — Start now` guide.
 For the full level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
@@ -63,15 +64,24 @@ git clone <your-apw-repo-url> apw
 cd apw
 ```
 
-### 3. Make sure the helper entrypoint is usable
+### 3. Install the workspace launcher
 
-APW's main wrapper is:
+From APW root, run:
 
-- `./apw`
+```bash
+./scripts/install-workspace-launcher.sh
+source ../.apw/env.zsh
+```
 
-You do not need a global install for it.
+The installer creates a workspace-scoped launcher at `../.apw/bin/apw` and a zsh-friendly PATH snippet at `../.apw/env.zsh`.
 
-If the file is present and executable from the APW root, you are in good shape.
+For future zsh shells, add the same source line to `~/.zshrc`:
+
+```bash
+source /path/to/MyWork/.apw/env.zsh
+```
+
+This keeps `apw` available from the workspace parent, APW root, and downstream project roots without copying wrappers into projects.
 
 ## Verify it works
 
@@ -89,24 +99,30 @@ git --version
 bash --version
 ```
 
-### Check the APW wrapper
+### Check the APW launcher
 
 ```bash
-./apw help
+apw help
 ```
 
 ### Optional context check
 
 ```bash
-./apw context
+apw context
 ```
 
 Done looks like:
 
 - Git responds normally
 - Bash responds normally
-- `./apw help` prints the APW wrapper command list
-- `./apw context` correctly identifies the APW root
+- `apw help` prints the APW wrapper command list
+- `apw context` correctly identifies the APW root
+
+If `apw` is not resolvable yet:
+
+- run `source ../.apw/env.zsh` from APW root
+- then add that same source line to `~/.zshrc`
+- if the workspace launcher itself is missing, run `./scripts/install-workspace-launcher.sh` again from APW root
 
 ## Optional docs portal setup
 
@@ -145,7 +161,7 @@ If you want the shortest next step after installation, think:
 Terminal fallback:
 
 ```bash
-./apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 From APW root, that command creates `/path/to/workspace/MyProject` beside `apw` by default.

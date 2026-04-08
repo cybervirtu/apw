@@ -35,9 +35,16 @@ For the upgrade layer, think in:
 - do normal implementation work inside the downstream project root
 - use APW root for framework maintenance
 
-If you are in APW root, you can use `./apw ...`.
+Install the workspace launcher once from APW root:
 
-If you are elsewhere in the workspace, use `/path/to/apw/apw ...`.
+```bash
+./scripts/install-workspace-launcher.sh
+source ../.apw/env.zsh
+```
+
+After that, use `apw ...` from the workspace parent, APW root, or any downstream project root.
+
+If `apw` is not resolvable yet, source `../.apw/env.zsh` again and add that same source line to `~/.zshrc`.
 
 The same rule applies to script commands:
 
@@ -80,35 +87,35 @@ Notes:
 
 ### APW wrapper commands
 
-These are shown in their APW-root form. If you are reading this inside a downstream repo, replace `./apw` with `/path/to/apw/apw`.
+These use the canonical workspace launcher form.
 
 | Command | What it does |
 | :--- | :--- |
-| `./apw help` | show the APW wrapper commands |
-| `./apw context` | tell you whether you are in APW root, a project root, or a workspace folder |
-| `./apw context <path>` | check a specific path instead of the current one |
-| `./apw first-run` | print the beginner-safe first-run checklist |
-| `./apw first-run <project-path>` | print the first-run checklist for a specific downstream project |
-| `./apw new MyProject --profile base --stack base` | create a new APW project |
-| `./apw new MyProject --profile base --stack base --target /path/to/workspace` | create the project under a chosen workspace parent |
-| `./apw new MyProject --profile base --stack base --init-state` | create a project and immediately run guided state initialization |
-| `./apw new MyProject --profile base --stack base --target /path/to/workspace --init-state` | create the project in a chosen workspace and initialize state immediately |
-| `./apw list-projects` | list known downstream projects in the default workspace |
-| `./apw list-projects --workspace /path/to/workspace` | list downstream projects under a chosen workspace parent |
-| `./apw switch framework` | show the APW framework root clearly |
-| `./apw switch framework --open` | show the APW framework root and try to open it when supported |
-| `./apw switch parent` | show the workspace parent clearly |
-| `./apw switch parent --workspace /path/to/workspace` | resolve a specific workspace parent |
-| `./apw switch parent --workspace /path/to/workspace --open` | resolve that workspace parent and try to open it |
-| `./apw switch project <name-or-path>` | resolve a downstream project clearly |
-| `./apw switch project <name-or-path> --workspace /path/to/workspace` | resolve a named project under a chosen workspace parent |
-| `./apw switch project <name-or-path> --workspace /path/to/workspace --open` | resolve that project and try to open it |
-| `./apw upgrade-project <name-or-path> --dry-run` | preview a safe downstream APW upgrade |
-| `./apw upgrade-project <name-or-path> --workspace /path/to/workspace --dry-run` | preview an upgrade by project name under a chosen workspace parent |
-| `./apw upgrade-project <name-or-path> --validate` | upgrade and run validation afterward |
-| `./apw upgrade-project <name-or-path> --force-managed` | also refresh review-before-overwrite APW-managed files |
-| `./apw upgrade-project <name-or-path> --profile auto|minimal|base|advanced` | override or pin the expected downstream profile |
-| `./apw upgrade-project <name-or-path> --stack <value>` | use a specific stack value during upgrade and validation |
+| `apw help` | show the APW wrapper commands |
+| `apw context` | tell you whether you are in APW root, a project root, or a workspace folder |
+| `apw context <path>` | check a specific path instead of the current one |
+| `apw first-run` | print the beginner-safe first-run checklist |
+| `apw first-run <project-path>` | print the first-run checklist for a specific downstream project |
+| `apw new MyProject --profile base --stack base` | create a new APW project |
+| `apw new MyProject --profile base --stack base --target /path/to/workspace` | create the project under a chosen workspace parent |
+| `apw new MyProject --profile base --stack base --init-state` | create a project and immediately run guided state initialization |
+| `apw new MyProject --profile base --stack base --target /path/to/workspace --init-state` | create the project in a chosen workspace and initialize state immediately |
+| `apw list-projects` | list known downstream projects in the default workspace |
+| `apw list-projects --workspace /path/to/workspace` | list downstream projects under a chosen workspace parent |
+| `apw switch framework` | show the APW framework root clearly |
+| `apw switch framework --open` | show the APW framework root and try to open it when supported |
+| `apw switch parent` | show the workspace parent clearly |
+| `apw switch parent --workspace /path/to/workspace` | resolve a specific workspace parent |
+| `apw switch parent --workspace /path/to/workspace --open` | resolve that workspace parent and try to open it |
+| `apw switch project <name-or-path>` | resolve a downstream project clearly |
+| `apw switch project <name-or-path> --workspace /path/to/workspace` | resolve a named project under a chosen workspace parent |
+| `apw switch project <name-or-path> --workspace /path/to/workspace --open` | resolve that project and try to open it |
+| `apw upgrade-project <name-or-path> --dry-run` | preview a safe downstream APW upgrade |
+| `apw upgrade-project <name-or-path> --workspace /path/to/workspace --dry-run` | preview an upgrade by project name under a chosen workspace parent |
+| `apw upgrade-project <name-or-path> --validate` | upgrade and run validation afterward |
+| `apw upgrade-project <name-or-path> --force-managed` | also refresh review-before-overwrite APW-managed files |
+| `apw upgrade-project <name-or-path> --profile auto|minimal|base|advanced` | override or pin the expected downstream profile |
+| `apw upgrade-project <name-or-path> --stack <value>` | use a specific stack value during upgrade and validation |
 
 ### Lower-level APW script commands
 
@@ -126,12 +133,12 @@ These are also shown in their APW-root form. From a downstream repo, replace `./
 
 ## Common command sequences
 
-These examples use the APW-root form.
+These examples use the canonical `apw` form.
 
 ### Create a new project
 
 ```bash
-./apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Default destination policy:
@@ -144,7 +151,7 @@ Default destination policy:
 ### Create a new project in a specific workspace and initialize state
 
 ```bash
-./apw new MyProject --profile base --stack base --target /path/to/workspace --init-state
+apw new MyProject --profile base --stack base --target /path/to/workspace --init-state
 ```
 
 ### Validate a project
@@ -156,19 +163,19 @@ Default destination policy:
 ### Check context for a specific project path
 
 ```bash
-./apw context /path/to/project
+apw context /path/to/project
 ```
 
 ### Get first-run guidance for a specific project
 
 ```bash
-./apw first-run /path/to/project
+apw first-run /path/to/project
 ```
 
 ### Switch to a named project in a workspace
 
 ```bash
-./apw switch project MyProject --workspace /path/to/workspace
+apw switch project MyProject --workspace /path/to/workspace
 ```
 
 ### Safely upgrade an older project
@@ -176,9 +183,9 @@ Default destination policy:
 ```bash
 git add .
 git commit -m "checkpoint before APW upgrade"
-./apw upgrade-project /path/to/project --dry-run
-./apw upgrade-project /path/to/project
-./apw upgrade-project /path/to/project --validate
+apw upgrade-project /path/to/project --dry-run
+apw upgrade-project /path/to/project
+apw upgrade-project /path/to/project --validate
 ```
 
 ## Practical notes

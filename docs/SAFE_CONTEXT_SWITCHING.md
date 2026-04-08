@@ -78,13 +78,13 @@ They do not silently move your IDE.
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw context
+apw context
 ```
 
 Or check a specific path:
 
 ```bash
-/path/to/apw/apw context /path/to/somewhere
+apw context /path/to/somewhere
 ```
 
 Use this when you are unsure whether you are in:
@@ -99,13 +99,13 @@ Use this when you are unsure whether you are in:
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw list-projects
+apw list-projects
 ```
 
 If your projects live under a specific workspace parent, you can point to it:
 
 ```bash
-/path/to/apw/apw list-projects --workspace /path/to/MyWork
+apw list-projects --workspace /path/to/MyWork
 ```
 
 What it does:
@@ -120,7 +120,7 @@ What it does:
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw switch framework
+apw switch framework
 ```
 
 Use this when you mean to:
@@ -137,13 +137,13 @@ Use this when you mean to:
 Use a known project name:
 
 ```bash
-/path/to/apw/apw switch project ProjectA
+apw switch project ProjectA
 ```
 
 Or use a direct path:
 
 ```bash
-/path/to/apw/apw switch project /path/to/MyWork/ProjectA
+apw switch project /path/to/MyWork/ProjectA
 ```
 
 If the workspace parent is not the default one, add:
@@ -165,13 +165,13 @@ Use this when you mean to:
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw switch parent
+apw switch parent
 ```
 
 Or point at a specific workspace parent:
 
 ```bash
-/path/to/apw/apw switch parent --workspace /path/to/MyWork
+apw switch parent --workspace /path/to/MyWork
 ```
 
 Use this when you want to:
@@ -201,13 +201,13 @@ If APW itself has changed and you want one downstream repo to receive those APW-
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw upgrade-project ProjectA --dry-run
+apw upgrade-project ProjectA --dry-run
 ```
 
 Or use a direct path:
 
 ```bash
-/path/to/apw/apw upgrade-project /path/to/MyWork/ProjectA --dry-run
+apw upgrade-project /path/to/MyWork/ProjectA --dry-run
 ```
 
 What this means:
@@ -222,7 +222,7 @@ What this means:
 APW can also support:
 
 ```bash
-/path/to/apw/apw switch project ProjectA --open
+apw switch project ProjectA --open
 ```
 
 What this means:

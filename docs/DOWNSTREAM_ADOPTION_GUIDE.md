@@ -37,7 +37,7 @@ Before routine coding starts in a newly bootstrapped repo:
 
 1. For a brand-new repo, use the workspace-friendly wrapper when possible:
    ```bash
-   /path/to/apw/apw new MyProject --profile base --stack base --target /path/to/workspace
+   apw new MyProject --profile base --stack base --target /path/to/workspace
    ```
 2. If you are not using the wrapper, bootstrap the repo with an explicit profile and stack.
 3. Validate the repo with the same `--profile` and `--stack` values if validation was not already run by the wrapper.

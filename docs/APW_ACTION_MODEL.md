@@ -134,7 +134,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Default destination rule:
@@ -169,7 +169,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw first-run /path/to/project
+apw first-run /path/to/project
 ```
 
 ### 3. APW: Show Context
@@ -191,7 +191,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw context /path/to/project
+apw context /path/to/project
 ```
 
 ### 4. APW: List Projects
@@ -213,7 +213,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw list-projects --workspace /path/to/workspace
+apw list-projects --workspace /path/to/workspace
 ```
 
 ### 5. APW: Switch To Project
@@ -235,7 +235,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw switch project MyProject --workspace /path/to/workspace
+apw switch project MyProject --workspace /path/to/workspace
 ```
 
 ### 6. APW: Switch To Framework
@@ -257,7 +257,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw switch framework
+apw switch framework
 ```
 
 ### 7. APW: Switch To Parent
@@ -279,7 +279,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw switch parent --workspace /path/to/workspace
+apw switch parent --workspace /path/to/workspace
 ```
 
 ### 8. APW: Initialize Project State
@@ -323,7 +323,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw upgrade-project /path/to/project --dry-run
+apw upgrade-project /path/to/project --dry-run
 ```
 
 ### 10. APW: Upgrade Project
@@ -345,7 +345,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw upgrade-project /path/to/project
+apw upgrade-project /path/to/project
 ```
 
 ### 11. APW: Validate After Upgrade
@@ -367,7 +367,7 @@ Preferred IDE label:
 Engine:
 
 ```bash
-/path/to/apw/apw upgrade-project /path/to/project --validate
+apw upgrade-project /path/to/project --validate
 ```
 
 ## How chat-first should feel

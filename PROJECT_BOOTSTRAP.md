@@ -122,7 +122,7 @@ Bootstrap is safe to run against an existing repository when used intentionally,
 For a safer existing-repo upgrade path, use:
 
 ```bash
-/path/to/apw/apw upgrade-project [name-or-path] --dry-run
+apw upgrade-project [name-or-path] --dry-run
 ```
 
 That wrapper keeps three categories visible:
@@ -134,9 +134,9 @@ That wrapper keeps three categories visible:
 Recommended upgrade examples:
 
 ```bash
-/path/to/apw/apw upgrade-project . --dry-run
-/path/to/apw/apw upgrade-project . --validate
-/path/to/apw/apw upgrade-project . --force-managed --validate
+apw upgrade-project . --dry-run
+apw upgrade-project . --validate
+apw upgrade-project . --force-managed --validate
 ./scripts/bootstrap.sh --target . --profile base --stack base
 ./scripts/bootstrap.sh --target . --profile advanced --stack base
 ./scripts/bootstrap.sh --target . --profile base --stack base --force

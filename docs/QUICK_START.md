@@ -43,6 +43,8 @@ If you want the in-IDE first-run checklist, read [FIRST_RUN_IN_IDE.md](./FIRST_R
 If you want the preferred chat/IDE action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 If you want the intake model for requirement-bearing chat, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
 
+These terminal fallbacks assume you already installed the workspace launcher from APW root with `./scripts/install-workspace-launcher.sh` and sourced the generated `../.apw/env.zsh`.
+
 ## Preferred interaction path
 
 APW is not terminal-only.
@@ -89,7 +91,7 @@ The easiest beginner path is:
 Terminal fallback:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Default destination policy:
@@ -102,13 +104,13 @@ Default destination policy:
 If you want to choose the parent directory explicitly:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base --target /path/to/MyWork
+apw new MyProject --profile base --stack base --target /path/to/MyWork
 ```
 
 If you want the wrapper to launch guided state initialization immediately after validation:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base --init-state
+apw new MyProject --profile base --stack base --init-state
 ```
 
 Use raw bootstrap directly only when you intentionally want the lower-level engine:
@@ -157,9 +159,9 @@ If you lose track of the right folder later, think in these actions first:
 Terminal fallback:
 
 ```bash
-/path/to/apw/apw context
-/path/to/apw/apw list-projects
-/path/to/apw/apw switch project <name>
+apw context
+apw list-projects
+apw switch project <name>
 ```
 
 If APW itself evolves later and you want this downstream repo to receive the newer APW-managed files safely, think:
@@ -169,7 +171,7 @@ If APW itself evolves later and you want this downstream repo to receive the new
 Terminal fallback:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --dry-run
+apw upgrade-project MyProject --dry-run
 ```
 
 ## 5. How To Invoke Work

@@ -149,7 +149,7 @@ For a brand-new project, the friendliest path is:
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 You can launch that from:
@@ -174,7 +174,7 @@ Chat-first rule:
 If you want to choose the parent location explicitly:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base --target /path/to/MyWork
+apw new MyProject --profile base --stack base --target /path/to/MyWork
 ```
 
 What this means:
@@ -193,11 +193,11 @@ If you later need help moving back to the right place, use:
 - `APW: Preview Upgrade`
   Terminal fallback:
   ```bash
-  /path/to/apw/apw list-projects
-  /path/to/apw/apw switch project <name>
-  /path/to/apw/apw switch framework
-  /path/to/apw/apw switch parent
-  /path/to/apw/apw upgrade-project <name> --dry-run
+  apw list-projects
+  apw switch project <name>
+  apw switch framework
+  apw switch parent
+  apw upgrade-project <name> --dry-run
   ```
 
 ## Where you should work day to day
@@ -248,7 +248,7 @@ You can be in the workspace parent folder or anywhere else.
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Then move into the new project.
@@ -267,13 +267,13 @@ Be in APW root.
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw context
+apw context
 ```
 
 Or point it at a specific path with the terminal fallback:
 
 ```bash
-/path/to/apw/apw context /path/to/somewhere
+apw context /path/to/somewhere
 ```
 
 If you want the dedicated switching guide, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).

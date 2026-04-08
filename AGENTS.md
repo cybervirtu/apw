@@ -43,8 +43,9 @@ If this is your first time opening this downstream project in an IDE, do this:
    - `APW: First Run`
    Terminal fallback:
    ```bash
-   /path/to/apw/apw first-run
+   apw first-run
    ```
+   If `apw` is not resolvable yet, install the workspace launcher from APW root with `./scripts/install-workspace-launcher.sh` and source the generated `../.apw/env.zsh`.
 6. Choose the first workflow that matches your situation:
    - `/brainstorm` if the idea or first step is still unclear
    - `/create` if the first feature is already clear

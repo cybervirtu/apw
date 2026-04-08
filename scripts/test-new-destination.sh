@@ -7,6 +7,7 @@ APW_ROOT="$(cd "$SCRIPT_DIR/.." && pwd -P)"
 TEMP_ROOT="$(mktemp -d "${TMPDIR:-/tmp}/apw-new-destination.XXXXXX")"
 WORKSPACE="$TEMP_ROOT/workspace"
 TEST_APW_ROOT="$WORKSPACE/apw"
+WORKSPACE_LAUNCHER_BIN=""
 
 cleanup() {
     rm -rf "$TEMP_ROOT"
@@ -55,14 +56,21 @@ mkdir -p "$WORKSPACE"
 cp -R "$APW_ROOT" "$TEST_APW_ROOT"
 WORKSPACE="$(cd "$WORKSPACE" && pwd -P)"
 TEST_APW_ROOT="$(cd "$TEST_APW_ROOT" && pwd -P)"
+WORKSPACE_LAUNCHER_BIN="$WORKSPACE/.apw/bin"
+
+(
+    cd "$TEST_APW_ROOT"
+    ./scripts/install-workspace-launcher.sh >"$TEMP_ROOT/install.log"
+)
 
 printf 'Temporary workspace: %s\n' "$WORKSPACE"
 printf 'APW under test: %s\n' "$TEST_APW_ROOT"
 echo
 
 (
+    export PATH="$WORKSPACE_LAUNCHER_BIN:$PATH"
     cd "$TEST_APW_ROOT"
-    ./apw new RootSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/root.log"
+    apw new RootSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/root.log"
 )
 
 assert_dir_exists "$WORKSPACE/RootSibling" "APW root should create a sibling project under the workspace parent"
@@ -75,8 +83,9 @@ assert_output_contains "$TEMP_ROOT/root.log" "Reason: Current context is APW roo
 pass "APW root defaults to workspace-parent sibling creation"
 
 (
+    export PATH="$WORKSPACE_LAUNCHER_BIN:$PATH"
     cd "$WORKSPACE"
-    ./apw/apw new ParentSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/parent.log"
+    apw new ParentSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/parent.log"
 )
 
 assert_dir_exists "$WORKSPACE/ParentSibling" "Workspace parent should create the project in the current folder"
@@ -88,8 +97,9 @@ pass "Workspace parent defaults to current-folder project creation"
 
 mkdir -p "$WORKSPACE/custom-home"
 (
+    export PATH="$WORKSPACE_LAUNCHER_BIN:$PATH"
     cd "$TEST_APW_ROOT"
-    ./apw new ExplicitTarget --profile minimal --stack base --skip-validate --target "$WORKSPACE/custom-home" >"$TEMP_ROOT/target.log"
+    apw new ExplicitTarget --profile minimal --stack base --skip-validate --target "$WORKSPACE/custom-home" >"$TEMP_ROOT/target.log"
 )
 
 assert_dir_exists "$WORKSPACE/custom-home/ExplicitTarget" "Explicit --target should be honored"
@@ -100,8 +110,9 @@ assert_output_contains "$TEMP_ROOT/target.log" "Reason: Using the parent directo
 pass "Explicit --target override still works"
 
 (
+    export PATH="$WORKSPACE_LAUNCHER_BIN:$PATH"
     cd "$WORKSPACE/RootSibling"
-    ../apw/apw new DownstreamSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/downstream.log"
+    apw new DownstreamSibling --profile minimal --stack base --skip-validate >"$TEMP_ROOT/downstream.log"
 )
 
 assert_dir_exists "$WORKSPACE/DownstreamSibling" "Downstream project creation should default to a sibling project in the same workspace"

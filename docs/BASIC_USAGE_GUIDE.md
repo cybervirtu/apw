@@ -21,6 +21,8 @@ If you want the fuller location model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WO
 In the APW documentation levels, this is a `Level 1 — Start now` guide.
 For the full level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 
+These terminal fallbacks assume you already installed the workspace launcher from APW root with `./scripts/install-workspace-launcher.sh` and sourced the generated `../.apw/env.zsh`.
+
 ## 1. Create your first project
 
 Prefer the action:
@@ -30,7 +32,7 @@ Prefer the action:
 Terminal fallback from the APW root:
 
 ```bash
-./apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Default destination policy:
@@ -43,7 +45,7 @@ Default destination policy:
 If you want to choose the parent directory explicitly:
 
 ```bash
-./apw new MyProject --profile base --stack base --target /path/to/MyWork
+apw new MyProject --profile base --stack base --target /path/to/MyWork
 ```
 
 Done looks like:
@@ -92,9 +94,9 @@ If you are unsure which folder is the right one, think:
 Terminal fallback:
 
 ```bash
-/path/to/apw/apw context
-/path/to/apw/apw list-projects
-/path/to/apw/apw switch project MyProject
+apw context
+apw list-projects
+apw switch project MyProject
 ```
 
 ## 4. Read `AGENTS.md`
@@ -117,7 +119,7 @@ Prefer the action:
 Terminal fallback:
 
 ```bash
-/path/to/apw/apw first-run /path/to/MyProject
+apw first-run /path/to/MyProject
 ```
 
 This gives you the short next-step checklist for the repo you just opened.

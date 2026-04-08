@@ -138,9 +138,10 @@ What to do:
 - Prefer the beginner-friendly action:
   - `APW: Create Project`
 - Use the workspace-friendly APW wrapper as the terminal fallback from wherever you are in the workspace.
+- If `apw` is not available yet, install the workspace launcher first from APW root with `./scripts/install-workspace-launcher.sh` and source `../.apw/env.zsh`.
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 Default destination policy:
@@ -183,7 +184,7 @@ Later, when APW itself is updated and you want this project to receive the newer
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --dry-run
+apw upgrade-project MyProject --dry-run
 ```
 
 ## Step 5 — Validate the setup

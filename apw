@@ -7,37 +7,38 @@ BOOTSTRAP_SCRIPT="$APW_ROOT/scripts/bootstrap.sh"
 VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
 INIT_STATE_SCRIPT="$APW_ROOT/scripts/init-project-state.sh"
 UPGRADE_PROJECT_SCRIPT="$APW_ROOT/scripts/upgrade-project.sh"
+APW_COMMAND_NAME="${APW_COMMAND_NAME:-apw}"
 
 usage() {
     cat <<EOF
 Usage:
-  $0 new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
-  $0 upgrade-project <name-or-path> [--workspace dir] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
-  $0 context [path]
-  $0 first-run [path]
-  $0 list-projects [--workspace dir]
-  $0 switch framework [--open]
-  $0 switch project <name-or-path> [--workspace dir] [--open]
-  $0 switch parent [--workspace dir] [--open]
-  $0 help
+  $APW_COMMAND_NAME new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
+  $APW_COMMAND_NAME upgrade-project <name-or-path> [--workspace dir] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
+  $APW_COMMAND_NAME context [path]
+  $APW_COMMAND_NAME first-run [path]
+  $APW_COMMAND_NAME list-projects [--workspace dir]
+  $APW_COMMAND_NAME switch framework [--open]
+  $APW_COMMAND_NAME switch project <name-or-path> [--workspace dir] [--open]
+  $APW_COMMAND_NAME switch parent [--workspace dir] [--open]
+  $APW_COMMAND_NAME help
 
 Examples:
-  $0 new ProjectA
-  $0 new ProjectB --profile advanced --stack base
-  $0 new ProjectC --target /path/to/MyWork
-  $0 new ProjectD --target /path/to/MyWork --init-state
-  $0 upgrade-project ProjectA --dry-run
-  $0 upgrade-project ProjectB --workspace /path/to/MyWork --force-managed --validate
-  $0 upgrade-project /path/to/MyWork/ProjectC
-  $0 context
-  $0 context /path/to/MyWork/ProjectA
-  $0 first-run
-  $0 first-run /path/to/MyWork/ProjectA
-  $0 list-projects
-  $0 switch framework
-  $0 switch project ProjectA
-  $0 switch project /path/to/MyWork/ProjectA
-  $0 switch parent
+  $APW_COMMAND_NAME new ProjectA
+  $APW_COMMAND_NAME new ProjectB --profile advanced --stack base
+  $APW_COMMAND_NAME new ProjectC --target /path/to/MyWork
+  $APW_COMMAND_NAME new ProjectD --target /path/to/MyWork --init-state
+  $APW_COMMAND_NAME upgrade-project ProjectA --dry-run
+  $APW_COMMAND_NAME upgrade-project ProjectB --workspace /path/to/MyWork --force-managed --validate
+  $APW_COMMAND_NAME upgrade-project /path/to/MyWork/ProjectC
+  $APW_COMMAND_NAME context
+  $APW_COMMAND_NAME context /path/to/MyWork/ProjectA
+  $APW_COMMAND_NAME first-run
+  $APW_COMMAND_NAME first-run /path/to/MyWork/ProjectA
+  $APW_COMMAND_NAME list-projects
+  $APW_COMMAND_NAME switch framework
+  $APW_COMMAND_NAME switch project ProjectA
+  $APW_COMMAND_NAME switch project /path/to/MyWork/ProjectA
+  $APW_COMMAND_NAME switch parent
 
 What it does:
   - creates a new project directory under the chosen target location
@@ -51,6 +52,9 @@ What it does:
   - resolves a switch target clearly without silently changing your shell
 
 Notes:
+  - Canonical invocation is: apw ...
+  - Install the workspace launcher from APW root with: ./scripts/install-workspace-launcher.sh
+  - Path-based invocation still works for maintenance and recovery, but apw is the primary entrypoint.
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
   - APW: Create Project uses this same destination resolver.
   - Default new-project destination is workspace-aware:
@@ -447,9 +451,9 @@ run_context() {
         echo "- treating the APW repo itself as the place where project slash workflows normally belong"
         echo
         echo "Helpful next commands:"
-        echo "- $0 list-projects"
-        echo "- $0 switch project <name>"
-        echo "- $0 switch parent"
+        echo "- $APW_COMMAND_NAME list-projects"
+        echo "- $APW_COMMAND_NAME switch project <name>"
+        echo "- $APW_COMMAND_NAME switch parent"
         return 0
     fi
 
@@ -465,8 +469,8 @@ run_context() {
         echo "- assuming this directory is a downstream project root just because it contains APW files"
         echo
         echo "Helpful next commands:"
-        echo "- $0 switch framework"
-        echo "- $0 list-projects"
+        echo "- $APW_COMMAND_NAME switch framework"
+        echo "- $APW_COMMAND_NAME list-projects"
         return 0
     fi
 
@@ -495,9 +499,9 @@ run_context() {
 
         echo
         echo "Helpful next commands:"
-        echo "- $0 first-run \"$downstream_root\""
-        echo "- $0 switch project \"$downstream_root\""
-        echo "- $0 switch framework"
+        echo "- $APW_COMMAND_NAME first-run \"$downstream_root\""
+        echo "- $APW_COMMAND_NAME switch project \"$downstream_root\""
+        echo "- $APW_COMMAND_NAME switch framework"
         return 0
     fi
 
@@ -505,7 +509,7 @@ run_context() {
         echo "Context: workspace parent folder"
         echo "Role: organizer and launch point"
         echo "Typical actions:"
-        echo "- create a new project with: $0 new MyProject --profile base --stack base"
+        echo "- create a new project with: $APW_COMMAND_NAME new MyProject --profile base --stack base"
         echo "- list known downstream projects"
         echo "- switch into APW root or a downstream project explicitly"
         echo "Avoid doing here:"
@@ -513,17 +517,17 @@ run_context() {
         echo "- treating this folder as the canonical home of project state"
         echo
         echo "Helpful next commands:"
-        echo "- $0 list-projects"
-        echo "- $0 switch framework"
-        echo "- $0 switch project <name>"
+        echo "- $APW_COMMAND_NAME list-projects"
+        echo "- $APW_COMMAND_NAME switch framework"
+        echo "- $APW_COMMAND_NAME switch project <name>"
         return 0
     fi
 
     echo "Context: general folder"
     echo "Role: not currently identified as APW root, a downstream APW project, or the default workspace parent"
     echo "Typical actions:"
-    echo "- create a new project with: $0 new MyProject --profile base --stack base"
-    echo "- point APW at a specific workspace with: $0 list-projects --workspace /path/to/MyWork"
+    echo "- create a new project with: $APW_COMMAND_NAME new MyProject --profile base --stack base"
+    echo "- point APW at a specific workspace with: $APW_COMMAND_NAME list-projects --workspace /path/to/MyWork"
     echo "- switch explicitly once you know the destination"
     echo "Avoid doing here:"
     echo "- assuming project slash workflows belong here"
@@ -548,11 +552,11 @@ run_first_run() {
         echo "For the first-run IDE experience of a real project:"
         echo "1. Open the downstream project root, not APW root."
         echo "2. If you do not have a project yet, create one with:"
-        echo "   $0 new MyProject --profile base --stack base"
+        echo "   $APW_COMMAND_NAME new MyProject --profile base --stack base"
         echo "3. If you want help finding the right repo, run:"
-        echo "   $0 list-projects"
+        echo "   $APW_COMMAND_NAME list-projects"
         echo "4. Then re-run:"
-        echo "   $0 first-run /path/to/MyProject"
+        echo "   $APW_COMMAND_NAME first-run /path/to/MyProject"
         return 0
     fi
 
@@ -560,13 +564,13 @@ run_first_run() {
         echo "This path is not inside a downstream APW project."
         echo
         echo "If you need a new project:"
-        echo "1. Run: $0 new MyProject --profile base --stack base"
+        echo "1. Run: $APW_COMMAND_NAME new MyProject --profile base --stack base"
         echo "2. Open that downstream project in your IDE"
-        echo "3. Then run: $0 first-run /path/to/MyProject"
+        echo "3. Then run: $APW_COMMAND_NAME first-run /path/to/MyProject"
         echo
         echo "If the project already exists but you are in the wrong folder:"
-        echo "1. Run: $0 list-projects"
-        echo "2. Run: $0 switch project <name>"
+        echo "1. Run: $APW_COMMAND_NAME list-projects"
+        echo "2. Run: $APW_COMMAND_NAME switch project <name>"
         return 0
     fi
 
@@ -656,7 +660,7 @@ run_list_projects() {
         echo "No downstream APW projects were detected under this workspace parent."
         echo
         echo "Next steps:"
-        echo "- Create one with: $0 new MyProject --profile base --stack base --target \"$workspace_parent\""
+        echo "- Create one with: $APW_COMMAND_NAME new MyProject --profile base --stack base --target \"$workspace_parent\""
         return 0
     fi
 
@@ -677,9 +681,9 @@ run_list_projects() {
 
     echo
     echo "Switch explicitly with:"
-    echo "- $0 switch framework"
-    echo "- $0 switch project <name>"
-    echo "- $0 switch parent"
+    echo "- $APW_COMMAND_NAME switch framework"
+    echo "- $APW_COMMAND_NAME switch project <name>"
+    echo "- $APW_COMMAND_NAME switch parent"
 }
 
 run_switch() {

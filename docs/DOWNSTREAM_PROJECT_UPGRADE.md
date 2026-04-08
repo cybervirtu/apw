@@ -96,13 +96,13 @@ The safest beginner action is:
 From APW root, the workspace parent, or any other convenient location, run:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --dry-run
+apw upgrade-project MyProject --dry-run
 ```
 
 Or use a direct path:
 
 ```bash
-/path/to/apw/apw upgrade-project /path/to/MyWork/MyProject --dry-run
+apw upgrade-project /path/to/MyWork/MyProject --dry-run
 ```
 
 If your workspace parent is not the default one, add:
@@ -133,7 +133,7 @@ That is why the recommended sequence is:
 Use:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --force-managed
+apw upgrade-project MyProject --force-managed
 ```
 
 only when you intentionally want APW to refresh the review-before-overwrite surfaces too.
@@ -158,15 +158,15 @@ If you are unsure, do not use `--force-managed` yet.
 Example:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --dry-run
-/path/to/apw/apw upgrade-project MyProject
-/path/to/apw/apw upgrade-project MyProject --validate
+apw upgrade-project MyProject --dry-run
+apw upgrade-project MyProject
+apw upgrade-project MyProject --validate
 ```
 
 If you know you want a full APW-managed refresh of review surfaces too:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --force-managed --validate
+apw upgrade-project MyProject --force-managed --validate
 ```
 
 ## How this relates to raw bootstrap
@@ -203,7 +203,7 @@ Use:
 Or let the wrapper do it:
 
 ```bash
-/path/to/apw/apw upgrade-project MyProject --validate
+apw upgrade-project MyProject --validate
 ```
 
 ## Beginner rule of thumb

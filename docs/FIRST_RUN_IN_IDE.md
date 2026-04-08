@@ -69,6 +69,8 @@ If you need to know what APW should say after saving or promoting requirement ch
 If the requirements are large and need decomposition first, read [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md).
 If the active module is still too large to hand straight to execution, read [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md).
 
+These terminal fallbacks assume the workspace launcher is already installed, so `apw` resolves from APW root, the workspace parent, and downstream project roots.
+
 ## First-run checklist
 
 Use this checklist inside the downstream project:
@@ -88,7 +90,7 @@ If you are unsure, use:
 - `APW: Show Context`
   Terminal fallback:
   ```bash
-  /path/to/apw/apw context
+  apw context
   ```
 
 If that shows you are in APW root or the workspace parent folder, recover with:
@@ -97,14 +99,14 @@ If that shows you are in APW root or the workspace parent folder, recover with:
 - `APW: Switch To Project`
   Terminal fallback:
   ```bash
-  /path/to/apw/apw list-projects
-  /path/to/apw/apw switch project <name>
+  apw list-projects
+  apw switch project <name>
   ```
 
 If the project does not exist yet, create it with:
 
 ```bash
-/path/to/apw/apw new MyProject --profile base --stack base
+apw new MyProject --profile base --stack base
 ```
 
 From APW root, that command creates `/path/to/workspace/MyProject` beside `apw` by default.
@@ -151,7 +153,7 @@ If you want a helper reminder instead of remembering the steps yourself, think:
   Terminal fallback:
 
 ```bash
-/path/to/apw/apw first-run
+apw first-run
 ```
 
 ### 4. Choose the first workflow that matches reality

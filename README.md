@@ -17,6 +17,12 @@ If you want a visual docs experience, APW also includes an in-repo Nextra portal
 The portal is the rendered docs experience, while the repo-root governance files and canonical docs under `docs/` remain the source of truth.
 For the explicit documentation model, read [docs/DOCS_SOURCE_OF_TRUTH.md](docs/DOCS_SOURCE_OF_TRUTH.md).
 
+## Canonical Command
+
+APW's canonical terminal entrypoint is `apw`.
+
+Install it once from APW root with `./scripts/install-workspace-launcher.sh`, source the generated `../.apw/env.zsh`, and then use `apw ...` from the workspace parent, APW root, or any downstream APW project.
+
 ## New Here?
 
 Choose the documentation level that matches where you are:
@@ -36,7 +42,7 @@ Read these now:
 If you want to start a real project immediately:
 
 - `APW: Create Project`
-  Terminal fallback: `/path/to/apw/apw new MyProject --profile base --stack base`
+  Terminal fallback: `apw new MyProject --profile base --stack base`
   Default destination:
   from APW root, APW creates `/path/to/workspace/MyProject` beside `apw`; use `--target` to override.
   Chat-first rule:
@@ -394,7 +400,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 ### For Developers Starting a New Project
 1. Use the workspace-friendly wrapper from anywhere:
    ```bash
-   /path/to/apw/apw new MyProject --profile base --stack base
+   apw new MyProject --profile base --stack base
    ```
    Default destination policy:
    - from APW root, the new repo is created in the parent workspace beside `apw`
@@ -403,11 +409,11 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
    - use `--target /path/to/parent` when you want a different parent location
 2. If you want to choose the parent location explicitly:
    ```bash
-   /path/to/apw/apw new MyProject --profile base --stack base --target /path/to/MyWork
+   apw new MyProject --profile base --stack base --target /path/to/MyWork
    ```
 3. If you want the one-command path into guided state setup:
    ```bash
-   /path/to/apw/apw new MyProject --profile base --stack base --init-state
+   apw new MyProject --profile base --stack base --init-state
    ```
 4. Use raw bootstrap directly only when you intentionally want the lower-level engine:
    ```bash
