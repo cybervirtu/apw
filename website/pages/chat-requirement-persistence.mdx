@@ -1,0 +1,78 @@
+import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
+
+# Chat Requirement Persistence
+
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Save / Promote / Sync"
+    title="Tell the user what happened after requirement chat."
+    lede="Once meaningful requirements arrive through chat, APW should make the persistence outcome explicit. The user should know whether the input was saved, promoted, handed to orchestrator, or left unsaved."
+    actions={[
+      { href: '/chat-requirements-flow', label: 'Full Chat Flow' },
+      { href: '/chat-first-requirement-ingestion', label: 'Requirement Ingestion' },
+      { href: '/workflow-persistence-policy', label: 'Workflow Persistence', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'Default', label: 'Bounded summary goes to JOURNAL.md' },
+      { value: 'Explicit', label: 'Users should know what changed and what did not' },
+      { value: 'Safe', label: 'Canonical cross-file changes still belong to orchestrator' }
+    ]}
+  />
+
+  <Callout type="info" emoji="📝">
+    Canonical source doc: <code>docs/CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md</code>
+  </Callout>
+
+  <PortalPillRow
+    items={[
+      'Save as notes only',
+      'Promote into canonical files',
+      'Hand off to orchestrator',
+      'Do not save yet'
+    ]}
+  />
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The practical model"
+      title="Four choices keep chat persistence understandable."
+      lede="APW should not leave the user wondering whether the chat changed project memory. The persistence result should always be stated clearly."
+    />
+    <Steps>
+    ### Classify the requirement-bearing chat
+
+    Decide what kind of input arrived before choosing a persistence path.
+
+    ### Choose the persistence outcome
+
+    Save as notes only, promote directly, hand off to orchestrator, or do not save yet.
+
+    ### State the result explicitly
+
+    Tell the user the classification, the persistence choice, the saved location, and whether official memory changed.
+
+    ### Use JOURNAL.md as the safe default
+
+    When the official destination is not settled, save a bounded summary first.
+
+    ### Let orchestrator handle cross-file official sync
+
+    If several canonical files need to stay aligned, persist safely first and sync deliberately.
+    </Steps>
+  </section>
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Use the source doc that matches the next question."
+      lede="Most users need the intake model first, then the persistence-choice model, then the broader workflow persistence guide."
+    />
+    <div className="apw-next-strip">
+      <a href="/chat-requirements-flow">See the full chat flow</a>
+      <a href="/chat-first-requirement-ingestion">See requirement ingestion</a>
+      <a href="/workflow-persistence-policy">See workflow persistence</a>
+      <a href="/brainstorm-persistence-and-promotion">See brainstorm persistence</a>
+    </div>
+  </section>
+</div>

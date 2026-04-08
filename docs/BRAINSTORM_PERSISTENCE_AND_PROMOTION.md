@@ -10,6 +10,7 @@ This guide defines APW's persistence model for `/brainstorm`.
 It exists because a brainstorm session is useful, but chat by itself is not project memory.
 
 For the APW-wide intake model behind that rule, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+For the explicit save / promote / sync choices that should be shown afterward, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
 
 APW keeps that distinction clear:
 
@@ -138,6 +139,8 @@ At the end of a meaningful brainstorm, make one of these choices explicit:
 4. **Do not save yet**
    - use this when the discussion is still too fuzzy
 
+Those same four choices now define the APW-wide response pattern for meaningful requirement-bearing chat, not only `/brainstorm`.
+
 ## Beginner-friendly rule of thumb
 
 If you are unsure what to do after `/brainstorm`, use this:
@@ -171,3 +174,4 @@ Possible result:
 Orchestrator promotes agreed changes into official project memory when they truly become canonical.
 
 For non-brainstorm requirement chat such as changes, clarifications, or direct instructions, use the same classify-then-persist rule from [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+Then use [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md) to state the save/promote/sync result explicitly.

@@ -50,6 +50,8 @@ That same chat-first rule applies to requirements too:
 - important project details can arrive through normal chat
 - classify them before treating them as project memory
 - use `JOURNAL.md` as the safe save path when the official destination is not settled yet
+- make the persistence result explicit so the user knows what was saved and whether official memory changed
+- use the full APW requirement flow when the chat must become planned and executable work
 
 That keeps APW easier for beginners without removing the existing command layer.
 
@@ -169,7 +171,10 @@ If you need more help:
 
 - Read [QUICK_START.md](./QUICK_START.md).
 - Read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
+- Read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
 - Read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+- Read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
+- Read [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md) if the requirements are too large to turn into one clean backlog directly.
 
 Later, when APW itself is updated and you want this project to receive the newer APW-managed framework layer safely, use:
 
@@ -250,7 +255,7 @@ What to do:
 Use this simple first-run rule:
 
 - use `/brainstorm` if the idea or first step is still unclear
-- use `/create` if the first feature is already clear
+- use `/create` if one bounded implementation slice is already clear
 - use `/orchestrate` if the project work is large or cross-cutting
 - use `/status` if you are returning later or need orientation first
 
@@ -259,6 +264,11 @@ If you use `/brainstorm`, remember:
 - the session helps shape ideas
 - useful outcomes should usually be saved to `.gsd/JOURNAL.md`
 - official project changes should be synchronized deliberately, usually through orchestrator
+
+If you use `/create`, remember:
+
+- it works best when one bounded implementation slice is already clear
+- if the work is still large, use `/orchestrate` first
 
 Why it matters:
 
@@ -271,6 +281,7 @@ Done looks like:
 If you need more help:
 
 - Read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+- Read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
 - Read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md).
 - Read [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - Read [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md).
@@ -286,6 +297,7 @@ Ignore for now:
 What to do:
 
 - Start work from `.gsd/STATE.md` and `.gsd/TODO.md`.
+- If the active work item is still too large, break it into atomic slices first.
 - Let execution work stay scoped.
 - Add bounded evidence to `.gsd/JOURNAL.md` when useful.
 
@@ -295,7 +307,7 @@ Why it matters:
 
 Done looks like:
 
-- You can start a real task while staying anchored to the repo's current state and task list.
+- You can start one real bounded task while staying anchored to the repo's current state and task list.
 
 If you need more help:
 

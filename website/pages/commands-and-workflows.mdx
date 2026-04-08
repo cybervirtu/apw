@@ -10,6 +10,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     lede="APW works best when operators choose by intent instead of relying on vague prompting. This page helps you route work through the workflow that fits the situation, the state, and the scale of the task."
     actions={[
       { href: '/first-run-in-ide', label: 'First Run In IDE' },
+      { href: '/requirement-to-modules', label: 'Requirement To Modules', variant: 'secondary' },
       { href: '/safe-context-switching', label: 'Fix Context First', variant: 'secondary' }
     ]}
     stats={[
@@ -46,7 +47,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
         Use `/brainstorm` before implementation when the idea still needs structure.
       </Cards.Card>
       <Cards.Card href="/commands-and-workflows#quick-chooser" title="Build something new">
-        Use `/create` for new feature or file work tied to requirements and TODOs.
+        Use `/create` for one bounded implementation slice tied to requirements and TODOs.
       </Cards.Card>
       <Cards.Card href="/commands-and-workflows#quick-chooser" title="Improve existing code">
         Use `/enhance` when behavior should stay the same but the code needs cleanup or refinement.
@@ -55,7 +56,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
         Use `/debug` for diagnosis and safe bug fixing without unnecessary rewrites.
       </Cards.Card>
       <Cards.Card href="/commands-and-workflows#quick-chooser" title="Handle a large task">
-        Use `/orchestrate` when work crosses modules, files, or specialties and needs decomposition first.
+        Use `/orchestrate` when work crosses modules, files, or specialties and needs module or slice decomposition first.
       </Cards.Card>
     </Cards>
   </section>
@@ -92,7 +93,7 @@ Examples:
 | --- | --- |
 | returning after a break | `/status` |
 | shaping an idea before implementation | `/brainstorm` |
-| building something new | `/create` |
+| building one bounded implementation slice | `/create` |
 | improving existing code | `/enhance` |
 | fixing a bug | `/debug` |
 | verifying quality or completion | `/test` |
@@ -120,6 +121,10 @@ Examples:
 
     Use the workflow that matches the job instead of issuing a vague prompt.
 
+    ### Keep execution atomic
+
+    Use `/orchestrate` for decomposition, then let `/create`, `/debug`, and `/test` operate on one slice at a time.
+
     ### Keep evidence bounded
 
     Execution agents may append bounded evidence to `.gsd/JOURNAL.md`.
@@ -131,6 +136,12 @@ Examples:
     For brainstorm-specific persistence and promotion guidance, read the repo's `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md`.
 
     For the APW-wide save/promote model across the core workflows, read the repo's `docs/WORKFLOW_PERSISTENCE_POLICY.md`.
+
+    For the end-to-end requirement route before workflow execution begins, read the repo's `docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md`.
+
+    For the APW model behind module and workstream decomposition, read the repo's `docs/REQUIREMENT_MODULE_BREAKDOWN.md`.
+
+    For the APW model behind bounded execution slices, read the repo's `docs/ATOMIC_IMPLEMENTATION_PLANNING.md`.
     </Steps>
   </section>
 

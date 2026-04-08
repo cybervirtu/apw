@@ -1,0 +1,82 @@
+import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
+
+# Chat Requirements Flow
+
+<div className="apw-page">
+  <PortalHero
+    eyebrow="End-To-End Flow"
+    title="Turn requirement chat into planned, executable work."
+    lede="APW treats chat as the main requirement intake layer, but not as automatic canon. The safe route is to classify the chat, choose the persistence outcome, map it into project memory, break large work into modules, turn active modules into atomic slices, and then execute those slices with the right workflows."
+    actions={[
+      { href: '/chat-first-requirement-ingestion', label: 'Requirement Ingestion' },
+      { href: '/commands-and-workflows', label: 'Commands & Workflows', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'Classify', label: 'Recognize what kind of project input arrived' },
+      { value: 'Persist', label: 'Make the save or promote result explicit' },
+      { value: 'Execute', label: 'Build one bounded slice at a time' }
+    ]}
+  />
+
+  <Callout type="info" emoji="📝">
+    Canonical source doc: <code>docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md</code>
+  </Callout>
+
+  <PortalPillRow
+    items={[
+      'Chat-first intake',
+      'Bounded persistence',
+      'Modules before giant plans',
+      'Slices before giant execution'
+    ]}
+  />
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The simple path"
+      title="Use one clear route from chat to execution."
+      lede="APW works best when requirement-bearing chat is not left floating in session history and not promoted recklessly either."
+    />
+    <Steps>
+    ### Classify the chat
+
+    Decide whether the input is a new requirement, change request, clarification, decision, task request, exploration-only note, or evidence-only note.
+
+    ### Make the persistence choice explicit
+
+    Save it as notes, promote it, hand it to orchestrator, or do not save it yet.
+
+    ### Map it into project memory
+
+    Put requirements in `SPEC.md`, next work in `TODO.md`, milestone impact in `ROADMAP.md`, rationale in `DECISIONS.md`, and notes or evidence in `JOURNAL.md`.
+
+    ### Break large work into modules
+
+    Use `/orchestrate` when the requirement set is too large to leave as one planning blob.
+
+    ### Turn active modules into atomic slices
+
+    Keep the current work small enough for one clean execution pass and one clean verification pass.
+
+    ### Execute with the right workflow
+
+    Use `/create`, `/debug`, and `/test` one slice at a time, then use orchestrator or governance when official state must change.
+    </Steps>
+  </section>
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Open the detailed source that matches the next question."
+      lede="Most users only need one deeper page after this one."
+    />
+    <div className="apw-next-strip">
+      <a href="/chat-first-requirement-ingestion">See classification</a>
+      <a href="/chat-requirement-persistence">See save and promote choices</a>
+      <a href="/requirement-to-modules">See module breakdown</a>
+      <a href="/atomic-implementation-planning">See atomic planning</a>
+      <a href="/commands-and-workflows">See the workflow layer</a>
+    </div>
+  </section>
+</div>

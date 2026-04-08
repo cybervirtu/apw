@@ -64,6 +64,10 @@ If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./D
 If you have not installed APW locally yet, read [INSTALLATION_GUIDE.md](./INSTALLATION_GUIDE.md).
 If you want the short first-use path before this in-IDE step, read [BASIC_USAGE_GUIDE.md](./BASIC_USAGE_GUIDE.md).
 If project details are arriving through chat, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+If you want the full chat-to-execution route in one page, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+If you need to know what APW should say after saving or promoting requirement chat, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
+If the requirements are large and need decomposition first, read [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md).
+If the active module is still too large to hand straight to execution, read [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md).
 
 ## First-run checklist
 
@@ -157,9 +161,14 @@ Use this simple rule:
 | If your situation sounds like this | First workflow |
 | :--- | :--- |
 | "I still need to think through the idea or first step." | `/brainstorm` |
-| "I know the first feature and want to build it." | `/create` |
+| "I know one bounded slice and want to build it." | `/create` |
 | "This work is large or crosses several areas." | `/orchestrate` |
 | "I am returning later and need orientation." | `/status` |
+
+Execution rule:
+
+- if the work is too large for one clean `/create` pass, use `/orchestrate` first
+- once the slice is clear, build one slice at a time and verify it before moving on
 
 ### 5. Know when the orchestrator matters
 
@@ -191,6 +200,12 @@ The same rule applies when requirements, corrections, or directions arrive in no
 - save them deliberately
 - use orchestrator when official project memory must change across files
 
+APW should also make the persistence result explicit:
+
+- what was saved
+- where it went
+- whether official project memory changed
+
 ## What should I read only if needed?
 
 Use only the next doc you need:
@@ -209,6 +224,7 @@ Only if needed:
 - [COMMAND_INVOCATION_GUIDE.md](./COMMAND_INVOCATION_GUIDE.md)
 - [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)
 - [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md)
+- [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md)
 - [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md)
 - [START_HERE.md](./START_HERE.md)
 

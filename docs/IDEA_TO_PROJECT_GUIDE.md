@@ -154,6 +154,9 @@ That is how APW helps shape an idea into requirements.
 
 Decide the smallest useful first milestone.
 
+If the requirement set already feels large, do not keep it as one blob.
+Break it into a few coherent modules or workstreams before deep execution starts.
+
 ### 4. Choose the APW profile
 
 #### What this step means
@@ -339,6 +342,12 @@ That means implementation can start inside a controlled system instead of a blan
 #### What you should do next
 
 Start from the current `.gsd/STATE.md` and `.gsd/TODO.md`, then use the operator guides to choose the right workflow.
+
+Practical APW rule:
+
+- if the requirements are still large, decompose them into modules first
+- if the active module is still large, decompose it into atomic slices before direct execution
+- then execute and verify one slice at a time
 
 ## 10. Keep progress organized with journal + orchestrator
 

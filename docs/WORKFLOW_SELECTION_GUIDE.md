@@ -27,6 +27,7 @@ Do not treat APW root or the workspace parent folder as the normal home for thes
 If you want the location model in one page, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want the explicit switch helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
+If you want the full requirement route from chat intake to execution, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
 If you want the APW-wide save/promote model for workflows, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 
 ## Important scope note
@@ -132,7 +133,7 @@ Why:
 
 - this is the direct build workflow
 - it should be tied to `SPEC.md`, `TODO.md`, and current scope
-- it is the right move once the work is already defined
+- it is the right move once one atomic slice is already defined
 
 ### The code works but it is messy or underpowered
 
@@ -152,7 +153,7 @@ Why:
 
 - it forces a reproduce-investigate-fix mindset
 - it pushes toward root cause instead of random edits
-- it naturally pairs with `/test` after the fix
+- it naturally pairs with `/test` after the fix so the current slice closes cleanly
 
 ### I need proof before I close the task
 
@@ -161,7 +162,7 @@ Use `/test`.
 Why:
 
 - APW closes work with evidence, not optimism
-- `/test` is the operator workflow that makes verification explicit
+- `/test` is the operator workflow that makes verification explicit before the next slice starts
 
 ### I need structure before implementation
 
@@ -206,7 +207,8 @@ Use `/orchestrate`.
 Why:
 
 - it is for work that crosses files, modules, or specialties
-- it is the right choice when TODO-based work needs decomposition
+- it is the right choice when one long requirement set must become clean modules or workstreams first
+- it is the right choice when modules or TODO-based work still need atomic slice decomposition
 - it is how APW makes orchestrator involvement practical instead of vague
 
 ## The easiest rule of thumb
@@ -229,6 +231,7 @@ Go to `/orchestrate` when any of these are true:
 - one command would touch too many domains at once
 - backend, frontend, and tests all need coordination
 - the TODO item is too large to execute as one bounded step
+- a module still needs first atomic implementation slices
 - the work needs explicit sub-agent assignment
 - the task will likely require canonical state sync after multiple execution steps
 
@@ -236,19 +239,19 @@ Go to `/orchestrate` when any of these are true:
 
 ### New feature loop
 
-`/status` → `/create` → `/test` → `/preview` → orchestrator sync when official state changes
+`/status` → `/orchestrate` if needed → `/create` one slice → `/test` → `/preview` → orchestrator sync when official state changes
 
 ### Bug-fix loop
 
-`/status` → `/debug` → `/test` → orchestrator sync if blockers or next steps changed
+`/status` → `/debug` one bounded failure surface → `/test` → orchestrator sync if blockers or next steps changed
 
 ### UI improvement loop
 
-`/status` → `/design` → `/ui-ux-pro-max` → `/preview` → `/test`
+`/status` → `/design` → `/ui-ux-pro-max` one bounded improvement slice → `/preview` → `/test`
 
 ### Large cross-cutting loop
 
-`/status` → `/orchestrate` → specialist execution → orchestrator sync
+`/status` → `/orchestrate` → specialist execution one slice at a time → `/test` or `/debug` as needed → orchestrator sync
 
 ## What happens after a workflow ends
 

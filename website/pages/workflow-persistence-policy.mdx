@@ -11,6 +11,7 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     actions={[
       { href: '/commands-and-workflows', label: 'Explore Workflows' },
       { href: '/chat-first-requirement-ingestion', label: 'Requirement Ingestion', variant: 'secondary' },
+      { href: '/chat-requirement-persistence', label: 'Persistence Choices', variant: 'secondary' },
       { href: '/brainstorm-persistence-and-promotion', label: 'Brainstorm Persistence', variant: 'secondary' }
     ]}
     stats={[
@@ -28,10 +29,15 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     If the important project input arrived through plain chat before a workflow even ran, follow the chat-first ingestion model first.
   </Callout>
 
+  <Callout type="info" emoji="📦">
+    After that, APW should still tell the user whether the result was saved as notes, promoted directly, handed to orchestrator, or not saved yet.
+  </Callout>
+
   <PortalPillRow
     items={[
       'Execution output is not canonical by default',
       'JOURNAL.md is the safe save path',
+      'One slice should close before the next one opens',
       'Promotion is deliberate',
       'Orchestrator owns cross-file sync'
     ]}
@@ -47,6 +53,10 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     ### Run the workflow
 
     Use `/status`, `/create`, `/enhance`, `/debug`, `/test`, or `/orchestrate` for the actual job.
+
+    ### Keep the current slice explicit
+
+    If the task is large, break it down first. APW should not quietly roll several implementation slices into one vague pass.
 
     ### Keep the useful evidence
 
@@ -74,6 +84,9 @@ import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/por
     />
     <div className="apw-next-strip">
       <a href="/chat-first-requirement-ingestion">Follow chat-first ingestion</a>
+      <a href="/chat-requirements-flow">Follow the full chat flow</a>
+      <a href="/chat-requirement-persistence">Follow persistence choices</a>
+      <a href="/atomic-implementation-planning">Follow atomic planning</a>
       <a href="/commands-and-workflows">See the operator layer</a>
       <a href="/brainstorm-persistence-and-promotion">Follow brainstorm persistence</a>
       <a href="/reference">Reach deeper reference</a>

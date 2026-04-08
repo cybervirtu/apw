@@ -49,16 +49,16 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 | `/status` | Re-orients the operator on current execution state and likely next action. | `STATE.md`, `ROADMAP.md`, `TODO.md`, optional `JOURNAL.md` |
 | `/brainstorm` | Explores options before implementation and proposes a persistence path. | Requirements, constraints, solution options, bounded `JOURNAL.md` summary by default |
 | `/agk` | Main entry point for invoking specialist skills. | Source Code |
-| `/create` | Generates boilerplates, features, or assets. | Source Code |
+| `/create` | Executes one bounded new-implementation slice at a time. | Source Code |
 | `/enhance` | Improves existing implementation without expanding scope by default. | Existing Source Code |
-| `/debug` | Investigates errors, analyzes logs, fixes bugs. | Source Code |
+| `/debug` | Investigates and fixes one bounded failure surface at a time. | Source Code |
 | `/refactor`| Restructures code without changing behavior. | Source Code |
 | `/design` | Technical architecture for a specific feature. | Source Code, Technical Specs |
 | `/ui-ux-pro-max` | High-polish UI and interaction refinement. | UI code, design system inputs |
 | `/preview` | Starts or checks a review-ready local preview. | Local runtime, build preview |
 | `/deploy` | Runs release or deployment preparation workflows. | Deployment configuration, runtime |
-| `/test` | Generates and runs unit/integration tests. | Tests |
-| `/orchestrate` | Coordinates complex multi-agent execution and synthesis. | Cross-cutting implementation work |
+| `/test` | Verifies the current slice with evidence and regression coverage. | Tests |
+| `/orchestrate` | Coordinates complex multi-agent execution, module decomposition, atomic slice planning, and synthesis. | Cross-cutting implementation work |
 
 ### Canonical State Ownership Note
 
@@ -69,6 +69,7 @@ Not every downstream repo vendors every execution workflow file, but APW keeps o
 - Core workflow output across `/status`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` is also non-canonical by default unless it is deliberately promoted.
 - Free editing of `.gsd/STATE.md`, `.gsd/ROADMAP.md`, `.gsd/TODO.md`, and `.gsd/DECISIONS.md` is not part of routine AGK execution.
 - Safe synchronization of those canonical files belongs to the orchestrator or an explicit GSD/governance command.
+- Large work should be decomposed before direct execution, and `/create`, `/debug`, and `/test` should usually operate on one atomic slice at a time.
 
 Use this chat-ingestion map:
 

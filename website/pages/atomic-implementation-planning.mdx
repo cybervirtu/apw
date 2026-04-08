@@ -1,0 +1,79 @@
+import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
+
+# Atomic Implementation Planning
+
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Atomic Planning"
+    title="Turn modules into clean execution slices."
+    lede="APW should not jump from a large module straight into a giant build step. The safe model is to turn active modules into atomic implementation slices, execute one slice at a time, verify each slice, and only then move on."
+    actions={[
+      { href: '/chat-requirements-flow', label: 'Full Chat Flow' },
+      { href: '/requirement-to-modules', label: 'Requirement To Modules' },
+      { href: '/commands-and-workflows', label: 'Commands & Workflows', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'TODO', label: 'Carries actionable atomic slices' },
+      { value: '/create', label: 'Executes one slice at a time' },
+      { value: '/test', label: 'Closes the loop with evidence' }
+    ]}
+  />
+
+  <Callout type="info" emoji="📝">
+    Canonical source doc: <code>docs/ATOMIC_IMPLEMENTATION_PLANNING.md</code>
+  </Callout>
+
+  <PortalPillRow
+    items={[
+      'Keep slices bounded',
+      'Use /orchestrate for large work',
+      'Verify before the next slice',
+      'Keep official sync deliberate'
+    ]}
+  />
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The practical model"
+      title="Five moves keep implementation planning clean."
+      lede="The goal is not writing smaller buzzwords. The goal is giving APW a safe execution unit that can be built, tested, debugged, and reviewed clearly."
+    />
+    <Steps>
+    ### Start from modules or workstreams
+
+    Keep the high-level scope in `SPEC.md`, then identify the active module or workstream.
+
+    ### Break the active module into atomic slices
+
+    Put actionable near-term slices into `TODO.md`.
+
+    ### Keep sequence visible
+
+    Use `ROADMAP.md` for milestone order and phase placement, not for detailed execution chatter.
+
+    ### Execute one slice at a time
+
+    Use `/create` for new implementation, `/debug` for a failing slice, and `/test` to verify the slice before opening the next one.
+
+    ### Use orchestrator when official memory changes
+
+    Save bounded evidence first, then let orchestrator or governance update canonical project memory deliberately.
+    </Steps>
+  </section>
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Use the page that matches the next planning question."
+      lede="Most users need either the module-breakdown model, the workflow operator layer, or the persistence model next."
+    />
+    <div className="apw-next-strip">
+      <a href="/chat-requirements-flow">See the full chat flow</a>
+      <a href="/requirement-to-modules">Start from module breakdown</a>
+      <a href="/commands-and-workflows">See the workflow layer</a>
+      <a href="/workflow-persistence-policy">See persistence rules</a>
+      <a href="/chat-requirement-persistence">See save and promote choices</a>
+    </div>
+  </section>
+</div>

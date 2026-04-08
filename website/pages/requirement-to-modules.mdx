@@ -1,0 +1,78 @@
+import { Callout, Steps } from 'nextra/components'
+import { PortalHero, PortalPillRow, PortalSectionIntro } from '../components/portal-ui'
+
+# Requirement To Modules
+
+<div className="apw-page">
+  <PortalHero
+    eyebrow="Module Breakdown"
+    title="Turn large requirements into clean workstreams."
+    lede="APW should not leave a long requirement set as one giant planning blob. The safe model is to keep the high-level scope in SPEC, break the work into coherent modules, sequence those modules in ROADMAP, and turn them into practical slices in TODO."
+    actions={[
+      { href: '/chat-requirements-flow', label: 'Full Chat Flow' },
+      { href: '/commands-and-workflows', label: 'Commands & Workflows' },
+      { href: '/chat-first-requirement-ingestion', label: 'Requirement Ingestion', variant: 'secondary' }
+    ]}
+    stats={[
+      { value: 'SPEC', label: 'Keeps the high-level scope and module map' },
+      { value: 'TODO', label: 'Carries module backlog and work slices' },
+      { value: '/orchestrate', label: 'Decomposes large cross-cutting work safely' }
+    ]}
+  />
+
+  <Callout type="info" emoji="📝">
+    Canonical source doc: <code>docs/REQUIREMENT_MODULE_BREAKDOWN.md</code>
+  </Callout>
+
+  <PortalPillRow
+    items={[
+      'Keep decomposition practical',
+      'Use modules, not giant blobs',
+      'Sequence in ROADMAP',
+      'Use /orchestrate for large decomposition'
+    ]}
+  />
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="The practical model"
+      title="Five moves make big requirements buildable."
+      lede="The goal is not taxonomy. The goal is turning large project input into bounded planning and execution slices."
+    />
+    <Steps>
+    ### Keep the high-level scope in SPEC
+
+    Use `SPEC.md` for the project story, not for giant task checklists.
+
+    ### Group the work into modules
+
+    Split long requirements into coherent capability, flow, or delivery boundaries.
+
+    ### Sequence the modules
+
+    Put the module order, milestone impact, and dependencies into `ROADMAP.md`.
+
+    ### Slice the active modules into backlog work
+
+    Move practical follow-up slices into `TODO.md`.
+
+    ### Use /orchestrate when the decomposition crosses several areas
+
+    Let the orchestrator turn one big requirement blob into a module map, sequencing, and synchronized next work.
+    </Steps>
+  </section>
+
+  <section className="apw-section">
+    <PortalSectionIntro
+      eyebrow="Read next"
+      title="Use the source doc that matches the next question."
+      lede="Most users need the module-breakdown model, the workflow chooser, or the detailed orchestrate guidance."
+    />
+    <div className="apw-next-strip">
+      <a href="/chat-requirements-flow">See the full chat flow</a>
+      <a href="/commands-and-workflows">See workflow routing</a>
+      <a href="/workflow-persistence-policy">See persistence rules</a>
+      <a href="/chat-requirement-persistence">See persistence choices</a>
+    </div>
+  </section>
+</div>

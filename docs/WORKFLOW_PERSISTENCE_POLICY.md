@@ -18,6 +18,7 @@ This guide defines APW's persistence policy for the core workflows:
 It exists so users do not have to guess whether workflow output stayed only in chat, became evidence, or became canonical project state.
 
 For the intake model that applies before workflow persistence begins, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+For the explicit user-facing save / promote / sync outcomes after requirement chat, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
 
 ## The APW-wide model
 
@@ -33,6 +34,12 @@ That same discipline applies to requirement-bearing chat before or around workfl
 1. classify the chat input first
 2. use `JOURNAL.md` as the safe buffer when needed
 3. promote official requirement memory deliberately
+
+That same discipline also applies to execution planning:
+
+1. large work becomes modules or workstreams first
+2. active modules become atomic implementation slices
+3. execution and verification should usually close one slice before the next slice opens
 
 ## The practical default
 
@@ -50,6 +57,13 @@ When workflow outcomes affect official project understanding across canonical fi
 2. hand off to orchestrator or governance for official synchronization
 
 This keeps the system safe, visible, and understandable.
+
+For requirement-bearing chat outside a workflow, APW should make one of four persistence choices explicit:
+
+1. save as notes / evidence only
+2. promote into requirements and plan files
+3. hand off to orchestrator for official cross-file sync
+4. do not save yet
 
 ## Per-workflow summary
 
@@ -95,8 +109,10 @@ They become durable APW memory only through deliberate persistence.
 If you are unsure what to do after a workflow finishes:
 
 - save the useful evidence to `JOURNAL.md`
+- keep the current slice explicit instead of rolling into a vague next step
 - if official project understanding changed, hand off to orchestrator
 
 That is the safe APW default.
 
 If the meaningful input arrived through plain chat before the workflow even started, follow [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md) first.
+If the next question is "What got saved and did official memory change?", follow [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).

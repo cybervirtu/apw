@@ -14,6 +14,8 @@ It explains how to drive real work in tools such as Antigravity, Codex, and Curs
 - what it should produce
 - when it should stop and hand work to the orchestrator
 
+If you want the requirement story before workflow invocation begins, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+
 ## Workspace context note
 
 Use the commands in this guide from the downstream project root.
@@ -110,6 +112,22 @@ Use this rule of thumb:
 1. keep the useful evidence
 2. save it safely in `JOURNAL.md`
 3. use orchestrator when official project memory should change
+
+## APW-Wide Atomic Execution Rule
+
+Across the execution workflows, APW also uses one simple planning rule:
+
+1. if the work is large, use `/orchestrate` to decompose it first
+2. keep the active implementation slices visible in `.gsd/TODO.md`
+3. use `/create` or `/debug` on one bounded slice at a time
+4. use `/test` to close that slice with verification evidence
+5. only then move to the next slice or synchronize canonical state deliberately
+
+This keeps APW practical:
+
+- large work becomes modules and then slices
+- execution stays bounded
+- verification closes the current slice before the next one opens
 
 ## Command Flow At A Glance
 
@@ -317,7 +335,7 @@ For the full persistence model, read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](.
 
 ### Purpose
 
-Build a new feature, file, flow, or implementation slice that is already inside approved scope.
+Build one bounded new implementation slice that is already inside approved scope.
 
 ### When to use
 
@@ -350,8 +368,9 @@ Build a new feature, file, flow, or implementation slice that is already inside 
 ### Expected output
 
 - implemented code or files
+- one completed or clearly advanced atomic slice
 - bounded explanation of what changed
-- verification notes or follow-up testing needs
+- verification notes, remaining gaps, or follow-up slice needs
 - bounded evidence added to `.gsd/JOURNAL.md` when useful
 
 ### Safe default persistence
@@ -376,6 +395,10 @@ Usually run:
 - `/test`
 - `/preview`
 - `/debug` if the new implementation fails
+
+APW rule:
+
+- do not open the next implementation slice until the current one is verified or explicitly deferred
 
 ### Orchestrator handoff
 
@@ -484,7 +507,7 @@ The safe APW path is:
 
 ### Purpose
 
-Diagnose and safely fix broken behavior.
+Diagnose and safely fix one bounded failure surface or failing implementation slice.
 
 ### When to use
 
@@ -522,6 +545,7 @@ Diagnose and safely fix broken behavior.
 - root cause
 - scoped fix
 - regression test or proof of fix
+- any reopened or follow-up slice guidance
 - bounded evidence in `.gsd/JOURNAL.md`
 
 ### Safe default persistence
@@ -544,6 +568,10 @@ Usually run:
 
 - `/test`
 - `/status` if you need a fresh briefing on what remains
+
+APW rule:
+
+- if the bug reveals a broader hidden plan, stop and return to `/orchestrate` instead of stretching one debug pass into a giant rewrite
 
 ### Orchestrator handoff
 
@@ -568,7 +596,7 @@ The safe APW path is:
 
 ### Purpose
 
-Verify work before you treat it as complete.
+Verify the current slice before you treat it as complete and open the next one.
 
 ### When to use
 
@@ -604,6 +632,7 @@ Verify work before you treat it as complete.
 - tests added or updated
 - run results
 - failures, gaps, or passing evidence
+- explicit closure or reopen signal for the current slice
 - bounded evidence in `.gsd/JOURNAL.md` when useful
 
 ### Safe default persistence
@@ -627,6 +656,10 @@ Usually:
 - return to `/debug` if failures remain
 - move to `/preview` for human review
 - hand off to orchestrator if passing verification changes official state
+
+APW rule:
+
+- `/test` closes the current implementation slice with evidence; if it cannot do that, the slice remains open
 
 ### Orchestrator handoff
 
@@ -912,10 +945,14 @@ Deployment often changes official project status, next steps, or milestone state
 
 Coordinate work that is too large, too cross-cutting, or too multi-agent for one direct execution workflow.
 
+This is also the practical APW command for turning one large requirement set into a clean module or workstream breakdown.
+It is also the practical APW command for turning those modules into first atomic implementation slices.
+
 ### When to use
 
 - when the task spans multiple modules or domains
 - when one TODO item actually needs decomposition
+- when a module still hides several implementation slices
 - when backend, frontend, testing, and ops all need coordinated work
 - when you need a plan, sub-agent assignment, and synthesis
 
@@ -947,6 +984,9 @@ Coordinate work that is too large, too cross-cutting, or too multi-agent for one
 ### Expected output
 
 - task decomposition
+- module or workstream breakdown when the requirement set is large
+- atomic implementation slices for the active workstream
+- dependency and sequencing view when modules affect each other
 - agent and workflow assignments
 - execution sequencing
 - synthesized orchestration report
@@ -963,6 +1003,7 @@ The safe default is:
 
 When `/orchestrate` changes official project understanding, promotion commonly affects:
 
+- high-level module map or scoped capability grouping -> `.gsd/SPEC.md`
 - canonical follow-up tasks -> `.gsd/TODO.md`
 - current status, blockers, or next-step state -> `.gsd/STATE.md`
 - milestone or phase changes -> `.gsd/ROADMAP.md`
@@ -992,9 +1033,17 @@ The safe APW path is:
 @orchestrator /orchestrate split reporting module work from TODO.md into backend, frontend, and tests
 ```
 
+Another good module-breakdown example:
+
+```text
+@orchestrator /orchestrate break this marketplace requirement set into modules, dependencies, and first implementation slices
+```
+
 ## What to read next
 
 - If you want the APW-wide workflow persistence model in one place, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
+- If you want the explicit APW module-breakdown model, read [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md).
+- If you want the explicit APW atomic-slice planning model, read [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md).
 - Read [AGENT_PLUS_WORKFLOW_EXAMPLES.md](./AGENT_PLUS_WORKFLOW_EXAMPLES.md) next to see how these workflows pair with real specialist agents.
 - If you are still not sure which workflow to choose, go back to [WORKFLOW_SELECTION_GUIDE.md](./WORKFLOW_SELECTION_GUIDE.md).
 - If you want the faster repo-start path, read [QUICK_START.md](./QUICK_START.md).

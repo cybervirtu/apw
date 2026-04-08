@@ -78,6 +78,42 @@ For requirement-bearing chat, use this APW rule:
 - promote requirements into `SPEC.md`, tasks into `TODO.md`, milestone impact into `ROADMAP.md`, and chosen rationale into `DECISIONS.md`
 - use orchestrator or governance when the chat changes official project memory across files
 
+Use this unified APW requirement flow:
+
+- requirement-bearing chat arrives first
+- classify it before persistence
+- make the persistence outcome explicit
+- map the saved result into `SPEC.md`, `TODO.md`, `ROADMAP.md`, `DECISIONS.md`, or `JOURNAL.md`
+- break large requirement sets into modules or workstreams
+- break active modules into atomic implementation slices
+- execute those slices with `/create`, `/debug`, `/test`, and `/orchestrate` as needed
+- use orchestrator or governance when official cross-file memory must change
+
+For large requirement sets, use this APW decomposition rule:
+
+- keep the high-level scope in `SPEC.md`
+- break the work into coherent modules or workstreams
+- put module backlog and work slices into `TODO.md`
+- put module sequencing and milestone order into `ROADMAP.md`
+- put major decomposition tradeoffs into `DECISIONS.md`
+- use `/orchestrate` when one requirement blob needs practical module decomposition
+
+After modules exist, use this APW atomic-planning rule:
+
+- turn the active module or workstream into small implementation slices
+- keep actionable slices in `TODO.md`
+- keep sequencing and milestone placement in `ROADMAP.md`
+- keep important planning rationale in `DECISIONS.md`
+- use `/orchestrate` when a module is still too large to slice cleanly
+- use `/create` for one slice at a time, then `/test` or `/debug` to close that slice before moving on
+
+After meaningful requirement chat, make one persistence outcome explicit:
+
+- save as notes / evidence only
+- promote into requirements and plan files
+- hand off to orchestrator for official cross-file sync
+- do not save yet
+
 For `APW: Create Project`, keep this workspace rule in mind:
 
 - if the current context is APW root, create the new downstream repo in the parent workspace beside `apw`
@@ -96,20 +132,24 @@ Read now:
 2. `docs/FIRST_RUN_IN_IDE.md` when present
 3. `docs/APW_ACTION_MODEL.md` when present
 4. `docs/CHAT_FIRST_REQUIREMENT_INGESTION.md` when requirements or changes are arriving through chat
+5. `docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md` when the next question is how the full chat-to-execution route works
+6. `docs/CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md` when the next question is what got saved and whether official memory changed
+7. `docs/REQUIREMENT_MODULE_BREAKDOWN.md` when the next question is how to split a large requirement set into modules or workstreams
+8. `docs/ATOMIC_IMPLEMENTATION_PLANNING.md` when the next question is how to turn modules into bounded implementation slices
 
 Only if needed:
 
-5. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
-6. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
-7. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
-8. `docs/BASIC_ONBOARDING_PROCEDURE.md`
-9. `docs/WHERE_DO_I_WORK.md`
+9. `docs/WORKFLOW_SELECTION_GUIDE.md` when you need command choice help
+10. `docs/COMMAND_INVOCATION_GUIDE.md` when you need command details
+11. `docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md` when you need the brainstorm save/promote model
+12. `docs/BASIC_ONBOARDING_PROCEDURE.md`
+13. `docs/WHERE_DO_I_WORK.md`
 
 Advanced reference:
 
-10. `PROJECT_RULES.md`
-11. `AGENT_SYSTEM.md`
-12. `COMMAND_POLICY.md`
+14. `PROJECT_RULES.md`
+15. `AGENT_SYSTEM.md`
+16. `COMMAND_POLICY.md`
 
 For the fuller routing model, read `docs/DOCUMENTATION_LEVELS.md`.
 

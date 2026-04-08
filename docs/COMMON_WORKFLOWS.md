@@ -44,9 +44,9 @@ Use this when adding a planned feature or milestone slice.
 
 1. Confirm the feature belongs in the current plan
 2. Make sure `SPEC.md` and `ROADMAP.md` reflect it
-3. Break the active slice into `TODO.md`
-4. Execute the feature in a bounded way
-5. Verify the result
+3. Break the active module into one atomic slice in `TODO.md`
+4. Execute only that slice in a bounded way
+5. Verify that slice before opening the next one
 6. Append evidence to `JOURNAL.md`
 7. Sync canonical state if the official project summary changed
 8. Validate before merge
@@ -66,8 +66,8 @@ Use this when correcting a scoped regression or broken behavior.
 
 1. Reproduce the issue
 2. Read `STATE.md` and `TODO.md`
-3. Fix only the bug
-4. Verify with tests or reproducible proof
+3. Fix only the failing slice or bounded failure surface
+4. Verify with tests or reproducible proof before moving on
 5. Log the evidence in `JOURNAL.md`
 6. Sync canonical state if blockers or next steps changed
 7. Validate before merge
@@ -86,9 +86,9 @@ Use this when the project’s official state needs to change.
 
 1. Read recent code changes and `JOURNAL.md`
 2. Update `STATE.md` if the current position changed
-3. Update `TODO.md` if canonical tasks changed
-4. Update `ROADMAP.md` if phase or milestone status changed
-5. Update `DECISIONS.md` if design rationale changed
+3. Update `TODO.md` if canonical tasks or atomic slices changed
+4. Update `ROADMAP.md` if phase, milestone, or slice sequencing changed
+5. Update `DECISIONS.md` if design or planning rationale changed
 
 ### Example
 
@@ -173,7 +173,8 @@ You adopt a newer APW version that improves CI enforcement and documentation, th
 Most APW work is just this:
 
 - read current state
-- execute in scope
+- decompose large work into modules and then atomic slices
+- execute one slice in scope
 - log evidence
 - sync official memory deliberately
 - validate before merge

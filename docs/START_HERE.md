@@ -18,6 +18,10 @@ If you want the shortest "what do I do after install?" path, read [BASIC_USAGE_G
 If you want the one-minute command reference, read [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md).
 If you want the preferred chat-first and IDE-friendly action model, read [APW_ACTION_MODEL.md](./APW_ACTION_MODEL.md).
 If you want the model for turning requirement-bearing chat into project memory safely, read [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md).
+If you want the full route from requirement chat to execution in one place, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+If you want the model for what APW should say after saving or promoting requirement chat, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
+If you want the model for breaking large requirements into modules and workstreams, read [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md).
+If you want the model for turning modules into bounded implementation slices, read [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md).
 If you want the explicit reading-level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.md).
 If you want the simple answer to "where should I actually work?", read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want explicit helpers for moving between APW root, project roots, and the workspace parent, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
@@ -99,6 +103,10 @@ Read these now:
 5. [../COMMAND_CHEATSHEET.md](../COMMAND_CHEATSHEET.md)
 6. [QUICK_START.md](./QUICK_START.md)
 7. [CHAT_FIRST_REQUIREMENT_INGESTION.md](./CHAT_FIRST_REQUIREMENT_INGESTION.md)
+8. [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md)
+9. [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md)
+10. [REQUIREMENT_MODULE_BREAKDOWN.md](./REQUIREMENT_MODULE_BREAKDOWN.md)
+11. [ATOMIC_IMPLEMENTATION_PLANNING.md](./ATOMIC_IMPLEMENTATION_PLANNING.md)
 
 This level answers:
 
@@ -107,6 +115,10 @@ This level answers:
 - what to do first in the IDE
 - what command or workflow to use first
 - how requirement-bearing chat should be classified and persisted
+- how the full requirement route runs from chat through planning and execution
+- how APW should report what got saved and whether official memory changed
+- how large requirement sets should become modules before deep execution starts
+- how active modules should become atomic implementation slices before routine execution expands
 
 ### Level 2 — Use APW better
 

@@ -48,6 +48,10 @@ Optional next:
 - [Where Do I Work?](docs/WHERE_DO_I_WORK.md)
 - [Safe Context Switching](docs/SAFE_CONTEXT_SWITCHING.md)
 - [Chat-First Requirement Ingestion](docs/CHAT_FIRST_REQUIREMENT_INGESTION.md)
+- [Chat Requirements Flow](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md)
+- [Chat Requirement Persistence Choices](docs/CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md)
+- [Requirement Module Breakdown](docs/REQUIREMENT_MODULE_BREAKDOWN.md)
+- [Atomic Implementation Planning](docs/ATOMIC_IMPLEMENTATION_PLANNING.md)
 
 ### Level 2 — Use APW Better
 
@@ -56,6 +60,10 @@ Read these when you want guided support after the repo exists:
 - [Idea to Project Guide](docs/IDEA_TO_PROJECT_GUIDE.md)
 - [Tech Stack Selection Guide](docs/TECH_STACK_SELECTION_GUIDE.md)
 - [Chat-First Requirement Ingestion](docs/CHAT_FIRST_REQUIREMENT_INGESTION.md)
+- [Chat Requirements Flow](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md)
+- [Chat Requirement Persistence Choices](docs/CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md)
+- [Requirement Module Breakdown](docs/REQUIREMENT_MODULE_BREAKDOWN.md)
+- [Atomic Implementation Planning](docs/ATOMIC_IMPLEMENTATION_PLANNING.md)
 - [Workflow Selection Guide](docs/WORKFLOW_SELECTION_GUIDE.md)
 - [Command Invocation Guide](docs/COMMAND_INVOCATION_GUIDE.md)
 - [Guided Project-State Initialization](docs/GUIDED_PROJECT_STATE_INITIALIZATION.md)
@@ -139,6 +147,11 @@ For requirement-bearing chat after the repo exists, APW uses one simple rule:
 - classify the chat first
 - save a bounded summary to `JOURNAL.md` when needed
 - promote official changes deliberately into `SPEC.md`, `TODO.md`, `ROADMAP.md`, or `DECISIONS.md`
+- make the persistence outcome explicit: notes only, promote, orchestrator sync, or do not save yet
+- when the requirement set is too large for one clean backlog, use `/orchestrate` to break it into modules or workstreams first
+- once modules exist, turn the active work into one bounded implementation slice at a time before using `/create`, `/debug`, or `/test`
+
+If you want the whole route in one place, read [docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
 
 ## Workspace Context Model
 
@@ -416,6 +429,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
    /path/to/apw/scripts/init-project-state.sh --target .
    ```
 13. Review the generated state once, then begin implementation work from `.gsd/STATE.md` and `.gsd/TODO.md`.
+14. If the current TODO item is still too large, use `/orchestrate` to turn it into atomic slices before direct execution.
 
 ### For Migrating an Existing Project
 1. Start with the [Existing Repo Migration Guide](docs/EXISTING_REPO_MIGRATION_GUIDE.md).
@@ -442,6 +456,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Quick Start](docs/QUICK_START.md)**: fastest safe path to try APW on a real project
 - **[Command Cheatsheet](COMMAND_CHEATSHEET.md)**: one-minute command reference
 - **[APW Action Model](docs/APW_ACTION_MODEL.md)**: the chat-first and IDE-friendly interaction model
+- **[Chat Requirements Flow](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md)**: the end-to-end route from requirement chat to execution
+- **[Atomic Implementation Planning](docs/ATOMIC_IMPLEMENTATION_PLANNING.md)**: turn modules into bounded implementation slices for `/create`, `/debug`, and `/test`
 
 ### Level 2 — Use APW Better
 
@@ -455,6 +471,8 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - **[Agent + Workflow Examples](docs/AGENT_PLUS_WORKFLOW_EXAMPLES.md)**: real invocation patterns
 - **[Brainstorm Persistence and Promotion](docs/BRAINSTORM_PERSISTENCE_AND_PROMOTION.md)**: safe save/promote rules for brainstorm work
 - **[Workflow Persistence Policy](docs/WORKFLOW_PERSISTENCE_POLICY.md)**: APW-wide save/promote rules across core workflows
+- **[Chat Requirements Flow](docs/CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md)**: the unified route from chat intake through persistence, modules, slices, and workflows
+- **[Atomic Implementation Planning](docs/ATOMIC_IMPLEMENTATION_PLANNING.md)**: turn modules into bounded execution slices before routine implementation expands
 - **[Downstream Project Upgrade](docs/DOWNSTREAM_PROJECT_UPGRADE.md)**: safe preview-first downstream upgrade flow
 - **[Real-World Examples](docs/REAL_WORLD_EXAMPLES.md)**: relatable project examples
 

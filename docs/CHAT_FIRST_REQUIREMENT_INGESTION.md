@@ -20,6 +20,8 @@ APW treats chat as the main intake layer for project requirements.
 
 APW does **not** treat chat as canonical project memory by default.
 
+If you want the full route from chat intake through persistence, decomposition, atomic planning, and workflow execution, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+
 ## The APW ingestion model
 
 APW uses one simple rule:
@@ -108,6 +110,8 @@ The safe default is still:
 - save the useful result to `.gsd/JOURNAL.md`
 
 That keeps the chat from being lost without pretending it already became canonical memory.
+
+For the explicit save / promote / sync choices that should be shown to the user after this step, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
 
 ## When direct promotion is appropriate
 
@@ -230,3 +234,5 @@ Classification determines persistence.
 `JOURNAL.md` is the safe buffer.
 
 Orchestrator or governance decides what becomes official project memory.
+
+When the classification step is done, APW should still make the persistence result explicit using the four outcomes defined in [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
