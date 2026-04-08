@@ -240,6 +240,12 @@ Engine:
 apw switch project MyProject --workspace /path/to/workspace
 ```
 
+Behavior rule:
+
+- resolve and print the exact downstream project path first
+- show the terminal `cd` next step without pretending the shell already changed
+- if `--open` is requested, try an Antigravity-compatible launcher cleanly and otherwise leave a manual IDE-ready path
+
 ### 6. APW: Switch To Framework
 
 Use this when:
@@ -262,6 +268,12 @@ Engine:
 apw switch framework
 ```
 
+Behavior rule:
+
+- resolve and print the APW framework root exactly
+- keep the shell mutation explicit instead of silent
+- allow optional `--open` only as a real launcher request, not as a fake switch
+
 ### 7. APW: Switch To Parent
 
 Use this when:
@@ -283,6 +295,12 @@ Engine:
 ```bash
 apw switch parent --workspace /path/to/workspace
 ```
+
+Behavior rule:
+
+- resolve and print the workspace parent exactly
+- keep the result usable in Antigravity or another IDE by showing the exact folder path
+- if workspace inference is not supported from the current location, require `--workspace` instead of guessing
 
 ### 8. APW: Initialize Project State
 

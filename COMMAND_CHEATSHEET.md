@@ -194,6 +194,8 @@ apw upgrade-project /path/to/project --validate
 ## Practical notes
 
 - path-based forms are usually safer for beginners than implicit `.`-based commands
+- switch commands always print the exact resolved folder path before any optional open attempt
+- `apw switch ... --open` prefers an Antigravity-compatible launcher, then falls back to Cursor or VS Code when available
 - preview-first is the safe upgrade rule
 - project-owned `.gsd` memory and product code stay protected during APW upgrade
 - start from `AGENTS.md`

@@ -46,7 +46,7 @@ For the full level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.
 ### Optional
 
 - `node` and `npm` if you want to run the local docs portal under `website/`
-- a supported launcher such as `code` if you want optional `apw switch ... --open` behavior
+- an Antigravity-compatible launcher such as `antigravity`, `cursor`, or `code` if you want optional `apw switch ... --open` behavior
 
 ## Install APW locally
 

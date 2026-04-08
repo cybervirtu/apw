@@ -65,6 +65,7 @@ APW switching helpers do four things:
 2. classify what that path is
 3. print what that location is for
 4. tell you the next command to run
+5. print the exact folder path so Antigravity or another IDE can open it cleanly
 
 They do not silently change your shell.
 
@@ -232,10 +233,21 @@ What this means:
 
 - APW still prints the destination clearly
 - APW still tells you what the location is for
+- APW prints the exact resolved folder path either way
+- APW prefers an Antigravity-compatible launcher when one is available
 - APW only tries to open the folder if a supported launcher is available
 - opening is optional, not required for switching
 
-If no supported launcher is available, APW falls back to clear printed guidance.
+Launcher preference is:
+
+1. `antigravity`
+2. `cursor`
+3. macOS `open -a "Antigravity"`
+4. macOS `open -a "Cursor"`
+5. `code`
+6. macOS `open -a "Visual Studio Code"`
+
+If no supported launcher is available, APW falls back to clear printed guidance and the exact folder path you should open manually in Antigravity or another IDE.
 
 ## The beginner recovery flow
 

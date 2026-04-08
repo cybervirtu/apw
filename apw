@@ -365,17 +365,133 @@ format_cd_command() {
     printf 'cd %q\n' "$1"
 }
 
-print_vscode_command() {
-    printf 'code %q\n' "$1"
+format_shell_command() {
+    local rendered=""
+    local arg=""
+
+    for arg in "$@"; do
+        if [[ -n "$rendered" ]]; then
+            rendered+=" "
+        fi
+        rendered+="$(printf '%q' "$arg")"
+    done
+
+    printf '%s\n' "$rendered"
+}
+
+LAUNCHER_LABEL=""
+LAUNCHER_KIND=""
+LAUNCHER_PRIMARY_CMD=""
+LAUNCHER_APP_NAME=""
+
+detect_open_launcher() {
+    LAUNCHER_LABEL=""
+    LAUNCHER_KIND=""
+    LAUNCHER_PRIMARY_CMD=""
+    LAUNCHER_APP_NAME=""
+
+    if command -v antigravity >/dev/null 2>&1; then
+        LAUNCHER_LABEL="Antigravity CLI"
+        LAUNCHER_KIND="cli"
+        LAUNCHER_PRIMARY_CMD="antigravity"
+        return 0
+    fi
+
+    if command -v cursor >/dev/null 2>&1; then
+        LAUNCHER_LABEL="Cursor CLI"
+        LAUNCHER_KIND="cli"
+        LAUNCHER_PRIMARY_CMD="cursor"
+        return 0
+    fi
+
+    if [[ "${OSTYPE:-}" == darwin* ]] && command -v open >/dev/null 2>&1; then
+        if open -Ra "Antigravity" >/dev/null 2>&1; then
+            LAUNCHER_LABEL="Antigravity app"
+            LAUNCHER_KIND="macos-app"
+            LAUNCHER_APP_NAME="Antigravity"
+            return 0
+        fi
+
+        if open -Ra "Cursor" >/dev/null 2>&1; then
+            LAUNCHER_LABEL="Cursor app"
+            LAUNCHER_KIND="macos-app"
+            LAUNCHER_APP_NAME="Cursor"
+            return 0
+        fi
+    fi
+
+    if command -v code >/dev/null 2>&1; then
+        LAUNCHER_LABEL="VS Code CLI"
+        LAUNCHER_KIND="cli"
+        LAUNCHER_PRIMARY_CMD="code"
+        return 0
+    fi
+
+    if [[ "${OSTYPE:-}" == darwin* ]] && command -v open >/dev/null 2>&1; then
+        if open -Ra "Visual Studio Code" >/dev/null 2>&1; then
+            LAUNCHER_LABEL="Visual Studio Code app"
+            LAUNCHER_KIND="macos-app"
+            LAUNCHER_APP_NAME="Visual Studio Code"
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+run_open_launcher() {
+    local target_path="$1"
+
+    case "$LAUNCHER_KIND" in
+        cli)
+            "$LAUNCHER_PRIMARY_CMD" "$target_path"
+            ;;
+        macos-app)
+            open -a "$LAUNCHER_APP_NAME" "$target_path"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+format_open_launcher_command() {
+    local target_path="$1"
+
+    case "$LAUNCHER_KIND" in
+        cli)
+            format_shell_command "$LAUNCHER_PRIMARY_CMD" "$target_path"
+            ;;
+        macos-app)
+            format_shell_command open -a "$LAUNCHER_APP_NAME" "$target_path"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
 }
 
 print_switch_next_steps() {
     local target_path="$1"
     local target_kind="$2"
+    local open_requested="$3"
+    local open_command=""
 
     echo "Next:"
     echo "- APW does not silently change your shell or IDE."
     printf '%s\n' "- Run: $(format_cd_command "$target_path")"
+    echo "- Exact folder for Antigravity or another IDE: $target_path"
+
+    if detect_open_launcher; then
+        open_command="$(format_open_launcher_command "$target_path")"
+        if [[ "$open_requested" -eq 1 ]]; then
+            printf '%s\n' "- Open request: APW will try $LAUNCHER_LABEL with: $open_command"
+        else
+            printf '%s\n' "- Antigravity-friendly open command: $open_command"
+        fi
+    else
+        echo "- Manual Antigravity step: open that exact folder path in Antigravity."
+    fi
 
     case "$target_kind" in
         framework)
@@ -395,34 +511,33 @@ maybe_open_target() {
     local open_requested="$2"
 
     if [[ "$open_requested" -eq 0 ]]; then
-        if command -v code >/dev/null 2>&1; then
-            printf '%s\n' "- Optional: run $(print_vscode_command "$target_path") to open it in VS Code."
-        fi
         return 0
     fi
 
     echo
 
-    if command -v code >/dev/null 2>&1; then
-        echo "Optional open requested: launching VS Code for the selected folder."
-        if ! code "$target_path" >/dev/null 2>&1; then
-            echo "VS Code did not open cleanly."
-            printf '%s\n' "Run manually: $(print_vscode_command "$target_path")"
+    if detect_open_launcher; then
+        echo "Optional open requested: launching the selected folder with $LAUNCHER_LABEL."
+        if ! run_open_launcher "$target_path" >/dev/null 2>&1; then
+            echo "$LAUNCHER_LABEL did not open cleanly."
+            printf '%s\n' "Run manually: $(format_open_launcher_command "$target_path")"
             return 1
         fi
-        echo "VS Code open request sent."
+        echo "Open request sent via: $LAUNCHER_LABEL."
     else
-        echo "Optional open requested, but no supported IDE launcher was detected."
-        echo "Open the folder manually in your IDE."
+        echo "Optional open requested, but no Antigravity-compatible launcher was detected."
+        echo "Open the folder manually in Antigravity or another IDE with this exact path:"
+        echo "  $target_path"
     fi
 }
 
 print_switch_summary() {
     local target_kind="$1"
     local target_path="$2"
+    local open_requested="$3"
 
     echo "APW switch helper"
-    echo "Resolved target: $target_path"
+    echo "Resolved path: $target_path"
     echo
 
     case "$target_kind" in
@@ -457,7 +572,7 @@ print_switch_summary() {
     esac
 
     echo
-    print_switch_next_steps "$target_path" "$target_kind"
+    print_switch_next_steps "$target_path" "$target_kind" "$open_requested"
 }
 
 resolve_project_switch_target() {
@@ -869,7 +984,7 @@ run_switch() {
             ;;
     esac
 
-    print_switch_summary "$target_kind" "$target_path"
+    print_switch_summary "$target_kind" "$target_path" "$open_requested"
     maybe_open_target "$target_path" "$open_requested"
 }
 
