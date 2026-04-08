@@ -114,6 +114,10 @@ After meaningful requirement chat, make one persistence outcome explicit:
 - hand off to orchestrator for official cross-file sync
 - do not save yet
 
+Safe default:
+
+- save a bounded summary to `.gsd/JOURNAL.md`
+
 For `APW: Create Project`, keep this workspace rule in mind:
 
 - if the current context is APW root, create the new downstream repo in the parent workspace beside `apw`

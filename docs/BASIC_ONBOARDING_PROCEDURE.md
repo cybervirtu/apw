@@ -52,6 +52,7 @@ That same chat-first rule applies to requirements too:
 - use `JOURNAL.md` as the safe save path when the official destination is not settled yet
 - make the persistence result explicit so the user knows what was saved and whether official memory changed
 - use the full APW requirement flow when the chat must become planned and executable work
+- use orchestrator when several official project files would otherwise need to change together
 
 That keeps APW easier for beginners without removing the existing command layer.
 

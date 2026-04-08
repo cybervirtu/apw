@@ -326,6 +326,7 @@ The safest APW path is:
 ```
 
 For the full persistence model, read [BRAINSTORM_PERSISTENCE_AND_PROMOTION.md](./BRAINSTORM_PERSISTENCE_AND_PROMOTION.md).
+For the explicit post-chat save / promote / sync outcomes, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
 
 ## `/create`
 

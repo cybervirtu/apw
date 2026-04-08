@@ -28,6 +28,7 @@ If you want the location model in one page, read [WHERE_DO_I_WORK.md](./WHERE_DO
 If you want the explicit switch helpers, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
 If you want the first-run IDE checklist first, read [FIRST_RUN_IN_IDE.md](./FIRST_RUN_IN_IDE.md).
 If you want the full requirement route from chat intake to execution, read [CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md](./CHAT_REQUIREMENTS_TO_EXECUTION_FLOW.md).
+If you want the explicit save / promote / sync outcomes after requirement chat, read [CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md](./CHAT_REQUIREMENT_PERSISTENCE_CHOICES.md).
 If you want the APW-wide save/promote model for workflows, read [WORKFLOW_PERSISTENCE_POLICY.md](./WORKFLOW_PERSISTENCE_POLICY.md).
 
 ## Important scope note

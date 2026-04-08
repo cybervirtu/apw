@@ -40,6 +40,8 @@ Why:
 - it keeps the result visible and beginner-safe
 - it leaves room for deliberate promotion later
 
+Use this as the default answer whenever APW is unsure whether requirement-bearing chat should become canonical memory immediately.
+
 ## Choice 1 — Save as notes / evidence only
 
 Use this when:
@@ -161,6 +163,8 @@ In those cases, APW should prefer:
 1. bounded `JOURNAL.md` persistence first
 2. orchestrator or governance sync second
 
+Think of orchestrator handoff as the safe answer whenever one requirement-bearing chat message would otherwise require several canonical files to change together.
+
 ## Beginner-safe rule
 
 If you are unsure which choice to use after meaningful requirement chat:
@@ -198,7 +202,7 @@ The first release is invite-only. Add that to the product requirements.
 
 APW result:
 
-- `Classification: modification / change request`
+- `Classification: requirement change`
 - `Persistence choice: promote into requirements and plan files`
 - `Saved to: .gsd/SPEC.md`
 - `Official project memory changed: yes`
@@ -213,7 +217,7 @@ Move the launch from public signup to partner-only onboarding and break the work
 
 APW result:
 
-- `Classification: modification / change request`
+- `Classification: requirement change`
 - `Persistence choice: hand off to orchestrator for official cross-file sync`
 - `Saved to: .gsd/JOURNAL.md first; sync targets .gsd/SPEC.md, .gsd/TODO.md, .gsd/ROADMAP.md`
 - `Official project memory changed: pending orchestrator`

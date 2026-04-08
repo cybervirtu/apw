@@ -205,6 +205,11 @@ APW should also make the persistence result explicit:
 - what was saved
 - where it went
 - whether official project memory changed
+- whether the result stayed in `JOURNAL.md`, was promoted, or is pending orchestrator sync
+
+The safe default for meaningful requirement chat is:
+
+- a bounded summary in `.gsd/JOURNAL.md`
 
 ## What should I read only if needed?
 
