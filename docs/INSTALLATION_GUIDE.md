@@ -64,12 +64,33 @@ git clone <your-apw-repo-url> apw
 cd apw
 ```
 
-### 3. Install the workspace launcher
+### 3. Run APW setup once
 
 From APW root, run:
 
 ```bash
-./scripts/install-workspace-launcher.sh
+./apw setup
+```
+
+This is the dedicated first-time APW setup path.
+
+It does three things:
+
+- verifies the core APW requirements
+- installs or refreshes the workspace launcher
+- separates optional framework convenience from optional website/docs tooling
+
+If you only want to verify the environment without changing the launcher, run:
+
+```bash
+./apw setup --check-only
+```
+
+### 4. Source the launcher in your shell
+
+From APW root, run:
+
+```bash
 source ../.apw/env.zsh
 ```
 
@@ -90,6 +111,31 @@ apw ...
 ```
 
 Do not rely on `./apw`, `./apw/apw`, or full wrapper paths for normal APW use.
+
+## Core vs optional requirements
+
+### Core APW requirements
+
+- `bash`
+- `git`
+- `ripgrep` (`rg`)
+- the APW workspace launcher
+
+`./apw setup` checks these before later APW commands fail mid-execution.
+
+### Optional framework convenience
+
+- an Antigravity-compatible launcher such as `antigravity`, `cursor`, or `code` for `apw switch ... --open`
+
+This is optional. APW still prints exact resolved folder paths even without an IDE launcher.
+
+### Optional website/docs requirements
+
+- `node`
+- `npm`
+
+These are only for the local docs portal under `website/`.
+They are not required for normal APW project creation, switching, validation, or upgrade use.
 
 ## Verify it works
 
@@ -130,8 +176,14 @@ If `apw` is not resolvable yet:
 
 - run `source ../.apw/env.zsh` from APW root
 - then add that same source line to `~/.zshrc`
-- if the workspace launcher itself is missing, run `./scripts/install-workspace-launcher.sh` again from APW root
+- if the workspace launcher itself is missing, run `./apw setup` again from APW root
 - if APW says the framework layout is incomplete, move to the real APW framework repo and restore the missing framework files before retrying
+
+If `./apw setup` reports missing tools, use these standard install paths:
+
+- macOS: Homebrew, for example `brew install ripgrep` or `brew install git`
+- Debian/Ubuntu: `sudo apt update && sudo apt install -y ripgrep` or `sudo apt install -y git`
+- Windows: `winget install --id BurntSushi.ripgrep.MSVC -e` or `winget install --id Git.Git -e`
 
 ## Optional docs portal setup
 

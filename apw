@@ -13,6 +13,7 @@ APW_LAUNCH_MODE="${APW_LAUNCH_MODE:-direct-wrapper}"
 usage() {
     cat <<EOF
 Usage:
+  $APW_COMMAND_NAME setup [--check-only]
   $APW_COMMAND_NAME new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
   $APW_COMMAND_NAME upgrade-project <name-or-path> [--workspace dir] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
   $APW_COMMAND_NAME context [path]
@@ -24,6 +25,8 @@ Usage:
   $APW_COMMAND_NAME help
 
 Examples:
+  $APW_COMMAND_NAME setup
+  $APW_COMMAND_NAME setup --check-only
   $APW_COMMAND_NAME new ProjectA
   $APW_COMMAND_NAME new ProjectB --profile advanced --stack base
   $APW_COMMAND_NAME new ProjectC --target /path/to/MyWork
@@ -42,6 +45,7 @@ Examples:
   $APW_COMMAND_NAME switch parent
 
 What it does:
+  - installs or verifies the first-time APW launcher and prerequisite setup
   - creates a new project directory under the chosen target location
   - runs the canonical bootstrap flow underneath
   - runs validation by default
@@ -55,6 +59,7 @@ What it does:
 Notes:
   - Canonical invocation is: apw ...
   - Current launch mode: $APW_LAUNCH_MODE
+  - First-time setup and recovery can be started from APW root with: ./apw setup
   - Install the workspace launcher from APW root with: ./scripts/install-workspace-launcher.sh
   - If your shell says "apw: command not found", run that installer, then source ../.apw/env.zsh from APW root.
   - Path-based invocation still works for maintenance and recovery, but apw is the primary entrypoint.
@@ -79,6 +84,105 @@ print_launcher_recovery_help() {
     echo "- From APW root, run: ./scripts/install-workspace-launcher.sh"
     echo "- Then run: source ../.apw/env.zsh"
     echo "- For future zsh shells, add that source line to ~/.zshrc"
+}
+
+detect_platform_family() {
+    case "${OSTYPE:-unknown}" in
+        darwin*) printf 'macos\n' ;;
+        linux*) printf 'linux\n' ;;
+        msys*|cygwin*|win32*) printf 'windows\n' ;;
+        *) printf 'unknown\n' ;;
+    esac
+}
+
+platform_support_message() {
+    case "$(detect_platform_family)" in
+        macos)
+            printf 'macOS is a primary APW shell-and-launcher target.\n'
+            ;;
+        linux)
+            printf 'Linux is supported for core APW terminal workflows.\n'
+            ;;
+        windows)
+            printf 'Windows should use a Unix-compatible shell such as WSL or Git Bash for the primary APW flow.\n'
+            ;;
+        *)
+            printf 'This platform is not part of the primary APW support path yet.\n'
+            ;;
+    esac
+}
+
+current_shell_path() {
+    printf '%s\n' "${SHELL:-unknown}"
+}
+
+current_shell_name() {
+    basename "$(current_shell_path)"
+}
+
+print_tool_install_guidance() {
+    local tool_name="$1"
+    local platform_family=""
+
+    platform_family="$(detect_platform_family)"
+
+    case "$tool_name" in
+        git)
+            case "$platform_family" in
+                macos) echo "Install git on macOS with: brew install git" ;;
+                linux) echo "Install git on Debian/Ubuntu with: sudo apt update && sudo apt install -y git" ;;
+                windows) echo "Install git on Windows with: winget install --id Git.Git -e" ;;
+                *) echo "Install git with your platform package manager before using APW." ;;
+            esac
+            ;;
+        rg)
+            case "$platform_family" in
+                macos) echo "Install ripgrep on macOS with: brew install ripgrep" ;;
+                linux) echo "Install ripgrep on Debian/Ubuntu with: sudo apt update && sudo apt install -y ripgrep" ;;
+                windows) echo "Install ripgrep on Windows with: winget install --id BurntSushi.ripgrep.MSVC -e" ;;
+                *) echo "Install ripgrep (rg) with your platform package manager before using APW validation." ;;
+            esac
+            ;;
+        bash)
+            case "$platform_family" in
+                macos) echo "Install a newer bash on macOS with: brew install bash" ;;
+                linux) echo "Install bash on Debian/Ubuntu with: sudo apt update && sudo apt install -y bash" ;;
+                windows) echo "Install a Unix-compatible shell on Windows with WSL or Git Bash before using APW." ;;
+                *) echo "Install bash or another compatible POSIX shell before using APW." ;;
+            esac
+            ;;
+        node)
+            case "$platform_family" in
+                macos) echo "Install node on macOS with: brew install node" ;;
+                linux) echo "Install node on Debian/Ubuntu with: sudo apt update && sudo apt install -y nodejs npm" ;;
+                windows) echo "Install node on Windows with: winget install --id OpenJS.NodeJS.LTS -e" ;;
+                *) echo "Install node with your platform package manager if you need the docs portal." ;;
+            esac
+            ;;
+        npm)
+            case "$platform_family" in
+                macos) echo "Install npm on macOS with: brew install node" ;;
+                linux) echo "Install npm on Debian/Ubuntu with: sudo apt update && sudo apt install -y npm" ;;
+                windows) echo "Install npm on Windows with: winget install --id OpenJS.NodeJS.LTS -e" ;;
+                *) echo "Install npm with your platform package manager if you need the docs portal." ;;
+            esac
+            ;;
+    esac
+}
+
+require_external_tool() {
+    local command_name="$1"
+    local display_name="$2"
+    local reason="$3"
+
+    if command -v "$command_name" >/dev/null 2>&1; then
+        return 0
+    fi
+
+    echo "Error: Missing required tool: $display_name"
+    echo "Why it is needed: $reason"
+    print_tool_install_guidance "$command_name"
+    exit 1
 }
 
 fail_invalid_framework_layout() {
@@ -707,6 +811,152 @@ downstream_needs_guided_init() {
     return 1
 }
 
+run_setup() {
+    local check_only=0
+    local install_script="$APW_ROOT/scripts/install-workspace-launcher.sh"
+    local workspace_launcher_path="$(default_workspace_parent)/.apw/bin/apw"
+    local missing_required=0
+    local shell_name=""
+    local shell_path=""
+    local platform_family=""
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --check-only)
+                check_only=1
+                shift
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "Error: Unknown option '$1'."
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    shell_path="$(current_shell_path)"
+    shell_name="$(current_shell_name)"
+    platform_family="$(detect_platform_family)"
+
+    echo "APW first-time setup"
+    echo "APW root: $APW_ROOT"
+    echo "Workspace parent: $(default_workspace_parent)"
+    echo "Launch mode: $APW_LAUNCH_MODE"
+    echo
+
+    echo "Core APW requirements"
+    echo "- Platform: $platform_family"
+    echo "  $(platform_support_message)"
+    case "$platform_family" in
+        macos|linux|windows)
+            ;;
+        *)
+            missing_required=1
+            ;;
+    esac
+    echo "- Shell: $shell_name ($shell_path)"
+    case "$shell_name" in
+        zsh|bash)
+            echo "  Shell compatibility: supported for the primary APW setup flow."
+            ;;
+        *)
+            echo "  Shell compatibility: not part of the primary APW flow. APW setup assumes zsh or bash."
+            print_tool_install_guidance bash
+            missing_required=1
+            ;;
+    esac
+
+    if command -v bash >/dev/null 2>&1; then
+        echo "- bash: detected"
+    else
+        echo "- bash: missing"
+        print_tool_install_guidance bash
+        missing_required=1
+    fi
+
+    if command -v git >/dev/null 2>&1; then
+        echo "- git: detected"
+    else
+        echo "- git: missing"
+        print_tool_install_guidance git
+        missing_required=1
+    fi
+
+    if command -v rg >/dev/null 2>&1; then
+        echo "- ripgrep (rg): detected"
+    else
+        echo "- ripgrep (rg): missing"
+        echo "  APW validation depends on rg, so install it before using apw new, validation, or upgrade validation."
+        print_tool_install_guidance rg
+        missing_required=1
+    fi
+
+    if [[ $check_only -eq 1 ]]; then
+        if [[ -x "$workspace_launcher_path" ]]; then
+            echo "- APW launcher: present at $workspace_launcher_path"
+        else
+            echo "- APW launcher: not installed yet"
+            echo "  Install it from APW root with: ./scripts/install-workspace-launcher.sh"
+            missing_required=1
+        fi
+    else
+        echo "- APW launcher: installing or refreshing the workspace launcher"
+        bash "$install_script" >/dev/null
+        if [[ -x "$workspace_launcher_path" ]]; then
+            echo "  Installed at: $workspace_launcher_path"
+        else
+            echo "  Launcher install did not produce the expected file: $workspace_launcher_path"
+            missing_required=1
+        fi
+    fi
+
+    echo
+    echo "Optional framework convenience"
+    if detect_open_launcher; then
+        echo "- IDE launcher for apw switch ... --open: available via $LAUNCHER_LABEL"
+    else
+        echo "- IDE launcher for apw switch ... --open: not detected"
+        echo "  Optional only. APW will still print the exact folder path for manual opening."
+    fi
+
+    echo
+    echo "Optional website/docs tooling"
+    if command -v node >/dev/null 2>&1; then
+        echo "- node: detected"
+    else
+        echo "- node: optional for website/docs only"
+        print_tool_install_guidance node
+    fi
+
+    if command -v npm >/dev/null 2>&1; then
+        echo "- npm: detected"
+    else
+        echo "- npm: optional for website/docs only"
+        print_tool_install_guidance npm
+    fi
+
+    echo
+    echo "Next steps"
+    echo "- Use the canonical command form: apw ..."
+    echo "- If the launcher was just installed, run: source ../.apw/env.zsh"
+    echo "- Do not rely on ./apw, ./apw/apw, or full wrapper paths for normal APW use."
+    echo "- Use node/npm only if you plan to run the local docs portal under website/."
+
+    if [[ $missing_required -ne 0 ]]; then
+        echo
+        echo "Setup status: incomplete"
+        echo "Resolve the missing core requirements above, then re-run $APW_COMMAND_NAME setup."
+        exit 1
+    fi
+
+    echo
+    echo "Setup status: ready"
+}
+
 run_context() {
     local input_path="${1:-.}"
     local resolved_path=""
@@ -1035,6 +1285,14 @@ run_switch() {
     maybe_open_target "$target_path" "$open_requested"
 }
 
+preflight_validate_dependencies() {
+    require_external_tool rg "ripgrep (rg)" "APW validation uses rg to scan files for contract and drift checks."
+}
+
+preflight_upgrade_dependencies() {
+    require_external_tool git "git" "apw upgrade-project uses git status and git work tree checks before it applies APW-managed updates."
+}
+
 run_new() {
     local project_name="${1:-}"
     local profile="base"
@@ -1095,6 +1353,10 @@ run_new() {
     require_script "$BOOTSTRAP_SCRIPT"
     require_script "$VALIDATE_SCRIPT"
     require_script "$INIT_STATE_SCRIPT"
+
+    if [[ $skip_validate -eq 0 ]]; then
+        preflight_validate_dependencies
+    fi
 
     current_path="$(pwd -P)"
     resolve_new_project_target_parent "$target_parent" "$current_path"
@@ -1227,6 +1489,12 @@ run_upgrade_project() {
     done
 
     require_script "$UPGRADE_PROJECT_SCRIPT"
+
+    preflight_upgrade_dependencies
+    if [[ $run_validate -eq 1 ]]; then
+        preflight_validate_dependencies
+    fi
+
     if [[ -e "$selector" ]]; then
         target_path="$(resolve_project_switch_target "$selector" "")"
     else
@@ -1256,6 +1524,10 @@ validate_framework_layout
 command="${1:-help}"
 
 case "$command" in
+    setup)
+        shift
+        run_setup "$@"
+        ;;
     new)
         shift
         run_new "${1:-}" "${@:2}"

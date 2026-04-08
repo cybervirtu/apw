@@ -139,7 +139,7 @@ What to do:
 - Prefer the beginner-friendly action:
   - `APW: Create Project`
 - Use the workspace-friendly APW wrapper as the terminal fallback from wherever you are in the workspace.
-- If `apw` is not available yet, install the workspace launcher first from APW root with `./scripts/install-workspace-launcher.sh` and source `../.apw/env.zsh`.
+- If `apw` is not available yet, run `./apw setup` from APW root and then source `../.apw/env.zsh`.
 
 ```bash
 apw new MyProject --profile base --stack base

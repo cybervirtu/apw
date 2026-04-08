@@ -35,17 +35,17 @@ For the upgrade layer, think in:
 - do normal implementation work inside the downstream project root
 - use APW root for framework maintenance
 
-Install the workspace launcher once from APW root:
+Run first-time setup once from APW root:
 
 ```bash
-./scripts/install-workspace-launcher.sh
+./apw setup
 source ../.apw/env.zsh
 ```
 
 After that, use `apw ...` from the workspace parent, APW root, or any downstream project root.
 
 If `apw` is not resolvable yet, source `../.apw/env.zsh` again and add that same source line to `~/.zshrc`.
-If your shell still says `apw: command not found`, go back to APW root and re-run `./scripts/install-workspace-launcher.sh`.
+If your shell still says `apw: command not found`, go back to APW root and re-run `./apw setup`.
 
 Normal usage:
 
