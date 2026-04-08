@@ -45,6 +45,12 @@ source ../.apw/env.zsh
 After that, use `apw ...` from the workspace parent, APW root, or any downstream project root.
 
 If `apw` is not resolvable yet, source `../.apw/env.zsh` again and add that same source line to `~/.zshrc`.
+If your shell still says `apw: command not found`, go back to APW root and re-run `./scripts/install-workspace-launcher.sh`.
+
+Normal usage:
+
+- use `apw ...`
+- do not rely on `./apw`, `./apw/apw`, or full wrapper paths for day-to-day work
 
 For automatic workspace inference, launch `apw` from APW root, the workspace parent, or a downstream project root.
 From an unrelated folder, pass `--workspace` or `--target` explicitly instead of expecting APW to guess.

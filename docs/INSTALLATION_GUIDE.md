@@ -83,6 +83,14 @@ source /path/to/MyWork/.apw/env.zsh
 
 This keeps `apw` available from the workspace parent, APW root, and downstream project roots without copying wrappers into projects.
 
+Normal usage after that is simply:
+
+```bash
+apw ...
+```
+
+Do not rely on `./apw`, `./apw/apw`, or full wrapper paths for normal APW use.
+
 ## Verify it works
 
 Run these simple checks:
@@ -123,6 +131,7 @@ If `apw` is not resolvable yet:
 - run `source ../.apw/env.zsh` from APW root
 - then add that same source line to `~/.zshrc`
 - if the workspace launcher itself is missing, run `./scripts/install-workspace-launcher.sh` again from APW root
+- if APW says the framework layout is incomplete, move to the real APW framework repo and restore the missing framework files before retrying
 
 ## Optional docs portal setup
 

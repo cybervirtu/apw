@@ -64,6 +64,7 @@ assert_file_exists "$WORKSPACE/.apw/bin/apw" "Installer should create the worksp
 assert_file_exists "$WORKSPACE/.apw/env.zsh" "Installer should create the workspace env.zsh snippet"
 assert_output_contains "$TEMP_ROOT/install.log" "Installed workspace APW launcher:" "Installer should report where the launcher was written"
 assert_output_contains "$TEMP_ROOT/install.log" "apw help" "Installer should tell the user how to verify the launcher"
+assert_output_contains "$TEMP_ROOT/install.log" "do not rely on ./apw, ./apw/apw, or full wrapper paths for everyday work" "Installer should teach the canonical invocation model"
 pass "Workspace launcher installs cleanly"
 
 (

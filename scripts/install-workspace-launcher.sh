@@ -57,6 +57,8 @@ set -euo pipefail
 
 APW_FRAMEWORK_ROOT=$quoted_apw_root
 APW_FRAMEWORK_WRAPPER=$quoted_framework_wrapper
+export APW_LAUNCH_MODE=workspace-launcher
+export APW_COMMAND_NAME=apw
 
 if [[ ! -x "\$APW_FRAMEWORK_WRAPPER" ]]; then
     echo "APW launcher is installed, but the framework wrapper is missing:"
@@ -97,5 +99,9 @@ printf '  source %q\n' "$WORKSPACE_ENV_ZSH"
 echo
 echo "Then verify the canonical entrypoint from the workspace parent, APW root, or a downstream project:"
 echo "  apw help"
+echo
+echo "Normal usage:"
+echo "  use apw ..."
+echo "  do not rely on ./apw, ./apw/apw, or full wrapper paths for everyday work"
 echo
 echo "If apw is not resolvable yet, source the env.zsh file above and re-run apw help."

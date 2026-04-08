@@ -23,6 +23,10 @@ APW's canonical terminal entrypoint is `apw`.
 
 Install it once from APW root with `./scripts/install-workspace-launcher.sh`, source the generated `../.apw/env.zsh`, and then use `apw ...` from the workspace parent, APW root, or any downstream APW project.
 
+Normal usage should not require guessing between `./apw`, `./apw/apw`, full wrapper paths, or ad hoc PATH tweaks.
+
+If your shell says `apw: command not found`, go to APW root, run `./scripts/install-workspace-launcher.sh`, then `source ../.apw/env.zsh`.
+
 ## New Here?
 
 Choose the documentation level that matches where you are:

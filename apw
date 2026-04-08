@@ -8,6 +8,7 @@ VALIDATE_SCRIPT="$APW_ROOT/scripts/validate.sh"
 INIT_STATE_SCRIPT="$APW_ROOT/scripts/init-project-state.sh"
 UPGRADE_PROJECT_SCRIPT="$APW_ROOT/scripts/upgrade-project.sh"
 APW_COMMAND_NAME="${APW_COMMAND_NAME:-apw}"
+APW_LAUNCH_MODE="${APW_LAUNCH_MODE:-direct-wrapper}"
 
 usage() {
     cat <<EOF
@@ -53,10 +54,13 @@ What it does:
 
 Notes:
   - Canonical invocation is: apw ...
+  - Current launch mode: $APW_LAUNCH_MODE
   - Install the workspace launcher from APW root with: ./scripts/install-workspace-launcher.sh
+  - If your shell says "apw: command not found", run that installer, then source ../.apw/env.zsh from APW root.
   - Path-based invocation still works for maintenance and recovery, but apw is the primary entrypoint.
   - Automatic workspace inference is supported from APW root, the workspace parent, and downstream project roots.
   - From an unrelated folder, pass --workspace or --target explicitly instead of expecting APW to guess.
+  - If this wrapper was copied out of the APW framework repo or the framework layout is incomplete, APW will stop with a corrective repair message.
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
   - APW: Create Project uses this same destination resolver.
   - Default new-project destination is workspace-aware:
@@ -70,11 +74,54 @@ Notes:
 EOF
 }
 
+print_launcher_recovery_help() {
+    echo "Launcher recovery:"
+    echo "- From APW root, run: ./scripts/install-workspace-launcher.sh"
+    echo "- Then run: source ../.apw/env.zsh"
+    echo "- For future zsh shells, add that source line to ~/.zshrc"
+}
+
+fail_invalid_framework_layout() {
+    local missing_path="$1"
+    local current_wrapper="$2"
+
+    echo "Error: APW cannot run because the framework layout is incomplete or this wrapper is not inside a real APW framework repo."
+    echo "Checked wrapper: $current_wrapper"
+    echo "Missing required framework path: $missing_path"
+    echo
+    echo "Next steps:"
+    echo "- Move to the real APW framework root and run the canonical command: apw ..."
+    echo "- If you are in the real APW framework root, restore the missing framework files first."
+    print_launcher_recovery_help
+    exit 1
+}
+
+validate_framework_layout() {
+    local required_path=""
+
+    for required_path in \
+        "$APW_ROOT/scripts/bootstrap.sh" \
+        "$APW_ROOT/scripts/validate.sh" \
+        "$APW_ROOT/scripts/init-project-state.sh" \
+        "$APW_ROOT/scripts/upgrade-project.sh" \
+        "$APW_ROOT/PROJECT_RULES.md" \
+        "$APW_ROOT/AGENT_SYSTEM.md" \
+        "$APW_ROOT/COMMAND_POLICY.md"
+    do
+        if [[ ! -e "$required_path" ]]; then
+            fail_invalid_framework_layout "$required_path" "${BASH_SOURCE[0]}"
+        fi
+    done
+}
+
 require_script() {
     local script_path="$1"
 
     if [[ ! -f "$script_path" ]]; then
         echo "Error: Missing required APW script: $script_path"
+        echo
+        echo "This APW command cannot continue until the framework script is restored."
+        print_launcher_recovery_help
         exit 1
     fi
 }
@@ -1203,6 +1250,8 @@ run_upgrade_project() {
 
     bash "$UPGRADE_PROJECT_SCRIPT" "${upgrade_args[@]}"
 }
+
+validate_framework_layout
 
 command="${1:-help}"
 
