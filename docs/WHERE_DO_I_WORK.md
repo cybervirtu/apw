@@ -156,14 +156,14 @@ You can launch that from:
 
 - APW root
 - the workspace parent folder
-- any other convenient location
+- a downstream project root
 
 Default destination policy:
 
 - from APW root, APW creates the repo in the parent workspace beside `apw`
 - from the workspace parent folder, APW creates the repo in the current folder
 - from a downstream project, APW creates the repo as a sibling in the same workspace parent
-- use `--target /path/to/parent` when you want a different parent location
+- from an unrelated folder, use `--target /path/to/parent` when you want APW to create the repo there explicitly
 
 Chat-first rule:
 
@@ -179,7 +179,7 @@ apw new MyProject --profile base --stack base --target /path/to/MyWork
 
 What this means:
 
-- the command can be launched from many places
+- the command can be launched from the three supported APW workspace roots without guessing
 - APW prints the resolved parent and final destination before bootstrap begins
 - the resulting repo is still the downstream project root
 - once the repo exists, that downstream project root becomes the normal place to work
@@ -242,7 +242,9 @@ If you are lost, use this action order:
 
 ### I want to create a new project
 
-You can be in the workspace parent folder or anywhere else.
+You can be in APW root, the workspace parent folder, or a downstream project root.
+
+If you are in an unrelated folder, pass `--target /path/to/parent` explicitly or move into one of those APW roots first.
 
 - `APW: Create Project`
   Terminal fallback:

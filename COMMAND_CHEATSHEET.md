@@ -46,6 +46,9 @@ After that, use `apw ...` from the workspace parent, APW root, or any downstream
 
 If `apw` is not resolvable yet, source `../.apw/env.zsh` again and add that same source line to `~/.zshrc`.
 
+For automatic workspace inference, launch `apw` from APW root, the workspace parent, or a downstream project root.
+From an unrelated folder, pass `--workspace` or `--target` explicitly instead of expecting APW to guess.
+
 The same rule applies to script commands:
 
 - in APW root, use `./scripts/...`

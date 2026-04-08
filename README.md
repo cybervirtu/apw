@@ -173,10 +173,11 @@ APW uses one simple operating model across the workspace:
 
 The practical rule is straightforward:
 
-- create projects from anywhere with `apw new`
+- launch `apw new` from APW root, the workspace parent, or a downstream project root for automatic workspace-aware routing
 - from APW root, `apw new` creates sibling downstream repos in the workspace parent by default
 - from the workspace parent, `apw new` creates the repo in the current folder by default
 - from a downstream project, `apw new` creates a sibling repo in the same workspace parent by default
+- from an unrelated folder, pass `--target /path/to/parent` explicitly instead of expecting APW to guess the workspace
 - chat-first `APW: Create Project` uses that same workspace-aware resolver and shows the chosen destination before creation
 - do normal project work in the downstream project root
 - use APW root when you intentionally mean to maintain APW itself
@@ -398,7 +399,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
 - Profile-by-profile structure notes live in [templates/README.md](templates/README.md).
 
 ### For Developers Starting a New Project
-1. Use the workspace-friendly wrapper from anywhere:
+1. Use the workspace-friendly wrapper from APW root, the workspace parent, or a downstream project root:
    ```bash
    apw new MyProject --profile base --stack base
    ```
@@ -406,7 +407,7 @@ If you are modifying the APW rules themselves, read the [Upgrade Strategy](docs/
    - from APW root, the new repo is created in the parent workspace beside `apw`
    - from the workspace parent, the new repo is created in the current folder
    - from a downstream project, the new repo is created as a sibling in the same workspace parent
-   - use `--target /path/to/parent` when you want a different parent location
+   - from an unrelated folder, use `--target /path/to/parent` when you want a different parent location
 2. If you want to choose the parent location explicitly:
    ```bash
    apw new MyProject --profile base --stack base --target /path/to/MyWork

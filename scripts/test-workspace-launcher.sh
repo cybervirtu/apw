@@ -36,7 +36,7 @@ assert_output_contains() {
     local expected_text="$2"
     local label="$3"
 
-    if ! rg -F --quiet "$expected_text" "$output_path"; then
+    if ! rg -F --quiet -- "$expected_text" "$output_path"; then
         printf 'Expected to find: %s\n' "$expected_text" >&2
         printf '%s\n' '--- output ---' >&2
         cat "$output_path" >&2

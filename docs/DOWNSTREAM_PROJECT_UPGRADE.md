@@ -93,7 +93,7 @@ The safest beginner action is:
 
 - `APW: Preview Upgrade`
 
-From APW root, the workspace parent, or any other convenient location, run:
+From APW root, the workspace parent, or a downstream project root, run:
 
 ```bash
 apw upgrade-project MyProject --dry-run
@@ -110,6 +110,8 @@ If your workspace parent is not the default one, add:
 ```bash
 --workspace /path/to/MyWork
 ```
+
+If you are launching from an unrelated folder, add that explicit `--workspace` instead of relying on APW to infer the workspace automatically.
 
 ## What `--dry-run` shows you
 

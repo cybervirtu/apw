@@ -55,6 +55,8 @@ Notes:
   - Canonical invocation is: apw ...
   - Install the workspace launcher from APW root with: ./scripts/install-workspace-launcher.sh
   - Path-based invocation still works for maintenance and recovery, but apw is the primary entrypoint.
+  - Automatic workspace inference is supported from APW root, the workspace parent, and downstream project roots.
+  - From an unrelated folder, pass --workspace or --target explicitly instead of expecting APW to guess.
   - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
   - APW: Create Project uses this same destination resolver.
   - Default new-project destination is workspace-aware:
@@ -106,6 +108,12 @@ default_workspace_parent() {
     dirname "$APW_ROOT"
 }
 
+APW_INVOCATION_PATH=""
+APW_INVOCATION_CONTEXT=""
+APW_INVOCATION_REASON=""
+APW_INVOCATION_WORKSPACE_PARENT=""
+APW_INVOCATION_PROJECT_ROOT=""
+
 NEW_PROJECT_TARGET_PARENT=""
 NEW_PROJECT_TARGET_CONTEXT=""
 NEW_PROJECT_TARGET_REASON=""
@@ -125,12 +133,122 @@ resolve_existing_path() {
     fi
 }
 
-resolve_workspace_parent() {
+resolve_invocation_context() {
     local input_path="${1:-}"
-    local resolved_path=""
+    local default_parent=""
+    local downstream_root=""
 
     if [[ -z "$input_path" ]]; then
-        resolved_path="$(default_workspace_parent)"
+        input_path="$(pwd -P)"
+    fi
+
+    default_parent="$(default_workspace_parent)"
+
+    APW_INVOCATION_PATH="$input_path"
+    APW_INVOCATION_CONTEXT=""
+    APW_INVOCATION_REASON=""
+    APW_INVOCATION_WORKSPACE_PARENT=""
+    APW_INVOCATION_PROJECT_ROOT=""
+
+    if [[ "$input_path" == "$APW_ROOT" ]]; then
+        APW_INVOCATION_CONTEXT="framework-root"
+        APW_INVOCATION_REASON="Current directory is the APW framework root."
+        APW_INVOCATION_WORKSPACE_PARENT="$default_parent"
+        return 0
+    fi
+
+    if [[ "$input_path" == "$default_parent" ]]; then
+        APW_INVOCATION_CONTEXT="workspace-parent"
+        APW_INVOCATION_REASON="Current directory is the workspace parent that contains apw and downstream sibling repos."
+        APW_INVOCATION_WORKSPACE_PARENT="$default_parent"
+        return 0
+    fi
+
+    if is_downstream_project_root "$input_path"; then
+        APW_INVOCATION_CONTEXT="downstream-project-root"
+        APW_INVOCATION_REASON="Current directory is a downstream APW project root."
+        APW_INVOCATION_WORKSPACE_PARENT="$(dirname "$input_path")"
+        APW_INVOCATION_PROJECT_ROOT="$input_path"
+        return 0
+    fi
+
+    if [[ "$input_path" == "$APW_ROOT"/* ]]; then
+        APW_INVOCATION_CONTEXT="unsupported"
+        APW_INVOCATION_REASON="Current directory is inside APW root but not at the APW framework root itself."
+        APW_INVOCATION_WORKSPACE_PARENT="$default_parent"
+        return 0
+    fi
+
+    if downstream_root="$(find_downstream_root "$input_path" 2>/dev/null)"; then
+        APW_INVOCATION_CONTEXT="unsupported"
+        APW_INVOCATION_REASON="Current directory is inside a downstream APW project but not at that project's root: $downstream_root"
+        APW_INVOCATION_WORKSPACE_PARENT="$(dirname "$downstream_root")"
+        APW_INVOCATION_PROJECT_ROOT="$downstream_root"
+        return 0
+    fi
+
+    APW_INVOCATION_CONTEXT="unsupported"
+    APW_INVOCATION_REASON="Current directory is not the APW framework root, the workspace parent, or a downstream APW project root."
+}
+
+print_supported_invocation_contexts() {
+    echo "Supported invocation contexts:"
+    echo "- APW framework root: $APW_ROOT"
+    echo "- Workspace parent: $(default_workspace_parent)"
+    echo "- Downstream APW project root: <workspace>/<project>"
+}
+
+fail_unsupported_invocation_context() {
+    local command_name="$1"
+    local explicit_hint="${2:-}"
+    local current_path="${3:-}"
+
+    if [[ -z "$current_path" ]]; then
+        current_path="$(pwd -P)"
+    fi
+
+    resolve_invocation_context "$current_path"
+
+    echo "Error: $command_name cannot infer APW workspace routing from this location: $APW_INVOCATION_PATH" >&2
+    echo "Detected invocation context: unsupported" >&2
+    echo "Reason: $APW_INVOCATION_REASON" >&2
+    echo >&2
+    print_supported_invocation_contexts >&2
+    echo >&2
+    echo "Next steps:" >&2
+    echo "- cd $(printf '%q' "$APW_ROOT") and re-run the command" >&2
+    echo "- cd $(printf '%q' "$(default_workspace_parent)") and re-run the command" >&2
+    if [[ -n "$explicit_hint" ]]; then
+        echo "- or pass $explicit_hint explicitly" >&2
+    fi
+    exit 1
+}
+
+resolve_workspace_parent() {
+    local input_path="${1:-}"
+    local command_name="${2:-$APW_COMMAND_NAME}"
+    local resolved_path=""
+    local current_path=""
+
+    if [[ -z "$input_path" ]]; then
+        current_path="$(pwd -P)"
+        resolve_invocation_context "$current_path"
+
+        case "$APW_INVOCATION_CONTEXT" in
+            framework-root|workspace-parent)
+                resolved_path="$APW_INVOCATION_WORKSPACE_PARENT"
+                ;;
+            downstream-project-root)
+                resolved_path="$APW_INVOCATION_WORKSPACE_PARENT"
+                ;;
+            unsupported)
+                fail_unsupported_invocation_context "$command_name" "--workspace /path/to/workspace" "$current_path"
+                ;;
+            *)
+                echo "Error: Unknown invocation context: $APW_INVOCATION_CONTEXT"
+                exit 1
+                ;;
+        esac
     else
         resolved_path="$(resolve_existing_path "$input_path")"
     fi
@@ -146,7 +264,6 @@ resolve_workspace_parent() {
 resolve_new_project_target_parent() {
     local explicit_target="${1:-}"
     local current_path="${2:-}"
-    local downstream_root=""
 
     NEW_PROJECT_TARGET_PARENT=""
     NEW_PROJECT_TARGET_CONTEXT=""
@@ -163,30 +280,32 @@ resolve_new_project_target_parent() {
         current_path="$(pwd -P)"
     fi
 
-    if [[ "$current_path" == "$APW_ROOT" || "$current_path" == "$APW_ROOT"/* ]]; then
-        NEW_PROJECT_TARGET_PARENT="$(default_workspace_parent)"
-        NEW_PROJECT_TARGET_CONTEXT="apw-root"
-        NEW_PROJECT_TARGET_REASON="Current context is APW root, so new downstream projects default to the parent workspace as siblings of apw."
-        return 0
-    fi
+    resolve_invocation_context "$current_path"
 
-    if downstream_root="$(find_downstream_root "$current_path" 2>/dev/null)"; then
-        NEW_PROJECT_TARGET_PARENT="$(dirname "$downstream_root")"
-        NEW_PROJECT_TARGET_CONTEXT="downstream-project"
-        NEW_PROJECT_TARGET_REASON="Current context is a downstream project, so new downstream projects default to the same workspace parent as sibling repos."
-        return 0
-    fi
-
-    if [[ "$current_path" == "$(default_workspace_parent)" ]]; then
-        NEW_PROJECT_TARGET_PARENT="$current_path"
-        NEW_PROJECT_TARGET_CONTEXT="workspace-parent"
-        NEW_PROJECT_TARGET_REASON="Current context is the workspace parent, so the new downstream project defaults to a child of the current folder."
-        return 0
-    fi
-
-    NEW_PROJECT_TARGET_PARENT="$current_path"
-    NEW_PROJECT_TARGET_CONTEXT="general-folder"
-    NEW_PROJECT_TARGET_REASON="Current context is outside the APW workspace model, so APW uses the current directory as the parent. Use --target to choose a different location explicitly."
+    case "$APW_INVOCATION_CONTEXT" in
+        framework-root)
+            NEW_PROJECT_TARGET_PARENT="$APW_INVOCATION_WORKSPACE_PARENT"
+            NEW_PROJECT_TARGET_CONTEXT="framework-root"
+            NEW_PROJECT_TARGET_REASON="Current context is APW root, so new downstream projects default to the parent workspace as siblings of apw."
+            ;;
+        workspace-parent)
+            NEW_PROJECT_TARGET_PARENT="$APW_INVOCATION_PATH"
+            NEW_PROJECT_TARGET_CONTEXT="workspace-parent"
+            NEW_PROJECT_TARGET_REASON="Current context is the workspace parent, so the new downstream project defaults to a child of the current folder."
+            ;;
+        downstream-project-root)
+            NEW_PROJECT_TARGET_PARENT="$APW_INVOCATION_WORKSPACE_PARENT"
+            NEW_PROJECT_TARGET_CONTEXT="downstream-project-root"
+            NEW_PROJECT_TARGET_REASON="Current context is a downstream project root, so new downstream projects default to the same workspace parent as sibling repos."
+            ;;
+        unsupported)
+            fail_unsupported_invocation_context "$APW_COMMAND_NAME new" "--target /path/to/parent" "$current_path"
+            ;;
+        *)
+            echo "Error: Unknown invocation context: $APW_INVOCATION_CONTEXT"
+            exit 1
+            ;;
+    esac
 }
 
 is_downstream_project_root() {
@@ -429,17 +548,17 @@ downstream_needs_guided_init() {
 run_context() {
     local input_path="${1:-.}"
     local resolved_path=""
-    local downstream_root=""
-    local workspace_parent=""
 
     resolved_path="$(resolve_existing_path "$input_path")"
-    workspace_parent="$(default_workspace_parent)"
+    resolve_invocation_context "$resolved_path"
 
     echo "APW context check"
     echo "Path: $resolved_path"
+    echo "Invocation context: $APW_INVOCATION_CONTEXT"
+    echo "Reason: $APW_INVOCATION_REASON"
     echo
 
-    if [[ "$resolved_path" == "$APW_ROOT" ]]; then
+    if [[ "$APW_INVOCATION_CONTEXT" == "framework-root" ]]; then
         echo "Context: APW root"
         echo "Role: framework source, templates, bootstrap/validation engine, and APW maintenance"
         echo "Typical actions:"
@@ -457,55 +576,26 @@ run_context() {
         return 0
     fi
 
-    if [[ "$resolved_path" == "$APW_ROOT"/* ]]; then
-        echo "Context: inside APW root"
-        echo "APW root: $APW_ROOT"
-        echo "Role: framework maintenance area"
+    if [[ "$APW_INVOCATION_CONTEXT" == "downstream-project-root" ]]; then
+        echo "Context: downstream project root"
+        echo "Role: normal day-to-day project work happens here"
         echo "Typical actions:"
-        echo "- edit APW framework files"
-        echo "- maintain docs, templates, scripts, or compatibility material"
+        echo "- open your IDE here"
+        echo "- start from AGENTS.md here"
+        echo "- run project slash workflows here"
+        echo "- edit code, tests, docs, and project-local .gsd/.agent materials here"
         echo "Avoid doing here:"
-        echo "- normal downstream project implementation"
-        echo "- assuming this directory is a downstream project root just because it contains APW files"
+        echo "- editing the APW framework itself unless you intentionally mean to work on APW"
+        echo "- assuming this repo is the source of APW templates or validators"
         echo
         echo "Helpful next commands:"
-        echo "- $APW_COMMAND_NAME switch framework"
-        echo "- $APW_COMMAND_NAME list-projects"
-        return 0
-    fi
-
-    if downstream_root="$(find_downstream_root "$resolved_path")"; then
-        if [[ "$resolved_path" == "$downstream_root" ]]; then
-            echo "Context: downstream project root"
-            echo "Role: normal day-to-day project work happens here"
-            echo "Typical actions:"
-            echo "- open your IDE here"
-            echo "- start from AGENTS.md here"
-            echo "- run project slash workflows here"
-            echo "- edit code, tests, docs, and project-local .gsd/.agent materials here"
-            echo "Avoid doing here:"
-            echo "- editing the APW framework itself unless you intentionally mean to work on APW"
-            echo "- assuming this repo is the source of APW templates or validators"
-        else
-            echo "Context: inside a downstream project"
-            echo "Downstream project root: $downstream_root"
-            echo "Role: project subtree"
-            echo "Typical actions:"
-            echo "- work on files in this subtree"
-            echo "- move back to the project root when you need AGENTS.md, .gsd context, or workflow entry"
-            echo "Avoid doing here:"
-            echo "- forgetting that APW slash workflows and repo-wide context normally start from the downstream project root"
-        fi
-
-        echo
-        echo "Helpful next commands:"
-        echo "- $APW_COMMAND_NAME first-run \"$downstream_root\""
-        echo "- $APW_COMMAND_NAME switch project \"$downstream_root\""
+        echo "- $APW_COMMAND_NAME first-run \"$resolved_path\""
+        echo "- $APW_COMMAND_NAME switch project \"$resolved_path\""
         echo "- $APW_COMMAND_NAME switch framework"
         return 0
     fi
 
-    if [[ "$resolved_path" == "$workspace_parent" ]]; then
+    if [[ "$APW_INVOCATION_CONTEXT" == "workspace-parent" ]]; then
         echo "Context: workspace parent folder"
         echo "Role: organizer and launch point"
         echo "Typical actions:"
@@ -523,15 +613,17 @@ run_context() {
         return 0
     fi
 
-    echo "Context: general folder"
-    echo "Role: not currently identified as APW root, a downstream APW project, or the default workspace parent"
+    echo "Context: unsupported location"
+    echo "Role: not currently identified as APW root, the workspace parent, or a downstream APW project root"
     echo "Typical actions:"
-    echo "- create a new project with: $APW_COMMAND_NAME new MyProject --profile base --stack base"
-    echo "- point APW at a specific workspace with: $APW_COMMAND_NAME list-projects --workspace /path/to/MyWork"
-    echo "- switch explicitly once you know the destination"
+    echo "- move to APW root, the workspace parent, or a downstream project root before using workspace-inferred APW commands"
+    echo "- or pass an explicit workspace with: $APW_COMMAND_NAME list-projects --workspace /path/to/MyWork"
+    echo "- or pass an explicit parent with: $APW_COMMAND_NAME new MyProject --profile base --stack base --target /path/to/MyWork"
     echo "Avoid doing here:"
     echo "- assuming project slash workflows belong here"
     echo "- assuming this folder has APW state just because APW is installed somewhere else"
+    echo
+    print_supported_invocation_contexts
 }
 
 run_first_run() {
@@ -608,6 +700,7 @@ run_list_projects() {
     local workspace_parent=""
     local current_path=""
     local current_downstream_root=""
+    local current_context=""
     local project_roots=()
     local project_root=""
     local project_name=""
@@ -631,8 +724,10 @@ run_list_projects() {
         esac
     done
 
-    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
+    workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME list-projects")"
     current_path="$(pwd -P)"
+    resolve_invocation_context "$current_path"
+    current_context="$APW_INVOCATION_CONTEXT"
 
     echo "APW project discovery"
     echo "Workspace parent: $workspace_parent"
@@ -640,14 +735,23 @@ run_list_projects() {
     echo "Scan model: immediate child folders of the workspace parent"
     echo
 
-    if current_downstream_root="$(find_downstream_root "$current_path" 2>/dev/null)"; then
+    if [[ "$current_context" == "downstream-project-root" ]]; then
+        current_downstream_root="$current_path"
+        echo "Current invocation context: downstream-project-root"
         echo "Current downstream project: $current_downstream_root"
         echo
-    elif [[ "$current_path" == "$APW_ROOT" || "$current_path" == "$APW_ROOT"/* ]]; then
+    elif [[ "$current_context" == "framework-root" ]]; then
+        echo "Current invocation context: framework-root"
         echo "Current context: APW framework"
         echo
-    elif [[ "$current_path" == "$workspace_parent" ]]; then
+    elif [[ "$current_context" == "workspace-parent" ]]; then
+        echo "Current invocation context: workspace-parent"
         echo "Current context: workspace parent folder"
+        echo
+    elif [[ "$current_context" == "unsupported" && -n "$workspace_input" ]]; then
+        echo "Current invocation context: unsupported"
+        echo "Reason: $APW_INVOCATION_REASON"
+        echo "Using explicit workspace override: $workspace_parent"
         echo
     fi
 
@@ -744,18 +848,22 @@ run_switch() {
         esac
     done
 
-    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
-
     case "$destination" in
         framework)
             target_path="$APW_ROOT"
             target_kind="framework"
             ;;
         project)
+            if [[ -e "$selector" ]]; then
+                workspace_parent=""
+            else
+                workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME switch project")"
+            fi
             target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
             target_kind="project"
             ;;
         parent)
+            workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME switch parent")"
             target_path="$workspace_parent"
             target_kind="parent"
             ;;
@@ -957,8 +1065,12 @@ run_upgrade_project() {
     done
 
     require_script "$UPGRADE_PROJECT_SCRIPT"
-    workspace_parent="$(resolve_workspace_parent "$workspace_input")"
-    target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
+    if [[ -e "$selector" ]]; then
+        target_path="$(resolve_project_switch_target "$selector" "")"
+    else
+        workspace_parent="$(resolve_workspace_parent "$workspace_input" "$APW_COMMAND_NAME upgrade-project")"
+        target_path="$(resolve_project_switch_target "$selector" "$workspace_parent")"
+    fi
 
     upgrade_args=(--target "$target_path" --profile "$profile" --stack "$stack")
 

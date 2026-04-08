@@ -92,6 +92,7 @@ Use this when you are unsure whether you are in:
 - APW root
 - a downstream project root
 - the workspace parent folder
+- an unsupported location that needs an explicit `--workspace` or `--target`
 
 ### List known downstream projects
 
@@ -113,6 +114,7 @@ What it does:
 - scans the workspace parent's immediate child folders
 - lists APW downstream projects it can recognize
 - gives you enough information to choose the right project
+- if you are outside the supported APW roots, use `--workspace` instead of expecting APW to infer the workspace automatically
 
 ### Switch to APW root
 
@@ -216,6 +218,7 @@ What this means:
 - APW prints what will be upgraded and what stays protected
 - APW does not silently switch your shell or IDE while doing it
 - day-to-day project work still belongs in the downstream project root after the upgrade
+- if you launch by project name from an unrelated folder, add `--workspace /path/to/MyWork` instead of expecting APW to guess
 
 ## Optional open behavior
 

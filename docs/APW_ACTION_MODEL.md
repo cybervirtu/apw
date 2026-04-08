@@ -149,6 +149,8 @@ Chat-first behavior rule:
 - detect the current context first instead of assuming the current folder should become the parent
 - show the resolved parent and final destination before creation
 - do not create inside APW root unless the user explicitly asks for that target
+- infer the workspace automatically only from APW root, the workspace parent, or a downstream project root
+- if chat starts from an unrelated folder, ask for or supply an explicit target path instead of guessing
 
 ### 2. APW: First Run
 

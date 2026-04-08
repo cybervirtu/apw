@@ -26,11 +26,12 @@ If you want the short first-use path after setup, read [BASIC_USAGE_GUIDE.md](./
 
 Use this quick rule:
 
-- create new projects from anywhere with `APW: Create Project`
+- create new projects from APW root, the workspace parent, or a downstream project root with `APW: Create Project`
 - do day-to-day project work inside the downstream project root
 - use APW root mainly when you are maintaining APW itself
 - treat the workspace parent folder as an organizer, not the normal place for project workflows
 - when `APW: Create Project` starts from APW root, the new repo belongs in the parent workspace beside `apw`, not inside it
+- if you are outside those APW roots, use an explicit target path instead of relying on APW to infer the workspace
 
 If you want the full version of that model, read [WHERE_DO_I_WORK.md](./WHERE_DO_I_WORK.md).
 If you want safe helpers for moving between those places, read [SAFE_CONTEXT_SWITCHING.md](./SAFE_CONTEXT_SWITCHING.md).
