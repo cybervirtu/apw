@@ -53,7 +53,7 @@ APW uses one simple decomposition rule:
 1. keep the high-level project story in `SPEC.md`
 2. group long requirements into a small set of coherent modules or workstreams
 3. break each module into practical backlog slices in `TODO.md`
-4. sequence those modules and slices in `ROADMAP.md`
+4. sequence those modules and give them milestone framing in `ROADMAP.md`
 5. record major decomposition tradeoffs in `DECISIONS.md`
 
 This keeps the model practical:
@@ -62,6 +62,8 @@ This keeps the model practical:
 - `ROADMAP.md` says what comes first and later
 - `TODO.md` says what to do next
 - `DECISIONS.md` says why the shape was chosen
+
+It also prepares the active module for later atomic implementation planning.
 
 ## How to group long requirements into modules
 
@@ -116,7 +118,7 @@ Use this mapping for module decomposition:
 | :--- | :--- |
 | high-level project scope and module-facing product shape | `.gsd/SPEC.md` |
 | module backlog, implementation slices, and follow-up work | `.gsd/TODO.md` |
-| module sequencing, milestones, and dependency order | `.gsd/ROADMAP.md` |
+| module sequencing, milestone framing, and dependency order | `.gsd/ROADMAP.md` |
 | major tradeoffs behind the decomposition | `.gsd/DECISIONS.md` |
 
 Important boundary:
@@ -149,6 +151,7 @@ Use `/orchestrate` to produce:
 
 - the proposed module list
 - the dependency and sequencing view
+- the milestone framing for those modules when it matters
 - the first backlog slices per module
 - the specialist or workflow assignment pattern when useful
 - the sync recommendation for `SPEC.md`, `TODO.md`, `ROADMAP.md`, and `DECISIONS.md`

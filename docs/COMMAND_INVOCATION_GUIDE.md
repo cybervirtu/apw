@@ -987,7 +987,7 @@ It is also the practical APW command for turning those modules into first atomic
 - task decomposition
 - module or workstream breakdown when the requirement set is large
 - atomic implementation slices for the active workstream
-- dependency and sequencing view when modules affect each other
+- dependency, sequencing, and milestone-framing view when modules affect each other
 - agent and workflow assignments
 - execution sequencing
 - synthesized orchestration report
