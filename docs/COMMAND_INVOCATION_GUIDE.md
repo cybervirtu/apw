@@ -371,7 +371,7 @@ Build one bounded new implementation slice that is already inside approved scope
 - implemented code or files
 - one completed or clearly advanced atomic slice
 - bounded explanation of what changed
-- verification notes, remaining gaps, or follow-up slice needs
+- verification notes, remaining gaps, or bounded follow-up slice needs
 - bounded evidence added to `.gsd/JOURNAL.md` when useful
 
 ### Safe default persistence
@@ -661,6 +661,7 @@ Usually:
 APW rule:
 
 - `/test` closes the current implementation slice with evidence; if it cannot do that, the slice remains open
+- `/debug` is the repair loop for that same slice until `/test` can close it
 
 ### Orchestrator handoff
 

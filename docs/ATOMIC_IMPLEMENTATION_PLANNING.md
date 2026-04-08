@@ -66,6 +66,8 @@ This keeps the project memory understandable:
 
 Break the module at the smallest useful execution boundary.
 
+In practical APW terms, that means turning one module into a short list of bounded tasks that can be implemented, tested, debugged, and reviewed without dragging several unrelated changes along with them.
+
 Good slicing signals:
 
 - one user-visible behavior
@@ -82,6 +84,14 @@ A good atomic slice should usually have:
 - an obvious verification method
 - limited dependency spread
 - a realistic chance of completion in one focused execution pass
+
+Use bounded tasks such as:
+
+- one endpoint change
+- one UI behavior change
+- one migration-safe backend improvement
+- one regression fix
+- one verification-focused follow-up slice
 
 Avoid weak slices:
 
@@ -123,7 +133,7 @@ This is the practical loop:
 
 - decompose large work first
 - execute one slice
-- verify that slice
+- verify or debug that slice until it closes cleanly
 - only then open the next slice
 
 ## When `/orchestrate` should be used
@@ -172,6 +182,12 @@ The loop is:
 - `/test` to verify the slice
 
 That loop keeps execution evidence-first and prevents silent drift into the next slice before the current one is understood.
+
+In other words:
+
+- `/create` starts the slice
+- `/debug` repairs the slice when it breaks
+- `/test` closes the slice with evidence
 
 ## Memory and governance boundaries
 
