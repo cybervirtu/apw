@@ -62,9 +62,10 @@ echo
     apw help >"$TEMP_ROOT/help.log"
 )
 
-assert_output_contains "$TEMP_ROOT/help.log" "Canonical invocation is: apw ..." "Help should make the primary invocation obvious"
-assert_output_contains "$TEMP_ROOT/help.log" "If your shell says \"apw: command not found\"" "Help should explain the missing-launcher recovery path"
-assert_output_contains "$TEMP_ROOT/help.log" "Current launch mode: workspace-launcher" "Help should expose the current launch mode clearly"
+assert_output_contains "$TEMP_ROOT/help.log" "Usage:" "Help should stay compact and start with usage"
+assert_output_contains "$TEMP_ROOT/help.log" "help (h)" "Help should show the locked help alias"
+assert_output_contains "$TEMP_ROOT/help.log" "list-projects (lp)" "Help should show the locked list-projects alias"
+assert_output_contains "$TEMP_ROOT/help.log" "upgrade-project (up)" "Help should show the locked upgrade-project alias"
 pass "Help text teaches the canonical launcher model"
 
 (

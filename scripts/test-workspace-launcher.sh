@@ -74,7 +74,7 @@ pass "Workspace launcher installs cleanly"
 )
 
 assert_output_contains "$TEMP_ROOT/parent.log" "Usage:" "Workspace parent should be able to run apw help"
-assert_output_contains "$TEMP_ROOT/parent.log" "  apw help" "Workspace parent help should show the canonical apw entrypoint"
+assert_output_contains "$TEMP_ROOT/parent.log" "help (h)" "Workspace parent help should show the locked help alias"
 pass "Workspace parent resolves the canonical apw launcher"
 
 (
@@ -83,7 +83,7 @@ pass "Workspace parent resolves the canonical apw launcher"
     apw help >"$TEMP_ROOT/framework.log"
 )
 
-assert_output_contains "$TEMP_ROOT/framework.log" "  apw help" "APW root should be able to run apw help without ./apw"
+assert_output_contains "$TEMP_ROOT/framework.log" "switch (s)" "APW root help should show the locked switch alias"
 pass "APW root resolves the canonical apw launcher"
 
 (
@@ -94,7 +94,7 @@ pass "APW root resolves the canonical apw launcher"
     apw help >"$TEMP_ROOT/downstream.log"
 )
 
-assert_output_contains "$TEMP_ROOT/downstream.log" "  apw help" "Downstream project root should be able to run apw help without a local ./apw"
+assert_output_contains "$TEMP_ROOT/downstream.log" "list-projects (lp)" "Downstream project root help should show the locked list-projects alias"
 pass "Downstream project root resolves the canonical apw launcher"
 
 mv "$TEST_APW_ROOT/apw" "$TEST_APW_ROOT/apw.wrapper.bak"

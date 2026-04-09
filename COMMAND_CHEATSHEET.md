@@ -1,208 +1,154 @@
 # COMMAND_CHEATSHEET.md — APW Fast Command Reference
 
 > [!TIP]
-> Use this as the one-minute command reference for day-to-day APW use.
+> Use this as the fast operator reference for the locked APW command surface.
 
-> [!NOTE]
-> The preferred APW path is action-first: ask for the APW action in chat first, use the matching IDE action when available, and use these terminal commands as the fallback reference. For that model, read `docs/APW_ACTION_MODEL.md`.
+> [!IMPORTANT]
+> The only short aliases documented and supported here are:
+> `h`, `s`, `c`, `fr`, `lp`, and `up`.
 
-> [!NOTE]
-> In the APW documentation levels, this file is a `Level 1 — Start now` fast reference. For the full reading model, read `docs/DOCUMENTATION_LEVELS.md`.
+## Help And Discovery
 
-For the first beginner layer, start with:
+### `apw help`
+- Alias: `apw h`
+- Purpose: show compact top-level help or detailed help for one command
+- Syntax:
+  - `apw help`
+  - `apw h`
+  - `apw help <command>`
+- Example:
+  - `apw help switch`
 
-- `APW: Create Project`
-- `APW: Initialize Project State`
-- `APW: First Run`
+### `apw context`
+- Alias: `apw c`
+- Purpose: show whether you are in APW root, the workspace parent, a downstream project root, or an unsupported location
+- Syntax:
+  - `apw context`
+  - `apw c`
+  - `apw context <path>`
+- Example:
+  - `apw c`
 
-For the context and switching layer, think in:
+### `apw first-run`
+- Alias: `apw fr`
+- Purpose: print the beginner-safe first-run checklist for a downstream project
+- Syntax:
+  - `apw first-run`
+  - `apw fr`
+  - `apw first-run <path>`
+- Example:
+  - `apw fr /path/to/project`
 
-- `APW: Show Context`
-- `APW: List Projects`
-- `APW: Switch To Project`
-- `APW: Switch To Framework`
-- `APW: Switch To Parent`
+### `apw list-projects`
+- Alias: `apw lp`
+- Purpose: list recognized downstream APW projects under the inferred or explicit workspace parent
+- Syntax:
+  - `apw list-projects`
+  - `apw lp`
+  - `apw list-projects --workspace /path/to/workspace`
+- Relevant extension:
+  - `--workspace /path/to/workspace`
+- Example:
+  - `apw lp`
 
-For the upgrade layer, think in:
+## Switching
 
-- `APW: Preview Upgrade`
-- `APW: Upgrade Project`
-- `APW: Validate After Upgrade`
+### `apw switch`
+- Alias: `apw s`
+- Purpose: resolve a destination, print the exact path, and run Antigravity when the `antigravity` launcher is available
+- Locked syntax:
+  - `apw switch framework`
+  - `apw switch parent`
+  - `apw switch <project-name-or-path>`
+  - `apw s framework`
+  - `apw s parent`
+  - `apw s <project-name-or-path>`
+- Relevant extension:
+  - `--workspace /path/to/workspace`
+- Examples:
+  - `apw switch framework`
+  - `apw s parent`
+  - `apw switch MyProject`
+  - `apw s /path/to/workspace/MyProject`
+  - `apw s MyProject --workspace /path/to/workspace`
 
-## Quick rule
+## Project Lifecycle
 
-- create projects from APW
-- do normal implementation work inside the downstream project root
-- use APW root for framework maintenance
+### `apw setup`
+- Alias: none
+- Purpose: verify prerequisites and install or refresh the workspace launcher
+- Syntax:
+  - `apw setup`
+  - `apw setup --check-only`
+- Relevant extension:
+  - `--check-only`
+- Example:
+  - `./apw setup`
 
-Run first-time setup once from APW root:
+### `apw new`
+- Alias: none
+- Purpose: create a new downstream APW project with workspace-aware destination resolution
+- Syntax:
+  - `apw new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]`
+- Relevant extensions:
+  - `--profile base|minimal|advanced`
+  - `--stack value`
+  - `--target /path/to/workspace`
+  - `--skip-validate`
+  - `--init-state`
+- Example:
+  - `apw new MyProject --profile base --stack base`
 
+### `apw upgrade-project`
+- Alias: `apw up`
+- Purpose: preview or apply APW-managed upgrades to one downstream project
+- Syntax:
+  - `apw upgrade-project <name-or-path> [--workspace /path/to/workspace] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]`
+  - `apw up <name-or-path> [--workspace /path/to/workspace] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]`
+- Relevant extensions:
+  - `--workspace /path/to/workspace`
+  - `--dry-run`
+  - `--force-managed`
+  - `--validate`
+  - `--profile auto|minimal|base|advanced`
+  - `--stack value`
+- Example:
+  - `apw up MyProject --dry-run`
+
+## Common Examples
+
+### Show help fast
 ```bash
-./apw setup
-source ../.apw/env.zsh
+apw h
+apw help list-projects
 ```
 
-After that, use `apw ...` from the workspace parent, APW root, or any downstream project root.
+### Check where you are
+```bash
+apw c
+apw context /path/to/project
+```
 
-If `apw` is not resolvable yet, source `../.apw/env.zsh` again and add that same source line to `~/.zshrc`.
-If your shell still says `apw: command not found`, go back to APW root and re-run `./apw setup`.
+### Switch cleanly
+```bash
+apw s framework
+apw s parent
+apw s MyProject
+apw s MyProject --workspace /path/to/workspace
+```
 
-Normal usage:
-
-- use `apw ...`
-- do not rely on `./apw`, `./apw/apw`, or full wrapper paths for day-to-day work
-
-For automatic workspace inference, launch `apw` from APW root, the workspace parent, or a downstream project root.
-From an unrelated folder, pass `--workspace` or `--target` explicitly instead of expecting APW to guess.
-
-The same rule applies to script commands:
-
-- in APW root, use `./scripts/...`
-- elsewhere, use `/path/to/apw/scripts/...`
-
-## IDE slash commands
-
-Run these from the downstream project root:
-
-| Command | Use it when |
-| :--- | :--- |
-| `/status` | you need orientation or a quick project check |
-| `/brainstorm` | the idea, scope, or first step is still unclear |
-| `/create` | the feature is clear and you want to build it |
-| `/enhance` | you want to improve or refactor something existing |
-| `/debug` | something is broken and you need to investigate and fix it |
-| `/test` | you want to verify behavior or improve test coverage |
-| `/orchestrate` | the work is large, cross-cutting, or needs coordinated sync |
-
-Notes:
-
-- core slash commands appear in downstream projects that have the APW vendored workflow pack
-- for most users, the downstream project root is the normal place where these commands should appear
-
-Advanced extras when the project profile includes them:
-
-| Command | Use it when |
-| :--- | :--- |
-| `/deploy` | you are preparing or managing deployment work |
-| `/design` | you want UX, flows, or product-structure guidance |
-| `/preview` | you want a review-oriented preview pass |
-| `/ui-ux-pro-max` | you want a heavier UI/UX design workflow |
-
-Notes:
-
-- advanced extras like `/deploy`, `/design`, `/preview`, and `/ui-ux-pro-max` depend on profile/extras and may not always be present
-
-## Terminal fallback commands
-
-### APW wrapper commands
-
-These use the canonical workspace launcher form.
-
-| Command | What it does |
-| :--- | :--- |
-| `apw help` | show the APW wrapper commands |
-| `apw context` | tell you whether you are in APW root, a project root, or a workspace folder |
-| `apw context <path>` | check a specific path instead of the current one |
-| `apw first-run` | print the beginner-safe first-run checklist |
-| `apw first-run <project-path>` | print the first-run checklist for a specific downstream project |
-| `apw new MyProject --profile base --stack base` | create a new APW project |
-| `apw new MyProject --profile base --stack base --target /path/to/workspace` | create the project under a chosen workspace parent |
-| `apw new MyProject --profile base --stack base --init-state` | create a project and immediately run guided state initialization |
-| `apw new MyProject --profile base --stack base --target /path/to/workspace --init-state` | create the project in a chosen workspace and initialize state immediately |
-| `apw list-projects` | list known downstream projects in the default workspace |
-| `apw list-projects --workspace /path/to/workspace` | list downstream projects under a chosen workspace parent |
-| `apw switch framework` | resolve the APW framework root and launch Antigravity when available |
-| `apw switch parent` | resolve the workspace parent and launch Antigravity when available |
-| `apw switch parent --workspace /path/to/workspace` | resolve a specific workspace parent |
-| `apw switch MyProject` | resolve a downstream project and launch Antigravity when available |
-| `apw switch MyProject --workspace /path/to/workspace` | resolve a named project under a chosen workspace parent |
-| `apw switch /path/to/workspace/MyProject` | resolve an explicit downstream project path |
-| `apw upgrade-project <name-or-path> --dry-run` | preview a safe downstream APW upgrade |
-| `apw upgrade-project <name-or-path> --workspace /path/to/workspace --dry-run` | preview an upgrade by project name under a chosen workspace parent |
-| `apw upgrade-project <name-or-path> --validate` | upgrade and run validation afterward |
-| `apw upgrade-project <name-or-path> --force-managed` | also refresh review-before-overwrite APW-managed files |
-| `apw upgrade-project <name-or-path> --profile auto|minimal|base|advanced` | override or pin the expected downstream profile |
-| `apw upgrade-project <name-or-path> --stack <value>` | use a specific stack value during upgrade and validation |
-
-### Lower-level APW script commands
-
-These are also shown in their APW-root form. From a downstream repo, replace `./scripts/...` with `/path/to/apw/scripts/...`.
-
-| Command | What it does |
-| :--- | :--- |
-| `./scripts/upgrade-project.sh --help` | show the lower-level downstream upgrade script help |
-| `./scripts/bootstrap.sh --target . --profile base --stack base` | low-level bootstrap engine |
-| `./scripts/bootstrap.sh --target /path/to/project --profile base --stack base` | low-level bootstrap for a chosen target repo |
-| `./scripts/validate.sh . --profile base --stack base` | validate a repo against the APW contract |
-| `./scripts/validate.sh /path/to/project --profile base --stack base` | validate a chosen target repo |
-| `./scripts/init-project-state.sh --target .` | generate the first core `.gsd` drafts |
-| `./scripts/init-project-state.sh --target /path/to/project` | generate the first core `.gsd` drafts for a chosen repo |
-
-## Common command sequences
-
-These examples use the canonical `apw` form.
+### List and open the right repo
+```bash
+apw lp
+apw s MyProject
+```
 
 ### Create a new project
-
 ```bash
 apw new MyProject --profile base --stack base
 ```
 
-Default destination policy:
-
-- from APW root, APW creates the repo in the parent workspace beside `apw`
-- from the workspace parent, APW creates the repo in the current folder
-- from a downstream project, APW creates the repo as a sibling in the same workspace parent
-- use `--target /path/to/parent` when you want a different parent location
-
-### Create a new project in a specific workspace and initialize state
-
+### Preview an upgrade safely
 ```bash
-apw new MyProject --profile base --stack base --target /path/to/workspace --init-state
+apw up MyProject --dry-run
 ```
-
-### Validate a project
-
-```bash
-./scripts/validate.sh /path/to/project --profile base --stack base
-```
-
-### Check context for a specific project path
-
-```bash
-apw context /path/to/project
-```
-
-### Get first-run guidance for a specific project
-
-```bash
-apw first-run /path/to/project
-```
-
-### Switch to a named project in a workspace
-
-```bash
-apw switch MyProject --workspace /path/to/workspace
-```
-
-### Safely upgrade an older project
-
-```bash
-git add .
-git commit -m "checkpoint before APW upgrade"
-apw upgrade-project /path/to/project --dry-run
-apw upgrade-project /path/to/project
-apw upgrade-project /path/to/project --validate
-```
-
-## Practical notes
-
-- path-based forms are usually safer for beginners than implicit `.`-based commands
-- switch commands always print the exact resolved folder path before any launch attempt
-- `apw switch ...` uses Antigravity directly when the `antigravity` launcher is available
-- if Antigravity is unavailable, APW prints a clear launcher-not-found message and the exact folder path to open manually
-- preview-first is the safe upgrade rule
-- project-owned `.gsd` memory and product code stay protected during APW upgrade
-- start from `AGENTS.md`
-- use this file when you just need the command names fast
-- use `WORKFLOW_SELECTION_GUIDE.md` or `COMMAND_INVOCATION_GUIDE.md` only when you need more detail

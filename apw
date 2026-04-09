@@ -10,73 +10,317 @@ UPGRADE_PROJECT_SCRIPT="$APW_ROOT/scripts/upgrade-project.sh"
 APW_COMMAND_NAME="${APW_COMMAND_NAME:-apw}"
 APW_LAUNCH_MODE="${APW_LAUNCH_MODE:-direct-wrapper}"
 
-usage() {
+normalize_command_name() {
+    case "${1:-}" in
+        help|h|-h|--help) printf 'help\n' ;;
+        switch|s) printf 'switch\n' ;;
+        context|c) printf 'context\n' ;;
+        first-run|fr) printf 'first-run\n' ;;
+        list-projects|lp) printf 'list-projects\n' ;;
+        upgrade-project|up) printf 'upgrade-project\n' ;;
+        setup) printf 'setup\n' ;;
+        new) printf 'new\n' ;;
+        "") printf 'help\n' ;;
+        *) printf '%s\n' "$1" ;;
+    esac
+}
+
+show_top_help() {
     cat <<EOF
 Usage:
-  $APW_COMMAND_NAME setup [--check-only]
-  $APW_COMMAND_NAME new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
-  $APW_COMMAND_NAME upgrade-project <name-or-path> [--workspace dir] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
-  $APW_COMMAND_NAME context [path]
-  $APW_COMMAND_NAME first-run [path]
-  $APW_COMMAND_NAME list-projects [--workspace dir]
-  $APW_COMMAND_NAME switch framework
-  $APW_COMMAND_NAME switch parent [--workspace dir]
-  $APW_COMMAND_NAME switch <project-name-or-path> [--workspace dir]
+  $APW_COMMAND_NAME <command> [args]
+  $APW_COMMAND_NAME help [command]
+
+Commands:
+  help (h)                 Show top-level help or command-specific help
+  switch (s)               Resolve framework, parent, or project and launch Antigravity
+  context (c)              Show APW invocation context
+  first-run (fr)           Print beginner-safe first-run guidance
+  list-projects (lp)       List downstream projects in the workspace
+  upgrade-project (up)     Upgrade a downstream project with APW-managed updates
+  new                      Create a downstream APW project
+  setup                    Verify prerequisites and install or refresh the launcher
+
+Examples:
+  $APW_COMMAND_NAME h
+  $APW_COMMAND_NAME help switch
+  $APW_COMMAND_NAME s framework
+  $APW_COMMAND_NAME s parent
+  $APW_COMMAND_NAME s MyProject
+  $APW_COMMAND_NAME c
+  $APW_COMMAND_NAME fr
+  $APW_COMMAND_NAME lp
+  $APW_COMMAND_NAME up MyProject --dry-run
+EOF
+}
+
+show_help_command_help() {
+    cat <<EOF
+Command:
   $APW_COMMAND_NAME help
+
+Alias:
+  $APW_COMMAND_NAME h
+
+What it does:
+  Show compact top-level help or detailed help for one command.
+
+Syntax:
+  $APW_COMMAND_NAME help
+  $APW_COMMAND_NAME h
+  $APW_COMMAND_NAME help <command>
+
+Arguments:
+  <command>  Any supported command name or locked alias such as switch, s, list-projects, or lp.
+
+Supported flags/extensions:
+  none
+
+Examples:
+  $APW_COMMAND_NAME help
+  $APW_COMMAND_NAME h
+  $APW_COMMAND_NAME help switch
+  $APW_COMMAND_NAME help list-projects
+EOF
+}
+
+show_switch_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME switch
+
+Alias:
+  $APW_COMMAND_NAME s
+
+What it does:
+  Resolve the APW framework, workspace parent, or one downstream project, print the exact destination path, and run Antigravity when the antigravity launcher is available.
+
+Syntax:
+  $APW_COMMAND_NAME switch framework
+  $APW_COMMAND_NAME switch parent [--workspace /path/to/workspace]
+  $APW_COMMAND_NAME switch <project-name-or-path> [--workspace /path/to/workspace]
+  $APW_COMMAND_NAME s framework
+  $APW_COMMAND_NAME s parent [--workspace /path/to/workspace]
+  $APW_COMMAND_NAME s <project-name-or-path> [--workspace /path/to/workspace]
+
+Arguments:
+  framework               Resolve the APW framework root.
+  parent                  Resolve the workspace parent.
+  <project-name-or-path>  Resolve a downstream project by workspace name or explicit path.
+
+Supported flags/extensions:
+  --workspace <dir>  Use an explicit workspace parent when name-based project resolution cannot be inferred safely.
+
+Examples:
+  $APW_COMMAND_NAME switch framework
+  $APW_COMMAND_NAME switch parent
+  $APW_COMMAND_NAME switch MyProject
+  $APW_COMMAND_NAME switch /path/to/workspace/MyProject
+  $APW_COMMAND_NAME s MyProject --workspace /path/to/workspace
+EOF
+}
+
+show_context_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME context
+
+Alias:
+  $APW_COMMAND_NAME c
+
+What it does:
+  Show whether a path is APW root, the workspace parent, a downstream project root, or an unsupported location.
+
+Syntax:
+  $APW_COMMAND_NAME context [path]
+  $APW_COMMAND_NAME c [path]
+
+Arguments:
+  [path]  Optional path to inspect. Defaults to the current directory.
+
+Supported flags/extensions:
+  none
+
+Examples:
+  $APW_COMMAND_NAME context
+  $APW_COMMAND_NAME c
+  $APW_COMMAND_NAME context /path/to/project
+EOF
+}
+
+show_first_run_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME first-run
+
+Alias:
+  $APW_COMMAND_NAME fr
+
+What it does:
+  Print the beginner-safe first-run checklist for a downstream APW project.
+
+Syntax:
+  $APW_COMMAND_NAME first-run [path]
+  $APW_COMMAND_NAME fr [path]
+
+Arguments:
+  [path]  Optional downstream project path. Defaults to the current directory.
+
+Supported flags/extensions:
+  none
+
+Examples:
+  $APW_COMMAND_NAME first-run
+  $APW_COMMAND_NAME fr
+  $APW_COMMAND_NAME first-run /path/to/project
+EOF
+}
+
+show_list_projects_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME list-projects
+
+Alias:
+  $APW_COMMAND_NAME lp
+
+What it does:
+  List recognized downstream APW projects under the inferred or explicit workspace parent.
+
+Syntax:
+  $APW_COMMAND_NAME list-projects [--workspace /path/to/workspace]
+  $APW_COMMAND_NAME lp [--workspace /path/to/workspace]
+
+Arguments:
+  none
+
+Supported flags/extensions:
+  --workspace <dir>  Use an explicit workspace parent instead of inferred routing.
+
+Examples:
+  $APW_COMMAND_NAME list-projects
+  $APW_COMMAND_NAME lp
+  $APW_COMMAND_NAME lp --workspace /path/to/workspace
+EOF
+}
+
+show_upgrade_project_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME upgrade-project
+
+Alias:
+  $APW_COMMAND_NAME up
+
+What it does:
+  Safely apply APW-managed upgrades to one downstream project with preview-first controls.
+
+Syntax:
+  $APW_COMMAND_NAME upgrade-project <name-or-path> [--workspace /path/to/workspace] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
+  $APW_COMMAND_NAME up <name-or-path> [--workspace /path/to/workspace] [--profile auto|minimal|base|advanced] [--stack value] [--dry-run] [--force-managed] [--validate]
+
+Arguments:
+  <name-or-path>  Downstream project name or explicit project path.
+
+Supported flags/extensions:
+  --workspace <dir>      Use an explicit workspace parent for name-based resolution.
+  --profile <value>      Override or pin the downstream APW profile.
+  --stack <value>        Use a specific stack value during upgrade and validation.
+  --dry-run              Preview the upgrade without applying changes.
+  --force-managed        Refresh APW-managed files that normally stay review-first.
+  --validate             Run validation after the upgrade.
+
+Examples:
+  $APW_COMMAND_NAME upgrade-project MyProject --dry-run
+  $APW_COMMAND_NAME up MyProject --workspace /path/to/workspace --validate
+  $APW_COMMAND_NAME up /path/to/workspace/MyProject
+EOF
+}
+
+show_new_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME new
+
+Alias:
+  none
+
+What it does:
+  Create a new downstream APW project with workspace-aware destination resolution.
+
+Syntax:
+  $APW_COMMAND_NAME new <project-name> [--profile base|minimal|advanced] [--stack value] [--target dir] [--force] [--skip-validate] [--init-state]
+
+Arguments:
+  <project-name>  Name of the new downstream project directory.
+
+Supported flags/extensions:
+  --profile <value>   Choose base, minimal, or advanced bootstrap profile.
+  --stack <value>     Set the stack value used by bootstrap and validation.
+  --target <dir>      Override the parent directory explicitly.
+  --force             Allow bootstrap to proceed when the target directory already exists.
+  --skip-validate     Skip validation after bootstrap.
+  --init-state        Run guided project-state initialization after creation.
+
+Examples:
+  $APW_COMMAND_NAME new MyProject --profile base --stack base
+  $APW_COMMAND_NAME new MyProject --target /path/to/workspace
+  $APW_COMMAND_NAME new MyProject --profile minimal --skip-validate
+EOF
+}
+
+show_setup_command_help() {
+    cat <<EOF
+Command:
+  $APW_COMMAND_NAME setup
+
+Alias:
+  none
+
+What it does:
+  Verify first-time APW prerequisites and install or refresh the workspace launcher.
+
+Syntax:
+  $APW_COMMAND_NAME setup [--check-only]
+
+Arguments:
+  none
+
+Supported flags/extensions:
+  --check-only  Verify the environment without changing the launcher.
 
 Examples:
   $APW_COMMAND_NAME setup
   $APW_COMMAND_NAME setup --check-only
-  $APW_COMMAND_NAME new ProjectA
-  $APW_COMMAND_NAME new ProjectB --profile advanced --stack base
-  $APW_COMMAND_NAME new ProjectC --target /path/to/MyWork
-  $APW_COMMAND_NAME new ProjectD --target /path/to/MyWork --init-state
-  $APW_COMMAND_NAME upgrade-project ProjectA --dry-run
-  $APW_COMMAND_NAME upgrade-project ProjectB --workspace /path/to/MyWork --force-managed --validate
-  $APW_COMMAND_NAME upgrade-project /path/to/MyWork/ProjectC
-  $APW_COMMAND_NAME context
-  $APW_COMMAND_NAME context /path/to/MyWork/ProjectA
-  $APW_COMMAND_NAME first-run
-  $APW_COMMAND_NAME first-run /path/to/MyWork/ProjectA
-  $APW_COMMAND_NAME list-projects
-  $APW_COMMAND_NAME switch framework
-  $APW_COMMAND_NAME switch parent
-  $APW_COMMAND_NAME switch ProjectA
-  $APW_COMMAND_NAME switch /path/to/MyWork/ProjectA
-
-What it does:
-  - installs or verifies the first-time APW launcher and prerequisite setup
-  - creates a new project directory under the chosen target location
-  - runs the canonical bootstrap flow underneath
-  - runs validation by default
-  - can optionally launch guided project-state initialization
-  - safely upgrades an existing downstream project with APW-managed improvements
-  - explains whether a path is APW root, a downstream project root, or a workspace/general folder
-  - prints the beginner-friendly first-run checklist for a downstream project
-  - lists known downstream projects in the workspace
-  - resolves a switch target clearly and launches Antigravity when available without silently changing your shell
-
-Notes:
-  - Canonical invocation is: apw ...
-  - Current launch mode: $APW_LAUNCH_MODE
-  - First-time setup and recovery can be started from APW root with: ./apw setup
-  - Install the workspace launcher from APW root with: ./scripts/install-workspace-launcher.sh
-  - If your shell says "apw: command not found", run that installer, then source ../.apw/env.zsh from APW root.
-  - Path-based invocation still works for maintenance and recovery, but apw is the primary entrypoint.
-  - Automatic workspace inference is supported from APW root, the workspace parent, and downstream project roots.
-  - From an unrelated folder, pass --workspace or --target explicitly instead of expecting APW to guess.
-  - If this wrapper was copied out of the APW framework repo or the framework layout is incomplete, APW will stop with a corrective repair message.
-  - This is a workspace-friendly wrapper around scripts/bootstrap.sh and scripts/validate.sh.
-  - APW: Create Project uses this same destination resolver.
-  - Default new-project destination is workspace-aware:
-    - from APW root, create the project in the parent workspace beside apw
-    - from the workspace parent, create the project in the current folder
-    - from a downstream project, create the project as a sibling in the same workspace parent
-    - use --target to override the parent location explicitly
-  - The bootstrap contract still lives in PROJECT_BOOTSTRAP.md.
-  - upgrade-project protects project-owned .gsd memory and code by default.
-  - Switch helpers are explicit and visible. They print the exact resolved path, try Antigravity when available, and do not silently mutate your shell context.
 EOF
+}
+
+show_command_help() {
+    local requested="${1:-help}"
+    local command_name=""
+
+    command_name="$(normalize_command_name "$requested")"
+
+    case "$command_name" in
+        help) show_help_command_help ;;
+        switch) show_switch_command_help ;;
+        context) show_context_command_help ;;
+        first-run) show_first_run_command_help ;;
+        list-projects) show_list_projects_command_help ;;
+        upgrade-project) show_upgrade_project_command_help ;;
+        new) show_new_command_help ;;
+        setup) show_setup_command_help ;;
+        *)
+            echo "Error: Unknown command '$requested'."
+            echo
+            show_top_help
+            exit 1
+            ;;
+    esac
+}
+
+usage() {
+    show_top_help
 }
 
 print_launcher_recovery_help() {
@@ -808,12 +1052,12 @@ run_setup() {
                 shift
                 ;;
             -h|--help)
-                usage
+                show_command_help setup
                 exit 0
                 ;;
             *)
                 echo "Error: Unknown option '$1'."
-                usage
+                show_command_help setup
                 exit 1
                 ;;
         esac
@@ -1106,12 +1350,12 @@ run_list_projects() {
                 shift 2
                 ;;
             -h|--help)
-                usage
+                show_command_help list-projects
                 exit 0
                 ;;
             *)
                 echo "Error: Unknown option '$1'."
-                usage
+                show_command_help list-projects
                 exit 1
                 ;;
         esac
@@ -1194,13 +1438,13 @@ run_switch() {
 
     if [[ -z "$destination" ]]; then
         echo "Error: switch requires a destination."
-        usage
+        show_command_help switch
         exit 1
     fi
 
     case "$destination" in
         -h|--help)
-            usage
+            show_command_help switch
             exit 0
             ;;
     esac
@@ -1211,14 +1455,16 @@ run_switch() {
         framework|parent)
             ;;
         project)
-            selector="${1:-}"
-            if [[ -z "$selector" || "$selector" == --* || "$selector" == -?* ]]; then
-                echo "Error: switch project requires a project name or path."
-                exit 1
-            fi
-            shift || true
+            echo "Error: 'apw switch project <name-or-path>' is not supported."
+            echo "Use: $APW_COMMAND_NAME switch <project-name-or-path>"
+            exit 1
             ;;
         *)
+            if [[ "$destination" == --* || "$destination" == -?* ]]; then
+                echo "Error: switch requires a destination."
+                show_command_help switch
+                exit 1
+            fi
             selector="$destination"
             destination="project"
             ;;
@@ -1236,16 +1482,13 @@ run_switch() {
                 workspace_input="$2"
                 shift 2
                 ;;
-            --open)
-                shift
-                ;;
             -h|--help)
-                usage
+                show_command_help switch
                 exit 0
                 ;;
             *)
                 echo "Error: Unknown option '$1'."
-                usage
+                show_command_help switch
                 exit 1
                 ;;
         esac
@@ -1334,12 +1577,12 @@ run_new() {
                 shift
                 ;;
             -h|--help)
-                usage
+                show_command_help new
                 exit 0
                 ;;
             *)
                 echo "Error: Unknown option '$1'."
-                usage
+                show_command_help new
                 exit 1
                 ;;
         esac
@@ -1472,12 +1715,12 @@ run_upgrade_project() {
                 shift
                 ;;
             -h|--help)
-                usage
+                show_command_help upgrade-project
                 exit 0
                 ;;
             *)
                 echo "Error: Unknown option '$1'."
-                usage
+                show_command_help upgrade-project
                 exit 1
                 ;;
         esac
@@ -1516,7 +1759,22 @@ run_upgrade_project() {
 
 validate_framework_layout
 
-command="${1:-help}"
+command_raw="${1:-help}"
+command="$(normalize_command_name "$command_raw")"
+
+if [[ "$command" == "help" ]]; then
+    if [[ $# -ge 2 ]]; then
+        show_command_help "$2"
+    else
+        show_top_help
+    fi
+    exit 0
+fi
+
+if [[ $# -ge 2 && ( "$2" == "--help" || "$2" == "-h" ) ]]; then
+    show_command_help "$command"
+    exit 0
+fi
 
 case "$command" in
     setup)
@@ -1547,12 +1805,10 @@ case "$command" in
         shift
         run_switch "$@"
         ;;
-    help|-h|--help)
-        usage
-        ;;
     *)
-        echo "Error: Unknown command '$command'."
-        usage
+        echo "Error: Unknown command '$command_raw'."
+        echo
+        show_top_help
         exit 1
         ;;
 esac

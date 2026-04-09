@@ -101,11 +101,14 @@ pass "Switch by project name resolves the downstream project cleanly"
 (
     export PATH="$SAFE_PATH"
     cd "$TEST_APW_ROOT"
-    apw switch project SwitchProject >"$TEMP_ROOT/project-alias.log"
+    if apw switch project SwitchProject >"$TEMP_ROOT/project-deprecated.log" 2>&1; then
+        fail "Deprecated switch project form should not remain available"
+    fi
 )
 
-assert_output_contains "$TEMP_ROOT/project-alias.log" "Resolved path: $WORKSPACE/SwitchProject" "Legacy switch project alias should still resolve the downstream project"
-pass "Legacy switch project alias still works"
+assert_output_contains "$TEMP_ROOT/project-deprecated.log" "Error: 'apw switch project <name-or-path>' is not supported." "Deprecated switch project form should fail with a corrective error"
+assert_output_contains "$TEMP_ROOT/project-deprecated.log" "Use: apw switch <project-name-or-path>" "Deprecated switch project form should point to the locked syntax"
+pass "Deprecated switch project form is no longer supported"
 
 (
     export PATH="$SAFE_PATH"

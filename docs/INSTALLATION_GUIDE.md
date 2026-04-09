@@ -46,7 +46,7 @@ For the full level model, read [DOCUMENTATION_LEVELS.md](./DOCUMENTATION_LEVELS.
 ### Optional
 
 - `node` and `npm` if you want to run the local docs portal under `website/`
-- an Antigravity-compatible launcher such as `antigravity`, `cursor`, or `code` if you want optional `apw switch ... --open` behavior
+- the `antigravity` launcher if you want `apw switch ...` to open the resolved folder automatically
 
 ## Install APW locally
 
@@ -125,7 +125,7 @@ Do not rely on `./apw`, `./apw/apw`, or full wrapper paths for normal APW use.
 
 ### Optional framework convenience
 
-- an Antigravity-compatible launcher such as `antigravity`, `cursor`, or `code` for `apw switch ... --open`
+- the `antigravity` launcher for automatic opening via `apw switch ...`
 
 This is optional. APW still prints exact resolved folder paths even without an IDE launcher.
 
