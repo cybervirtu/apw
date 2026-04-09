@@ -17,8 +17,10 @@
 - [ ] Sessions start from `.gsd/STATE.md` and `.gsd/TODO.md`.
 - [ ] Execution agents are limited to code changes, artifacts, and bounded `JOURNAL.md` evidence.
 - [ ] Canonical state updates to `STATE.md`, `ROADMAP.md`, `TODO.md`, and `DECISIONS.md` happen through a controlled orchestrator/governance sync.
+- [ ] Verified implementation slices and completed phases are committed before unrelated work starts.
 - [ ] Architectural or dependency changes are recorded in `DECISIONS.md`.
 - [ ] Validation is re-run before merge or release.
+- [ ] Markdown commits are limited to project-essential files rather than bulk APW guideline or reference docs.
 
 ## 3. Anti-Drift Checklist
 

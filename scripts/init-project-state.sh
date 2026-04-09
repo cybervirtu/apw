@@ -171,15 +171,15 @@ csv_to_checkbox_lines() {
     fi
 }
 
-file_matches_bootstrap_template() {
+file_matches_apw_template() {
     local target_file="$1"
-    local file_name="$2"
+    local rel_path="$2"
     local candidate=""
 
     for candidate in \
-        "$APW_ROOT/templates/base/.gsd/$file_name" \
-        "$APW_ROOT/templates/minimal/.gsd/$file_name" \
-        "$APW_ROOT/templates/advanced/.gsd/$file_name"
+        "$APW_ROOT/templates/base/$rel_path" \
+        "$APW_ROOT/templates/minimal/$rel_path" \
+        "$APW_ROOT/templates/advanced/$rel_path"
     do
         if [[ -f "$candidate" ]] && cmp -s "$target_file" "$candidate"; then
             return 0
@@ -305,19 +305,28 @@ if [[ ! -d "$TARGET_DIR/.gsd" ]]; then
 fi
 
 GUIDED_FILES=("SPEC.md" "STACK.md" "TODO.md" "STATE.md" "ROADMAP.md")
+GUIDED_DOCS=("PROJECT_BRIEF.md" "PROJECT_REQUIREMENTS_REPORT.md")
 NEEDS_CONFIRMATION=0
 
 for file_name in "${GUIDED_FILES[@]}"; do
     target_file="$TARGET_DIR/.gsd/$file_name"
 
-    if [[ -f "$target_file" ]] && ! file_matches_bootstrap_template "$target_file" "$file_name" && [[ $FORCE -eq 0 ]]; then
+    if [[ -f "$target_file" ]] && ! file_matches_apw_template "$target_file" ".gsd/$file_name" && [[ $FORCE -eq 0 ]]; then
+        NEEDS_CONFIRMATION=1
+    fi
+done
+
+for file_name in "${GUIDED_DOCS[@]}"; do
+    target_file="$TARGET_DIR/docs/$file_name"
+
+    if [[ -f "$target_file" ]] && ! file_matches_apw_template "$target_file" "docs/$file_name" && [[ $FORCE -eq 0 ]]; then
         NEEDS_CONFIRMATION=1
     fi
 done
 
 if [[ $NEEDS_CONFIRMATION -eq 1 ]]; then
-    echo "Existing guided state files already contain project-specific content."
-    if ! prompt_yes_no "Overwrite the current drafts for SPEC.md, STACK.md, TODO.md, STATE.md, and ROADMAP.md?"; then
+    echo "Existing guided files already contain project-specific content."
+    if ! prompt_yes_no "Overwrite the current drafts for SPEC.md, STACK.md, TODO.md, STATE.md, ROADMAP.md, PROJECT_BRIEF.md, and PROJECT_REQUIREMENTS_REPORT.md?"; then
         echo "Initialization cancelled."
         exit 1
     fi
@@ -331,6 +340,8 @@ echo "- .gsd/STACK.md"
 echo "- .gsd/TODO.md"
 echo "- .gsd/STATE.md"
 echo "- .gsd/ROADMAP.md"
+echo "- docs/PROJECT_BRIEF.md"
+echo "- docs/PROJECT_REQUIREMENTS_REPORT.md"
 echo
 echo "It does not replace orchestrator ownership. It gives you a coherent starting draft."
 echo
@@ -420,13 +431,91 @@ $FEATURE_BULLETS
 - Support a $TEAM_MODE working model with clear project memory in \`.gsd/\`.
 $CONSTRAINT_BULLETS
 
-## 4. Acceptance Criteria
+## 4. Requirement Register
+
+| ID | Requirement | Source | Status | Notes |
+| --- | --- | --- | --- | --- |
+| REQ-001 | Build the first usable version around this core outcome: $PROJECT_SUMMARY | Guided project initialization | planned | Initial canonical requirement generated during APW setup |
+| REQ-002 | Deliver the first useful scope for this audience: $FIRST_VERSION | Guided project initialization | planned | Expand with later user requirements as they arrive |
+
+Suggested statuses: \`proposed\`, \`planned\`, \`in_progress\`, \`implemented\`, \`enhanced\`, \`verified\`, \`deferred\`
+
+## 5. Acceptance Criteria
 - A real user in this target group can understand and use the first version: $TARGET_USERS
 - The first usable version is implemented and reviewable: $FIRST_VERSION
 $FEATURE_CHECKBOXES
 - The repo core project memory tells a consistent story across \`SPEC.md\`, \`STACK.md\`, \`STATE.md\`, \`TODO.md\`, and \`ROADMAP.md\`.
 EOF
 echo "✅ Wrote .gsd/SPEC.md"
+
+cat > "$TARGET_DIR/docs/PROJECT_BRIEF.md" <<EOF
+# PROJECT BRIEF
+
+> **Purpose**: Human-friendly overview of the project.
+>
+> **Source of truth**: This brief summarizes the current intent from \`.gsd/SPEC.md\`. If the brief and \`SPEC.md\` differ, \`SPEC.md\` wins.
+
+**Project:** $PROJECT_NAME
+**Last Updated:** $TODAY
+**Derived From:** \`.gsd/SPEC.md\`
+
+## Project Summary
+$PROJECT_NAME is being built for $TARGET_USERS. The core idea is to deliver $FIRST_VERSION while solving this problem: $PROBLEM_STATEMENT
+
+## Why This Project Exists
+- Target users: $TARGET_USERS
+- Problem being solved: $PROBLEM_STATEMENT
+- First useful outcome: $FIRST_VERSION
+
+## Vision and Direction
+- Product summary: $PROJECT_SUMMARY
+- Delivery mode: $DELIVERY_MODE
+- Team model: $TEAM_MODE
+- Technical direction: $STACK_DIRECTION
+
+## Core Features
+$FEATURE_BULLETS
+
+## Scope
+- **In Scope:** Deliver the smallest useful version of the project for $TARGET_USERS
+- **Out of Scope:** Nice-to-have expansion, unrelated feature growth, and large architecture changes not required for the first usable version
+
+## Current Direction
+- The project is in guided initialization and early planning.
+- The next step is to review the canonical \`.gsd\` drafts, confirm scope, and turn the first slice into implementation work.
+- Requirement details and statuses should be tracked in \`.gsd/SPEC.md\` and reflected in \`docs/PROJECT_REQUIREMENTS_REPORT.md\`.
+EOF
+echo "✅ Wrote docs/PROJECT_BRIEF.md"
+
+cat > "$TARGET_DIR/docs/PROJECT_REQUIREMENTS_REPORT.md" <<EOF
+# PROJECT REQUIREMENTS REPORT
+
+> **Purpose**: Human-readable reporting view of registered requirements.
+>
+> **Source of truth**: This report is derived from \`.gsd/SPEC.md\`, with supporting context from \`.gsd/TODO.md\`, \`.gsd/STATE.md\`, and \`.gsd/JOURNAL.md\`. If this report and the canonical \`.gsd\` files differ, the canonical \`.gsd\` files win.
+
+**Project:** $PROJECT_NAME
+**Last Updated:** $TODAY
+**Derived From:** \`.gsd/SPEC.md\`
+
+## Reporting Summary
+- Registered requirement source: \`.gsd/SPEC.md\`
+- Current project phase: M1: Initialization & First Slice
+- Current reporting status: Initial requirement report generated from guided project-state initialization
+
+## Requirement Status Overview
+
+| Requirement ID | Requirement Summary | Source | Status | Implementation / Enhancement Notes | Verification |
+| --- | --- | --- | --- | --- | --- |
+| REQ-001 | Build the first usable version around this core outcome: $PROJECT_SUMMARY | Guided project initialization | planned | Initial requirement captured; implementation has not started yet | Pending |
+| REQ-002 | Deliver the first useful scope for this audience: $FIRST_VERSION | Guided project initialization | planned | First-slice planning is next | Pending |
+
+## Notes
+- Add new official user requirements to the requirement register in \`.gsd/SPEC.md\`.
+- Update this report after meaningful requirement, status, or verification changes.
+- Link active implementation slices in \`.gsd/TODO.md\` back to requirement IDs where practical.
+EOF
+echo "✅ Wrote docs/PROJECT_REQUIREMENTS_REPORT.md"
 
 cat > "$TARGET_DIR/.gsd/STACK.md" <<EOF
 # PROJECT STACK
@@ -465,7 +554,7 @@ cat > "$TARGET_DIR/.gsd/TODO.md" <<EOF
 
 ### Guided Initialization
 - [x] Capture the project brief for $PROJECT_NAME in plain language
-- [x] Generate first drafts of \`SPEC.md\`, \`STACK.md\`, \`TODO.md\`, \`STATE.md\`, and \`ROADMAP.md\`
+- [x] Generate first drafts of \`SPEC.md\`, \`STACK.md\`, \`TODO.md\`, \`STATE.md\`, \`ROADMAP.md\`, \`docs/PROJECT_BRIEF.md\`, and \`docs/PROJECT_REQUIREMENTS_REPORT.md\`
 - [ ] Review these drafts and correct anything that is clearly wrong or missing
 
 ### Foundation

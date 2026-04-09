@@ -77,6 +77,7 @@ For requirement-bearing chat, use this APW rule:
 - classify the chat before persisting it
 - default to a bounded `JOURNAL.md` summary when the official destination is not settled yet
 - promote requirements into `SPEC.md`, tasks into `TODO.md`, milestone impact into `ROADMAP.md`, and chosen rationale into `DECISIONS.md`
+- keep a lightweight requirement register in `SPEC.md` with stable requirement IDs and lifecycle status
 - use orchestrator or governance when the chat changes official project memory across files
 
 Use this unified APW requirement flow:
@@ -85,6 +86,7 @@ Use this unified APW requirement flow:
 - classify it before persistence
 - make the persistence outcome explicit
 - map the saved result into `SPEC.md`, `TODO.md`, `ROADMAP.md`, `DECISIONS.md`, or `JOURNAL.md`
+- record official requirements in `SPEC.md` with IDs so later tasks, status, and verification can point back to them
 - break large requirement sets into modules or workstreams
 - break active modules into atomic implementation slices
 - execute those slices with `/create`, `/debug`, `/test`, and `/orchestrate` as needed

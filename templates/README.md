@@ -14,7 +14,7 @@
 - Root APW entrypoint and operating files are not duplicated per profile. `bootstrap.sh` copies `AGENTS.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, and `GSD-STYLE.md` from the APW repo root.
 - `base` and `advanced` also receive a shared downstream core command pack from the canonical root `.agent/` tree: `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate`.
 - Missing profile subdirectories are intentional unless documented otherwise.
-- Empty `docs/` or `scripts/` profile folders are placeholders only; bootstrap does not treat them as separate sources of truth.
+- Profile `docs/` folders may include starter project docs. Bootstrap seeds those files into downstream repos only when the target files do not already exist.
 - `.agent/skills/` remains the active capability-layer path for downstream repos.
 
 ## Reading The Tree

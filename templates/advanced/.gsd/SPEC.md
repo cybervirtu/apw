@@ -28,6 +28,15 @@
 - [ ] {Measurable outcome 3}
 - [ ] {Measurable outcome 4}
 
+## Requirement Register
+
+| ID | Requirement | Source | Status | Notes |
+|-------------|----------|--------|--------|-------|
+| REQ-001 | {Short canonical requirement} | {user chat / ticket} | proposed | {Optional note} |
+| REQ-002 | {Short canonical requirement} | {user chat / ticket} | planned | {Optional note} |
+
+Suggested statuses: `proposed`, `planned`, `in_progress`, `implemented`, `enhanced`, `verified`, `deferred`
+
 ## User Stories (Optional)
 
 ### As a {user type}

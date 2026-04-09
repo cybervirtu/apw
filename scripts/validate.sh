@@ -275,6 +275,20 @@ check_target_content_shape() {
         "Add a status or metadata marker so SPEC.md clearly communicates lifecycle state."
 
     check_existing_file_contains_regex \
+        "$TARGET_DIR/docs/PROJECT_BRIEF.md" \
+        "docs/PROJECT_BRIEF.md" \
+        '(Project Brief|Project Summary|Problem Statement|Target Users|Goals|Scope)' \
+        "recognizable project brief structure" \
+        "Add summary, problem, user, and scope sections to docs/PROJECT_BRIEF.md."
+
+    check_existing_file_contains_regex \
+        "$TARGET_DIR/docs/PROJECT_REQUIREMENTS_REPORT.md" \
+        "docs/PROJECT_REQUIREMENTS_REPORT.md" \
+        '(Requirements Report|Requirement Status|REQ-|Requirement ID|Verification)' \
+        "recognizable requirement-report structure" \
+        "Add requirement ID/status reporting structure to docs/PROJECT_REQUIREMENTS_REPORT.md."
+
+    check_existing_file_contains_regex \
         "$TARGET_DIR/.gsd/ROADMAP.md" \
         ".gsd/ROADMAP.md" \
         '(Roadmap|ROADMAP|PROJECT ROADMAP)' \
@@ -674,6 +688,10 @@ echo "--- Target Lifecycle Memory ---"
 check_target_dir ".gsd"
 require_template_files "$PROFILE_GSD_DIR" ".gsd" ".gsd lifecycle"
 check_target_content_shape
+
+echo "--- Target Project Docs ---"
+check_target_dir "docs"
+require_template_files "$PROFILE_ROOT/docs" "docs" "project doc"
 
 echo "--- Target Execution Namespace ---"
 check_target_dir ".agent"

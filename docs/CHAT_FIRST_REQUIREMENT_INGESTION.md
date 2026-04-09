@@ -105,6 +105,8 @@ Important note:
 
 - `STATE.md` is still for current implementation status, blockers, readiness, and session reality
 - this ingestion guide focuses on requirement-bearing chat, not general execution-state sync
+- once a requirement is official, APW should register it in `SPEC.md` with a stable ID and short status instead of relying on raw chat history
+- if the requirement is still uncertain, save the bounded summary to `JOURNAL.md` first and promote it into the `SPEC.md` register during orchestrator/governance sync
 
 ## The safe persistence path
 

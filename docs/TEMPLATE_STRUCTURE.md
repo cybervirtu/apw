@@ -41,7 +41,9 @@ The following structure defines the master APW standard. It integrates the GSD l
 
 | Path | Purpose | Update Rule | Distribution |
 | :--- | :--- | :--- | :--- |
-| **.gsd/SPEC.md** | Requirement source of truth | Before coding | **Mandatory** |
+| **.gsd/SPEC.md** | Requirement source of truth and lightweight requirement register | Before coding | **Mandatory** |
+| **docs/PROJECT_BRIEF.md** | Human-friendly project overview derived from `SPEC.md` | Initialize early, refresh when `SPEC.md` changes materially | **Profile-vendored** |
+| **docs/PROJECT_REQUIREMENTS_REPORT.md** | Stakeholder-facing requirement report derived from `SPEC.md` plus current project state | Initialize early, refresh after canonical requirement/status changes | **Profile-vendored** |
 | **.gsd/STATE.md**| Current canonical project position | Orchestrator / governance sync | **Mandatory** |
 | **.gsd/JOURNAL.md**| Audit trail of actions and evidence | Continuously | **Mandatory** |
 | **.gsd/TODO.md** | Canonical task backlog | Orchestrator / governance sync | **Mandatory** |
@@ -75,6 +77,7 @@ The following ownership pattern applies during implementation:
 2. **.gsd/STATE.md**: Updated during a controlled orchestrator or governance sync when current status, blockers, or next steps materially change.
 3. **.gsd/TODO.md**: Updated during a controlled orchestrator or governance sync when follow-up tasks must become canonical.
 4. **.gsd/DECISIONS.md**: Updated during a controlled orchestrator or governance sync when architectural or design rationale changes.
+5. **docs/PROJECT_BRIEF.md** and **docs/PROJECT_REQUIREMENTS_REPORT.md**: Derived project docs. Refresh them deliberately from `SPEC.md`, `TODO.md`, `STATE.md`, and `JOURNAL.md` when those canonical files materially change.
 
 ---
 
@@ -83,7 +86,7 @@ The following ownership pattern applies during implementation:
 **The Canonical Source**: The `./templates/` directory is the canonical downstream bootstrap source used by `./scripts/bootstrap.sh`.
 
 **Current Ownership Rule**:
-- `templates/` is the only active downstream source for profile-selected `.gsd/` and `.agent/` scaffolding.
+- `templates/` is the only active downstream source for profile-selected `.gsd/`, `.agent/`, and seeded project-doc scaffolding.
 - `.gsd/` in the repo root is reserved for APW governance use and is not a downstream profile source.
 - Root APW entrypoint, cheat sheet, and operating files (`AGENTS.md`, `COMMAND_CHEATSHEET.md`, `PROJECT_RULES.md`, `AGENT_SYSTEM.md`, `COMMAND_POLICY.md`, `PROJECT_BOOTSTRAP.md`, `GSD-STYLE.md`) are currently copied by `bootstrap.sh` from the APW repo root, not from per-profile template folders.
 
@@ -97,17 +100,17 @@ When invoking `bootstrap.sh`, developers choose a profile with `--profile` and a
 
 ### **Minimal Profile (`templates/minimal`)**
 Designed for simple scripts, research, or rapid prototyping workflows where deep validation is unnecessary overhead.
-- **Current downstream behavior**: `bootstrap.sh` always copies root APW entrypoint and operating files from the repo root, then this profile contributes a lightweight `.gsd/` starter set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`) plus any profile-local `.agent/` content that exists.
+- **Current downstream behavior**: `bootstrap.sh` always copies root APW entrypoint and operating files from the repo root, then this profile contributes a lightweight `.gsd/` starter set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`), seeds the profile docs when missing, plus any profile-local `.agent/` content that exists.
 - **Use when**: You want the smallest practical APW footprint and are comfortable with less lifecycle depth.
 
 ### **Base Profile (`templates/base`)**
 The standard, non-negotiable baseline for standard software engineering projects.
-- **Current downstream behavior**: This is the default profile. It contributes the standard `.gsd/` lifecycle set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `JOURNAL.md`, `ARCHITECTURE.md`, `STACK.md`, `DECISIONS.md`, `TODO.md`). `bootstrap.sh` also vendors the shared downstream core command pack from the canonical root `.agent/` tree, so `base` repos can use `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` directly in the IDE.
+- **Current downstream behavior**: This is the default profile. It contributes the standard `.gsd/` lifecycle set (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `JOURNAL.md`, `ARCHITECTURE.md`, `STACK.md`, `DECISIONS.md`, `TODO.md`), seeds the profile docs when missing, and `bootstrap.sh` also vendors the shared downstream core command pack from the canonical root `.agent/` tree, so `base` repos can use `/status`, `/brainstorm`, `/create`, `/enhance`, `/debug`, `/test`, and `/orchestrate` directly in the IDE.
 - **Use when**: You want the canonical APW bootstrap baseline for most product repositories.
 
 ### **Advanced Profile (`templates/advanced`)**
 Designed for production-grade applications, strict CI/CD pipelines, and monorepos.
-- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus the same shared downstream core command pack as `base`, plus additional profile-local `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root APW entrypoint and operating files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
+- **Current downstream behavior**: This profile contributes the same canonical eight-file `.gsd` set as `base` (`SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `STACK.md`) plus seeded profile docs when missing, plus the same shared downstream core command pack as `base`, plus additional profile-local `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists. Root APW entrypoint and operating files are still copied from the APW repo root unless bootstrap behavior changes in a later phase.
 - **Use when**: You need the richest APW execution bundle while keeping project state in the same lean canonical `.gsd` contract as the base profile.
 
 ### **Advanced State Consolidation Rule**
@@ -124,6 +127,7 @@ Designed for production-grade applications, strict CI/CD pipelines, and monorepo
 - Root APW entrypoint, cheat sheet, and operating files are always overwritten.
 - The shared downstream core command pack is always re-synced for `base` and `advanced`.
 - `.agent/` execution-layer content is always synced from the selected profile when source content exists.
+- Profile-vendored project docs under `docs/` are seeded only when missing.
 - `.gsd/` lifecycle files are preserved unless `--force` is supplied.
 - Optional profile directories that do not exist are treated as empty and logged, not as bootstrap failures.
 

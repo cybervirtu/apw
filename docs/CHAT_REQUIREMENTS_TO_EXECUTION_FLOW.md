@@ -111,6 +111,7 @@ Important note:
 
 - `.gsd/STATE.md` is still for current implementation reality, blockers, and readiness
 - this requirement flow is about how project input becomes durable planning and execution context
+- official requirements should be registered in `.gsd/SPEC.md` with stable IDs so `TODO.md`, `STATE.md`, and verification evidence can trace back to what the user actually asked for
 
 ## Step 5 — Break large requirements into modules when needed
 

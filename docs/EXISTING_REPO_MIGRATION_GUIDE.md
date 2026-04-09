@@ -38,15 +38,23 @@ Use this practical mapping:
 
 Do not create parallel “shadow” state files if the canonical `.gsd/` set can hold the information with headings and sections.
 
+For teams adopting requirement traceability, use `SPEC.md` as the requirement register:
+
+- backfill existing user requirements, ticket-level scope, and agreed changes into a dedicated register section in `.gsd/SPEC.md`
+- assign stable IDs such as `REQ-001`, `REQ-002`, and so on
+- add a short lifecycle status such as `proposed`, `planned`, `in_progress`, `implemented`, `enhanced`, `verified`, or `deferred`
+- link active `TODO.md` slices and current `STATE.md` notes back to those IDs where practical
+
 ## 4. First Canonical Sync
 
 The first APW sync pass should:
 
 1. establish the current project position in `STATE.md`
 2. map active and next work into `ROADMAP.md`
-3. create a usable canonical task list in `TODO.md`
-4. capture any migration-specific rationale in `DECISIONS.md`
-5. move supporting evidence and migration notes into `JOURNAL.md`
+3. create or backfill the requirement register in `SPEC.md`
+4. create a usable canonical task list in `TODO.md`
+5. capture any migration-specific rationale in `DECISIONS.md`
+6. move supporting evidence and migration notes into `JOURNAL.md`
 
 Use one orchestrator-style pass for this so the initial `.gsd` layer is coherent.
 

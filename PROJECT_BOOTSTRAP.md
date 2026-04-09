@@ -67,12 +67,15 @@ Bootstrap also copies these root APW entrypoint and operating files into the tar
 - `GSD-STYLE.md`
 - `.gitmessage` when present in the APW repo
 
+When a profile vendors starter project docs under `templates/<profile>/docs/`, bootstrap seeds those files into the target repo's `docs/` directory only when they do not already exist.
+
 ## 4. Profile Behavior
 
 ### `minimal`
 
 - Copies the lightweight `.gsd` starter set from `templates/minimal/.gsd/`.
 - Syncs any profile-local `.agent/` content that exists in `templates/minimal/.agent/`.
+- Seeds any profile-local project docs from `templates/minimal/docs/` when those target files do not already exist.
 - Best for small projects, prototypes, or lightweight research repos.
 
 ### `base`
@@ -83,6 +86,7 @@ Bootstrap also copies these root APW entrypoint and operating files into the tar
   - the core agent set needed to use those commands directly in downstream projects
   - shared `.agent/rules/GEMINI.md`
 - Creates the full downstream `.agent/` directory tree even when the profile contributes no additional `.agent` files of its own.
+- Seeds any profile-local project docs from `templates/base/docs/` when those target files do not already exist.
 - This is the default bootstrap profile and the intended baseline for most repositories.
 
 ### `advanced`
@@ -90,6 +94,7 @@ Bootstrap also copies these root APW entrypoint and operating files into the tar
 - Copies the canonical eight-file lifecycle set from `templates/advanced/.gsd/`: `SPEC.md`, `ROADMAP.md`, `STATE.md`, `TODO.md`, `JOURNAL.md`, `DECISIONS.md`, `ARCHITECTURE.md`, and `STACK.md`.
 - Vendors the same shared downstream core command pack as `base`.
 - Syncs additional vendored `.agent/agents/`, `.agent/rules/`, `.agent/workflows/`, and any profile-local `.agent/scripts/` or `.agent/skills/` content that exists.
+- Seeds any profile-local project docs from `templates/advanced/docs/` when those target files do not already exist.
 - Best for repos that need the richest specialist execution bundle without fragmenting state across extra root `.gsd` files.
 
 ## 5. Force and Overwrite Rules
@@ -98,6 +103,7 @@ Bootstrap applies overwrite rules by content class:
 
 - Root entrypoint, cheat sheet, and operating files are always overwritten.
 - Execution-layer content under `.agent/` is always synced from the selected profile when source content exists.
+- Profile-vendored project docs under `docs/` are created only when missing, so bootstrap does not casually overwrite project-owned documentation.
 - `.gsd` lifecycle files are preserved by default and only overwritten when `--force` is supplied.
 - Missing optional profile directories do not fail the run; they are logged and the pre-created target directory remains empty.
 
@@ -171,6 +177,7 @@ Validation enforces:
 
 - required root APW entrypoint and operating files
 - profile-selected `.gsd` lifecycle files
+- profile-vendored project docs when the selected profile defines them
 - minimum content shape for key lifecycle and governance files
 - the full `.agent/` directory namespace
 - profile-backed execution files when the selected profile vendors them

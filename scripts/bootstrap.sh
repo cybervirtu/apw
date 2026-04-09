@@ -33,6 +33,42 @@ copy_optional_tree() {
     fi
 }
 
+copy_optional_tree_if_missing() {
+    local source_dir="$1"
+    local target_dir="$2"
+    local label="$3"
+    local source_display
+    local found_any=0
+
+    if [[ ! -d "$source_dir" ]]; then
+        echo "ℹ️  No $label defined for profile '$PROFILE'. Leaving $target_dir as-is."
+        return
+    fi
+
+    source_display="${source_dir#$APW_ROOT/}"
+
+    while IFS= read -r -d '' source_file; do
+        local rel_path="${source_file#$source_dir/}"
+        local target_file="$target_dir/$rel_path"
+        found_any=1
+
+        mkdir -p "$(dirname "$target_file")"
+
+        if [[ -f "$target_file" ]]; then
+            echo "⏭️ Preserving existing $label file: ${target_file#$TARGET_DIR/}"
+        else
+            cp "$source_file" "$target_file"
+            echo "✅ Applied $label file: ${target_file#$TARGET_DIR/}"
+        fi
+    done < <(find "$source_dir" -type f -print0 | sort -z)
+
+    if [[ $found_any -eq 0 ]]; then
+        echo "ℹ️  No $label files defined for profile '$PROFILE'. Leaving $target_dir as-is."
+    else
+        echo "✅ Checked $label from $source_display"
+    fi
+}
+
 copy_required_markdown_set() {
     local source_dir="$1"
     local target_dir="$2"
@@ -190,6 +226,12 @@ if [[ "$STACK" != "base" ]]; then
         echo "⚠️  Warning: Stack '$STACK' has no vendored skill pack under templates/stack/. Continuing without stack add-ons."
     fi
 fi
+
+# 6b. Inject Profile Docs
+# Project docs are seeded from the profile when missing, but existing project docs
+# stay in place because they are project-owned rather than APW contract files.
+echo "🔄 Seeding project docs from template profile '$PROFILE' where missing..."
+copy_optional_tree_if_missing "$PROFILE_ROOT/docs" "$TARGET_DIR/docs" "project docs"
 
 # 7. Configure Git Commit Template
 if [[ -f "$APW_ROOT/.gitmessage" ]]; then

@@ -1,7 +1,8 @@
 <!--
 TEMPLATE INSTRUCTIONS:
 - WHEN TO UPDATE: Only when new requirements are gathered, or business goals change. DO NOT update during routine implementation.
-- DO NOT INCLUDE: Implementation details, technical decisions, or task tracking.
+- DO NOT INCLUDE: Implementation details, technical decisions, or detailed task tracking.
+- ALLOWED TRACEABILITY: Stable requirement IDs and lifecycle status are encouraged. Detailed execution steps still belong in TODO.md.
 - STATUS: Must be "FINALIZED" before any coding begins in Phase 1.
 -->
 
@@ -25,5 +26,14 @@ TEMPLATE INSTRUCTIONS:
 ### Non-Functional
 - [Performance, Security, or Compliance requirements]
 
-## 4. Acceptance Criteria
+## 4. Requirement Register
+
+| ID | Requirement | Source | Status | Notes |
+| --- | --- | --- | --- | --- |
+| REQ-001 | [Short canonical requirement statement] | [User chat / ticket / workshop] | proposed | [Optional clarification or link to evidence] |
+| REQ-002 | [Short canonical requirement statement] | [User chat / ticket / workshop] | planned | [Optional clarification or link to related TODO items] |
+
+Suggested statuses: `proposed`, `planned`, `in_progress`, `implemented`, `enhanced`, `verified`, `deferred`
+
+## 5. Acceptance Criteria
 - [Criteria that must be met to consider the project "Done"]
